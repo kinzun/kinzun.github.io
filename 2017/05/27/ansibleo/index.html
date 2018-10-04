@@ -1,0 +1,756 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ansible," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="安装目录 ansible工作原理图 ####ansible重要组成部分  ANSIBLE PLAYBOOKS ： 任 务 剧 本 （ 任 务 集 ） ， 编 排 定 义Ansible 任 务 集 的 配 置 文 件 ， 由 Ansible 顺 序 依 次 执 行 ， 通 常 是JSON 格 式 的 YML 文 件  INVENTORY ： Ansible 管 理 主 机 的 清 单 ； MODUL">
+<meta name="keywords" content="ansible">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ansible总结">
+<meta property="og:url" content="http://yoursite.com/2017/05/27/ansibleo/index.html">
+<meta property="og:site_name" content="Armitage">
+<meta property="og:description" content="安装目录 ansible工作原理图 ####ansible重要组成部分  ANSIBLE PLAYBOOKS ： 任 务 剧 本 （ 任 务 集 ） ， 编 排 定 义Ansible 任 务 集 的 配 置 文 件 ， 由 Ansible 顺 序 依 次 执 行 ， 通 常 是JSON 格 式 的 YML 文 件  INVENTORY ： Ansible 管 理 主 机 的 清 单 ； MODUL">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2017/05/27/ansibleo/images/ansible/config.png">
+<meta property="og:image" content="http://yoursite.com/images/ansible/ansibleyuanli.png">
+<meta property="og:image" content="http://yoursite.com/images/ansible/ansiblediaoyong.png">
+<meta property="og:image" content="http://oq5o9vwna.bkt.clouddn.com/ansiblemodules0.png">
+<meta property="og:image" content="http://oq5o9vwna.bkt.clouddn.com/ansiblemodules1.png">
+<meta property="og:updated_time" content="2018-10-04T08:12:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ansible总结">
+<meta name="twitter:description" content="安装目录 ansible工作原理图 ####ansible重要组成部分  ANSIBLE PLAYBOOKS ： 任 务 剧 本 （ 任 务 集 ） ， 编 排 定 义Ansible 任 务 集 的 配 置 文 件 ， 由 Ansible 顺 序 依 次 执 行 ， 通 常 是JSON 格 式 的 YML 文 件  INVENTORY ： Ansible 管 理 主 机 的 清 单 ； MODUL">
+<meta name="twitter:image" content="http://yoursite.com/2017/05/27/ansibleo/images/ansible/config.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/27/ansibleo/"/>
+
+
+
+
+
+  <title>ansible总结 | Armitage</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Armitage</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/27/ansibleo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Armitage">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Armitage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ansible总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-27T15:20:01+08:00">
+                2017-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="安装目录"><a href="#安装目录" class="headerlink" title="安装目录"></a>安装目录</h4><p><img src="images/ansible/config.png" alt=""></p>
+<h4 id="ansible工作原理图"><a href="#ansible工作原理图" class="headerlink" title="ansible工作原理图"></a>ansible工作原理图</h4><p><img src="/images/ansible/ansibleyuanli.png" alt=""></p>
+<p>####ansible重要组成部分</p>
+<ul>
+<li>ANSIBLE PLAYBOOKS ： 任 务 剧 本 （ 任 务 集 ） ， 编 排 定 义Ansible 任 务 集 的 配 置 文 件 ， 由 Ansible 顺 序 依 次 执 行 ， 通 常 是JSON 格 式 的 YML 文 件 </li>
+<li>INVENTORY ： Ansible 管 理 主 机 的 清 单 ；</li>
+<li>MODULES ： Ansible 执 行 命 令 的 功 能 模 块 ， 多 数 为 内 置 的 核心 模 块 ， 也 可 自 定 义 ；</li>
+<li>PLUGINS ： 模 块 功 能 的 补 充 ， 如 连 接 类 型 插 件 、 循 环 插 件 、变 量 插 件 、 过 滤 插 件 等 ， 该 功 能 不 常 用 。</li>
+<li>API ： 供 第 三 方 程 序 调 用 的 应 用 程 序 编 程 接 口 ；</li>
+<li>ANSIBLE ： 该 部 分 图 中 表 示 的 不 明 显 ， 组 合 INVENTORY 、API 、 MODULES 、 PLUGINS 的 绿 框 大</li>
+</ul>
+<h4 id="Ansible-组-件-调-用-关"><a href="#Ansible-组-件-调-用-关" class="headerlink" title="Ansible 组 件 调 用 关"></a>Ansible 组 件 调 用 关</h4><p><img src="/images/ansible/ansiblediaoyong.png" alt=""></p>
+<h4 id="ansible配置文件ansible-cfg常用配置项"><a href="#ansible配置文件ansible-cfg常用配置项" class="headerlink" title="ansible配置文件ansible.cfg常用配置项"></a>ansible配置文件ansible.cfg常用配置项</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">1）inventory</span><br><span class="line">该参数表示资源清单inventory文件的位置，资源清单就是一些Ansible需要连接管理的主机列表 </span><br><span class="line">inventory = /root/ansible/hosts</span><br><span class="line"></span><br><span class="line">2）library</span><br><span class="line">Ansible的操作动作，无论是本地或远程，都使用一小段代码来执行，这小段代码称为模块，这个library参数就是指向存放Ansible模块的目录 </span><br><span class="line">library = /usr/share/ansible</span><br><span class="line"></span><br><span class="line">3）forks</span><br><span class="line">设置默认情况下Ansible最多能有多少个进程同时工作，默认设置最多5个进程并行处理。具体需要设置多少个，可以根据控制主机的性能和被管理节点的数量来确定。 </span><br><span class="line">forks = 5</span><br><span class="line"></span><br><span class="line">4）sudo_user</span><br><span class="line">这是设置默认执行命令的用户，也可以在playbook中重新设置这个参数 </span><br><span class="line">sudo_user = root</span><br><span class="line">//注意:新版本已经作了修改，如ansible2.4.1下已经为：</span><br><span class="line">default_sudo_user = root</span><br><span class="line"></span><br><span class="line">5）remote_port</span><br><span class="line">这是指定连接被关节点的管理端口，默认是22，除非设置了特殊的SSH端口，不然这个参数一般是不需要修改的 </span><br><span class="line">remote_port = 22</span><br><span class="line"></span><br><span class="line">6）host_key_checking</span><br><span class="line">这是设置是否检查SSH主机的密钥。可以设置为True或False </span><br><span class="line">host_key_checking = False</span><br><span class="line"></span><br><span class="line">7）timeout</span><br><span class="line">这是设置SSH连接的超时间隔，单位是秒。 </span><br><span class="line">timeout = 20</span><br><span class="line"></span><br><span class="line">8）log_path</span><br><span class="line">Ansible系统默认是不记录日志的，如果想把Ansible系统的输出记录到人i治稳健中，需要设置log_path来指定一个存储Ansible日志的文件 </span><br><span class="line">log_path = /var/log/ansible.log</span><br><span class="line"></span><br><span class="line">另外需要注意，执行Ansible的用户需要有写入日志的权限，模块将会调用被管节点的syslog来记录，口令是不会出现的日志中的</span><br><span class="line"></span><br><span class="line">9）private_key_file</span><br><span class="line"></span><br><span class="line">在使用ssh公钥私钥登录系统时候，使用的密钥路径。</span><br><span class="line"></span><br><span class="line">private_key_file=/path/to/file.pem</span><br></pre></td></tr></table></figure>
+<p><a href="http://docs.ansible.com/ansible/latest/intro_configuration.html#private-key-file" target="_blank" rel="noopener">更多参考官方文档</a></p>
+<h4 id="ad-hoc模式使用参数介绍"><a href="#ad-hoc模式使用参数介绍" class="headerlink" title="ad-hoc模式使用参数介绍"></a>ad-hoc模式使用参数介绍</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">-v, --verbose：输出更详细的执行过程信息，-vvv可得到所有执行过程信息。</span><br><span class="line">-i PATH, --inventory=PATH：指定inventory信息，默认/etc/ansible/hosts。</span><br><span class="line">-f NUM, --forks=NUM：并发线程数，默认5个线程。</span><br><span class="line">--private-key=PRIVATE_KEY_FILE：指定密钥文件。</span><br><span class="line">-m NAME, --module-name=NAME：指定执行使用的模块。</span><br><span class="line">-M DIRECTORY, --module-path=DIRECTORY：指定模块存放路径，默认/usr/share/ansible，也可以通过ANSIBLE_LIBRARY设定默认路径。</span><br><span class="line">-a &apos;ARGUMENTS&apos;, --args=&apos;ARGUMENTS&apos;：模块参数。-k, --ask-pass SSH：认证密码。</span><br><span class="line">-K, --ask-sudo-pass sudo：用户的密码（—sudo时使用）。</span><br><span class="line">-o, --one-line：标准输出至一行。-s, --sudo：相当于Linux系统下的sudo命令。</span><br><span class="line">-t DIRECTORY, --tree=DIRECTORY：输出信息至DIRECTORY目录下，结果文件以远程主机名命名。</span><br><span class="line">-T SECONDS, --timeout=SECONDS：指定连接远程主机的最大超时，单位是：秒。</span><br><span class="line">-B NUM, --background=NUM：后台执行命令，超NUM秒后kill正在执行的任务。</span><br><span class="line">-P NUM, --poll=NUM：定期返回后台任务进度。</span><br><span class="line">-u USERNAME, --user=USERNAME：指定远程主机以USERNAME运行命令。</span><br><span class="line">-U SUDO_USERNAME, --sudo-user=SUDO_USERNAM：E使用sudo，相当于Linux下的sudo命令。</span><br><span class="line">-c CONNECTION, --connection=CONNECTION：指定连接方式，可用选项paramiko (SSH), ssh, local。</span><br><span class="line">Local方式常用于crontab 和 kickstarts。-l SUBSET, --limit=SUBSET：指定运行主机。</span><br><span class="line">-l ~REGEX, --limit=~REGEX：指定运行主机（正则）。</span><br><span class="line">--list-hosts：列出符合条件的主机列表，不执行任何其他命令</span><br></pre></td></tr></table></figure>
+<h4 id="ad-hoc模块常用模块"><a href="#ad-hoc模块常用模块" class="headerlink" title="ad-hoc模块常用模块"></a>ad-hoc模块常用模块</h4><p><img src="http://oq5o9vwna.bkt.clouddn.com/ansiblemodules0.png" alt="modules1"></p>
+<p><img src="http://oq5o9vwna.bkt.clouddn.com/ansiblemodules1.png" alt="modules1"></p>
+<p>ansible-doc -l #全部可用模块</p>
+<ul>
+<li><p>具体用法</p>
+<p>ansible-doc models #模块使用文档</p>
+</li>
+</ul>
+<h4 id="ansible中普通用户执行sudo"><a href="#ansible中普通用户执行sudo" class="headerlink" title="ansible中普通用户执行sudo"></a>ansible中普通用户执行sudo</h4><ul>
+<li><p>示 例// 以 mantou 用 户 执 行 ping 存 活 检 测</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ansible all -m ping -u mantou</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以 mantou sudo 至 root 执 行 ping 存 活 检 测</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ansible all -m ping -u mantou --sudo</span><br></pre></td></tr></table></figure>
+<p>以 mantou sudo 至 batman 用 户 执 行 ping 存 活 检 测ansible all -m ping -u mantou –sudo –sudo-user </p>
+</li>
+</ul>
+<p>batman但 在 新 版 本 中 Ansible <code>sudo</code> 命 令 废 弃 改 –become 或 -b ，如 上 命 令 需 改 为 如 下 ：</p>
+<ul>
+<li><p>以 mantou sudo 至 root 执 行 ping 存 活 检 测</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ansible all -m ping -u mantou -b</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以 mantou sudo 至 netash用 户 执 行 ping 存 活 检 测</p>
+</li>
+<li><p>​</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ansible all -m ping -u mantou -b --become-user netash</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">-u REMOTE_USER, --user=REMOTE_USER </span><br><span class="line">＃ ssh 连接的用户名 </span><br><span class="line">-k, --ask-pass ＃ssh登录认证密码 </span><br><span class="line">-s, --sudo ＃sudo 到root用户，相当于Linux系统下的sudo命令 </span><br><span class="line">-U SUDO_USER, --sudo-user=SUDO_USER ＃sudo 到对应的用户 </span><br><span class="line">-K, --ask-sudo-pass ＃用户的密码（—sudo时使用）</span><br><span class="line">-T TIMEOUT, --timeout=TIMEOUT ＃ ssh 连接超时，默认 10 秒</span><br><span class="line">-C, --check ＃ 指定该参数后，执行 playbook 文件不会真正去执行，而是模拟执行一遍，然后输出本次执行会对远程主机造成的修改</span><br><span class="line">-e EXTRA_VARS, --extra-vars=EXTRA_VARS ＃ 设置额外的变量如：key=value 形式 或者 YAML or JSON，以空格分隔变量，或用多个-e </span><br><span class="line">-f FORKS, --forks=FORKS ＃ 进程并发处理，默认 5</span><br><span class="line">-i INVENTORY, --inventory-file=INVENTORY </span><br><span class="line">＃ 指定 hosts 文件路径，默认 default=/etc/ansible/hosts</span><br><span class="line">-l SUBSET, --limit=SUBSET</span><br><span class="line">＃ 指定一个 pattern，对- hosts:匹配到的主机再过滤一次 </span><br><span class="line">--list-hosts </span><br><span class="line">＃ 只打印有哪些主机会执行这个 playbook 文件，不是实际执行该 playbook </span><br><span class="line">--list-tasks </span><br><span class="line">＃ 列出该 playbook 中会被执行的 task </span><br><span class="line">--private-key=PRIVATE_KEY_FILE </span><br><span class="line">＃ 私钥路径 --step ＃ 同一时间只执行一个 task，每个 task 执行前都会提示确认一遍 --syntax-check ＃ 只检测 playbook 文件语法是否有问题，不会执行该 playbook </span><br><span class="line">-t TAGS, --tags=TAGS </span><br><span class="line">＃当 play 和 task 的 tag 为该参数指定的值时才执行，多个 tag 以逗号分隔 </span><br><span class="line">--skip-tags=SKIP_TAGS </span><br><span class="line">＃ 当 play 和 task 的 tag 不匹配该参数指定的值时，才执行 </span><br><span class="line">-v, --verbose </span><br><span class="line">＃输出更详细的执行过程信息，-vvv可得到所有执行过程信息。</span><br></pre></td></tr></table></figure>
+<h5 id="ansible-playbook"><a href="#ansible-playbook" class="headerlink" title="ansible playbook"></a>ansible playbook</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">- hosts: 192.168.10.10</span><br><span class="line">  remote_user: root</span><br><span class="line">  vars:</span><br><span class="line">   touch_file: test.file</span><br><span class="line">  tasks:</span><br><span class="line">   - name: touch file</span><br><span class="line">     shell: "touch /tmp/&#123;&#123; touch_file &#125;&#125;"</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vintour</span><br><span class="line"></span><br><span class="line">web:vars</span><br><span class="line"></span><br><span class="line">touch_file=je</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">- hosts: 192.168.10.10</span><br><span class="line">  remote_user: root</span><br><span class="line"><span class="meta">  #</span>vars:</span><br><span class="line"><span class="meta">   #</span>touch_file: test.file</span><br><span class="line">  tasks:</span><br><span class="line">   - name: get date</span><br><span class="line">     command: date</span><br><span class="line">     register: date_output</span><br><span class="line">   - name: touch file</span><br><span class="line">     shell: "touch /tmp/datefile"</span><br><span class="line">   - name: echo date_ouput</span><br><span class="line">     shell: "echo &#123;&#123; date_output &#125;&#125; &gt;&gt; /tmp/datefile "</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- hosts : 192.168.10.10,192.168.10.12</span><br><span class="line">  remote_user : root</span><br><span class="line">  tasks :</span><br><span class="line">  - name : "touch flag file"</span><br><span class="line">    command : "touch /tmp/this_is_&#123;&#123;ansible_distribution&#125;&#125;_system"</span><br><span class="line">    when: (ansible_distribution == "CentOS" )</span><br><span class="line">~</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ansible/" rel="tag"># ansible</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/20/tomcat/" rel="next" title="tomcat memcache sticky sessions">
+                <i class="fa fa-chevron-left"></i> tomcat memcache sticky sessions
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/03/Git/" rel="prev" title="Git常用指令">
+                Git常用指令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Armitage" />
+          <p class="site-author-name" itemprop="name">Armitage</p>
+           
+              <p class="site-description motion-element" itemprop="description">怎么一不小心太疯狂</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kinzun" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1916882360" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装目录"><span class="nav-number">1.</span> <span class="nav-text">安装目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ansible工作原理图"><span class="nav-number">2.</span> <span class="nav-text">ansible工作原理图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ansible-组-件-调-用-关"><span class="nav-number">3.</span> <span class="nav-text">Ansible 组 件 调 用 关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ansible配置文件ansible-cfg常用配置项"><span class="nav-number">4.</span> <span class="nav-text">ansible配置文件ansible.cfg常用配置项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ad-hoc模式使用参数介绍"><span class="nav-number">5.</span> <span class="nav-text">ad-hoc模式使用参数介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ad-hoc模块常用模块"><span class="nav-number">6.</span> <span class="nav-text">ad-hoc模块常用模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ansible中普通用户执行sudo"><span class="nav-number">7.</span> <span class="nav-text">ansible中普通用户执行sudo</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ansible-playbook"><span class="nav-number">7.1.</span> <span class="nav-text">ansible playbook</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Armitage</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

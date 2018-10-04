@@ -1,0 +1,750 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="报错123456789101112131415161718192021222324252627282930313233343536def chufa(a,b):    try: #尝试执行XX代码        ret = a/b #如果这里出现了错误.异常.        #系统内部会产生一个异常对象. 系统会把这个错误抛出,        #抛出给调用方        return ret">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python约束和异常处理">
+<meta property="og:url" content="http://yoursite.com/2018/09/27/Python约束和异常处理/index.html">
+<meta property="og:site_name" content="Armitage">
+<meta property="og:description" content="报错123456789101112131415161718192021222324252627282930313233343536def chufa(a,b):    try: #尝试执行XX代码        ret = a/b #如果这里出现了错误.异常.        #系统内部会产生一个异常对象. 系统会把这个错误抛出,        #抛出给调用方        return ret">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/images/python/python_exception.png">
+<meta property="og:updated_time" content="2018-10-04T08:12:40.677Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python约束和异常处理">
+<meta name="twitter:description" content="报错123456789101112131415161718192021222324252627282930313233343536def chufa(a,b):    try: #尝试执行XX代码        ret = a/b #如果这里出现了错误.异常.        #系统内部会产生一个异常对象. 系统会把这个错误抛出,        #抛出给调用方        return ret">
+<meta name="twitter:image" content="http://yoursite.com/images/python/python_exception.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/27/Python约束和异常处理/"/>
+
+
+
+
+
+  <title>Python约束和异常处理 | Armitage</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Armitage</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/27/Python约束和异常处理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Armitage">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Armitage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python约束和异常处理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-27T08:38:22+08:00">
+                2018-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/python/python_exception.png" alt=""></p>
+<h4 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">chufa</span><span class="params">(a,b)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>: <span class="comment">#尝试执行XX代码</span></span><br><span class="line">        ret = a/b <span class="comment">#如果这里出现了错误.异常.</span></span><br><span class="line">        <span class="comment">#系统内部会产生一个异常对象. 系统会把这个错误抛出,</span></span><br><span class="line">        <span class="comment">#抛出给调用方</span></span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line">    <span class="comment"># except ZeroDivisionError as e:</span></span><br><span class="line">    <span class="comment">#except ZeroDivisionErro as e: # 内部产生的所有异常都会被捕获 #捕获的异常对象会交给e</span></span><br><span class="line">    <span class="comment">#    print(e)</span></span><br><span class="line">    <span class="comment">#    print("出错,0不能是除数")</span></span><br><span class="line">    <span class="comment"># except FileExistsError as e:</span></span><br><span class="line">    <span class="comment"># except StopIteration as e:</span></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    <span class="comment">#except:   #同 except Exception #所有异常</span></span><br><span class="line">        print(e)</span><br><span class="line">        print(<span class="string">"出错了"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>: <span class="comment">#保护不抛出异常的代码,当try 中无异常的时候执行</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">finally</span>: <span class="comment">#最好总会执行部分</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># return a/b</span></span><br><span class="line">ret = chufa(<span class="number">5</span>,<span class="number">0</span>)</span><br><span class="line">print(ret)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#计算两个整数的加法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> type(a)!=int <span class="keyword">or</span> type(b) != int:</span><br><span class="line">        <span class="comment"># return</span></span><br><span class="line">        <span class="comment"># return Exception</span></span><br><span class="line">        <span class="keyword">raise</span> TypeError(<span class="string">"我这里只要int, 不要别的类型"</span>)</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line">add(<span class="number">123</span>, <span class="string">"abc"</span></span><br></pre></td></tr></table></figure>
+<h4 id="自定义异常返回"><a href="#自定义异常返回" class="headerlink" title="自定义异常返回"></a>自定义异常返回</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GenderError</span><span class="params">(Exception)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,gender)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.gender = gender</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xi</span><span class="params">(per)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> per.gender != <span class="string">'男'</span>:</span><br><span class="line">        <span class="keyword">raise</span> GenderError(<span class="string">"这里是男澡堂"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"进去了"</span>)</span><br><span class="line">p1 = Person(<span class="string">'tudou'</span>,<span class="string">"不详"</span>)</span><br><span class="line">p2 = Person(<span class="string">'mantou'</span>,<span class="string">'男'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> traceback</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    xi(p2)</span><br><span class="line"><span class="keyword">except</span> GenderError <span class="keyword">as</span> g:</span><br><span class="line">    print(g)</span><br><span class="line">    val = traceback.format_exc() <span class="comment">#获取堆栈信息</span></span><br><span class="line">    print(val)</span><br></pre></td></tr></table></figure>
+<h4 id="类的约束"><a href="#类的约束" class="headerlink" title="类的约束"></a>类的约束</h4><p>约束是对子类进行的约束。</p>
+<ul>
+<li>在父类中给出一个方法。 这个方法中什么都不写。 就抛异常。 <code>NotImplementError()</code></li>
+<li>在子类中把上述的方法进行重写。</li>
+<li>在子类中把上述的方法进行重写。</li>
+</ul>
+<ol>
+<li><p>python中有两种办法来解决这样的问题.</p>
+<blockquote>
+<p>提取父类. 然后在父类中定义好方法. 在这个方法中什么都不用干. 就抛一个异常就可以了. 这样所有的子类都必须重写这个方法. 否则. 访问的时候就会报错.</p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment">#raise Exception("没有实现login方法")</span></span><br><span class="line">        <span class="keyword">raise</span> NotImplementedError(<span class="string">"没有实现login方法"</span>) <span class="comment">#专业的写法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">kantie</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">raise</span> Gk(<span class="string">"没有看帖功能"</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Normal</span><span class="params">(Base)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"普通人登录"</span>)</span><br><span class="line"></span><br><span class="line"> <span class="comment">## 李四写</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Menber</span><span class="params">(Base)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">l</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"吧务登录"</span>)</span><br><span class="line"></span><br><span class="line"> <span class="comment">## 王八</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Admin</span><span class="params">(Base)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"管理员登录"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(obj)</span>:</span></span><br><span class="line">    print(<span class="string">"产生验证码"</span>)</span><br><span class="line">    obj.login()</span><br><span class="line">    print(<span class="string">"进入主页"</span>)</span><br><span class="line"> <span class="comment">## 场景</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">n = Normal()</span><br><span class="line">m = Menber()</span><br><span class="line">a = Admin()</span><br><span class="line"></span><br><span class="line">login(n)</span><br><span class="line">login(m)</span><br><span class="line">login(a)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><blockquote>
+<p>使⽤用元类来描述父类. 在元类中给出一个抽象方法. 这样子类就不得不给出抽象方法的具体实现. 也可以起到约束的效果.</p>
+</blockquote>
+<p>python中编写⼀一个抽象类比较⿇麻烦. 需要引入abc模块中的ABCMeta和<br>abstractmethod这两个内容. 来我们看一个例例⼦子.</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> abc <span class="keyword">import</span> ABCMeta,abstractmethod</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(self)</span>:</span><span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 张三</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Normal</span><span class="params">(Base)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"::普通人登陆"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 李四</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Member</span><span class="params">(Base)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"::吧务登陆"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 王五</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Admin</span><span class="params">(Base)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"::管理员登陆"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(obj)</span>:</span></span><br><span class="line">    print(<span class="string">"1.产生验证码"</span>)</span><br><span class="line">    obj.login() <span class="comment"># 标准在这里.  必须由login</span></span><br><span class="line">    print(<span class="string">"3.进入主页"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 场景</span></span><br><span class="line">n = Normal()</span><br><span class="line">m = Member()</span><br><span class="line">a = Admin()</span><br><span class="line">login(n)</span><br><span class="line">login(m)</span><br><span class="line">login(a)</span><br></pre></td></tr></table></figure>
+<p>​   </p>
+<blockquote>
+<p>总结: 约束. 其实就是⽗类对⼦类进行约束. 子类必须要写xxx方法. 在python中约束的</p>
+</blockquote>
+<p>方式和方法有两种:</p>
+<ol>
+<li>使用抽象类和抽象方法, 由于该方案来源是java和c#. 所以使用频率还是很少的</li>
+<li>使用人为抛出异常的方案. 并且尽量量抛出的是NotImplementError. 这样比较专业, 而且错误比较明确.(推荐)</li>
+</ol>
+<h4 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h4>   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">chu</span><span class="params">(a, b)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> a/b</span><br><span class="line">	ret = chu(<span class="number">10</span>, <span class="number">0</span>)</span><br><span class="line">	print(ret)</span><br><span class="line"></span><br><span class="line"><span class="comment">###ZeroDivisionError: division by zero</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">chu</span><span class="params">(a, b)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> a/b</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">	ret = chu(<span class="number">10</span>, <span class="number">0</span>)</span><br><span class="line">	print(ret)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">	print(<span class="string">"除数不不能是0"</span>)</span><br><span class="line">结果:</span><br><span class="line">除数不不能是<span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">	print(<span class="string">"各种操作...."</span>)</span><br><span class="line"><span class="keyword">except</span> ZeroDivisionError <span class="keyword">as</span> e:</span><br><span class="line">	print(<span class="string">"除数不不能是0"</span>)</span><br><span class="line"><span class="keyword">except</span> FileNotFoundError <span class="keyword">as</span> e:</span><br><span class="line">	print(<span class="string">"⽂文件不不存在"</span>)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">	print(<span class="string">"其他错误"</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h4><blockquote>
+<p>MD5是一种不可逆的加密算法. 它是可靠的. 并且安全的. 在python中我们不需要手写<br>这一套算法. 只需要引入一个叫hashlib的模块就能搞定MD5的加密工作</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#引入模块</span></span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#1.创建一个md5对象</span></span><br><span class="line">obj = hashlib.md5()</span><br><span class="line"><span class="comment">#obj = hashlib.md5(b"3I31") #加..</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2.把要加密的内容给md5</span></span><br><span class="line">obj.update(<span class="string">"root"</span>.encode(<span class="string">"utf-8"</span>)) <span class="comment">#必须是字节</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.获取密文</span></span><br><span class="line"></span><br><span class="line">val = obj.hexdigest()</span><br><span class="line">print(val)</span><br><span class="line"><span class="keyword">import</span>  hashlib</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_md5</span><span class="params">(yal)</span>:</span></span><br><span class="line">    obj = hashlib.md5()</span><br><span class="line">    obj.update(yal.encode(<span class="string">"utf-8"</span>))</span><br><span class="line">    val = obj.hexdigest()</span><br><span class="line">    <span class="keyword">return</span> val</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#注册的时候,用md5 进行加密,</span></span><br><span class="line"></span><br><span class="line">name = input(<span class="string">"name"</span>)</span><br><span class="line">passwd = input(<span class="string">"passwd"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#ps = my_md5(passwd)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> name == <span class="string">"man"</span> <span class="keyword">and</span> my_md5(passwd) == <span class="string">"63a9f0ea7bb98050796b649e85481845"</span>:</span><br><span class="line">    print(<span class="string">'go'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"n"</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="日志处理"><a href="#日志处理" class="headerlink" title="日志处理"></a>日志处理</h4><ol>
+<li>导入logging模块.</li>
+<li>简单配置⼀一下logging</li>
+<li>出现异常的时候(except). 向⽇日志⾥里里写错误信息.</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line">logging.basicConfig(filename=<span class="string">'app.log'</span>,</span><br><span class="line">                    format=<span class="string">'%(asctime)s - %(name)s - %(levelname)s - %(module)s: %(message)s'</span>,</span><br><span class="line">                    datefmt=<span class="string">'%Y-%m-%d %H:%M:%S'</span>,</span><br><span class="line">                    level=<span class="number">40</span>)    <span class="comment"># level 设置级别. 当你的信息的级别&gt;=level的时候才会写入日志文件, 默认30</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># CRITICAL = 50</span></span><br><span class="line"><span class="comment"># FATAL = CRITICAL</span></span><br><span class="line"><span class="comment"># ERROR = 40</span></span><br><span class="line"><span class="comment"># WARNING = 30</span></span><br><span class="line"><span class="comment"># WARN = WARNING</span></span><br><span class="line"><span class="comment"># INFO = 20</span></span><br><span class="line"><span class="comment"># DEBUG = 10</span></span><br><span class="line"><span class="comment"># NOTSET = 0</span></span><br><span class="line"><span class="comment"># 写日志</span></span><br><span class="line"><span class="comment"># logging.critical("我是critical")</span></span><br><span class="line"><span class="comment"># logging.error("我是error")</span></span><br><span class="line"><span class="comment"># logging.warning("我是警告")</span></span><br><span class="line"><span class="comment"># logging.info("我是基本信息")</span></span><br><span class="line"><span class="comment"># logging.debug("我是调试")</span></span><br><span class="line"><span class="comment"># logging.log(2, "我是自定义")</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> traceback</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">20</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> i % <span class="number">3</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">raise</span> FileNotFoundError(<span class="string">"我是FileNotFountException"</span>)</span><br><span class="line">        <span class="keyword">elif</span> i % <span class="number">3</span> == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">raise</span> StopIteration()</span><br><span class="line">        <span class="keyword">elif</span> i % <span class="number">3</span> == <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">raise</span> KeyError()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">except</span> FileNotFoundError <span class="keyword">as</span> e:</span><br><span class="line">        val = traceback.format_exc()  <span class="comment"># 获取堆栈信息</span></span><br><span class="line">        logging.error(val)</span><br><span class="line">    <span class="keyword">except</span> StopIteration <span class="keyword">as</span> e:</span><br><span class="line">        val = traceback.format_exc()</span><br><span class="line">        logging.error(val)</span><br><span class="line">    <span class="keyword">except</span> KeyError <span class="keyword">as</span> e:</span><br><span class="line">        val = traceback.format_exc()</span><br><span class="line">        logging.error(val)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        val = traceback.format_exc()</span><br><span class="line">        logging.error(val)</span><br></pre></td></tr></table></figure>
+<h4 id="多文件日志处理"><a href="#多文件日志处理" class="headerlink" title="多文件日志处理"></a>多文件日志处理</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 创建⼀个操作⽇志的对象logger（依赖FileHandler）</span></span><br><span class="line">file_handler = logging.FileHandler(<span class="string">'l1.log'</span>, <span class="string">'a'</span>, encoding=<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="comment"># 设置日志文件内容的格式</span></span><br><span class="line">file_handler.setFormatter(logging.Formatter(fmt=<span class="string">"%(asctime)s - %(name)s - %(levelname)s -%(module)s: %(message)s"</span>))</span><br><span class="line">logger1 = logging.Logger(<span class="string">'A'</span>, level=<span class="number">40</span>)</span><br><span class="line">logger1.addHandler(file_handler)</span><br><span class="line"><span class="comment"># 记录日志</span></span><br><span class="line">logger1.error(<span class="string">'我是A系统'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 再创建⼀个操作⽇志的对象logger（依赖FileHandler）</span></span><br><span class="line">file_handler2 = logging.FileHandler(<span class="string">'l2.log'</span>, <span class="string">'a'</span>, encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">file_handler2.setFormatter(logging.Formatter(fmt=<span class="string">"%(asctime)s - %(name)s -%(levelname)s -%(module)s: %(message)s"</span>))</span><br><span class="line">logger2 = logging.Logger(<span class="string">'B'</span>, level=<span class="number">40</span>)</span><br><span class="line">logger2.addHandler(file_handler2)</span><br><span class="line"><span class="comment"># 记录日志</span></span><br><span class="line">logger2.error(<span class="string">'我是B系统'</span>)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/26/Python面对对象成员(2)/" rel="next" title="Python:面对对象成员(2)">
+                <i class="fa fa-chevron-left"></i> Python:面对对象成员(2)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/27/Python类与类之间的关系(3)/" rel="prev" title="Python类与类之间的关系(3)">
+                Python类与类之间的关系(3) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Armitage" />
+          <p class="site-author-name" itemprop="name">Armitage</p>
+           
+              <p class="site-description motion-element" itemprop="description">怎么一不小心太疯狂</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kinzun" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1916882360" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#报错"><span class="nav-number">1.</span> <span class="nav-text">报错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义异常返回"><span class="nav-number">2.</span> <span class="nav-text">自定义异常返回</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类的约束"><span class="nav-number">3.</span> <span class="nav-text">类的约束</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异常处理"><span class="nav-number">4.</span> <span class="nav-text">异常处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MD5"><span class="nav-number">5.</span> <span class="nav-text">MD5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#日志处理"><span class="nav-number">6.</span> <span class="nav-text">日志处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多文件日志处理"><span class="nav-number">7.</span> <span class="nav-text">多文件日志处理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Armitage</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

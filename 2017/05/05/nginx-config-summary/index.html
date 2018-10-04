@@ -1,0 +1,718 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Nginx," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="顶级配置1234567891011121314#定义 Nginx 运行的用户和用户组user nginx;#进程文件pid /var/run/nginx.pid;#错误日志位置和级别，debug、info、notice、warn、error、criterror_log  /var/log/nginx/error.log warn;#Nginx worker 的进程数，一般可设置为可用的CPU内核数">
+<meta name="keywords" content="Nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx 配置文件总结">
+<meta property="og:url" content="http://yoursite.com/2017/05/05/nginx-config-summary/index.html">
+<meta property="og:site_name" content="Armitage">
+<meta property="og:description" content="顶级配置1234567891011121314#定义 Nginx 运行的用户和用户组user nginx;#进程文件pid /var/run/nginx.pid;#错误日志位置和级别，debug、info、notice、warn、error、criterror_log  /var/log/nginx/error.log warn;#Nginx worker 的进程数，一般可设置为可用的CPU内核数">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-04T08:12:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nginx 配置文件总结">
+<meta name="twitter:description" content="顶级配置1234567891011121314#定义 Nginx 运行的用户和用户组user nginx;#进程文件pid /var/run/nginx.pid;#错误日志位置和级别，debug、info、notice、warn、error、criterror_log  /var/log/nginx/error.log warn;#Nginx worker 的进程数，一般可设置为可用的CPU内核数">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/05/nginx-config-summary/"/>
+
+
+
+
+
+  <title>Nginx 配置文件总结 | Armitage</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Armitage</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/05/nginx-config-summary/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Armitage">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Armitage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Nginx 配置文件总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-05T12:22:33+08:00">
+                2017-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="顶级配置"><a href="#顶级配置" class="headerlink" title="顶级配置"></a>顶级配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#定义 Nginx 运行的用户和用户组</span><br><span class="line">user nginx;</span><br><span class="line"></span><br><span class="line">#进程文件</span><br><span class="line">pid /var/run/nginx.pid;</span><br><span class="line"></span><br><span class="line">#错误日志位置和级别，debug、info、notice、warn、error、crit</span><br><span class="line">error_log  /var/log/nginx/error.log warn;</span><br><span class="line"></span><br><span class="line">#Nginx worker 的进程数，一般可设置为可用的CPU内核数。</span><br><span class="line">worker_processes 8;</span><br><span class="line"></span><br><span class="line">#每个 worker 打开文件描述符的最大数量限制。理论值应该是最多打开文件数（系统的值ulimit -n）与 nginx 进程数相除，但是 nginx 分配请求并不均匀，所以建议与ulimit -n的值保持一致。</span><br><span class="line">worker_rlimit_nofile 65535;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>修改系统文件打开数量限制：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sh -c ulimit -HSn 65535 //临时修改</span><br></pre></td></tr></table></figure>
+<p>重启后永久生效，则需要设置修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/security/limits.conf</span><br></pre></td></tr></table></figure>
+<p>在文件尾部添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* soft nofile 200000</span><br><span class="line">* hard nofile 200000</span><br></pre></td></tr></table></figure>
+<h4 id="Events-模块"><a href="#Events-模块" class="headerlink" title="Events 模块"></a>Events 模块</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">events &#123;</span><br><span class="line">    #设置一个worker进程同时打开的最大连接数</span><br><span class="line">    worker_connections 2048;</span><br><span class="line"></span><br><span class="line">    #告诉nginx收到一个新连接通知后接受尽可能多的连接</span><br><span class="line">    multi_accept on;</span><br><span class="line"></span><br><span class="line">    #设置用于复用客户端线程的轮询方法。如果你使用Linux 2.6+，你应该使用epoll。如果你使用*BSD，你应该使用kqueue。</span><br><span class="line">    use epoll;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="HTTP-模块"><a href="#HTTP-模块" class="headerlink" title="HTTP 模块"></a>HTTP 模块</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    #隐藏 Nginx 的版本号，提高安全性。</span><br><span class="line">    server_tokens off;</span><br><span class="line"></span><br><span class="line">    #开启高效文件传输模式，sendfile 指令指定 Nginx 是否调用sendfile 函数来输出文件，对于普通应用设为 on，如果用来进行下载等应用磁盘 IO 重负载应用，可设置为 off，以平衡磁盘与网络 I/O 处理速度，降低系统的负载。</span><br><span class="line">    sendfile on;</span><br><span class="line"></span><br><span class="line">    #是否开启目录列表访问，默认关闭。</span><br><span class="line">    autoindex off;</span><br><span class="line"></span><br><span class="line">    #告诉 Nginx 在一个数据包里发送所有头文件，而不一个接一个的发送</span><br><span class="line">    tcp_nopush on;</span><br><span class="line"></span><br><span class="line">    #告诉 Nginx 不要缓存数据，而是一段一段的发送--当需要及时发送数据时，就应该给应用设置这个属性，这样发送一小块数据信息时就不能立即得到返回值。Nginx 默认会始终工作在 tcp nopush 状态下。但是当开启前面的 sendfile on; 时，它的工作特点是 nopush 的最后一个包会自动转转换到 nopush off。为了减小那200ms的延迟，开启 nodelay on; 将其很快传送出去。结论就是 sendfile on; 开启时，tcp_nopush 和 tcp_nodelay 都是on 是可以的。</span><br><span class="line">    tcp_nodelay on;</span><br><span class="line"></span><br><span class="line">    #日志格式设定</span><br><span class="line">    log_format  main  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</span><br><span class="line">    &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</span><br><span class="line">    &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;</span><br><span class="line">    #定义访问日志，设置为 off 可以关闭日志，提高性能</span><br><span class="line">    access_log /var/log/nginx/access.log main;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    #连接超时时间，单位是秒</span><br><span class="line">    keepalive_timeout 120;</span><br><span class="line"></span><br><span class="line">    #读取HTTP头部的超时时间，默认值 60。客户端与服务器建立连接后将开始接收HTTP头部，在这个过程中，如果在一个时间间隔（超时时间）内没有读取到客户端发来的字节，则认为超时，并向客户端返回408 (&quot;Request timed out&quot;)响应。</span><br><span class="line">    client_header_timeout 60;</span><br><span class="line"></span><br><span class="line">    #默认值 60。与client_header_timeout相似，只是这个超时时间只在读取HTTP包体时才有效。</span><br><span class="line">    client_body_timeout 10;</span><br><span class="line"></span><br><span class="line">    #发送响应的超时时间，默认值 60。即Nginx服务器向客户端发送了数据包，但客户端一直没有去接收这个数据包。如果某个连接超过send_timeout定义的超时时间，那么Nginx将会关闭这个连接。</span><br><span class="line">    send_timeout 60;</span><br><span class="line"></span><br><span class="line">    #连接超时后将通过向客户端发送RST包来直接重置连接。这个选项打开后，Nginx会在某个连接超时后，不是使用正常情形下的四次握手关闭TCP连接，而是直接向用户发送RST重置包，不再等待用户的应答，直接释放Nginx服务器上关于这个套接字使用的所有缓存（如TCP滑动窗口）。相比正常的关闭方式，它使得服务器避免产生许多处于FIN_WAIT_1、FIN_WAIT_2、TIME_WAIT状态的TCP连接。注意，使用RST重置包关闭连接会带来一些问题，默认情况下不会开启。</span><br><span class="line">    reset_timedout_connection off;</span><br><span class="line"></span><br><span class="line">    #要限制连接，必须先有一个容器对连接进行计数，&quot;zone=&quot; 是给它一个名字，可以随便叫，这个名字要跟下面的 limit_conn 一致。$binary_remote_addr 用二进制来储存客户端的地址，1m 可以储存 32000 个并发会话。</span><br><span class="line">    limit_conn_zone $binary_remote_addr zone=addr:5m;</span><br><span class="line"></span><br><span class="line">    #给定的key设置最大连接数。这里key是addr，我们设置的值是100，也就是说我们允许每一个IP地址最多同时打开有100个连接。</span><br><span class="line">    limit_conn addr 100;</span><br><span class="line"></span><br><span class="line">    #对每个连接限速100k。这如果一个IP允许两个并发连接，那么这个IP就是限速200K。</span><br><span class="line">    limit_rate 100k; </span><br><span class="line"></span><br><span class="line">    #include 是一个在当前文件中包含另一个文件内容的指令。这里我们使用它来加载文件扩展名与文件类型映射表。nginx根据映射关系，设置http请求响应头的Content-Type值。当在映射表找不到时，使用nginx.conf中default-type指定的默认值。</span><br><span class="line">    include /etc/nginx/mime.types;</span><br><span class="line"></span><br><span class="line">    #设置文件使用的默认的MIME-type</span><br><span class="line">    default_type text/html;</span><br><span class="line"></span><br><span class="line">    #默认编码</span><br><span class="line">    charset UTF-8;</span><br><span class="line"></span><br><span class="line">    #该模块可以读取预先压缩的gz文件，这样可以减少每次请求进行gzip压缩的CPU资源消耗。该模块启用后，nginx首先检查是否存在请求静态文件的gz结尾的文件，如果有则直接返回该gz文件内容。</span><br><span class="line">    gzip_static off;  </span><br><span class="line"></span><br><span class="line">    #开启 gzip 压缩。</span><br><span class="line">    gzip on;</span><br><span class="line"></span><br><span class="line">    # 禁用客户端为 IE6 时的 gzip功能。</span><br><span class="line">    gzip_disable &quot;msie6&quot;;</span><br><span class="line"></span><br><span class="line">    #Nginx做为反向代理的时候启用。可选值：off|expired|no-cache|no-sotre|private|no_last_modified|no_etag|auth|any</span><br><span class="line">    gzip_proxied any;</span><br><span class="line"></span><br><span class="line">    #设置允许压缩的页面最小字节数，页面字节数从header头中的Content-Length中进行获取。建议设置成大于1k的字节数，小于1k可能会越压越大。</span><br><span class="line">    gzip_min_length 1024;</span><br><span class="line"></span><br><span class="line">    #设置数据的压缩等级。这个等级可以是1-9之间的任意数值，9是最慢但是压缩比最大的。</span><br><span class="line">    gzip_comp_level 5;</span><br><span class="line"></span><br><span class="line">    #设置系统获取几个单位的缓存用于存储gzip的压缩结果数据流。 例如 4 4k 代表以4k为单位，按照原始数据大小以4k为单位的4倍申请内存。如果没有设置，默认值是申请跟原始数据相同大小的内存空间去存储gzip压缩结果。</span><br><span class="line">    gzip_buffers 4 16k;</span><br><span class="line"></span><br><span class="line">    #设置需要压缩的数据格式。Nginx默认只对text/html进行压缩。</span><br><span class="line">    gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;</span><br><span class="line"></span><br><span class="line">    #为打开文件指定缓存，默认是没有启用的，max 指定缓存数量，建议和打开文件数一致，inactive 是指经过多长时间文件没被请求后删除缓存。</span><br><span class="line">    open_file_cache max=65535 inactive=30s;</span><br><span class="line"></span><br><span class="line">    #多长时间检查一次缓存的有效信息</span><br><span class="line">    open_file_cache_valid 30s;</span><br><span class="line"></span><br><span class="line">    #open_file_cache指令中的inactive参数时间内文件的最少使用次数，如果超过这个数字，文件描述符一直是在缓存中打开的。出现 Last-Modified 不变的情况，就是因为当nginx对一个静态文件缓存后，如果30s内还在访问它，那么它的缓存就一直存在，直到30s内你不访问了为止。</span><br><span class="line">    open_file_cache_min_uses 2;</span><br><span class="line">    #是否记录cache错误</span><br><span class="line">    open_file_cache_errors on;</span><br><span class="line"></span><br><span class="line">    include /etc/nginx/conf.d/*.conf;</span><br><span class="line">    include /etc/nginx/sites-enabled/*;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="SERVER-模块"><a href="#SERVER-模块" class="headerlink" title="SERVER 模块"></a>SERVER 模块</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    #监听端口，nginx 会根据请求的 HOST 来决定使用哪个 SERVER 段的配置。如果没有匹配的 server_name，则默认使用配置文件中第一个。加上 default_server 则可以以指定没有匹配时的默认规则。</span><br><span class="line">    #listen 80;</span><br><span class="line">    listen 80 default_server;</span><br><span class="line"></span><br><span class="line">    #域名可以有多个，用空格隔开</span><br><span class="line">    server_name www.test.com test.com;</span><br><span class="line">    root /user/share/nginx/html/test;</span><br><span class="line"></span><br><span class="line">    #404页面配置</span><br><span class="line">    error_page   404   /404.html;</span><br><span class="line"></span><br><span class="line">    #配置 ssl，有需要时开启。</span><br><span class="line">    ssl on;</span><br><span class="line">    ssl_certificate /etc/nginx/ssl/server.crt;</span><br><span class="line">    ssl_certificate_key /etc/nginx/ssl/server.key;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        index   index.html index.php;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #图片缓存时间设置</span><br><span class="line">    location ~ .*.(gif|jpg|jpeg|png|bmp|swf)$ &#123;</span><br><span class="line">        expires 10d;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #JS和CSS缓存时间设置</span><br><span class="line">    location ~ .*.(js|css)?$ &#123;</span><br><span class="line">        expires 1h;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ [^/]\.php(/|$) &#123;</span><br><span class="line">        fastcgi_index   index.php;</span><br><span class="line">        #开启 PATH_INFO 支持，作用就是把参数按照给定的正则表达式分割成 $fastcgi_script_name 和 $fastcgi_path_info。</span><br><span class="line">        #例如：请求 index.php/id/1 不加此行配置时，fastcgi_script_name 是 /index.php/id/1，fastcgi_path_info 是空。</span><br><span class="line">        #加上之后，fastcgi_script_name 是 index.php，fastcgi_path_info 是 /id/1</span><br><span class="line">        fastcgi_split_path_info ^(.+\.php)(.*)$;</span><br><span class="line"></span><br><span class="line">        #此值即是 PHP 中 $_SERVER[&apos;SCRIPT_FILENAME&apos;] 的值</span><br><span class="line">        fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">        fastcgi_param   PATH_INFO               $fastcgi_path_info;</span><br><span class="line">        fastcgi_param   PATH_TRANSLATED $document_root$fastcgi_path_info;</span><br><span class="line"></span><br><span class="line">        #指定FastCGI服务器监听端口与地址。须和 PHP-FPM 的设置相同。</span><br><span class="line">        #fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">        fastcgi_pass    unix:/var/run/php5-fpm.sock;</span><br><span class="line">        include fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h4><ul>
+<li><a href="http://nginx.org/en/docs/" target="_blank" rel="noopener">http://nginx.org/en/docs/</a></li>
+<li><a href="http://www.oschina.net/translate/nginx-setup" target="_blank" rel="noopener">http://www.oschina.net/translate/nginx-setup</a></li>
+<li><a href="http://www.ha97.com/5194.html" target="_blank" rel="noopener">http://www.ha97.com/5194.html</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/04/NginxInstall-and-config/" rel="next" title="Nginx 服务器安装及配置文件详解">
+                <i class="fa fa-chevron-left"></i> Nginx 服务器安装及配置文件详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/16/keepalived/" rel="prev" title="Keeplaived 高可用nginx负载均衡">
+                Keeplaived 高可用nginx负载均衡 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Armitage" />
+          <p class="site-author-name" itemprop="name">Armitage</p>
+           
+              <p class="site-description motion-element" itemprop="description">怎么一不小心太疯狂</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kinzun" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1916882360" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#顶级配置"><span class="nav-number">1.</span> <span class="nav-text">顶级配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Events-模块"><span class="nav-number">2.</span> <span class="nav-text">Events 模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-模块"><span class="nav-number">3.</span> <span class="nav-text">HTTP 模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SERVER-模块"><span class="nav-number">4.</span> <span class="nav-text">SERVER 模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料："><span class="nav-number">5.</span> <span class="nav-text">参考资料：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Armitage</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
