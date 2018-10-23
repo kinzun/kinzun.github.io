@@ -90,18 +90,18 @@
 
 
 
-<meta name="description" content="怎么一不小心太疯狂">
+<meta name="description" content="#####类方法静态方法区别 123456789101112131415161718192021222324252627282930class Num:    #普通方法：能用Num调用而不能用实例化对象调用        def one():           print (&apos;1&apos;)    #实例方法：能用实例化对象调用而不能用Num调用    def two(self):        pr">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python类与类之间的关系(3)">
 <meta property="og:url" content="http://yoursite.com/2018/09/27/Python类与类之间的关系(3)/index.html">
 <meta property="og:site_name" content="Armitage">
-<meta property="og:description" content="怎么一不小心太疯狂">
+<meta property="og:description" content="#####类方法静态方法区别 123456789101112131415161718192021222324252627282930class Num:    #普通方法：能用Num调用而不能用实例化对象调用        def one():           print (&apos;1&apos;)    #实例方法：能用实例化对象调用而不能用Num调用    def two(self):        pr">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-04T08:12:40.677Z">
+<meta property="og:updated_time" content="2018-10-23T11:50:10.033Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python类与类之间的关系(3)">
-<meta name="twitter:description" content="怎么一不小心太疯狂">
+<meta name="twitter:description" content="#####类方法静态方法区别 123456789101112131415161718192021222324252627282930class Num:    #普通方法：能用Num调用而不能用实例化对象调用        def one():           print (&apos;1&apos;)    #实例方法：能用实例化对象调用而不能用Num调用    def two(self):        pr">
 
 
 
@@ -335,7 +335,8 @@
       
 
       
-        
+        <p>#####类方法静态方法区别</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Num</span>:</span></span><br><span class="line">    <span class="comment">#普通方法：能用Num调用而不能用实例化对象调用    </span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">one</span><span class="params">()</span>:</span>   </span><br><span class="line">        <span class="keyword">print</span> (<span class="string">'1'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#实例方法：能用实例化对象调用而不能用Num调用</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">two</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> (<span class="string">'2'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#静态方法：能用Num和实例化对象调用</span></span><br><span class="line"><span class="meta">    @staticmethod  </span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">three</span><span class="params">()</span>:</span>   </span><br><span class="line">        <span class="keyword">print</span> (<span class="string">'3'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#类方法：第一个参数cls长什么样不重要，都是指Num类本身，调用时将Num类作为对象隐式地传入方法    </span></span><br><span class="line"><span class="meta">    @classmethod  </span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">go</span><span class="params">(cls)</span>:</span>  </span><br><span class="line">        cls.three()  </span><br><span class="line"></span><br><span class="line">Num.one()       <span class="comment">#1</span></span><br><span class="line"><span class="comment">#Num.two()     #TypeError: two() missing 1 required positional argument: 'self'</span></span><br><span class="line">Num.three()    <span class="comment">#3</span></span><br><span class="line">Num.go()         <span class="comment">#3</span></span><br><span class="line"></span><br><span class="line">i=Num()                 </span><br><span class="line"><span class="comment">#i.one()           #TypeError: one() takes 0 positional arguments but 1 was given          </span></span><br><span class="line">i.two()             <span class="comment">#2       </span></span><br><span class="line">i.three()          <span class="comment">#3</span></span><br><span class="line">i.go()              <span class="comment">#3</span></span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -377,8 +378,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/27/Python约束和异常处理/" rel="next" title="Python约束和异常处理">
-                <i class="fa fa-chevron-left"></i> Python约束和异常处理
+              <a href="/2018/09/27/ Python约束和异常处理,Md5,日志处理/" rel="next" title="Python约束和异常处理,Md5,日志处理">
+                <i class="fa fa-chevron-left"></i> Python约束和异常处理,Md5,日志处理
               </a>
             
           </div>
