@@ -1,0 +1,841 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="pip 的安装 &amp;amp; 更新确保您已经有了 Python 和 pip在您进一步之前，请确保您有 Python，并且可从您的命令行中获得。 您可以通过简单地运行以下命令来检查： 12$ python --version$ pip --version 关键步骤来到命令行界面，执行 12python2-m pip install --upgrade pip --force-reinstallpyth">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pipenv &amp; 虚拟环境">
+<meta property="og:url" content="https://kinzun.github.io/2018/11/10/Python pip&pipenv/index.html">
+<meta property="og:site_name" content="Armitage">
+<meta property="og:description" content="pip 的安装 &amp;amp; 更新确保您已经有了 Python 和 pip在您进一步之前，请确保您有 Python，并且可从您的命令行中获得。 您可以通过简单地运行以下命令来检查： 12$ python --version$ pip --version 关键步骤来到命令行界面，执行 12python2-m pip install --upgrade pip --force-reinstallpyth">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-11-22T08:16:47.675Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pipenv &amp; 虚拟环境">
+<meta name="twitter:description" content="pip 的安装 &amp;amp; 更新确保您已经有了 Python 和 pip在您进一步之前，请确保您有 Python，并且可从您的命令行中获得。 您可以通过简单地运行以下命令来检查： 12$ python --version$ pip --version 关键步骤来到命令行界面，执行 12python2-m pip install --upgrade pip --force-reinstallpyth">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'DCVS5PBBDG',
+      apiKey: '8891b52927924071005948ebf1d385f0',
+      indexName: 'dev_jobbymsblog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://kinzun.github.io/2018/11/10/Python pip&pipenv/"/>
+
+
+
+
+
+  <title>Pipenv & 虚拟环境 | Armitage</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Armitage</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kinzun.github.io/2018/11/10/Python pip&pipenv/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Armitage">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Armitage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Pipenv & 虚拟环境
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-10T10:30:27+08:00">
+                2018-11-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/10/Python pip&pipenv/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/11/10/Python pip&pipenv/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="pip-的安装-amp-更新"><a href="#pip-的安装-amp-更新" class="headerlink" title="pip 的安装 &amp; 更新"></a>pip 的安装 &amp; 更新</h1><h2 id="确保您已经有了-Python-和-pip"><a href="#确保您已经有了-Python-和-pip" class="headerlink" title="确保您已经有了 Python 和 pip"></a>确保您已经有了 Python 和 pip</h2><p>在您进一步之前，请确保您有 Python，并且可从您的命令行中获得。 您可以通过简单地运行以下命令来检查：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> python --version</span><br><span class="line"><span class="meta">$</span> pip --version</span><br></pre></td></tr></table></figure>
+<h2 id="关键步骤"><a href="#关键步骤" class="headerlink" title="关键步骤"></a>关键步骤</h2><p>来到命令行界面，执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python2-m pip install --upgrade pip --force-reinstall</span><br><span class="line">python3-m pip install --upgrade pip --force-reinstall</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 分别重装两个python版本的pip</span><br><span class="line"> python -m pip install --upgrade pip --force-reinstall，显示重新安装成功。</span><br><span class="line"> python3 -m pip install --upgrade pip --force-reinstall，显示重新安装成功。</span><br></pre></td></tr></table></figure>
+<h2 id="查看版本"><a href="#查看版本" class="headerlink" title="查看版本"></a>查看版本</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入pip2 -V ，pip3 -V 查看版本信息 </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>卸载</span><br><span class="line">python -m pip uninstall pip</span><br></pre></td></tr></table></figure>
+<h2 id="卸载-安装pip"><a href="#卸载-安装pip" class="headerlink" title="卸载 安装pip"></a>卸载 安装pip</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">安装pip环境：</span><br><span class="line">sudo easy_install pip</span><br><span class="line"></span><br><span class="line">Mac 卸载自己安装的 python</span><br><span class="line">第一步：删除框架</span><br><span class="line">sudo rm -rf /Library/Frameworks/Python.framework/Versions/3.6</span><br><span class="line">第二步：删除应用目录</span><br><span class="line">sudo rm -rf "/Applications/Python 3.6"</span><br><span class="line">第三步：删除指向python的链接</span><br><span class="line">cd /usr/local/bin/</span><br><span class="line">ls -l /usr/local/bin | grep '/Library/Frameworks/Python.framework/Versions/3.6' # 查看链接</span><br><span class="line">ls -l /usr/local/bin | grep '../Library/Frameworks/Python.framework/Versions/x.x' | awk '&#123;print $9&#125;' | tr -d @ | xargs rm</span><br><span class="line">brew prune # 清除链接和目录</span><br></pre></td></tr></table></figure>
+<h2 id="升级pip"><a href="#升级pip" class="headerlink" title="升级pip"></a>升级pip</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ python3</span><br><span class="line">Python <span class="number">3.6</span><span class="number">.6</span> (default, Sep  <span class="number">5</span> <span class="number">2018</span>, <span class="number">03</span>:<span class="number">40</span>:<span class="number">52</span>) </span><br><span class="line">[GCC <span class="number">6.3</span><span class="number">.0</span> <span class="number">20170516</span>] on linux</span><br><span class="line">Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> <span class="keyword">or</span> <span class="string">"license"</span> <span class="keyword">for</span> more information.</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> pipenv.vendor.pip_shims <span class="keyword">import</span> get_installed_distributions, FrozenRequirement</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>FrozenRequirement</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">pipenv</span>.<span class="title">patched</span>.<span class="title">notpip</span>.<span class="title">_internal</span>.<span class="title">operations</span>.<span class="title">freeze</span>.<span class="title">FrozenRequirement</span>'&gt;</span></span><br><span class="line"><span class="class">&gt;&gt;&gt; <span class="title">get_installed_distributions</span></span></span><br><span class="line"><span class="class">&lt;<span class="title">function</span> <span class="title">get_installed_distributions</span> <span class="title">at</span> 0<span class="title">x7f4298e859d8</span>&gt;</span></span><br><span class="line"><span class="class">&gt;&gt;&gt; <span class="title">import</span> <span class="title">pipenv</span></span></span><br><span class="line"><span class="class">&gt;&gt;&gt; <span class="title">pipenv</span>.<span class="title">__version__</span></span></span><br><span class="line"><span class="class">'2018.10.9'</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">I</span>'<span class="title">m</span> <span class="title">currently</span> <span class="title">using</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line">python3 -m pip install pip==10.0.1</span><br><span class="line">python3 -m pip install pipenv==<span class="number">2018.5</span><span class="number">.18</span></span><br><span class="line">Once <span class="comment">#2924 is fixed and released, you can upgrade again to the latest and greatest.</span></span><br><span class="line"></span><br><span class="line">python3 -m pip install --upgrade pip</span><br><span class="line">python3 -m pip install --upgrade pipenv</span><br></pre></td></tr></table></figure>
+<p>以后只需运行<code>pip(2) install XXX</code>和<code>pip3 install XXX</code>即可安装各自的python包。</p>
+<p><strong>注意</strong>，使用<strong>Python2.X</strong>或<strong>pip2</strong>安装东西的时候要注意权限问题，如果当前用户是普通用户，需要切换到管理员用户 <code>sudo -i</code></p>
+<h2 id="pip的使用"><a href="#pip的使用" class="headerlink" title="pip的使用"></a>pip的使用</h2><p>pip 为python的包管理器. 最新的python2和python3都已经自带pip.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 显示帮助</span><br><span class="line">pip</span><br><span class="line">pip --help</span><br><span class="line">pip install -h                      # 显示安装的帮助</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 安装包</span><br><span class="line">pip install PackageName             # latest version</span><br><span class="line">pip install PackageName==1.0.4      # specific version</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 包列表</span><br><span class="line">pip list                            # 显示已安装的包   </span><br><span class="line">pip list --outdated                 # 显示有更新的包</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 显示包的简介, 以及包的源码文件</span><br><span class="line">pip show --files PackageName</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 更新包</span><br><span class="line">pip install --U PackageName</span><br><span class="line">pip install --upgrade PackageName</span><br><span class="line">pip install --upgrade pip           # pip更新自己</span><br><span class="line">python -m pip install --U pip       # -m 表示调用python模块, 这里就是要调用pip</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 卸载包</span><br><span class="line">pip uninstall PackageName</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 遇到SSL问题, 下载失败时, 信任下载源即可</span><br><span class="line"><span class="meta">#</span> [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:XXX)</span><br><span class="line">pip list --outdated --trusted-host pypi.python.org </span><br><span class="line">pip install --trusted-host pypi.python.org PackageName</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 如果还是不行, 再试试下面这句. index-url 将源指定为http格式, 不用https了, 然后设置为信任.</span><br><span class="line">pip install --index-url=http://pypi.python.org/simple/ --trusted-host pypi.python.org PackageName</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.cnblogs.com/zhangxinqi/p/9074546.html" target="_blank" rel="noopener">pip安装</a></p>
+<h1 id="Pipenv-amp-虚拟环境"><a href="#Pipenv-amp-虚拟环境" class="headerlink" title="Pipenv &amp; 虚拟环境"></a>Pipenv &amp; 虚拟环境</h1><p>用<a href="https://github.com/pypa/pipenv" target="_blank" rel="noopener">Pipenv</a>安装相互独立的虚拟环境</p>
+<blockquote>
+<p>pipenv：Pyhton 官方推荐的新一代包管理工具。 它综合了 virtualenv , pip 和 pyenv 三者的功能。能够自动为项目创建和管理虚拟环境。<br> pipenv使用 Pipfile 和 Pipfile.lock 来管理依赖包，并且在使用pipenv添加或删除包时，自动维护 Pipfile 文件，同时生成 Pipfile.lock 来锁定安装包的版本和依赖信息，避免构建错误。相比pip需要手动维护requirements.txt 中的安装包和版本，具有很大的进步。</p>
+</blockquote>
+<h4 id="安装pipenv"><a href="#安装pipenv" class="headerlink" title="安装pipenv"></a>安装pipenv</h4><p>如果你是Mac电脑，那么推荐使用<strong>Homebrew</strong>来安装。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> brew install pipenv</span><br></pre></td></tr></table></figure>
+<p>如果不是Mac电脑，建议 使用Python3的pip3 安装：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> pip3 install pipenv #pyhton3</span><br><span class="line">or</span><br><span class="line"><span class="meta">$</span> pip install --user pipenv #python2 指定用户</span><br></pre></td></tr></table></figure>
+<p>执行pipenv，可以查看pipenv的帮助信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pipenv</span><br></pre></td></tr></table></figure>
+<p>其他方式后面有链接地址</p>
+<h4 id="pipenv使用方法命令名"><a href="#pipenv使用方法命令名" class="headerlink" title="pipenv使用方法命令名　　"></a>pipenv使用方法命令名　　</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">命令创建pipenv</span><br><span class="line">pipenv启动pipenv　</span><br><span class="line">pipenv shell(为存在虚拟环境可自动创建)</span><br><span class="line">退出pipenv　　exit</span><br><span class="line">查找所有安装包　　piplist</span><br><span class="line">环境内包的依赖展示　　pipenv graph</span><br><span class="line">查找虚拟环境的路径　　pipenv --venv</span><br><span class="line">卸载安装包　　pipenv uninstall</span><br><span class="line"></span><br><span class="line">1、将目录更改为包含你的Python项目的文件夹，并启动Pipenv， </span><br><span class="line">cd my_project </span><br><span class="line">pipenv install </span><br><span class="line"></span><br><span class="line">---------------------</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>创建项目虚拟环境</span><br><span class="line"><span class="meta">$</span>pipenv install</span><br><span class="line"><span class="meta">#</span>指定python版本创建虚拟环境</span><br><span class="line"><span class="meta">$</span>pipenv --two</span><br><span class="line"><span class="meta">$</span>pipenv --three</span><br><span class="line"><span class="meta">$</span>pipenv --python 3.6.5</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>升级所有包</span><br><span class="line"><span class="meta">$</span>pipenv update</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>升级某一个包，如：redis</span><br><span class="line"><span class="meta">$</span>pipenv update redis</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>显示项目路径</span><br><span class="line"><span class="meta">$</span>pipenv --where  </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>显示virtualenv路径</span><br><span class="line"><span class="meta">$</span>pipenv --venv  </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>显示python虚拟解释器</span><br><span class="line"><span class="meta">$</span>pipenv --py  </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>激活虚拟环境</span><br><span class="line"><span class="meta">$</span>pipenv shell   </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>安装requests模块</span><br><span class="line"><span class="meta">$</span>pipenv install requests </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>查看目前安装的库及依赖关系  </span><br><span class="line"><span class="meta">$</span>pipenv graph </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>检查包的安全性 </span><br><span class="line"><span class="meta">#</span>pipenv check  </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>激活虚拟环境并运行shell命令</span><br><span class="line"><span class="meta">$</span>pipenv run which python</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>从文件导入包</span><br><span class="line"><span class="meta">$</span>pipenv install -r path/to/requirements.txt</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>冻结软件包和版本依赖关系,生成Pipfile.lock文件</span><br><span class="line"><span class="meta">$</span>pipenv lock</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>安装开发包</span><br><span class="line"><span class="meta">$</span>pipenv install --dev pytest</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>使用系统上的python自带的包组件</span><br><span class="line"><span class="meta">$</span>pipenv --three --site-packages</span><br></pre></td></tr></table></figure>
+<h4 id="为项目建立虚拟环境"><a href="#为项目建立虚拟环境" class="headerlink" title="为项目建立虚拟环境"></a>为项目建立虚拟环境</h4><p>我们希望在每个项目的根目录下保存虚拟环境目录（.venv），需要在 .bashrc 或 .bash_profile 中配置如下： </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PIPENV_VENV_IN_PROJECT=1</span><br></pre></td></tr></table></figure>
+<p>要想使配置生效，执行下source ~/.bashrc或者source ~/.bash_profile。<br> 接下来我们为项目创建虚拟环境。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> mkdir pipenv_demo</span><br><span class="line"><span class="meta">$</span> cd pipenv_demo</span><br><span class="line"><span class="meta">$</span> pipenv --three # 初始化一个python3虚拟环境，如果想初始化pyhton2的虚拟环境，则使用pipenv --two123</span><br></pre></td></tr></table></figure>
+<p>创建完虚拟环境之后，在pipenv_demo目录下将会看到一个.venv的目录，这个目录就是pipenv_demo项目的虚拟环境。使用具体的python版本创建虚拟环境，可以执行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pipenv --python 2.7.14</span><br></pre></td></tr></table></figure>
+<h4 id="为项目安装第三方依赖包"><a href="#为项目安装第三方依赖包" class="headerlink" title="为项目安装第三方依赖包"></a>为项目安装第三方依赖包</h4><p>为项目安装自己的依赖包到虚拟环境中，使每个项目拥有相互独立的第三方包，是非常不错的Python的开发实践。安装依赖包到虚拟环境中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> pipenv install flask</span><br><span class="line"><span class="meta">$</span> pipenv install pytest --dev   # 用于区分需要部署到线上的开发包、只需要在测试环境中执行的包12</span><br></pre></td></tr></table></figure>
+<p>执行完上面的命令后，检查一下是否安装成功：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> pipenv graph</span><br><span class="line">Flask==0.12.2</span><br><span class="line">  - click [required: &gt;=2.0, installed: 6.7]</span><br><span class="line">  - itsdangerous [required: &gt;=0.21, installed: 0.24]</span><br><span class="line">  - Jinja2 [required: &gt;=2.4, installed: 2.10]</span><br><span class="line">    - MarkupSafe [required: &gt;=0.23, installed: 1.0]</span><br><span class="line">  - Werkzeug [required: &gt;=0.7, installed: 0.14.1]</span><br><span class="line">pytest==3.4.2</span><br><span class="line">  - attrs [required: &gt;=17.2.0, installed: 17.4.0]</span><br><span class="line">  - pluggy [required: &gt;=0.5,&lt;0.7, installed: 0.6.0]</span><br><span class="line">  - py [required: &gt;=1.5.0, installed: 1.5.2]</span><br><span class="line">  - setuptools [required: Any, installed: 38.6.0]</span><br><span class="line">  - six [required: &gt;=1.10.0, installed: 1.11.0]12345678910111213</span><br></pre></td></tr></table></figure>
+<p>可看到已经安装了Flask和pytest，还列出了他们的依赖包。<br> 这是观察项目的根目录下，生成了两个文件，分别是Pipfile和Pipfile.lock。这两个文件记录了此项目的第三方依赖包，这两个文件的区别是 Pipfile中安装的包不包含包的具体版本号，而Pipfile.lock是包含包的具体的版本号的</p>
+<h4 id="更新-pypi源来提高依赖库安装的速度"><a href="#更新-pypi源来提高依赖库安装的速度" class="headerlink" title="更新 pypi源来提高依赖库安装的速度"></a>更新 pypi源来提高依赖库安装的速度</h4><p>在使用pipenv的时候，常常会在安装的时候，一直卡在了 Locking 这里，通过加上 -v 参数，可以看到安装过程中的步骤信息，卡在了下载那里，这时应该可以意识到是因为网络的原因，pipenv创建的 Pipfile 中默认的pypi源是python官方的 <a href="https://pypi.python.org/simple" target="_blank" rel="noopener">https://pypi.python.org/simple</a>。我们国内用户访问下载的时候会很慢。</p>
+<p>所以，我一般会在创建好Pipfile以后，修改到文件中 source 块下的 url 字段，设置为国内的 pypi 源就好了，我推荐的是清华的pypi源或者阿里源，具体设置如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">[[source]]</span><br><span class="line"> url = "https://pypi.tuna.tsinghua.edu.cn/simple"</span><br><span class="line"> verify_ssl = true</span><br><span class="line"> name = "pypi"1234</span><br><span class="line"> </span><br><span class="line"> ——————————————————————————————————————————————————————</span><br><span class="line"><span class="meta"> $</span>cat Pipfile</span><br><span class="line"></span><br><span class="line">[[source]]</span><br><span class="line">url = "https://pypi.org/simple"  #用来配置安装包的源，可以更换国内的源,注意在更好没有https的源时会不信任站点将verify_ssl设置为false</span><br><span class="line">verify_ssl = true</span><br><span class="line">name = "pypi"</span><br><span class="line"></span><br><span class="line">[[source]]</span><br><span class="line">url = "https://pypi.tuna.tsinghua.edu.cn/simple"</span><br><span class="line">uerify_ssl = true</span><br><span class="line">name =  'tuna'</span><br><span class="line"></span><br><span class="line">[packages]</span><br><span class="line">requests = &#123;version = "*", index = 'tuna''&#125;   #为不同的包指定不同的安装源</span><br><span class="line">maya = &#123;version = "*", index = "pypi"   </span><br><span class="line"></span><br><span class="line">[packages]  #安装的包及版本关系显示</span><br><span class="line">redis = "*"</span><br><span class="line"></span><br><span class="line">[dev-packages]  #安装的开发包</span><br><span class="line"></span><br><span class="line">[requires]  #指定项目运行的python版本，你可以在此指定一个系统上没有的版本，在创建虚拟环境是pipenv会通过pyenv下载指定版本的python</span><br><span class="line">python_version = "3.6"</span><br></pre></td></tr></table></figure>
+<hr>
+<p>### </p>
+<h1 id="linux下的双版本"><a href="#linux下的双版本" class="headerlink" title="linux下的双版本"></a>linux下的双版本</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sudo python2 hello.py</span><br><span class="line">sudo python3 hello.py</span><br><span class="line"><span class="meta">#</span> 指定版本运行源码</span><br><span class="line"></span><br><span class="line">sudo pip2 install PackageName</span><br><span class="line">sudo pip3 install PackageName</span><br><span class="line"><span class="meta">#</span> 直接使用pip+版本</span><br><span class="line"></span><br><span class="line">sudo python2 -m pip install PackageName</span><br><span class="line">sudo python3 -m pip install PackageName</span><br><span class="line"><span class="meta">#</span> -m 表示调用python模块, 这里就是要调用pip</span><br></pre></td></tr></table></figure>
+<h3 id="源码内指定版本"><a href="#源码内指定版本" class="headerlink" title="源码内指定版本"></a>源码内指定版本</h3><p>将需要指定的python版本放在源码的第一行.<br>支持如下方式:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/usr/bin/env</span><br><span class="line"><span class="meta">#</span> 使用默认的系统环境</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>!python2</span><br><span class="line"><span class="meta">#</span>!python3</span><br><span class="line"><span class="meta">#</span>!/usr/bin/env python2</span><br><span class="line"><span class="meta">#</span>!/usr/bin/env python3</span><br><span class="line"><span class="meta">#</span> 指定python版本</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>!/usr/bin/python2</span><br><span class="line"><span class="meta">#</span>!/usr/bin/python3</span><br><span class="line"><span class="meta">#</span>!/usr/local/bin/python2.7</span><br><span class="line"><span class="meta">#</span>!/usr/local/bin/python3.5</span><br><span class="line"><span class="meta">#</span> 通过路径指定版本</span><br></pre></td></tr></table></figure>
+<p>举个python3的例子, 格式如下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>! python3</span><br><span class="line"><span class="meta">#</span> coding: utf-8</span><br><span class="line"></span><br><span class="line">import logging</span><br><span class="line"><span class="meta">#</span> ... 源码</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/pypa/pipenv" target="_blank" rel="noopener">Pipenv官网</a></p>
+<p><a href="https://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html" target="_blank" rel="noopener">Pipenv &amp; 虚拟环境</a></p>
+<p><a href="http://pipenv.readthedocs.io/en/latest/#install-pipenv-today" target="_blank" rel="noopener">参考链接</a></p>
+<p><a href="https://www.cnblogs.com/zhangxinqi/p/9073191.html#_labelTop" target="_blank" rel="noopener">py.qi</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/09/Python Socket 编程详细介绍/" rel="next" title="Python Socket 编程详细介绍">
+                <i class="fa fa-chevron-left"></i> Python Socket 编程详细介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/15/python一些小技巧/" rel="prev" title="Python 一点基本技巧">
+                Python 一点基本技巧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Armitage" />
+          <p class="site-author-name" itemprop="name">Armitage</p>
+           
+              <p class="site-description motion-element" itemprop="description">怎么一不小心太疯狂</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kinzun" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1916882360" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pip-的安装-amp-更新"><span class="nav-number">1.</span> <span class="nav-text">pip 的安装 &amp; 更新</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#确保您已经有了-Python-和-pip"><span class="nav-number">1.1.</span> <span class="nav-text">确保您已经有了 Python 和 pip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键步骤"><span class="nav-number">1.2.</span> <span class="nav-text">关键步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看版本"><span class="nav-number">1.3.</span> <span class="nav-text">查看版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#卸载-安装pip"><span class="nav-number">1.4.</span> <span class="nav-text">卸载 安装pip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#升级pip"><span class="nav-number">1.5.</span> <span class="nav-text">升级pip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pip的使用"><span class="nav-number">1.6.</span> <span class="nav-text">pip的使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pipenv-amp-虚拟环境"><span class="nav-number">2.</span> <span class="nav-text">Pipenv &amp; 虚拟环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装pipenv"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">安装pipenv</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pipenv使用方法命令名"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">pipenv使用方法命令名　　</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为项目建立虚拟环境"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">为项目建立虚拟环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为项目安装第三方依赖包"><span class="nav-number">2.0.0.4.</span> <span class="nav-text">为项目安装第三方依赖包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新-pypi源来提高依赖库安装的速度"><span class="nav-number">2.0.0.5.</span> <span class="nav-text">更新 pypi源来提高依赖库安装的速度</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#linux下的双版本"><span class="nav-number">3.</span> <span class="nav-text">linux下的双版本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源码内指定版本"><span class="nav-number">3.0.1.</span> <span class="nav-text">源码内指定版本</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Armitage</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://discussde.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://kinzun.github.io/2018/11/10/Python pip&pipenv/';
+          this.page.identifier = '2018/11/10/Python pip&pipenv/';
+          this.page.title = 'Pipenv & 虚拟环境';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://discussde.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
