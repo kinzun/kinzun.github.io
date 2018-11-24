@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
@@ -10,6 +10,21 @@
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
 
 
 
@@ -48,9 +63,6 @@
   
 
   
-    
-    
-  
 
   
 
@@ -60,10 +72,6 @@
 
   
 
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -75,7 +83,7 @@
 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Python," />
@@ -87,7 +95,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
 
 
 
@@ -102,7 +110,7 @@
 <meta property="og:site_name" content="Armitage">
 <meta property="og:description" content="pip 的安装 &amp;amp; 更新确保您已经有了 Python 和 pip在您进一步之前，请确保您有 Python，并且可从您的命令行中获得。 您可以通过简单地运行以下命令来检查： 12$ python --version$ pip --version 关键步骤来到命令行界面，执行 12python2-m pip install --upgrade pip --force-reinstallpyth">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-11-22T08:22:58.743Z">
+<meta property="og:updated_time" content="2018-11-22T12:51:56.824Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pipenv &amp; 虚拟环境">
 <meta name="twitter:description" content="pip 的安装 &amp;amp; 更新确保您已经有了 Python 和 pip在您进一步之前，请确保您有 Python，并且可从您的命令行中获得。 您可以通过简单地运行以下命令来检查： 12$ python --version$ pip --version 关键步骤来到命令行界面，执行 12python2-m pip install --upgrade pip --force-reinstallpyth">
@@ -114,8 +122,9 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
+    tabs: true,
     motion: true,
     duoshuo: {
       userId: '0',
@@ -140,10 +149,6 @@
 
 
   <title>Pipenv & 虚拟环境 | Armitage</title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
-
   
 
 
@@ -158,6 +163,10 @@
 
 
 
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -211,7 +220,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -221,7 +230,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -305,7 +314,11 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://kinzun.github.io/2018/11/10/Python pip&pipenv/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -323,14 +336,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Pipenv & 虚拟环境
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">Pipenv & 虚拟环境</h1>
         
 
         <div class="post-meta">
@@ -382,6 +388,9 @@
       </header>
     
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -412,7 +421,7 @@
 <p>执行pipenv，可以查看pipenv的帮助信息：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pipenv</span><br></pre></td></tr></table></figure>
 <p>其他方式后面有链接地址</p>
-<h4 id="pipenv使用方法命令名"><a href="#pipenv使用方法命令名" class="headerlink" title="pipenv使用方法命令名　　"></a>pipenv使用方法命令名　　</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">命令创建pipenv</span><br><span class="line">pipenv启动pipenv　</span><br><span class="line">pipenv shell(为存在虚拟环境可自动创建)</span><br><span class="line">退出pipenv　　exit</span><br><span class="line">查找所有安装包　　piplist</span><br><span class="line">环境内包的依赖展示　　pipenv graph</span><br><span class="line">查找虚拟环境的路径　　pipenv --venv</span><br><span class="line">卸载安装包　　pipenv uninstall</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>、将目录更改为包含你的Python项目的文件夹，并启动Pipenv， </span><br><span class="line">cd my_project </span><br><span class="line">pipenv install </span><br><span class="line"></span><br><span class="line">---------------------</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建项目虚拟环境</span></span><br><span class="line">$pipenv install</span><br><span class="line"><span class="comment">#指定python版本创建虚拟环境</span></span><br><span class="line">$pipenv --two</span><br><span class="line">$pipenv --three</span><br><span class="line">$pipenv --python <span class="number">3.6</span><span class="number">.5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#升级所有包</span></span><br><span class="line">$pipenv update</span><br><span class="line"></span><br><span class="line"><span class="comment">#升级某一个包，如：redis</span></span><br><span class="line">$pipenv update redis</span><br><span class="line"></span><br><span class="line"><span class="comment">#显示项目路径</span></span><br><span class="line">$pipenv --where  </span><br><span class="line"></span><br><span class="line"><span class="comment">#显示virtualenv路径</span></span><br><span class="line">$pipenv --venv  </span><br><span class="line"></span><br><span class="line"><span class="comment">#显示python虚拟解释器</span></span><br><span class="line">$pipenv --py  </span><br><span class="line"></span><br><span class="line"><span class="comment">#激活虚拟环境</span></span><br><span class="line">$pipenv shell   </span><br><span class="line"></span><br><span class="line"><span class="comment">#安装requests模块</span></span><br><span class="line">$pipenv install requests </span><br><span class="line"></span><br><span class="line"><span class="comment">#查看目前安装的库及依赖关系  </span></span><br><span class="line">$pipenv graph </span><br><span class="line"></span><br><span class="line"><span class="comment">#检查包的安全性 </span></span><br><span class="line"><span class="comment">#pipenv check  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">#激活虚拟环境并运行shell命令</span></span><br><span class="line">$pipenv run which python</span><br><span class="line"></span><br><span class="line"><span class="comment">#从文件导入包</span></span><br><span class="line">$pipenv install -r path/to/requirements.txt</span><br><span class="line"></span><br><span class="line"><span class="comment">#冻结软件包和版本依赖关系,生成Pipfile.lock文件</span></span><br><span class="line">$pipenv lock</span><br><span class="line"></span><br><span class="line"><span class="comment">#安装开发包</span></span><br><span class="line">$pipenv install --dev pytest</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用系统上的python自带的包组件</span></span><br><span class="line">$pipenv --three --site-packages</span><br></pre></td></tr></table></figure>
+<h4 id="pipenv使用方法命令名"><a href="#pipenv使用方法命令名" class="headerlink" title="pipenv使用方法命令名　　"></a>pipenv使用方法命令名　　</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">命令创建pipenv</span><br><span class="line">pipenv启动pipenv　</span><br><span class="line">pipenv shell(为存在虚拟环境可自动创建)</span><br><span class="line">退出pipenv　　exit</span><br><span class="line">查找所有安装包　　piplist</span><br><span class="line">环境内包的依赖展示　　pipenv graph</span><br><span class="line">查找虚拟环境的路径　　pipenv --venv</span><br><span class="line">卸载安装包　　pipenv uninstall</span><br><span class="line">卸载pipenv虚拟环境 pipenv --rm</span><br><span class="line"><span class="number">1</span>、将目录更改为包含你的Python项目的文件夹，并启动Pipenv， </span><br><span class="line">cd my_project </span><br><span class="line">pipenv install </span><br><span class="line"></span><br><span class="line">---------------------</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建项目虚拟环境</span></span><br><span class="line">$pipenv install</span><br><span class="line"><span class="comment">#指定python版本创建虚拟环境</span></span><br><span class="line">$pipenv --two</span><br><span class="line">$pipenv --three</span><br><span class="line">$pipenv --python <span class="number">3.6</span><span class="number">.5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#升级所有包</span></span><br><span class="line">$pipenv update</span><br><span class="line"></span><br><span class="line"><span class="comment">#升级某一个包，如：redis</span></span><br><span class="line">$pipenv update redis</span><br><span class="line"></span><br><span class="line"><span class="comment">#显示项目路径</span></span><br><span class="line">$pipenv --where  </span><br><span class="line"></span><br><span class="line"><span class="comment">#显示virtualenv路径</span></span><br><span class="line">$pipenv --venv  </span><br><span class="line"></span><br><span class="line"><span class="comment">#显示python虚拟解释器</span></span><br><span class="line">$pipenv --py  </span><br><span class="line"></span><br><span class="line"><span class="comment">#激活虚拟环境</span></span><br><span class="line">$pipenv shell   </span><br><span class="line"></span><br><span class="line"><span class="comment">#安装requests模块</span></span><br><span class="line">$pipenv install requests </span><br><span class="line"></span><br><span class="line"><span class="comment">#查看目前安装的库及依赖关系  </span></span><br><span class="line">$pipenv graph </span><br><span class="line"></span><br><span class="line"><span class="comment">#检查包的安全性 </span></span><br><span class="line"><span class="comment">#pipenv check  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">#激活虚拟环境并运行shell命令</span></span><br><span class="line">$pipenv run which python</span><br><span class="line"></span><br><span class="line"><span class="comment">#从文件导入包</span></span><br><span class="line">$pipenv install -r path/to/requirements.txt</span><br><span class="line"></span><br><span class="line"><span class="comment">#冻结软件包和版本依赖关系,生成Pipfile.lock文件</span></span><br><span class="line">$pipenv lock -r</span><br><span class="line"></span><br><span class="line"><span class="comment">#安装开发包</span></span><br><span class="line">$pipenv install --dev pytest</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用系统上的python自带的包组件</span></span><br><span class="line">$pipenv --three --site-packages</span><br></pre></td></tr></table></figure>
 <h4 id="为项目建立虚拟环境"><a href="#为项目建立虚拟环境" class="headerlink" title="为项目建立虚拟环境"></a>为项目建立虚拟环境</h4><p>我们希望在每个项目的根目录下保存虚拟环境目录（.venv），需要在 .bashrc 或 .bash_profile 中配置如下： </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PIPENV_VENV_IN_PROJECT=1</span><br></pre></td></tr></table></figure>
 <p>要想使配置生效，执行下source ~/.bashrc或者source ~/.bash_profile。<br> 接下来我们为项目创建虚拟环境。</p>
@@ -437,30 +446,19 @@
 <p><a href="https://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html" target="_blank" rel="noopener">Pipenv &amp; 虚拟环境</a></p>
 <p><a href="http://pipenv.readthedocs.io/en/latest/#install-pipenv-today" target="_blank" rel="noopener">参考链接</a></p>
 <p><a href="https://www.cnblogs.com/zhangxinqi/p/9073191.html#_labelTop" target="_blank" rel="noopener">py.qi</a></p>
+<p><a href="https://pipenv.readthedocs.io/en/latest/#pipenv-python-dev-workflow-for-humans" target="_blank" rel="noopener">Pipenv: Python Dev Workflow for Humans</a></p>
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
+    
 
-      
-    </div>
+    
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
+    
 
     <footer class="post-footer">
       
@@ -472,7 +470,7 @@
       
 
       
-        
+      
       
 
       
@@ -500,6 +498,10 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -540,6 +542,7 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
@@ -569,7 +572,7 @@
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives">
+              <a href="/archives/">
                 <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">posts</span>
               </a>
@@ -601,7 +604,9 @@
                   
                     <i class="fa fa-fw fa-github"></i>
                   
-                  GitHub
+                    
+                      GitHub
+                    
                 </a>
               </span>
             
@@ -610,7 +615,9 @@
                   
                     <i class="fa fa-fw fa-weibo"></i>
                   
-                  Weibo
+                    
+                      Weibo
+                    
                 </a>
               </span>
             
@@ -668,6 +675,17 @@
   <span class="author" itemprop="copyrightHolder">Armitage</span>
 </div>
 
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
 
 
         
@@ -736,25 +754,25 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
 
 
 
   
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
 
 
 
@@ -798,12 +816,6 @@
 
 
 
-  
-
-
-
-
-
 
 
 
@@ -822,9 +834,11 @@
   <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
   
 
-  <script src="/js/src/algolia-search.js?v=5.1.1"></script>
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
 
 
+
+  
 
   
 
