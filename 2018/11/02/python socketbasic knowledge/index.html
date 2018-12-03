@@ -117,7 +117,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Network," />
+  <meta name="keywords" content="Python," />
 
 
 
@@ -133,18 +133,22 @@
 
 
 
-<meta name="description" content="NetworkManager command line tool">
-<meta name="keywords" content="Network">
+<meta name="description" content="套接字由于TCP/IP协议族被设计成能够运行在多种操作系统的环境下，TCP/IP标准允许系统设计者能够选择有关API的具体实现细节。 目前，可供应用程序使用TCP/IP的应用编程接口API的最著名的是套接字接口 而套接字不是物理实体，而是一种抽象，套接字是提供应用程序创建和使用的数据结构 Socket通常也称作“套接字”，用于描述IP地址和端口，是一个通信链的句柄  Socket有两种类型：">
+<meta name="keywords" content="Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NetworkManager command line tool">
-<meta property="og:url" content="https://kinzun.github.io/2017/03/07/NetworkManager-command-line-tool/index.html">
+<meta property="og:title" content="Python socket 基本知识与工作原理">
+<meta property="og:url" content="https://kinzun.github.io/2018/11/02/python socketbasic knowledge/index.html">
 <meta property="og:site_name" content="Armitage">
-<meta property="og:description" content="NetworkManager command line tool">
+<meta property="og:description" content="套接字由于TCP/IP协议族被设计成能够运行在多种操作系统的环境下，TCP/IP标准允许系统设计者能够选择有关API的具体实现细节。 目前，可供应用程序使用TCP/IP的应用编程接口API的最著名的是套接字接口 而套接字不是物理实体，而是一种抽象，套接字是提供应用程序创建和使用的数据结构 Socket通常也称作“套接字”，用于描述IP地址和端口，是一个通信链的句柄  Socket有两种类型：">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-04T08:12:40.000Z">
+<meta property="og:image" content="https://kinzun.github.io/2018/11/02/images/python/1652f12fa6e94275.png">
+<meta property="og:image" content="https://kinzun.github.io/2018/11/02/images/python/image-20181017155606248.png">
+<meta property="og:image" content="https://kinzun.github.io/2018/11/02/images/python/C19943F3-ECA3-4C44-8EB5-6BD7B8C17C6B.jpg">
+<meta property="og:updated_time" content="2018-12-03T12:27:54.743Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NetworkManager command line tool">
-<meta name="twitter:description" content="NetworkManager command line tool">
+<meta name="twitter:title" content="Python socket 基本知识与工作原理">
+<meta name="twitter:description" content="套接字由于TCP/IP协议族被设计成能够运行在多种操作系统的环境下，TCP/IP标准允许系统设计者能够选择有关API的具体实现细节。 目前，可供应用程序使用TCP/IP的应用编程接口API的最著名的是套接字接口 而套接字不是物理实体，而是一种抽象，套接字是提供应用程序创建和使用的数据结构 Socket通常也称作“套接字”，用于描述IP地址和端口，是一个通信链的句柄  Socket有两种类型：">
+<meta name="twitter:image" content="https://kinzun.github.io/2018/11/02/images/python/1652f12fa6e94275.png">
 
 
 
@@ -173,13 +177,13 @@
 
 
 
-  <link rel="canonical" href="https://kinzun.github.io/2017/03/07/NetworkManager-command-line-tool/"/>
+  <link rel="canonical" href="https://kinzun.github.io/2018/11/02/python socketbasic knowledge/"/>
 
 
 
 
 
-  <title>NetworkManager command line tool | Armitage</title>
+  <title>Python socket 基本知识与工作原理 | Armitage</title>
   
 
 
@@ -350,7 +354,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kinzun.github.io/2017/03/07/NetworkManager-command-line-tool/">
+    <link itemprop="mainEntityOfPage" href="https://kinzun.github.io/2018/11/02/python socketbasic knowledge/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Armitage">
@@ -367,7 +371,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">NetworkManager command line tool</h1>
+          <h1 class="post-title" itemprop="name headline">Python socket 基本知识与工作原理</h1>
         
 
         <div class="post-meta">
@@ -379,8 +383,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-07T14:32:51+08:00">
-                2017-03-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-02T10:38:22+08:00">
+                2018-11-02
               </time>
             
 
@@ -398,9 +402,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/07/NetworkManager-command-line-tool/#comments" itemprop="discussionUrl">
+                <a href="/2018/11/02/python socketbasic knowledge/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/03/07/NetworkManager-command-line-tool/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/11/02/python socketbasic knowledge/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -428,256 +432,29 @@
       
 
       
-        <p>NetworkManager command line tool</p>
-<a id="more"></a>
-<pre><code>nmcli
- nmcli [ OPTIONS ] OBJECT { COMMAND | help }
-
-    要得到系统中所有接口的地址信息
-        ip addr show
-    检索与已连接的接口相关的数据包统计
-        ip -s link show eno16777736 
-        ip route 
-    分析主机/网站路径
-        tracepath linxu.com 
-    仅显示当前活动的连接。
-        nmcli device status
-    查看新连接的配置信息：
-        nmcli -p connection show NEW
-
-    更新启用连接：
-            nmcli connection up eno1
-            nmcli con reload
-
-启动/停止 网络接口
-    使用下列命令停止某个接口：
-        nmcli device disconnect eno16777736
-    下列命令用来启动接口：
-        nmcli device connect eno16777736
-
-add
-    找出有多少连接服务于多少设备
-        nmcli connection show 
-        //nmcli connection show eno1
-
-    得到网络设备状态
-        nmcli connection status 
-
-    使用“dhcp”创建新的连接
-        nmcli connection add con-name &quot;dhcp&quot; type ethernet ifname eno16777736 
-            connection add – 添加新的连接
-            con-name – 连接名
-            type – 设备类型
-            ifname – 接口名
-
-            autoconnect no – 禁止开机自动启动
-
-            ipv4.method manual | dhcp 静态IP或DHCP获取
-
-
-    添加静态IP的以太网连接
-        nmcli connection add type ethernet con-name NAME_OF_CONNECTION ifname interface-name ip4 IP_ADDRESS gw4 GW_ADDRESS
-
-        nmcli connection add type ethernet con-name NEW ifname eno16777736 ip4 192.168.1.141 gw4 192.168.1.1                
-
-            不通过dhcp分配IP，使用“static”添加地址
-                nmcli connection add con-name &quot;static&quot; ifname eno16777736 autoconnect no type ethernet ip4 192.168.1.240 gw4 192.168.1.1    
-    增加一个使用 DHCP 的新连接
-
-        nmcli connection add type ethernet con-name NEW_DHCP ifname eno16777736
-</code></pre><p>​<br>​<br>    modify<br>        添加DNS设置到静态连接中<br>            nmcli connection modify “static” ipv4.dns 202.131.124.4<br>             添加更多的DNS<br>                 nmcli connection modify “static” +ipv4.dns 8.8.8.8<br>                     注意：要使用额外的+符号，并且要是+ipv4.dns，而不是ip4.dns。</p>
-<pre><code>    添加一个额外的ip地址
-         nmcli connection modify &quot;static&quot; +ipv4.addresses 192.168.200.1/24
-
-    使用下列命令设置DNS服务器：
-        nmcli connection modify NEW ipv4.dns &quot;8.8.8.8 8.8.4.4&quot;
-
-    修改IP地址是静态还是DHCP//  manual为静态none
-        nmcli con mod IF-NAME ipv4.method manual | dhcp
-
-del
-    删除连接
-        nmcli connection del NEW
-
-
-图形工具
-         nm-connection-editor
-         nmtui
-    改回传统命名方式7
-    (1) 编辑/etc/default/grub配置文件
-        GRUB_CMDLINE_LINUX=&quot;net.ifnames=0 rhgb quiet&quot;或：&quot;修改/boot/grub2/grub.cfg| biosdevname=0&quot;  
-    (2) 为grub2生成其配置文件
-        grub2-mkconfig -o /boot/grub2.cfg
-    (3) 重启系统            
-            Centos6 改网卡名
-                /etc/undev/rules.d/70-persistent-net.rulescd
-                #cd /etc/undev/rules.d/
-                #vim 70-persistent-net.rules  改name 即可
-                #reboot
-
-    上面只是对于nmcli命令的简单应用，更多的用法可以参看NetworkManager(8), nmcli(1), nmcli-examples(5), NetworkManager.conf(5) 几个的man手册。
-
-
-    centos6改主机名
-        1.临时修改主机名
-            hostname cen7
-        2.永久修改主机名
-            vi /etc/sysconfig/network
-            HOSTNAME=JJ
-        3. 
-            sysctl kernel.hostname=hadoop
-        4\/etc/hosts
-            127.0.0.1              localhost.localdomain
-
-
-                localhost.localdomain 是主机名(hostname)，也就是你待修改的。localhost 是主机名的别名（alias），它会出现在Konsole的提示符下。将第二项修改为你的主机名，第三项可选。
-                    #/etc/sysconfig/network网卡/etc/sysconfig/network-scripts/网卡名
-                    #/etc/udev/rules.d/70-persistent-net.rules
-                    #/etc/resolv.conf
-
-
-    centos7 主机名
-        hostnamectl set-hostname NAME[该主机名
-                --static 静态
-                --transient 瞬态
-                --pretty 灵活
-            hostnaemctl --transient set-hostname
-
-
-iproute2
-    # net-tools
-
-    $iproute2
-
-    显示所有已连接的网络接口
-        # ip link show 
-
-            $ifconfig -a 
-
-    Assign a IP Address to Specific Interface
-        # ip addr add 10.0.0.1 dev eth1
-        # ip addr add 192.168.0.100/24 boradcast 192.168.0.12
-            +为自动计算
-            $ifconfig eth1 10.0.0.1/24 
-            $ifconfig eth0:1 192.168.10.10 netmask 255.255.255.0 gw 172.20.0.1 up
-                $ip addr list dev eth0 
-
-    Check an IP Address
-        # ip addr show
-        # ip -6 addr show dev eth1
-        # ip addr show dev eth1 
-
-            $ifconfig eth1 
-
-
-    Remove an IP Address
-        #ip addr del 192.168.50.5/24 dev eth1
-        #
-        ifconfig eth1:1 down #清除别名
-
-            $ifconfig eth1 0 //移除而言，除了给接口分配全0地址外。
-
-    为网络接口分配IPv6地址
-        #ip -6 addr add 2002:0db5:0:f102::1/64 dev eth1
-            $ifconfig eth1 inet6 add 2002:0db5:0:f102::1/647
-    添加别名
-        ip addr add 192.168.0.13/24 dev etho label eth0:0
-
-    移除网络设备的IPv6地址
-        #ip -6 addr del 2002:0db5:0:f102::1/64 dev eth1
-
-            $ifconfig eth1 inet6 del 2002:0db5:0:f102::1/64
-
-    Enable Network Interface
-        # ip link set eth1 up // 开启网络接口
-        # ip link set eth1 down
-                    $sudo ifconfig eth1 up
-                    $sudo ifconfig eth1 down 
-
-    Check Route Table?
-        # ip route show
-
-    Add Static Route
-        # ip route add 10.10.20.0/24 via 192.168.50.100 dev eth0
-        # ip route add 192.168.0.100 dev eth0
-                        $route add -host 172.18.0.100 dev eth0
-
-
-    Remove Static Route
-        # ip route add 172.16.32.0/24 via 192.168.1.1 dev eth0
-        # ip route del 172.16.32.0/24 \
-
-            $route add -net 172.16.32.0/24 gw 192.168.1.1 dev eth0
-            $route del -net 172.16.32.0/24 
-
-     Add Persistence Static Routes
-         //etc/sysconfig/network-scripts/route-eth0 
-             //default route-eth0 file will not be there
-
-         # vi /etc/sysconfig/network-scripts/route-eth0
-            10.10.20.0/24 via 192.168.50.100 dev eth0
-
-            For Ubuntu/Debian/Linux Mint
-                $ sudo vi /etc/network/interfaces
-                        auto eth0
-                        iface eth0 inet static
-                        address 192.168.50.2
-                        netmask 255.255.255.0
-                        gateway 192.168.50.100
-                        ipadd_start= 
-                        ipadd_end=
-                        #########{Static Route}###########
-            永久添加ip 别名
-
-                如果要永久添加ip别名，则可以在/etc/sysconfig/network-scripts/ 下添加别名配置文件
-                配置文件名：ifcfg-eth0:0
-                内容：
-
-                    DEVICE=eth0:0
-                    IPADDR=192.168.1.111
-                    PREFIX=24
-                    ONPARENT=yes
-             ifup eth0                        
-                        up ip route add 10.10.20.0/24 via 192.168.50.100 dev eth0
-
-    Add Default Gateway
-        #ip route add default via 192.168.50.100
-        #ip route add default via 192.168.1.2 dev eth0
-        #ip route replace default via 192.168.1.2 dev eth0 #删除。
-
-            $route add default gw 192.168.1.2 eth0
-            $route del default gw 192.168.1.1 eth0 
-    ‘
-    临时改变接口MAC地址    
-        #ip link set dev eth1 address 08:00:27:75:2a:67
-            $ifconfig eth1 hw ether 08:00:27:75:2a:66 
-
-    查看ARP表
-            # ip neigh 
-             $arp -an 
-
-    添加或删除静态ARP项
-        #ip neigh add 192.168.1.100 lladdr 00:0c:29:c0:5a:ef dev eth0
-        #ip neigh del 192.168.1.100 dev eth0 
-            $arp -s 192.168.1.100 00:0c:29:c0:5a:ef
-            $arp -d 192.168.1.100 
-
-    添加、删除或查看多播地址
-            # ip maddr add 33:44:00:00:00:01 dev eth0
-            # ip maddr del 33:44:00:00:00:01 dev eth0 
-            # ip maddr list dev eth0 
-
-                $ipmaddr add 33:44:00:00:00:01 dev eth0
-                $ipmaddr del 33:44:00:00:00:01 dev eth0
-                $ipmaddr show dev eth0
-                $netstat -g 
-
-    用包转发：
-            # echo &quot;1&quot; &gt; /proc/sys/net/ipv4/ip_forward
-</code></pre><p>ip link set 命令组 （接口硬件操作相关）<br>ip -s -s link show                                  # 显示所有接口详细信息<br>ip -s -s link show eth1.11                          # 显示单独接口信息<br>ip link set dev eth1 up                             # 启动设备，相当于 ifconfig eth1 up<br>ip link set dev eth1 down                           # 停止设备，相当于 ifconfig eth1 down<br>ip link set dev eth1 txqueuelen 100                 # 改变设备传输队列长度<br>ip link set dev eth1 mtu 1200                       # 改变 MTU 长度<br>ip link set dev eth1 address 00:00:00:AA:BB:CC      # 改变 MAC 地址<br>ip link set dev eth1 name myeth                     # 接口名变更</p>
-<p>ip neighbor 命令组 （ARP地址表相关）\\</p>
-<p>ip neighbor show                                                # 查看 ARP 表<br>ip neighbor add 10.1.1.1 lladdr 0:0:0:0:0:1 dev eth0 nud permit # 添加一条 ARP 相关表项<br>ip neighbor change 10.1.1.1 dev eth0 nud reachable              # 修改相关表项<br>ip neighbor del 10.1.1.1 dev eth0                               # 删除一条表项<br>ip neighbor flush                                               # 清除整个 ARP 表</p>
-<p>ip -6 route add 2000:ff::/80 via 2000:ff04::1 dev eth1.11   # 添加一条路由<br>ip -6 route add default via 2000:ff04::1 dev eth1.11        # 添加默认路由<br>ip -6 route show                                            # 查看完整路由表<br>ip -6 route show dev eth1.11                                # 查看指定接口路由项<br>ip -6 route del 2000:ff04::/64                              # 删除所有相关路由表<br>ip -6 route del 2000:ff04::/64 dev eth1.11                  # 删除相关接口上的路由表<br>ip -6 route change 2000:ff04::/64 dev eth1.12               # 修改路由表项<br>ip route add nat 192.168.10.100 via 202.6.10.1              # 添加 NAT 路由项，将 192 地址转换成 202 地址<br>ip route replace default equalize nexthop via 211.139.218.145 dev eth0 weight 1 nexthop via 211.139.218.145 dev eth1 weight 1   # 添加负载均衡路由</p>
+        <h3 id="套接字"><a href="#套接字" class="headerlink" title="套接字"></a>套接字</h3><p>由于TCP/IP协议族被设计成能够运行在多种操作系统的环境下，TCP/IP标准允许系统设计者能够选择有关API的具体实现细节。</p>
+<p>目前，可供应用程序使用TCP/IP的应用编程接口API的最著名的是<strong>套接字接口</strong></p>
+<p><strong>而套接字不是物理实体，而是一种抽象，套接字是提供应用程序创建和使用的数据结构</strong></p>
+<p><code>Socket</code>通常也称作“<strong>套接字</strong>”，用于描述<strong>IP地址</strong>和<strong>端口</strong>，是一个通信链的句柄</p>
+<p><img src="../images/python/1652f12fa6e94275.png" alt="1652f12fa6e94275"></p>
+<h2 id="Socket有两种类型："><a href="#Socket有两种类型：" class="headerlink" title="Socket有两种类型："></a>Socket有两种类型：</h2><p> <img src="../images/python/image-20181017155606248.png" alt="image-20181017155606248"></p>
+<ul>
+<li>流式<code>Socket(STREAM)</code>：是一种面向连接的<code>Socekt</code>，针对面向连接的<strong>TCP</strong>服务应用，安全，但是效率低；</li>
+<li>数据报式<code>Socket(DATAGAM)</code>：是一种无连接的<strong>Socket</strong>，对应于无连接的<strong>UDP</strong>服务应用。不安(丢失，顺序混乱，在接受端要分析重排及要求重发)，但效率高。</li>
+</ul>
+<h2 id="Socket通信协议分析"><a href="#Socket通信协议分析" class="headerlink" title="Socket通信协议分析"></a>Socket通信协议分析</h2><h3 id="UDP协议"><a href="#UDP协议" class="headerlink" title="UDP协议"></a>UDP协议</h3><p>UDP协议是一种无连接的协议，也称为数据报协议。每次发送数据报时，需要同时发送本机的socket描述符(就是上面所说的套接字描述符)和接收端的socket描述符。所以，每次通信都要发送额外的数据。</p>
+<h3 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h3><p>TCP协议是一种有连接的协议，使用应用程序之前，必须先建立TCP连接。所以每次在进行通信之前那，我们需要先建立Socket连接，一个socket作为服务端监听请求，一个socket作为客户端进行连接请求。只有双方建立连接好以后，双方才可以通信。</p>
+<h3 id="两种协议区别及选择"><a href="#两种协议区别及选择" class="headerlink" title="两种协议区别及选择"></a>两种协议区别及选择</h3><p>简单分析两者的区别:</p>
+<ul>
+<li>在UDP中，每次发送数据报，需要附上本机的socket描述符和接收端的socket描述符.而TCP是基于连接的协议，在通信的socket之间需要在通信之前建立连接，即<strong>TCP的三次握手</strong>，，因此建立连接会有一定耗时</li>
+<li>在UDP中，数据报数据在大小有64KB的限制。而TCP不存在这样的限制，一旦TCP通信的socket对建立连接，他们通信类似IO流。</li>
+<li>UDP是不可靠的协议，发送的数据报不一定会按照其发送顺序被接收端的socket接收。而TCP是一种可靠的协议。接收端收到的包的顺序和包在发送端的顺序大体一致(这里不讨论丢包的情况)</li>
+</ul>
+<p>说到这，至于选择哪种协议，还是取决于你的使用场景，当然目前见得比较多就是基于TCP协议的Socket通信。当然一些实时性较高的一些服务，局域网的一些服务用UDP的多一些。</p>
+<h2 id="基于TCP协议的-Socket编程基本流程图"><a href="#基于TCP协议的-Socket编程基本流程图" class="headerlink" title="基于TCP协议的 Socket编程基本流程图"></a>基于TCP协议的 Socket编程基本流程图</h2><p><img src="../images/python/C19943F3-ECA3-4C44-8EB5-6BD7B8C17C6B.jpg" alt=""></p>
+<h2 id="Socket的通信过程"><a href="#Socket的通信过程" class="headerlink" title="Socket的通信过程"></a>Socket的通信过程</h2><h3 id="服务端："><a href="#服务端：" class="headerlink" title="服务端："></a>服务端：</h3><p>申请一个<code>Socket</code><br>绑定到一个IP地址和一个端口<br>开启侦听，等待接受连接</p>
+<h3 id="客户端："><a href="#客户端：" class="headerlink" title="客户端："></a>客户端：</h3><p>申请一个<code>Socket</code><br>连接服务器（指明IP地址和端口号）<br>服务器端接到连接请求后，产生一个新的<code>Socket</code>（端口大于<code>1024</code>）与客户端建立连接并进行通讯，原侦听<code>Socket</code>继续侦听。</p>
+<p><a href="https://kinzun.github.io/2018/10/09/Python%20Socket%20%E7%BC%96%E7%A8%8B%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D/">Python Socket 编程详细介绍</a></p>
 
       
     </div>
@@ -695,7 +472,7 @@ iproute2
       
         <div class="post-tags">
           
-            <a href="/tags/Network/" rel="tag"># Network</a>
+            <a href="/tags/Python/" rel="tag"># Python</a>
           
         </div>
       
@@ -708,8 +485,8 @@ iproute2
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/27/26-Linux-Common-Commands/" rel="next" title="26-Linux-Common-Command">
-                <i class="fa fa-chevron-left"></i> 26-Linux-Common-Command
+              <a href="/2018/10/09/Python Socket 编程/" rel="next" title="Python Socket 编程">
+                <i class="fa fa-chevron-left"></i> Python Socket 编程
               </a>
             
           </div>
@@ -718,8 +495,8 @@ iproute2
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/04/NginxInstall-and-config/" rel="prev" title="Nginx 服务器安装及配置文件详解">
-                Nginx 服务器安装及配置文件详解 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/11/10/Python pip&pipenv/" rel="prev" title="Pipenv & 虚拟环境">
+                Pipenv & 虚拟环境 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -779,8 +556,17 @@ iproute2
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -857,6 +643,22 @@ iproute2
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#套接字"><span class="nav-number">1.</span> <span class="nav-text">套接字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket有两种类型："><span class="nav-number"></span> <span class="nav-text">Socket有两种类型：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket通信协议分析"><span class="nav-number"></span> <span class="nav-text">Socket通信协议分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP协议"><span class="nav-number">1.</span> <span class="nav-text">UDP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP协议"><span class="nav-number">2.</span> <span class="nav-text">TCP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两种协议区别及选择"><span class="nav-number">3.</span> <span class="nav-text">两种协议区别及选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于TCP协议的-Socket编程基本流程图"><span class="nav-number"></span> <span class="nav-text">基于TCP协议的 Socket编程基本流程图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket的通信过程"><span class="nav-number"></span> <span class="nav-text">Socket的通信过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端："><span class="nav-number">1.</span> <span class="nav-text">服务端：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端："><span class="nav-number">2.</span> <span class="nav-text">客户端：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -995,9 +797,9 @@ iproute2
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://kinzun.github.io/2017/03/07/NetworkManager-command-line-tool/';
-          this.page.identifier = '2017/03/07/NetworkManager-command-line-tool/';
-          this.page.title = 'NetworkManager command line tool';
+          this.page.url = 'https://kinzun.github.io/2018/11/02/python socketbasic knowledge/';
+          this.page.identifier = '2018/11/02/python socketbasic knowledge/';
+          this.page.title = 'Python socket 基本知识与工作原理';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://discussde.disqus.com/embed.js';
