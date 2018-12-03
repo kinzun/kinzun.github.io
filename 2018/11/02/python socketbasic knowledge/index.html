@@ -144,7 +144,7 @@
 <meta property="og:image" content="https://kinzun.github.io/images/python/1652f12fa6e94275.png">
 <meta property="og:image" content="https://kinzun.github.io/images/python/image-20181017155606248.png">
 <meta property="og:image" content="https://kinzun.github.io/images/python/C19943F3-ECA3-4C44-8EB5-6BD7B8C17C6B.jpg">
-<meta property="og:updated_time" content="2018-12-03T12:44:37.107Z">
+<meta property="og:updated_time" content="2018-12-03T12:47:08.230Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python socket 基本知识与工作原理">
 <meta name="twitter:description" content="套接字由于TCP/IP协议族被设计成能够运行在多种操作系统的环境下，TCP/IP标准允许系统设计者能够选择有关API的具体实现细节。 目前，可供应用程序使用TCP/IP的应用编程接口API的最著名的是套接字接口 而套接字不是物理实体，而是一种抽象，套接字是提供应用程序创建和使用的数据结构 Socket通常也称作“套接字”，用于描述IP地址和端口，是一个通信链的句柄  Socket有两种类型：">
@@ -454,7 +454,6 @@
 <h2 id="基于TCP协议的-Socket编程基本流程图"><a href="#基于TCP协议的-Socket编程基本流程图" class="headerlink" title="基于TCP协议的 Socket编程基本流程图"></a>基于TCP协议的 Socket编程基本流程图</h2><p><img src="/images/python/C19943F3-ECA3-4C44-8EB5-6BD7B8C17C6B.jpg" alt=""></p>
 <h2 id="Socket的通信过程"><a href="#Socket的通信过程" class="headerlink" title="Socket的通信过程"></a>Socket的通信过程</h2><h3 id="服务端："><a href="#服务端：" class="headerlink" title="服务端："></a>服务端：</h3><p>申请一个<code>Socket</code><br>绑定到一个IP地址和一个端口<br>开启侦听，等待接受连接</p>
 <h3 id="客户端："><a href="#客户端：" class="headerlink" title="客户端："></a>客户端：</h3><p>申请一个<code>Socket</code><br>连接服务器（指明IP地址和端口号）<br>服务器端接到连接请求后，产生一个新的<code>Socket</code>（端口大于<code>1024</code>）与客户端建立连接并进行通讯，原侦听<code>Socket</code>继续侦听。</p>
-<p><a href="https://kinzun.github.io/2018/10/09/Python%20Socket%20%E7%BC%96%E7%A8%8B%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D/">Python Socket 编程详细介绍</a></p>
 
       
     </div>
