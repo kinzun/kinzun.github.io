@@ -141,14 +141,14 @@
 <meta property="og:site_name" content="Armitage">
 <meta property="og:description" content="套接字由于TCP/IP协议族被设计成能够运行在多种操作系统的环境下，TCP/IP标准允许系统设计者能够选择有关API的具体实现细节。 目前，可供应用程序使用TCP/IP的应用编程接口API的最著名的是套接字接口 而套接字不是物理实体，而是一种抽象，套接字是提供应用程序创建和使用的数据结构 Socket通常也称作“套接字”，用于描述IP地址和端口，是一个通信链的句柄  Socket有两种类型：">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://kinzun.github.io/2018/11/02/images/python/1652f12fa6e94275.png">
-<meta property="og:image" content="https://kinzun.github.io/2018/11/02/images/python/image-20181017155606248.png">
-<meta property="og:image" content="https://kinzun.github.io/2018/11/02/images/python/C19943F3-ECA3-4C44-8EB5-6BD7B8C17C6B.jpg">
-<meta property="og:updated_time" content="2018-12-03T12:27:54.743Z">
+<meta property="og:image" content="https://kinzun.github.io/images/python/1652f12fa6e94275.png">
+<meta property="og:image" content="https://kinzun.github.io/images/python/image-20181017155606248.png">
+<meta property="og:image" content="https://kinzun.github.io/images/python/C19943F3-ECA3-4C44-8EB5-6BD7B8C17C6B.jpg">
+<meta property="og:updated_time" content="2018-12-03T12:44:37.107Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python socket 基本知识与工作原理">
 <meta name="twitter:description" content="套接字由于TCP/IP协议族被设计成能够运行在多种操作系统的环境下，TCP/IP标准允许系统设计者能够选择有关API的具体实现细节。 目前，可供应用程序使用TCP/IP的应用编程接口API的最著名的是套接字接口 而套接字不是物理实体，而是一种抽象，套接字是提供应用程序创建和使用的数据结构 Socket通常也称作“套接字”，用于描述IP地址和端口，是一个通信链的句柄  Socket有两种类型：">
-<meta name="twitter:image" content="https://kinzun.github.io/2018/11/02/images/python/1652f12fa6e94275.png">
+<meta name="twitter:image" content="https://kinzun.github.io/images/python/1652f12fa6e94275.png">
 
 
 
@@ -436,8 +436,8 @@
 <p>目前，可供应用程序使用TCP/IP的应用编程接口API的最著名的是<strong>套接字接口</strong></p>
 <p><strong>而套接字不是物理实体，而是一种抽象，套接字是提供应用程序创建和使用的数据结构</strong></p>
 <p><code>Socket</code>通常也称作“<strong>套接字</strong>”，用于描述<strong>IP地址</strong>和<strong>端口</strong>，是一个通信链的句柄</p>
-<p><img src="../images/python/1652f12fa6e94275.png" alt="1652f12fa6e94275"></p>
-<h2 id="Socket有两种类型："><a href="#Socket有两种类型：" class="headerlink" title="Socket有两种类型："></a>Socket有两种类型：</h2><p> <img src="../images/python/image-20181017155606248.png" alt="image-20181017155606248"></p>
+<p><img src="/images/python/1652f12fa6e94275.png" alt="1652f12fa6e94275"></p>
+<h2 id="Socket有两种类型："><a href="#Socket有两种类型：" class="headerlink" title="Socket有两种类型："></a>Socket有两种类型：</h2><p> <img src="/images/python/image-20181017155606248.png" alt="image-20181017155606248"></p>
 <ul>
 <li>流式<code>Socket(STREAM)</code>：是一种面向连接的<code>Socekt</code>，针对面向连接的<strong>TCP</strong>服务应用，安全，但是效率低；</li>
 <li>数据报式<code>Socket(DATAGAM)</code>：是一种无连接的<strong>Socket</strong>，对应于无连接的<strong>UDP</strong>服务应用。不安(丢失，顺序混乱，在接受端要分析重排及要求重发)，但效率高。</li>
@@ -451,7 +451,7 @@
 <li>UDP是不可靠的协议，发送的数据报不一定会按照其发送顺序被接收端的socket接收。而TCP是一种可靠的协议。接收端收到的包的顺序和包在发送端的顺序大体一致(这里不讨论丢包的情况)</li>
 </ul>
 <p>说到这，至于选择哪种协议，还是取决于你的使用场景，当然目前见得比较多就是基于TCP协议的Socket通信。当然一些实时性较高的一些服务，局域网的一些服务用UDP的多一些。</p>
-<h2 id="基于TCP协议的-Socket编程基本流程图"><a href="#基于TCP协议的-Socket编程基本流程图" class="headerlink" title="基于TCP协议的 Socket编程基本流程图"></a>基于TCP协议的 Socket编程基本流程图</h2><p><img src="../images/python/C19943F3-ECA3-4C44-8EB5-6BD7B8C17C6B.jpg" alt=""></p>
+<h2 id="基于TCP协议的-Socket编程基本流程图"><a href="#基于TCP协议的-Socket编程基本流程图" class="headerlink" title="基于TCP协议的 Socket编程基本流程图"></a>基于TCP协议的 Socket编程基本流程图</h2><p><img src="/images/python/C19943F3-ECA3-4C44-8EB5-6BD7B8C17C6B.jpg" alt=""></p>
 <h2 id="Socket的通信过程"><a href="#Socket的通信过程" class="headerlink" title="Socket的通信过程"></a>Socket的通信过程</h2><h3 id="服务端："><a href="#服务端：" class="headerlink" title="服务端："></a>服务端：</h3><p>申请一个<code>Socket</code><br>绑定到一个IP地址和一个端口<br>开启侦听，等待接受连接</p>
 <h3 id="客户端："><a href="#客户端：" class="headerlink" title="客户端："></a>客户端：</h3><p>申请一个<code>Socket</code><br>连接服务器（指明IP地址和端口号）<br>服务器端接到连接请求后，产生一个新的<code>Socket</code>（端口大于<code>1024</code>）与客户端建立连接并进行通讯，原侦听<code>Socket</code>继续侦听。</p>
 <p><a href="https://kinzun.github.io/2018/10/09/Python%20Socket%20%E7%BC%96%E7%A8%8B%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D/">Python Socket 编程详细介绍</a></p>
