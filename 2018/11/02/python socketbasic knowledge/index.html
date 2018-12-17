@@ -144,7 +144,7 @@
 <meta property="og:image" content="https://kinzun.github.io/images/python/1652f12fa6e94275.png">
 <meta property="og:image" content="https://kinzun.github.io/images/python/image-20181017155606248.png">
 <meta property="og:image" content="https://kinzun.github.io/images/python/C19943F3-ECA3-4C44-8EB5-6BD7B8C17C6B.jpg">
-<meta property="og:updated_time" content="2018-12-03T12:47:08.230Z">
+<meta property="og:updated_time" content="2018-12-06T01:50:35.042Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python socket 基本知识与工作原理">
 <meta name="twitter:description" content="套接字由于TCP/IP协议族被设计成能够运行在多种操作系统的环境下，TCP/IP标准允许系统设计者能够选择有关API的具体实现细节。 目前，可供应用程序使用TCP/IP的应用编程接口API的最著名的是套接字接口 而套接字不是物理实体，而是一种抽象，套接字是提供应用程序创建和使用的数据结构 Socket通常也称作“套接字”，用于描述IP地址和端口，是一个通信链的句柄  Socket有两种类型：">
@@ -439,8 +439,8 @@
 <p><img src="/images/python/1652f12fa6e94275.png" alt="1652f12fa6e94275"></p>
 <h2 id="Socket有两种类型："><a href="#Socket有两种类型：" class="headerlink" title="Socket有两种类型："></a>Socket有两种类型：</h2><p> <img src="/images/python/image-20181017155606248.png" alt="image-20181017155606248"></p>
 <ul>
-<li>流式<code>Socket(STREAM)</code>：是一种面向连接的<code>Socekt</code>，针对面向连接的<strong>TCP</strong>服务应用，安全，但是效率低；</li>
-<li>数据报式<code>Socket(DATAGAM)</code>：是一种无连接的<strong>Socket</strong>，对应于无连接的<strong>UDP</strong>服务应用。不安(丢失，顺序混乱，在接受端要分析重排及要求重发)，但效率高。</li>
+<li>流式<code>Socket(STREAM)</code>：是一种面向连接的<code>Socekt</code>，针对面向连接的<strong>TCP</strong>服务应用，可靠，但是效率低；</li>
+<li>数据报式<code>Socket(DATAGAM)</code>：是一种无连接的<strong>Socket</strong>，对应于无连接的<strong>UDP</strong>服务应用。不可靠(丢失，顺序混乱，在接受端要分析重排及要求重发)，但效率高。</li>
 </ul>
 <h2 id="Socket通信协议分析"><a href="#Socket通信协议分析" class="headerlink" title="Socket通信协议分析"></a>Socket通信协议分析</h2><h3 id="UDP协议"><a href="#UDP协议" class="headerlink" title="UDP协议"></a>UDP协议</h3><p>UDP协议是一种无连接的协议，也称为数据报协议。每次发送数据报时，需要同时发送本机的socket描述符(就是上面所说的套接字描述符)和接收端的socket描述符。所以，每次通信都要发送额外的数据。</p>
 <h3 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h3><p>TCP协议是一种有连接的协议，使用应用程序之前，必须先建立TCP连接。所以每次在进行通信之前那，我们需要先建立Socket连接，一个socket作为服务端监听请求，一个socket作为客户端进行连接请求。只有双方建立连接好以后，双方才可以通信。</p>
@@ -454,6 +454,13 @@
 <h2 id="基于TCP协议的-Socket编程基本流程图"><a href="#基于TCP协议的-Socket编程基本流程图" class="headerlink" title="基于TCP协议的 Socket编程基本流程图"></a>基于TCP协议的 Socket编程基本流程图</h2><p><img src="/images/python/C19943F3-ECA3-4C44-8EB5-6BD7B8C17C6B.jpg" alt=""></p>
 <h2 id="Socket的通信过程"><a href="#Socket的通信过程" class="headerlink" title="Socket的通信过程"></a>Socket的通信过程</h2><h3 id="服务端："><a href="#服务端：" class="headerlink" title="服务端："></a>服务端：</h3><p>申请一个<code>Socket</code><br>绑定到一个IP地址和一个端口<br>开启侦听，等待接受连接</p>
 <h3 id="客户端："><a href="#客户端：" class="headerlink" title="客户端："></a>客户端：</h3><p>申请一个<code>Socket</code><br>连接服务器（指明IP地址和端口号）<br>服务器端接到连接请求后，产生一个新的<code>Socket</code>（端口大于<code>1024</code>）与客户端建立连接并进行通讯，原侦听<code>Socket</code>继续侦听。</p>
+<h2 id="粘包现象是如何产生的"><a href="#粘包现象是如何产生的" class="headerlink" title="粘包现象是如何产生的???"></a>粘包现象是如何产生的???</h2><p>​    黏包现象并不是一个bug<br>​    而是各种tcp协议的特点和算法导致了现在的问题<br>​        合包机制 Nagle<br>​        拆包机制<br>​        流式传输无边界</p>
+<h2 id="黏包一定是坏现象么"><a href="#黏包一定是坏现象么" class="headerlink" title="黏包一定是坏现象么"></a>黏包一定是坏现象么</h2><p>​    但是从程序的传递过程中的角度:<br>​    解决了大量短数据大量回执的问题<br>​    长数据由于网络限制的拆包在我们的接收端可以自动拼接</p>
+<p>对于应用层 你的程序来说 大部分时候都不是好事儿<br>所以我们才要解决它</p>
+<p>解决在应用层程序中的黏包现象</p>
+<h2 id="解决在应用层程序中的黏包现象"><a href="#解决在应用层程序中的黏包现象" class="headerlink" title="解决在应用层程序中的黏包现象"></a>解决在应用层程序中的黏包现象</h2><h2 id="如何解决粘包"><a href="#如何解决粘包" class="headerlink" title="如何解决粘包"></a>如何解决粘包</h2><ul>
+<li>自定义协议<br>先发送即将发送 <strong>数据的长度</strong>，然后再 <strong>发送数据</strong><br>先<strong>接受</strong> 数据的长度，在根据接受的<strong>长度接受数据</strong><br>用到了<code>struct</code> 模块， 来控制<strong>第一次</strong>发送数据长度的这条<strong>信息的长度</strong></li>
+</ul>
 
       
     </div>
@@ -652,7 +659,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#套接字"><span class="nav-number">1.</span> <span class="nav-text">套接字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket有两种类型："><span class="nav-number"></span> <span class="nav-text">Socket有两种类型：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket通信协议分析"><span class="nav-number"></span> <span class="nav-text">Socket通信协议分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP协议"><span class="nav-number">1.</span> <span class="nav-text">UDP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP协议"><span class="nav-number">2.</span> <span class="nav-text">TCP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两种协议区别及选择"><span class="nav-number">3.</span> <span class="nav-text">两种协议区别及选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于TCP协议的-Socket编程基本流程图"><span class="nav-number"></span> <span class="nav-text">基于TCP协议的 Socket编程基本流程图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket的通信过程"><span class="nav-number"></span> <span class="nav-text">Socket的通信过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端："><span class="nav-number">1.</span> <span class="nav-text">服务端：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端："><span class="nav-number">2.</span> <span class="nav-text">客户端：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#套接字"><span class="nav-number">1.</span> <span class="nav-text">套接字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket有两种类型："><span class="nav-number"></span> <span class="nav-text">Socket有两种类型：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket通信协议分析"><span class="nav-number"></span> <span class="nav-text">Socket通信协议分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP协议"><span class="nav-number">1.</span> <span class="nav-text">UDP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP协议"><span class="nav-number">2.</span> <span class="nav-text">TCP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两种协议区别及选择"><span class="nav-number">3.</span> <span class="nav-text">两种协议区别及选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于TCP协议的-Socket编程基本流程图"><span class="nav-number"></span> <span class="nav-text">基于TCP协议的 Socket编程基本流程图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket的通信过程"><span class="nav-number"></span> <span class="nav-text">Socket的通信过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端："><span class="nav-number">1.</span> <span class="nav-text">服务端：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端："><span class="nav-number">2.</span> <span class="nav-text">客户端：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#粘包现象是如何产生的"><span class="nav-number"></span> <span class="nav-text">粘包现象是如何产生的???</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#黏包一定是坏现象么"><span class="nav-number"></span> <span class="nav-text">黏包一定是坏现象么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决在应用层程序中的黏包现象"><span class="nav-number"></span> <span class="nav-text">解决在应用层程序中的黏包现象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何解决粘包"><span class="nav-number"></span> <span class="nav-text">如何解决粘包</span></a></div>
             
 
           </div>
