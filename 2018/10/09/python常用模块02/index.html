@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.loli.net/css?family="Noto Sans SC","PingFang SC","Microsoft YaHei","Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei Light","Source Han Sans CN","WenQuanYi Micro Hei",Arial,sans-serif:300,300italic,400,400italic,700,700italic|"Open Sans","Hiragino Sans GB","Noto Sans SC","Helvetica Neue","Source Han Serif SC","Source Han Serif",source-han-serif-sc,serif,Lato,"PingFang SC","Microsoft YaHei", ans-serif:300,300italic,400,400italic,700,700italic|"Noto Serif CJK SC","Helvetica Neue","Source Han Serif SC","Source Han Serif",source-han-serif-sc,serif,Lato,"PingFang SC","Microsoft YaHei",sans-serif:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="一.什么是序列化​    在数据存储和网络传输的时候，需要对我们的对象进行处理，处理方便存储和传输的数据格式，这个过程叫序列化。不同序列，处理的方式不同，但目的想相同，都是为达到方便存储、传输。序列化是为了解决对象的传输问题。 ​    在python中存在三种序列化的方案  pickle python 任意数据类型转化成bytes并写入文件中。同样也可以将文件bytes转换回我们python的数">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python常用模块02">
+<meta property="og:url" content="https://kinzun.github.io/2018/10/09/python常用模块02/index.html">
+<meta property="og:site_name" content="kinzun">
+<meta property="og:description" content="一.什么是序列化​    在数据存储和网络传输的时候，需要对我们的对象进行处理，处理方便存储和传输的数据格式，这个过程叫序列化。不同序列，处理的方式不同，但目的想相同，都是为达到方便存储、传输。序列化是为了解决对象的传输问题。 ​    在python中存在三种序列化的方案  pickle python 任意数据类型转化成bytes并写入文件中。同样也可以将文件bytes转换回我们python的数">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T04:01:57.091Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python常用模块02">
+<meta name="twitter:description" content="一.什么是序列化​    在数据存储和网络传输的时候，需要对我们的对象进行处理，处理方便存储和传输的数据格式，这个过程叫序列化。不同序列，处理的方式不同，但目的想相同，都是为达到方便存储、传输。序列化是为了解决对象的传输问题。 ​    在python中存在三种序列化的方案  pickle python 任意数据类型转化成bytes并写入文件中。同样也可以将文件bytes转换回我们python的数">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'DCVS5PBBDG',
+      apiKey: '8891b52927924071005948ebf1d385f0',
+      indexName: 'dev_jobbymsblog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://kinzun.github.io/2018/10/09/python常用模块02/"/>
+
+
+
+
+
+  <title>python常用模块02 | kinzun</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kinzun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kinzun.github.io/2018/10/09/python常用模块02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kinzun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kinzun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python常用模块02</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-09T14:40:21+08:00">
+                2018-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/09/python常用模块02/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/10/09/python常用模块02/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="一-什么是序列化"><a href="#一-什么是序列化" class="headerlink" title="一.什么是序列化"></a>一.什么是序列化</h4><p>​    在数据存储和网络传输的时候，需要对我们的对象进行处理，处理方便存储和传输的数据格式，这个过程叫序列化。不同序列，处理的方式不同，但目的想相同，都是为达到方便存储、传输。序列化是为了解决对象的传输问题。</p>
+<p>​    在python中存在三种序列化的方案</p>
+<ol>
+<li><code>pickle</code> python 任意数据类型转化成bytes并写入文件中。同样也可以将文件bytes转换回我们python的数据，这个过程叫反序列化。</li>
+<li><code>shelve</code> 简单另类的一种序列化，有点类似<code>redis</code>可以作为一种小型数据使用</li>
+<li><code>json</code>将pythoh中常见的字典，列表转化成字符串，是前后端数据交换使用频率最高的的一种数据格式</li>
+</ol>
+<h4 id="二-pickle"><a href="#二-pickle" class="headerlink" title="二.pickle"></a>二.pickle</h4><p>​    pickle就是将python对象写入文件中一种解决方案，但写入的是bytes。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#生成一只猫，今天我要把猫打扁。让他变成机器猫。</span></span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,age)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">catchMouse</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(self.name,self.age,<span class="string">'抓老鼠'</span>)</span><br><span class="line"><span class="comment">#序列化</span></span><br><span class="line">cat = Cat(<span class="string">'tom'</span>,<span class="number">12</span>) <span class="comment">#生成一个对象</span></span><br><span class="line">bs = pickle.dumps(cat) <span class="comment">#把对象转化bytes 序列化</span></span><br><span class="line">print(bs) <span class="comment">#</span></span><br><span class="line"><span class="comment">#对象变成bytes了 </span></span><br><span class="line"><span class="string">''' b'\x80\x03c__main__\nCat\nq\x00)\x81q\x01&#125;q\x02(X\x04\x00\x00\x00nameq\x03X\x03\x00\x00\x00tomq\x04X\x03\x00\x00\x00ageq\x05K\x13ub.'</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment">#反序列化</span></span><br><span class="line"><span class="comment"># #把bytes 转换回对象 ，反序列化</span></span><br><span class="line"></span><br><span class="line">cf = pickle.loads(bs) </span><br><span class="line">cf.catchMouse() <span class="comment">#猫 还可以抓抓老鼠</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#对字典的巡序列化</span></span><br><span class="line">dic = &#123;<span class="string">"tom"</span>:<span class="string">"贾老练"</span>,<span class="string">'jj'</span>:<span class="string">"渣渣"</span>&#125;</span><br><span class="line"></span><br><span class="line">bs = pickle.dumps(dic)</span><br><span class="line">print(bs)</span><br><span class="line">d = pickle.loads(bs)</span><br><span class="line">print(d</span><br></pre></td></tr></table></figure>
+<p>Pickle中<code>dumps</code> 可以序列化一个对象， loads反序列化，dump可以将对象写入文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># f = open('cat',mode='wb')  #将猫写入文件中</span></span><br><span class="line"><span class="comment"># pickle.dump(tom,f)</span></span><br><span class="line"></span><br><span class="line">rf = open(<span class="string">'cat'</span>,mode=<span class="string">'rb'</span>) <span class="comment"># 读取文件中猫</span></span><br><span class="line">cc = pickle.load(rf)</span><br><span class="line">cc.catchMouse() <span class="comment">#让猫抓老鼠</span></span><br></pre></td></tr></table></figure>
+<p>pickle多个对象写入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#多个对象写入文件</span></span><br><span class="line">lst = [Cat(<span class="string">'jerry'</span>,<span class="number">20</span>),Cat(<span class="string">'jek'</span>,<span class="number">14</span>),Cat(<span class="string">'blue'</span>,<span class="number">22</span>)]</span><br><span class="line"><span class="comment">#</span></span><br><span class="line">f = open(<span class="string">'cat'</span>,mode=<span class="string">'wb'</span>) <span class="comment">#写入文件中</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#for el in lst:</span></span><br><span class="line"><span class="comment">#   pickle.dump(el,f)</span></span><br><span class="line"><span class="comment">#f.close()</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#从文件读取对象；</span></span><br><span class="line">f = open(<span class="string">'cat'</span>,mode=<span class="string">'rb'</span>) <span class="comment">#从文件读取对象</span></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        c1 = pickle.load(f)</span><br><span class="line">        c1.catchMouse()</span><br><span class="line">    <span class="keyword">except</span> EOFError:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>另一种推荐方式读取写入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#多个对象装入list中，然后读取写入都用着list</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#写入</span></span><br><span class="line">lst = [Cat(<span class="string">'jerry'</span>,<span class="number">20</span>),Cat(<span class="string">'jek'</span>,<span class="number">14</span>),Cat(<span class="string">'blue'</span>,<span class="number">22</span>)]</span><br><span class="line">f = open(<span class="string">'cat'</span>,mode=<span class="string">'wb'</span>) <span class="comment">#打开文件</span></span><br><span class="line">pickle.dump(lst,f）</span><br><span class="line">        </span><br><span class="line">     </span><br><span class="line"><span class="comment">#读取</span></span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'cat'</span>,mode=<span class="string">'rb'</span>)</span><br><span class="line">ll = pickle.load(f)</span><br><span class="line"><span class="keyword">for</span> el <span class="keyword">in</span> ll:</span><br><span class="line">    el.catchMouse()</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="二-shelve"><a href="#二-shelve" class="headerlink" title="二.shelve"></a>二.shelve</h4><p>​    shelve提供python持久化操作。持久化往往依赖于数据库，为了长期存储。在操作shelve像是操作python中字典。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> shelve</span><br><span class="line"></span><br><span class="line">shelf = shelve.open(<span class="string">"ss"</span>)</span><br><span class="line"></span><br><span class="line">shelf[<span class="string">'arm'</span>]  = <span class="string">'馒头'</span></span><br><span class="line">print(shelf[<span class="string">'arm'</span>])</span><br><span class="line"></span><br><span class="line">shelf.close()</span><br><span class="line"></span><br><span class="line"><span class="comment">#文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#打开一个文件</span></span><br><span class="line">f = shelve.open(<span class="string">"info"</span>, writeback=<span class="keyword">True</span>) <span class="comment">#动态的将修改信息写入文件。</span></span><br><span class="line">f[<span class="string">'jj'</span>] = <span class="string">"老王"</span></span><br><span class="line">f[<span class="string">'nk'</span>] = <span class="string">"脑壳"</span></span><br><span class="line">f[<span class="string">'zds'</span>] = <span class="string">"张德帅"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#f = &#123;&#125;</span></span><br><span class="line"><span class="comment">#像操作字典一样操作文件</span></span><br><span class="line">f[<span class="string">"jay"</span>] = <span class="string">"周杰伦"</span></span><br><span class="line">print(f[<span class="string">'jay'</span>])</span><br><span class="line"></span><br><span class="line">f[<span class="string">"jay"</span>] = &#123;<span class="string">'name'</span>: <span class="string">"周杰伦"</span>, <span class="string">'age'</span>: <span class="number">38</span>, <span class="string">"hobby"</span>: <span class="string">"吃喝拉撒睡"</span>&#125;</span><br><span class="line">f[<span class="string">'jay'</span>][<span class="string">'name'</span>] = <span class="string">"胡辣汤"</span></span><br><span class="line">print(f[<span class="string">'jay'</span>][<span class="string">'name'</span>])</span><br><span class="line">print(f[<span class="string">'jay'</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> f.items():</span><br><span class="line">    print(k,v)</span><br><span class="line"></span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># print(f.keys())</span></span><br><span class="line"><span class="comment"># for k in f.keys(): # 可以获取到所有的key</span></span><br><span class="line"><span class="comment">#     print(k)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># for k in f:</span></span><br><span class="line"><span class="comment">#     print(k)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># for k, v in f.items():</span></span><br><span class="line"><span class="comment">#     print(k, v)</span></span><br></pre></td></tr></table></figure>
+<h4 id="四-json"><a href="#四-json" class="headerlink" title="四.json"></a>四.json</h4><p>​    json是我们前后端交互的枢纽。因为json的语法格式可以完美表示一个对象。json 全称（javascript object natation）翻译js对象简谱</p>
+<p>在python中这玩意就字典。在JavaScript叫json</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wf = &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"汪峰"</span>,</span><br><span class="line">    <span class="string">"age"</span>: <span class="number">18</span>,</span><br><span class="line">    <span class="string">"hobby"</span>: <span class="string">"抢头条"</span>,</span><br><span class="line">    <span class="string">"wife"</span>: &#123;</span><br><span class="line">        <span class="string">"name"</span>: <span class="string">"子怡"</span>,</span><br><span class="line">        <span class="string">"age"</span>: <span class="number">19</span>,</span><br><span class="line">        <span class="string">"hobby"</span>:[<span class="string">"唱歌"</span>, <span class="string">"跳舞"</span>, <span class="string">"演戏"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为是python中写的，前端需要js来解析json。所以需要将程序产生的字典转化成json格式的json字符串。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line">dic = &#123;<span class="string">"a"</span>:<span class="string">'普罗米修斯'</span>,<span class="string">'b'</span>:<span class="string">'异性'</span>,<span class="string">'c'</span>:<span class="string">"星际穿越"</span>&#125;</span><br><span class="line">strd = json.dumps(dic)</span><br><span class="line">print(strd)</span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line"><span class="comment">#&#123;"a": "\u666e\u7f57\u7c73\u4fee\u65af", "b": "\u5f02\u6027", "c": "\u661f\u9645\u7a7f\u8d8a"&#125;</span></span><br></pre></td></tr></table></figure>
+<p>​    结果很不友好，处理中文需要dumps的一个参数<code>ensure_ascii=False</code> ，转换字符<code>son.dumps</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">dic = &#123;<span class="string">"a"</span>:<span class="string">'普罗米修斯'</span>,<span class="string">'b'</span>:<span class="string">'异性'</span>,<span class="string">'c'</span>:<span class="string">"星际穿越"</span>&#125;</span><br><span class="line">b = json.dumps(dic,ensure_ascii=<span class="keyword">False</span>) <span class="comment">#字典转化为字符串</span></span><br><span class="line">print(type(b),b) </span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line"><span class="comment">#&lt;class 'str'&gt; &#123;"a": "普罗米修斯", "b": "异性", "c": "星际穿越"&#125;</span></span><br></pre></td></tr></table></figure>
+<p>​    处理前端传过来的json字符串转化为字典利用<code>json.loads</code>参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span></span><br><span class="line">s = <span class="string">'&#123;"a":'</span>普罗米修斯<span class="string">','</span><span class="string">b':'</span>异性<span class="string">','</span>c<span class="string">':"星际穿越"&#125;'</span></span><br><span class="line">dic = json.loads(s) <span class="comment">#字符串解析成字典</span></span><br><span class="line">print(type(dic),dic)</span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line"><span class="comment">#&lt;class 'dict'&gt; &#123;'a': '普罗米修斯', 'b': '异性', 'c': '星际穿越'&#125;</span></span><br></pre></td></tr></table></figure>
+<h5 id="json写入读取"><a href="#json写入读取" class="headerlink" title="json写入读取"></a>json写入读取</h5><p>​    json序列化结果写入文件中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">dic = &#123;<span class="string">"a"</span>:<span class="string">'普罗米修斯'</span>,<span class="string">'b'</span>:<span class="string">'异性'</span>,<span class="string">'c'</span>:<span class="string">"星际穿越"</span>&#125;</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'test.json'</span>,mode=<span class="string">'w'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">json.dump(dic,f,ensure_ascii=<span class="keyword">False</span>)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<p>​    读取文件中一个json</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">rf = open(<span class="string">'test.json'</span>,mode=<span class="string">'r'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">rdic = json.load(rf)</span><br><span class="line">rf.close()</span><br><span class="line">print(type(rdic),rdic)</span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line"><span class="comment">#&lt;class 'dict'&gt; &#123;'a': '普罗米修斯', 'b': '异性', 'c': '星际穿越'&#125;</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong> 可以向一个文件写入多个json串，但读不行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">lst = [&#123;<span class="string">'a'</span>:<span class="number">1</span>&#125;,&#123;<span class="string">'b'</span>:<span class="string">'包子'</span>&#125;,&#123;<span class="string">"c"</span>:<span class="string">'馒头'</span>&#125;]</span><br><span class="line">f = open(<span class="string">'test.json'</span>,mode=<span class="string">'w'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> el <span class="keyword">in</span> lst:</span><br><span class="line"></span><br><span class="line">     json.dump(el,f,ensure_ascii=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line">f.close()</span><br><span class="line"><span class="comment">#输出结果，内容都在一行无法正常读取。</span></span><br><span class="line"><span class="comment">#&#123;"a": 1&#125;&#123;"b": "包子"&#125;&#123;"c": "馒头"&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>解决方案</p>
+<p>对每一行进行处理，把<code>dump</code>  换成<code>dumps</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">lst = [&#123;<span class="string">'a'</span>:<span class="number">1</span>&#125;,&#123;<span class="string">'b'</span>:<span class="string">'包子'</span>&#125;,&#123;<span class="string">"c"</span>:<span class="string">'馒头'</span>&#125;]</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'test.json'</span>,mode=<span class="string">'w'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> el <span class="keyword">in</span> lst:</span><br><span class="line">    elo = json.dumps(el,ensure_ascii=<span class="keyword">False</span>) + <span class="string">"\n"</span> <span class="comment"># 将字典转为json字符串</span></span><br><span class="line">    f.write(elo)</span><br><span class="line"></span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#读取</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'test.json'</span>,mode=<span class="string">'r'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> f:</span><br><span class="line">    dic = json.loads(line.strip()) <span class="comment">#逐行读取json字符串，转换为字典</span></span><br><span class="line">    print(dic)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="五-configparser模块"><a href="#五-configparser模块" class="headerlink" title="五.configparser模块"></a>五.configparser模块</h4><p>​    该模块用于配置文件的格式与windows ini文件类似，可以包含多个章节（section）每个可以节可以有多个参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[DEFAULT] </span><br><span class="line">ServerAliveInterval = <span class="number">45</span></span><br><span class="line">Compression = yes </span><br><span class="line">CompressionLevel = <span class="number">9</span> </span><br><span class="line">ForwardX11 = yes</span><br><span class="line"></span><br><span class="line">[bitbucket.org]</span><br><span class="line">User = hg</span><br><span class="line"></span><br><span class="line">[topsecret.server.com] </span><br><span class="line">Port = <span class="number">50022</span> </span><br><span class="line">ForwardX11 = no</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> configparser</span><br><span class="line"></span><br><span class="line">conf = configparser.ConfigParser()</span><br><span class="line">conf[<span class="string">'DEFAULT'</span>] = &#123;</span><br><span class="line">    <span class="string">'session-time-out'</span>:<span class="number">30</span>,</span><br><span class="line">    <span class="string">'user-alive'</span>:<span class="number">60</span>,</span><br><span class="line">    <span class="string">'connect-alive'</span>:<span class="number">10</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">conf[<span class="string">'172-DB'</span>] = &#123;</span><br><span class="line">    <span class="string">'ip'</span>:<span class="string">'172.16.10.20'</span>,</span><br><span class="line">    <span class="string">'port'</span>: <span class="string">"3306"</span>,</span><br><span class="line">    <span class="string">'username'</span>:<span class="string">'root'</span>,</span><br><span class="line">     <span class="string">"password"</span>: <span class="string">"root"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">conf[<span class="string">'192-DB'</span>] = &#123;</span><br><span class="line">    <span class="string">'ip'</span>:<span class="string">'192.168.10.10'</span>,</span><br><span class="line">         <span class="string">'port'</span>: <span class="string">"3306"</span>,</span><br><span class="line">                <span class="string">'username'</span>:<span class="string">'root'</span>,</span><br><span class="line">                           <span class="string">"password"</span>:<span class="string">'toor'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'db.ini'</span>,mode=<span class="string">'w'</span>)</span><br><span class="line">conf.write(f) <span class="comment"># 写入文件</span></span><br><span class="line">f.flush()</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<p>读取文件信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> configparser</span><br><span class="line"></span><br><span class="line">conf = configparser.ConfigParser()</span><br><span class="line">conf.read(<span class="string">'db.ini'</span>)</span><br><span class="line"></span><br><span class="line">print(conf.sections()) <span class="comment"># 获取章节keys()</span></span><br><span class="line">print(conf[<span class="string">'172-DB'</span>][<span class="string">'ip'</span>]) <span class="comment">#跟字典一样</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> conf[<span class="string">'172-DB'</span>].items():</span><br><span class="line">    print(k,v)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> conf[<span class="string">'192-DB'</span>].values():</span><br><span class="line">    print(key)</span><br></pre></td></tr></table></figure>
+<p>​    增删改查</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#增删改查</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> configparser</span><br><span class="line"></span><br><span class="line">conf = configparser.ConfigParser()</span><br><span class="line"></span><br><span class="line"><span class="comment">#添加一个章节</span></span><br><span class="line">conf.read(<span class="string">'db.ini'</span>) <span class="comment">#读取文件</span></span><br><span class="line"></span><br><span class="line">conf.add_section(<span class="string">'10-DB'</span>)</span><br><span class="line"><span class="comment">#添加章节信息</span></span><br><span class="line">conf[<span class="string">'10-DB'</span>] = &#123;</span><br><span class="line">    <span class="string">"ip"</span>: <span class="string">'10.15.20.12'</span>,</span><br><span class="line">    <span class="string">'user'</span>: <span class="string">'root'</span>,</span><br><span class="line">    <span class="string">'psw'</span>: <span class="string">'toor'</span>,</span><br><span class="line">&#125;</span><br><span class="line">conf.write(open(<span class="string">"db.ini"</span>, mode=<span class="string">"w"</span>))</span><br><span class="line"></span><br><span class="line">修改信息</span><br><span class="line">conf.set(<span class="string">'10-DB'</span>,<span class="string">"ip"</span>,<span class="string">'192.168.255.255'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#删除章节</span></span><br><span class="line">conf.remove_section(<span class="string">"10-DB"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#删除元素信息</span></span><br><span class="line">conf.remove_option(<span class="string">'10-DB'</span>,<span class="string">'psw'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#最后都需要写回文件</span></span><br><span class="line">conf.write(open(<span class="string">"db.ini"</span>, mode=<span class="string">"w"</span>))</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/07/python常用模块01/" rel="next" title="Python常用模块01">
+                <i class="fa fa-chevron-left"></i> Python常用模块01
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/09/Python Socket 编程/" rel="prev" title="Python Socket 编程">
+                Python Socket 编程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="kinzun" />
+          <p class="site-author-name" itemprop="name">kinzun</p>
+           
+              <p class="site-description motion-element" itemprop="description">Try not to become a man of success but rather try to become a man of value. </p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kinzun" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1916882360" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-什么是序列化"><span class="nav-number">1.</span> <span class="nav-text">一.什么是序列化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-pickle"><span class="nav-number">2.</span> <span class="nav-text">二.pickle</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-shelve"><span class="nav-number">3.</span> <span class="nav-text">二.shelve</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-json"><span class="nav-number">4.</span> <span class="nav-text">四.json</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#json写入读取"><span class="nav-number">4.1.</span> <span class="nav-text">json写入读取</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五-configparser模块"><span class="nav-number">5.</span> <span class="nav-text">五.configparser模块</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kinzun</span>
+</div>
+
+
+<!--
+< div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div> -->
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://discussde.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://kinzun.github.io/2018/10/09/python常用模块02/';
+          this.page.identifier = '2018/10/09/python常用模块02/';
+          this.page.title = 'python常用模块02';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://discussde.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

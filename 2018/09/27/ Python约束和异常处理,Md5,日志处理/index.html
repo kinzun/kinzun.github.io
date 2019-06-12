@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.loli.net/css?family="Noto Sans SC","PingFang SC","Microsoft YaHei","Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei Light","Source Han Sans CN","WenQuanYi Micro Hei",Arial,sans-serif:300,300italic,400,400italic,700,700italic|"Open Sans","Hiragino Sans GB","Noto Sans SC","Helvetica Neue","Source Han Serif SC","Source Han Serif",source-han-serif-sc,serif,Lato,"PingFang SC","Microsoft YaHei", ans-serif:300,300italic,400,400italic,700,700italic|"Noto Serif CJK SC","Helvetica Neue","Source Han Serif SC","Source Han Serif",source-han-serif-sc,serif,Lato,"PingFang SC","Microsoft YaHei",sans-serif:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="报错123456789101112131415161718192021222324252627282930313233343536def chufa(a,b):    try: #尝试执行XX代码        ret = a/b #如果这里出现了错误.异常.        #系统内部会产生一个异常对象. 系统会把这个错误抛出,        #抛出给调用方        return ret">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python约束和异常处理,Md5,日志处理">
+<meta property="og:url" content="https://kinzun.github.io/2018/09/27/ Python约束和异常处理,Md5,日志处理/index.html">
+<meta property="og:site_name" content="kinzun">
+<meta property="og:description" content="报错123456789101112131415161718192021222324252627282930313233343536def chufa(a,b):    try: #尝试执行XX代码        ret = a/b #如果这里出现了错误.异常.        #系统内部会产生一个异常对象. 系统会把这个错误抛出,        #抛出给调用方        return ret">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://kinzun.github.io/images/python/python_exception.png">
+<meta property="og:updated_time" content="2018-10-23T11:48:21.673Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python约束和异常处理,Md5,日志处理">
+<meta name="twitter:description" content="报错123456789101112131415161718192021222324252627282930313233343536def chufa(a,b):    try: #尝试执行XX代码        ret = a/b #如果这里出现了错误.异常.        #系统内部会产生一个异常对象. 系统会把这个错误抛出,        #抛出给调用方        return ret">
+<meta name="twitter:image" content="https://kinzun.github.io/images/python/python_exception.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'DCVS5PBBDG',
+      apiKey: '8891b52927924071005948ebf1d385f0',
+      indexName: 'dev_jobbymsblog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://kinzun.github.io/2018/09/27/ Python约束和异常处理,Md5,日志处理/"/>
+
+
+
+
+
+  <title>Python约束和异常处理,Md5,日志处理 | kinzun</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kinzun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kinzun.github.io/2018/09/27/ Python约束和异常处理,Md5,日志处理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kinzun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kinzun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python约束和异常处理,Md5,日志处理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-27T08:38:22+08:00">
+                2018-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/27/ Python约束和异常处理,Md5,日志处理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/09/27/ Python约束和异常处理,Md5,日志处理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/python/python_exception.png" alt=""></p>
+<h4 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">chufa</span><span class="params">(a,b)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>: <span class="comment">#尝试执行XX代码</span></span><br><span class="line">        ret = a/b <span class="comment">#如果这里出现了错误.异常.</span></span><br><span class="line">        <span class="comment">#系统内部会产生一个异常对象. 系统会把这个错误抛出,</span></span><br><span class="line">        <span class="comment">#抛出给调用方</span></span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line">    <span class="comment"># except ZeroDivisionError as e:</span></span><br><span class="line">    <span class="comment">#except ZeroDivisionErro as e: # 内部产生的所有异常都会被捕获 #捕获的异常对象会交给e</span></span><br><span class="line">    <span class="comment">#    print(e)</span></span><br><span class="line">    <span class="comment">#    print("出错,0不能是除数")</span></span><br><span class="line">    <span class="comment"># except FileExistsError as e:</span></span><br><span class="line">    <span class="comment"># except StopIteration as e:</span></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    <span class="comment">#except:   #同 except Exception #所有异常</span></span><br><span class="line">        print(e)</span><br><span class="line">        print(<span class="string">"出错了"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>: <span class="comment">#保护不抛出异常的代码,当try 中无异常的时候执行</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">finally</span>: <span class="comment">#最好总会执行部分</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># return a/b</span></span><br><span class="line">ret = chufa(<span class="number">5</span>,<span class="number">0</span>)</span><br><span class="line">print(ret)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#计算两个整数的加法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> type(a)!=int <span class="keyword">or</span> type(b) != int:</span><br><span class="line">        <span class="comment"># return</span></span><br><span class="line">        <span class="comment"># return Exception</span></span><br><span class="line">        <span class="keyword">raise</span> TypeError(<span class="string">"我这里只要int, 不要别的类型"</span>)</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line">add(<span class="number">123</span>, <span class="string">"abc"</span></span><br></pre></td></tr></table></figure>
+<h4 id="自定义异常返回"><a href="#自定义异常返回" class="headerlink" title="自定义异常返回"></a>自定义异常返回</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GenderError</span><span class="params">(Exception)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,gender)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.gender = gender</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xi</span><span class="params">(per)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> per.gender != <span class="string">'男'</span>:</span><br><span class="line">        <span class="keyword">raise</span> GenderError(<span class="string">"这里是男澡堂"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"进去了"</span>)</span><br><span class="line">p1 = Person(<span class="string">'tudou'</span>,<span class="string">"不详"</span>)</span><br><span class="line">p2 = Person(<span class="string">'mantou'</span>,<span class="string">'男'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> traceback <span class="comment"># 导入模块</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    xi(p2)</span><br><span class="line"><span class="keyword">except</span> GenderError <span class="keyword">as</span> g:</span><br><span class="line">    print(g)</span><br><span class="line">    val = traceback.format_exc() <span class="comment">#获取堆栈信息</span></span><br><span class="line">    print(val)</span><br></pre></td></tr></table></figure>
+<h4 id="类的约束"><a href="#类的约束" class="headerlink" title="类的约束"></a>类的约束</h4><p>约束是对子类进行的约束。</p>
+<ul>
+<li>在父类中给出一个方法。 这个方法中什么都不写。 就抛异常。 <code>NotImplementError()</code></li>
+<li>在子类中把上述的方法进行重写。</li>
+<li>在子类中把上述的方法进行重写。</li>
+</ul>
+<ol>
+<li><p>python中有两种办法来解决这样的问题.</p>
+<blockquote>
+<p>提取父类. 然后在父类中定义好方法. 在这个方法中什么都不用干. 就抛一个异常就可以了. 这样所有的子类都必须重写这个方法. 否则. 访问的时候就会报错.</p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment">#raise Exception("没有实现login方法")</span></span><br><span class="line">        <span class="keyword">raise</span> NotImplementedError(<span class="string">"没有实现login方法"</span>) <span class="comment">#专业的写法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">kantie</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">raise</span> Gk(<span class="string">"没有看帖功能"</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Normal</span><span class="params">(Base)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"普通人登录"</span>)</span><br><span class="line"></span><br><span class="line"> <span class="comment">## 李四写</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Menber</span><span class="params">(Base)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">l</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"吧务登录"</span>)</span><br><span class="line"></span><br><span class="line"> <span class="comment">## 王八</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Admin</span><span class="params">(Base)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"管理员登录"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(obj)</span>:</span></span><br><span class="line">    print(<span class="string">"产生验证码"</span>)</span><br><span class="line">    obj.login()</span><br><span class="line">    print(<span class="string">"进入主页"</span>)</span><br><span class="line"> <span class="comment">## 场景</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">n = Normal()</span><br><span class="line">m = Menber()</span><br><span class="line">a = Admin()</span><br><span class="line"></span><br><span class="line">login(n)</span><br><span class="line">login(m)</span><br><span class="line">login(a)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><blockquote>
+<p>使⽤用元类来描述父类. 在元类中给出一个抽象方法. 这样子类就不得不给出抽象方法的具体实现. 也可以起到约束的效果.</p>
+</blockquote>
+<p>python中编写⼀一个抽象类比较⿇麻烦. 需要引入abc模块中的ABCMeta和<br>abstractmethod这两个内容. 来我们看一个例例⼦子.</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> abc <span class="keyword">import</span> ABCMeta,abstractmethod</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(self)</span>:</span><span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 张三</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Normal</span><span class="params">(Base)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"::普通人登陆"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 李四</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Member</span><span class="params">(Base)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"::吧务登陆"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 王五</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Admin</span><span class="params">(Base)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"::管理员登陆"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(obj)</span>:</span></span><br><span class="line">    print(<span class="string">"1.产生验证码"</span>)</span><br><span class="line">    obj.login() <span class="comment"># 标准在这里.  必须由login</span></span><br><span class="line">    print(<span class="string">"3.进入主页"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 场景</span></span><br><span class="line">n = Normal()</span><br><span class="line">m = Member()</span><br><span class="line">a = Admin()</span><br><span class="line">login(n)</span><br><span class="line">login(m)</span><br><span class="line">login(a)</span><br></pre></td></tr></table></figure>
+<p>​   </p>
+<blockquote>
+<p>总结: 约束. 其实就是⽗类对⼦类进行约束. 子类必须要写xxx方法. 在python中约束的</p>
+</blockquote>
+<p>方式和方法有两种:</p>
+<ol>
+<li>使用抽象类和抽象方法, 由于该方案来源是java和c#. 所以使用频率还是很少的</li>
+<li>使用人为抛出异常的方案. 并且尽量量抛出的是NotImplementError. 这样比较专业, 而且错误比较明确.(推荐)</li>
+</ol>
+<h4 id="异常类型"><a href="#异常类型" class="headerlink" title="异常类型"></a>异常类型</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">AttributeError 试图访问一个对象没有的树形，比如foo.x，但是foo没有属性x</span><br><span class="line">IOError 输入/输出异常；基本上是无法打开文件</span><br><span class="line">ImportError 无法引入模块或包；基本上是路径问题或名称错误</span><br><span class="line">IndentationError 语法错误（的子类） ；代码没有正确对齐</span><br><span class="line">IndexError 下标索引超出序列边界，比如当x只有三个元素，却试图访问x[<span class="number">5</span>]</span><br><span class="line">KeyError 试图访问字典里不存在的键</span><br><span class="line">KeyboardInterrupt Ctrl+C被按下</span><br><span class="line">NameError 使用一个还未被赋予对象的变量</span><br><span class="line">SyntaxError Python代码非法，代码不能编译(个人认为这是语法错误，写错了）</span><br><span class="line">TypeError 传入对象类型与要求的不符合</span><br><span class="line">UnboundLocalError 试图访问一个还未被设置的局部变量，基本上是由于另有一个同名的全局变量，</span><br><span class="line">导致你以为正在访问它</span><br><span class="line">ValueError 传入一个调用者不期望的值，即使值的类型是正确的</span><br><span class="line"></span><br><span class="line">常用异常</span><br></pre></td></tr></table></figure>
+<p>Exception 万能异常</p>
+<h4 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h4>   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">chu</span><span class="params">(a, b)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> a/b</span><br><span class="line">	ret = chu(<span class="number">10</span>, <span class="number">0</span>)</span><br><span class="line">	print(ret)</span><br><span class="line"></span><br><span class="line"><span class="comment">###ZeroDivisionError: division by zero</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">chu</span><span class="params">(a, b)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> a/b</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">	ret = chu(<span class="number">10</span>, <span class="number">0</span>)</span><br><span class="line">	print(ret)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">	print(<span class="string">"除数不不能是0"</span>)</span><br><span class="line">结果:</span><br><span class="line">除数不不能是<span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">	print(<span class="string">"各种操作...."</span>)</span><br><span class="line"><span class="keyword">except</span> ZeroDivisionError <span class="keyword">as</span> e:</span><br><span class="line">	print(<span class="string">"除数不不能是0"</span>)</span><br><span class="line"><span class="keyword">except</span> FileNotFoundError <span class="keyword">as</span> e:</span><br><span class="line">	print(<span class="string">"⽂文件不不存在"</span>)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">	print(<span class="string">"其他错误"</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h4><blockquote>
+<p>MD5是一种不可逆的加密算法. 它是可靠的. 并且安全的. 在python中我们不需要手写<br>这一套算法. 只需要引入一个叫hashlib的模块就能搞定MD5的加密工作</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#引入模块</span></span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#1.创建一个md5对象</span></span><br><span class="line">obj = hashlib.md5()</span><br><span class="line"><span class="comment">#obj = hashlib.md5(b"3I31") #加..</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2.把要加密的内容给md5</span></span><br><span class="line">obj.update(<span class="string">"root"</span>.encode(<span class="string">"utf-8"</span>)) <span class="comment">#必须是字节</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.获取密文</span></span><br><span class="line"></span><br><span class="line">val = obj.hexdigest()</span><br><span class="line">print(val)</span><br><span class="line"><span class="keyword">import</span>  hashlib</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_md5</span><span class="params">(yal)</span>:</span></span><br><span class="line">    obj = hashlib.md5()</span><br><span class="line">    obj.update(yal.encode(<span class="string">"utf-8"</span>))</span><br><span class="line">    val = obj.hexdigest()</span><br><span class="line">    <span class="keyword">return</span> val</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#注册的时候,用md5 进行加密,</span></span><br><span class="line"></span><br><span class="line">name = input(<span class="string">"name"</span>)</span><br><span class="line">passwd = input(<span class="string">"passwd"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#ps = my_md5(passwd)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> name == <span class="string">"man"</span> <span class="keyword">and</span> my_md5(passwd) == <span class="string">"63a9f0ea7bb98050796b649e85481845"</span>:</span><br><span class="line">    print(<span class="string">'go'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"n"</span>)</span><br></pre></td></tr></table></figure>
+<p>使用实例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># python 检测文件MD5值</span></span><br><span class="line"><span class="comment"># python version 2.6</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 简单的测试一个字符串的MD5值</span></span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5sum</span><span class="params">(obj)</span>:</span></span><br><span class="line">    hash = hashlib.md5()</span><br><span class="line">    hash.update(obj.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">    <span class="keyword">return</span> hash.hexdigest()<span class="comment">#字符</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">GetStrMd5</span><span class="params">(src)</span>:</span></span><br><span class="line">    m0 = hashlib.md5()</span><br><span class="line">    m0.update(src)</span><br><span class="line">    print(m0.hexdigest())</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 大文件的MD5值</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">GetFileMd5</span><span class="params">(filename)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.isfile(filename):</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    myhash = hashlib.md5()</span><br><span class="line">    f = open(filename, <span class="string">'rb'</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        b = f.read(<span class="number">8096</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> b:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        myhash.update(b)</span><br><span class="line">    f.close()</span><br><span class="line">    <span class="keyword">return</span> myhash.hexdigest()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">CalcSha1</span><span class="params">(filepath)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(filepath, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        sha1obj = hashlib.sha1()</span><br><span class="line">        sha1obj.update(f.read())</span><br><span class="line">        hash = sha1obj.hexdigest()</span><br><span class="line">        print(hash)</span><br><span class="line">        <span class="keyword">return</span> hash</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">CalcMD5</span><span class="params">(filepath)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(filepath, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        md5obj = hashlib.md5()</span><br><span class="line">        md5obj.update(f.read())</span><br><span class="line">        hash = md5obj.hexdigest()</span><br><span class="line">        print(hash)</span><br><span class="line">        <span class="keyword">return</span> hash</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    <span class="keyword">if</span> len(sys.argv) == <span class="number">2</span>:</span><br><span class="line">        hashfile = sys.argv[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(hashfile):</span><br><span class="line">            hashfile = os.path.join(os.path.dirname(__file__), hashfile)</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(hashfile):</span><br><span class="line">                print(<span class="string">"cannot found file"</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                CalcMD5(hashfile)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            CalcMD5(hashfile)</span><br><span class="line">            <span class="comment"># raw_input("pause")</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"no filename"</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="日志处理"><a href="#日志处理" class="headerlink" title="日志处理"></a>日志处理</h4><ol>
+<li>导入logging模块.</li>
+<li>简单配置⼀一下logging</li>
+<li>出现异常的时候(except). 向⽇日志⾥里里写错误信息.</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line">logging.basicConfig(filename=<span class="string">'app.log'</span>,</span><br><span class="line">                    format=<span class="string">'%(asctime)s - %(name)s - %(levelname)s - %(module)s: %(message)s'</span>,</span><br><span class="line">                    datefmt=<span class="string">'%Y-%m-%d %H:%M:%S'</span>,</span><br><span class="line">                    level=<span class="number">40</span>)    <span class="comment"># level 设置级别. 当你的信息的级别&gt;=level的时候才会写入日志文件, 默认30</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># CRITICAL = 50</span></span><br><span class="line"><span class="comment"># FATAL = CRITICAL</span></span><br><span class="line"><span class="comment"># ERROR = 40</span></span><br><span class="line"><span class="comment"># WARNING = 30</span></span><br><span class="line"><span class="comment"># WARN = WARNING</span></span><br><span class="line"><span class="comment"># INFO = 20</span></span><br><span class="line"><span class="comment"># DEBUG = 10</span></span><br><span class="line"><span class="comment"># NOTSET = 0</span></span><br><span class="line"><span class="comment"># 写日志</span></span><br><span class="line"><span class="comment"># logging.critical("我是critical")</span></span><br><span class="line"><span class="comment"># logging.error("我是error")</span></span><br><span class="line"><span class="comment"># logging.warning("我是警告")</span></span><br><span class="line"><span class="comment"># logging.info("我是基本信息")</span></span><br><span class="line"><span class="comment"># logging.debug("我是调试")</span></span><br><span class="line"><span class="comment"># logging.log(2, "我是自定义")</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> traceback</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">20</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> i % <span class="number">3</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">raise</span> FileNotFoundError(<span class="string">"我是FileNotFountException"</span>)</span><br><span class="line">        <span class="keyword">elif</span> i % <span class="number">3</span> == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">raise</span> StopIteration()</span><br><span class="line">        <span class="keyword">elif</span> i % <span class="number">3</span> == <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">raise</span> KeyError()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">except</span> FileNotFoundError <span class="keyword">as</span> e:</span><br><span class="line">        val = traceback.format_exc()  <span class="comment"># 获取堆栈信息</span></span><br><span class="line">        logging.error(val)</span><br><span class="line">    <span class="keyword">except</span> StopIteration <span class="keyword">as</span> e:</span><br><span class="line">        val = traceback.format_exc()</span><br><span class="line">        logging.error(val)</span><br><span class="line">    <span class="keyword">except</span> KeyError <span class="keyword">as</span> e:</span><br><span class="line">        val = traceback.format_exc()</span><br><span class="line">        logging.error(val)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        val = traceback.format_exc()</span><br><span class="line">        logging.error(val)</span><br></pre></td></tr></table></figure>
+<h4 id="多文件日志处理"><a href="#多文件日志处理" class="headerlink" title="多文件日志处理"></a>多文件日志处理</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 创建⼀个操作⽇志的对象logger（依赖FileHandler）</span></span><br><span class="line">file_handler = logging.FileHandler(<span class="string">'l1.log'</span>, <span class="string">'a'</span>, encoding=<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="comment"># 设置日志文件内容的格式</span></span><br><span class="line">file_handler.setFormatter(logging.Formatter(fmt=<span class="string">"%(asctime)s - %(name)s - %(levelname)s -%(module)s: %(message)s"</span>))</span><br><span class="line">logger1 = logging.Logger(<span class="string">'A'</span>, level=<span class="number">40</span>)</span><br><span class="line">logger1.addHandler(file_handler)</span><br><span class="line"><span class="comment"># 记录日志</span></span><br><span class="line">logger1.error(<span class="string">'我是A系统'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 再创建⼀个操作⽇志的对象logger（依赖FileHandler）</span></span><br><span class="line">file_handler2 = logging.FileHandler(<span class="string">'l2.log'</span>, <span class="string">'a'</span>, encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">file_handler2.setFormatter(logging.Formatter(fmt=<span class="string">"%(asctime)s - %(name)s -%(levelname)s -%(module)s: %(message)s"</span>))</span><br><span class="line">logger2 = logging.Logger(<span class="string">'B'</span>, level=<span class="number">40</span>)</span><br><span class="line">logger2.addHandler(file_handler2)</span><br><span class="line"><span class="comment"># 记录日志</span></span><br><span class="line">logger2.error(<span class="string">'我是B系统'</span>)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/26/Python面对对象成员(2)/" rel="next" title="Python:面对对象成员(2)">
+                <i class="fa fa-chevron-left"></i> Python:面对对象成员(2)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/27/Python类与类之间的关系(3)/" rel="prev" title="Python类与类之间的关系(3)">
+                Python类与类之间的关系(3) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="kinzun" />
+          <p class="site-author-name" itemprop="name">kinzun</p>
+           
+              <p class="site-description motion-element" itemprop="description">Try not to become a man of success but rather try to become a man of value. </p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kinzun" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1916882360" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#报错"><span class="nav-number">1.</span> <span class="nav-text">报错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义异常返回"><span class="nav-number">2.</span> <span class="nav-text">自定义异常返回</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类的约束"><span class="nav-number">3.</span> <span class="nav-text">类的约束</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异常类型"><span class="nav-number">4.</span> <span class="nav-text">异常类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异常处理"><span class="nav-number">5.</span> <span class="nav-text">异常处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MD5"><span class="nav-number">6.</span> <span class="nav-text">MD5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#日志处理"><span class="nav-number">7.</span> <span class="nav-text">日志处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多文件日志处理"><span class="nav-number">8.</span> <span class="nav-text">多文件日志处理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kinzun</span>
+</div>
+
+
+<!--
+< div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div> -->
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://discussde.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://kinzun.github.io/2018/09/27/ Python约束和异常处理,Md5,日志处理/';
+          this.page.identifier = '2018/09/27/ Python约束和异常处理,Md5,日志处理/';
+          this.page.title = 'Python约束和异常处理,Md5,日志处理';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://discussde.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

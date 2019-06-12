@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.loli.net/css?family="Noto Sans SC","PingFang SC","Microsoft YaHei","Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei Light","Source Han Sans CN","WenQuanYi Micro Hei",Arial,sans-serif:300,300italic,400,400italic,700,700italic|"Open Sans","Hiragino Sans GB","Noto Sans SC","Helvetica Neue","Source Han Serif SC","Source Han Serif",source-han-serif-sc,serif,Lato,"PingFang SC","Microsoft YaHei", ans-serif:300,300italic,400,400italic,700,700italic|"Noto Serif CJK SC","Helvetica Neue","Source Han Serif SC","Source Han Serif",source-han-serif-sc,serif,Lato,"PingFang SC","Microsoft YaHei",sans-serif:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="nmap," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="1、NMap工具** 主要功能：探测主机是否在线、扫描主机开放端口和嗅探网络服务，用于网络探测和安全扫描。 NMap支持很多扫描技术，例如：UDP、TCPconnect()、TCPSYN(半开扫描)、ftp代理(bounce攻击)、反向标志、ICMP、FIN、ACK扫描、SYN扫描和null扫描。">
+<meta name="keywords" content="nmap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nmap和TCPdump">
+<meta property="og:url" content="https://kinzun.github.io/2016/12/13/nmap-and-tcpdump/index.html">
+<meta property="og:site_name" content="kinzun">
+<meta property="og:description" content="1、NMap工具** 主要功能：探测主机是否在线、扫描主机开放端口和嗅探网络服务，用于网络探测和安全扫描。 NMap支持很多扫描技术，例如：UDP、TCPconnect()、TCPSYN(半开扫描)、ftp代理(bounce攻击)、反向标志、ICMP、FIN、ACK扫描、SYN扫描和null扫描。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-04T08:12:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nmap和TCPdump">
+<meta name="twitter:description" content="1、NMap工具** 主要功能：探测主机是否在线、扫描主机开放端口和嗅探网络服务，用于网络探测和安全扫描。 NMap支持很多扫描技术，例如：UDP、TCPconnect()、TCPSYN(半开扫描)、ftp代理(bounce攻击)、反向标志、ICMP、FIN、ACK扫描、SYN扫描和null扫描。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'DCVS5PBBDG',
+      apiKey: '8891b52927924071005948ebf1d385f0',
+      indexName: 'dev_jobbymsblog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://kinzun.github.io/2016/12/13/nmap-and-tcpdump/"/>
+
+
+
+
+
+  <title>Nmap和TCPdump | kinzun</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kinzun</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kinzun.github.io/2016/12/13/nmap-and-tcpdump/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kinzun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kinzun">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Nmap和TCPdump</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-13T14:31:21+08:00">
+                2016-12-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/12/13/nmap-and-tcpdump/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/12/13/nmap-and-tcpdump/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1、NMap工具**</p>
+<p>主要功能：探测主机是否在线、扫描主机开放端口和嗅探网络服务，用于网络探测和安全扫描。</p>
+<p>NMap支持很多扫描技术，例如：UDP、TCPconnect()、TCPSYN(半开扫描)、ftp代理(bounce攻击)、反向标志、ICMP、FIN、ACK扫描、SYN扫描和null扫描。</p>
+<a id="more"></a>
+<p>命令格式：Nmap [ 扫描类型 ] [ 通用选项 ] { 扫描目标说明 }</p>
+<p><strong>扫描类型:</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>-sT</strong></th>
+<th>TCP connect()扫描，这是最基本的TCP扫描方式，用来建立一个TCP连接，如果成功则认为目标端口正在监听，否则认为目标端口没有监听程序。这种扫描很容易被检测到，在目标主机的日志中会记录大批的连接请求以及错误信息。</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>-sS</strong></td>
+<td>TCP同 步扫描(TCP SYN)，只向目标发出SYN数据包，如果收到SYN/ACK响应包就认为目标端口正在监听，并立即断开连接；否则认为目标端口没有监听程序。所以这项技 术通常称为半开扫描(half-open)。这项技术最大的好处是，很少有系统能够把这记入系统日志。不过，你需要root权限来定制SYN数据包。</td>
+</tr>
+<tr>
+<td><strong>-sF,-sX,-sN</strong></td>
+<td>秘密FIN数据包扫描、圣诞树(Xmas Tree)、空(Null)扫描模式。这些扫描方式的理论依据是：关闭的端口需要对你的探测包回应RST包，而打开的端口必需忽略有问题的包，通过这种扫描，可间接用于检测防火墙的健壮性。</td>
+</tr>
+<tr>
+<td><strong>-sP</strong></td>
+<td>ping扫描，用ping方式检查网络上哪些主机正在运行。当主机阻塞ICMP  echo请求包是ping扫描是无效的。nmap在任何情况下都会进行ping扫描，只有目标主机处于运行状态，才会进行后续的扫描。</td>
+</tr>
+<tr>
+<td><strong>-sU</strong></td>
+<td>UDP扫描，如果你想知道在某台主机上提供哪些UDP服务，可以使用此选项。</td>
+</tr>
+<tr>
+<td><strong>-sA</strong></td>
+<td>ACK扫描，这项高级的扫描方法通常可以用来穿过防火墙。</td>
+</tr>
+<tr>
+<td><strong>-sW</strong></td>
+<td>滑动窗口扫描，非常类似于ACK的扫描。</td>
+</tr>
+<tr>
+<td><strong>-sR</strong></td>
+<td>RPC扫描，和其它不同的端口扫描方法结合使用。</td>
+</tr>
+<tr>
+<td><strong>-b</strong></td>
+<td>FTP反弹攻击(bounce attack)，连接到防火墙后面的一台FTP服务器做代理，接着进行端口扫描。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>通用选项:</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>-n</strong></th>
+<th>不做反向DNS解析，以加快扫描速度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>-P0</strong></td>
+<td>在扫描之前，不ping主机；有些网络防火墙可能禁止ICMP请求包，使用这种扫描类型可以跳过ping测试</td>
+</tr>
+<tr>
+<td><strong>-PT</strong></td>
+<td>扫描之前，使用TCP ping确定哪些主机正在运行。</td>
+</tr>
+<tr>
+<td><strong>-PS</strong></td>
+<td>对于root用户，这个选项让nmap使用SYN包而不是ACK包来对目标主机进行扫描。</td>
+</tr>
+<tr>
+<td><strong>-PI</strong></td>
+<td>设置这个选项，让nmap使用真正的ping(ICMP echo请求)来扫描目标主机是否正在运行。</td>
+</tr>
+<tr>
+<td><strong>-PB</strong></td>
+<td>这是默认的ping扫描选项。它使用ACK(-PT)和ICMP(-PI)两种扫描类型并行扫描。如果防火墙能够过滤其中一种包，使用这种方法，你就能够穿过防火墙。</td>
+</tr>
+<tr>
+<td><strong>-O</strong></td>
+<td>这个选项激活对TCP/IP指纹特征(fingerprinting)的扫描，获得远程主机的标志，也就是操作系统类型。</td>
+</tr>
+<tr>
+<td><strong>-I</strong></td>
+<td>打开nmap的反向标志扫描功能。</td>
+</tr>
+<tr>
+<td><strong> -f</strong></td>
+<td>使用碎片IP数据包发送SYN、FIN、XMAS、NULL。包增加包过滤、入侵检测系统的难度，使其无法知道你的企图。</td>
+</tr>
+<tr>
+<td><strong>-v</strong></td>
+<td>强烈推荐使用这个选项，它会给出扫描过程中的详细信息。</td>
+</tr>
+<tr>
+<td><strong>-S <ip></ip></strong></td>
+<td>在一些情况下，nmap可能无法确定你的源地址(nmap会告诉你)。在这种情况使用这个选项给出你的IP地址。</td>
+</tr>
+<tr>
+<td><strong>-g port</strong></td>
+<td>设置扫描的源端口。一些天真的防火墙和包过滤器的规则集允许源端口为DNS(53)或者FTP-DATA(20)的包通过和实现连接。显然，如果攻击者把源端口修改为20或者53，就可以摧毁防火墙的防护。</td>
+</tr>
+<tr>
+<td><strong>-oN</strong></td>
+<td>把扫描结果重定向到一个可读的文件logfilename中。</td>
+</tr>
+<tr>
+<td><strong>-oS</strong></td>
+<td>扫描结果输出到标准输出。</td>
+</tr>
+<tr>
+<td><strong>-A</strong></td>
+<td>打开操作系统探测和版本探测。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>扫描目标:</strong></p>
+<table>
+<thead>
+<tr>
+<th>目标地址</th>
+<th>可以为IP地址，CIRD地址等。如192.168.1.2，222.247.54.5/24</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-iL filename</td>
+<td>从filename文件中读取扫描的目标。</td>
+</tr>
+<tr>
+<td>-iR</td>
+<td>让nmap自己随机挑选主机进行扫描。</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>端口，这个选项让你选择要进行扫描的端口号的范围。可使用逗号分隔多个端口，减号连接一个端口范围，在列表前指定T：表示TCP端口，U：表示UDP端口</td>
+</tr>
+<tr>
+<td>-exclude</td>
+<td>排除指定主机。</td>
+</tr>
+<tr>
+<td>-excludefile</td>
+<td>排除指定文件中的主机。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>端口的三种状态：</strong></p>
+<p>Open：意味着目标主机能够在这个端口使用accept()系统调用接受连接。</p>
+<p>filtered：表示防火墙、包过滤和其它的网络安全软件掩盖了这个端口，禁止nmap探测其是否打开。</p>
+<p>unfiltered：表示这个端口关闭，并且没有防火墙/包过滤软件来隔离nmap的探测企图。</p>
+<p><strong>举例说明：</strong></p>
+<p>1、探测指定网段是否有FTP服务的主机，不做DNS反向解析</p>
+<p>nmap -sS –n –p 21192.168.0.0/24</p>
+<p>2、探测指定服务器是否启有特定端口的服务</p>
+<p>nmap –n –p T:21-25,80,110,3389–sS 192.168.0.1</p>
+<p>3、使用TCP连接扫描探测指定服务器，即使无法ping通也仍然继续探测</p>
+<p>4、nmap -sT –PO 192.168.0.1</p>
+<p>5、探测指定服务器的操作系统类型</p>
+<p>nmap –O –n 192.168.0.1</p>
+<p>6、探测局域网段中各主机开启了哪些服务</p>
+<p>nmap –sS 192.168.0.0/24</p>
+<p>7、探测192.168.0.0和172.16.0.0/16网段中有哪些主机在运行</p>
+<p>nmap –sP –n 192.168.0.0/24 172.16.0.0/16</p>
+<p>8、快速扫描主机开放端口</p>
+<p>nmap -F 192.168.0.1</p>
+<p><strong>2、TCPDump工具</strong></p>
+<p>主要功能：捕获和分析数据包。</p>
+<p>TcpDump可以将网络中传送的数据包的“头”完全截获下来提供分析。它支持针对网络层、协议、主机、网络或端口的过滤，并提供 and、or、not等逻辑语句来帮助你去掉无用的信息。</p>
+<p>命令格式：tcpdump [ 选项 ] [ -c 数量 ] [ -i 网络接口 ] [ -w 文件名 ] [ 表达式 ]</p>
+<p><strong>常用选项：</strong></p>
+<p>-l：使标准输出变为缓冲行形式；</p>
+<p>-c：抓包次数；</p>
+<p>-nn：直接以 IP 及 Port Number 显示，而非主机名与服务名称；</p>
+<p>-s ：&lt;数据包大小&gt; 设置每个数据包的大小；</p>
+<p>-i：指定监听的网络接口；</p>
+<p>-r：从指定的文件中读取包；</p>
+<p>-w：输出信息保存到指定文件；</p>
+<p>-a：将网络地址和广播地址转变成名字；</p>
+<p>-d：将匹配信息包的代码以人们能够理解的汇编格式给出；</p>
+<p>-e：在输出行打印出数据链路层的头部信息；</p>
+<p>-f：将外部的Internet地址以数字的形式打印出来；</p>
+<p>-t：在输出的每一行不打印时间戳；</p>
+<p>-v ：输出稍微详细的报文信息；加一个v更详细。</p>
+<p><strong>四种表达式：过滤报文条件</strong></p>
+<p>1、 关于类型的关键字，主要包括host，net，port, 例如 host210.27.48.2，指明 210.27.48.2是一台主机，net 202.0.0.0 指明202.0.0.0是一个网络地址，port 23 指明端口号是23。如果没有指定类型，缺省的类型是host。</p>
+<p>2、 确定传输方向的关键字，主要包括src, dst ,dst or src, dst and src ,这些关键字指明了传输的方向。例如 src210.27.48.2 ,指明ip包中源地址是210.27.48.2, dst net 202.0.0.0 指明目的网络地址是202.0.0.0 。如果没有指明方向关键字，则缺省是src or dst关键字。</p>
+<p>3、<a href="http://cisco.chinaitlab.com/List_11.html" target="_blank" rel="noopener">协议</a>的关键字，主要包括ip,arp,tcp,udp等类型。</p>
+<p>4、三种逻辑运算，与运算是’and’,’&amp;&amp;’; 或运算是’or’ ,’||’； 非运算是 ‘not ‘ ‘! ‘。</p>
+<p>其他重要的关键字如下： broadcast,less（小于）,greater（大于）</p>
+<p><strong>举例说明：</strong></p>
+<p>1、截获eth0网卡10次收发所有数据包并将抓包结果保存到test文件,再读取test抓包结果文件</p>
+<p>tcpdump –i eth0 –c 10 –w test</p>
+<p>tcpdump –r test</p>
+<p>2、截获来访问80端口的所有数据包（指定端口范围portrange 1-1024）</p>
+<p>tcpdump port 80</p>
+<p>3、截获所有来自主机114.254.151.51的进出所有数据包</p>
+<p>tcpdump host 114.254.151.51</p>
+<p>4、截获ip包中源地址是114.254.151.51的（目的是dst）</p>
+<p>tcpdump src 114.254.151.51</p>
+<p>5、截获主机114.254.151.51和主机114.254.151.52的通信</p>
+<p>tcpdum host 114.254.151.51 and 114.254.151.52</p>
+<p>6、截获tcp协议并且源地址114.254.151.51来访问80的端口</p>
+<p>tcpdump tcp and src 114.254.151.51 and port 80</p>
+<p>7、截获主机114.254.151.51除了和114.254.151.52之外的所有ip包</p>
+<p>tcpdump ip host 114.254.151.51 and ! 114.254.151.52</p>
+<p>8、截获长度大于1000数据包,对于DDOS攻击时，可以使用</p>
+<p>tcpdump greater 1000</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nmap/" rel="tag"># nmap</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/27/26-Linux-Common-Commands/" rel="prev" title="26-Linux-Common-Command">
+                26-Linux-Common-Command <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="kinzun" />
+          <p class="site-author-name" itemprop="name">kinzun</p>
+           
+              <p class="site-description motion-element" itemprop="description">Try not to become a man of success but rather try to become a man of value. </p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kinzun" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1916882360" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kinzun</span>
+</div>
+
+
+<!--
+< div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div> -->
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://discussde.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://kinzun.github.io/2016/12/13/nmap-and-tcpdump/';
+          this.page.identifier = '2016/12/13/nmap-and-tcpdump/';
+          this.page.title = 'Nmap和TCPdump';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://discussde.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
