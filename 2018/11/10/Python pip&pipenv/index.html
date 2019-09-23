@@ -1,434 +1,50 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-  
-  
-    
-      
-    
-    
-      
-    
-  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-    
-    
-    <link href="//fonts.lug.ustc.edu.cn/css?family="Noto Sans SC","PingFang SC","Microsoft YaHei","Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei Light","Source Han Sans CN","WenQuanYi Micro Hei",Arial,sans-serif:300,300italic,400,400italic,700,700italic|"Open Sans","Hiragino Sans GB","Noto Sans SC","Helvetica Neue","Source Han Serif SC","Source Han Serif",source-han-serif-sc,serif,Lato,"PingFang SC","Microsoft YaHei", ans-serif:300,300italic,400,400italic,700,700italic|"Noto Serif CJK SC","Helvetica Neue","Source Han Serif SC","Source Han Serif",source-han-serif-sc,serif,Lato,"PingFang SC","Microsoft YaHei",sans-serif:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-  
-
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Python," />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
-
-
-
-
-
-
-<meta name="description" content="pip 的安装 &amp;amp; 更新确保您已经有了 Python 和 pip在您进一步之前，请确保您有 Python，并且可从您的命令行中获得。 您可以通过简单地运行以下命令来检查： 12$ python --version$ pip --version 关键步骤来到命令行界面，执行 12python2-m pip install --upgrade pip --force-reinstallpyth">
-<meta name="keywords" content="Python">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Pipenv &amp; 虚拟环境">
-<meta property="og:url" content="https://kinzun.github.io/2018/11/10/Python pip&pipenv/index.html">
-<meta property="og:site_name" content="kinzun">
-<meta property="og:description" content="pip 的安装 &amp;amp; 更新确保您已经有了 Python 和 pip在您进一步之前，请确保您有 Python，并且可从您的命令行中获得。 您可以通过简单地运行以下命令来检查： 12$ python --version$ pip --version 关键步骤来到命令行界面，执行 12python2-m pip install --upgrade pip --force-reinstallpyth">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-04-14T09:34:19.856Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pipenv &amp; 虚拟环境">
-<meta name="twitter:description" content="pip 的安装 &amp;amp; 更新确保您已经有了 Python 和 pip在您进一步之前，请确保您有 Python，并且可从您的命令行中获得。 您可以通过简单地运行以下命令来检查： 12$ python --version$ pip --version 关键步骤来到命令行界面，执行 12python2-m pip install --upgrade pip --force-reinstallpyth">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: 'DCVS5PBBDG',
-      apiKey: '8891b52927924071005948ebf1d385f0',
-      indexName: 'dev_jobbymsblog',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://kinzun.github.io/2018/11/10/Python pip&pipenv/"/>
-
-
-
-
-
-  <title>Pipenv & 虚拟环境 | kinzun</title>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="referrer" content="no-referrer">
+    <meta name="theme-color" content="#333333">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="google" content="notranslate">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keyword"  content="">
+    <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
+    <title>Pipenv &amp; 虚拟环境 - kinzun</title>
+    <base href="/">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="shortcut icon" href="/icons/icon-72x72.png">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    <link rel="stylesheet" href="/styles/sanitize.css">
+<link rel="stylesheet" href="/styles/cold-stone.css">
+    <noscript>
+      <p class="text-center">你的浏览器还没开启 Javascript 功能！</p>
+    </noscript>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <body>
     
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">kinzun</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
+    <main class="main wrapper"><article class="article slide-in-right">
+  <section>
+    <h1 class="article-title">
+      Pipenv &amp; 虚拟环境    </h1>
+    <p class="article-meta">
+      <span class="meta-info">
+        LastUpdate：2019-09-03 13:18:19
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
+          Tags：
+          
+            <a class="meta-tag" href="/tags/#Python" title="Python">Python</a>
+          
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            About
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            Search
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  
-  <div class="algolia-popup popup search-popup">
-    <div class="algolia-search">
-      <div class="algolia-search-input-icon">
-        <i class="fa fa-search"></i>
-      </div>
-      <div class="algolia-search-input" id="algolia-search-input"></div>
-    </div>
-
-    <div class="algolia-results">
-      <div id="algolia-stats"></div>
-      <div id="algolia-hits"></div>
-      <div id="algolia-pagination" class="algolia-pagination"></div>
-    </div>
-
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-  </div>
-
-
-
-
-    </div>
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kinzun.github.io/2018/11/10/Python pip&pipenv/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="kinzun">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="kinzun">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">Pipenv & 虚拟环境</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-10T10:30:27+08:00">
-                2018-11-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/11/10/Python pip&pipenv/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/10/Python pip&pipenv/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h1 id="pip-的安装-amp-更新"><a href="#pip-的安装-amp-更新" class="headerlink" title="pip 的安装 &amp; 更新"></a>pip 的安装 &amp; 更新</h1><h2 id="确保您已经有了-Python-和-pip"><a href="#确保您已经有了-Python-和-pip" class="headerlink" title="确保您已经有了 Python 和 pip"></a>确保您已经有了 Python 和 pip</h2><p>在您进一步之前，请确保您有 Python，并且可从您的命令行中获得。 您可以通过简单地运行以下命令来检查：</p>
+      </span>
+      <a  class="meta-link" href="/">返回</a>
+    </p>
+  </section>
+  <section><h1 id="pip-的安装-amp-更新"><a href="#pip-的安装-amp-更新" class="headerlink" title="pip 的安装 &amp; 更新"></a>pip 的安装 &amp; 更新</h1><h2 id="确保您已经有了-Python-和-pip"><a href="#确保您已经有了-Python-和-pip" class="headerlink" title="确保您已经有了 Python 和 pip"></a>确保您已经有了 Python 和 pip</h2><p>在您进一步之前，请确保您有 Python，并且可从您的命令行中获得。 您可以通过简单地运行以下命令来检查：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> python --version</span><br><span class="line"><span class="meta">$</span> pip --version</span><br></pre></td></tr></table></figure>
 <h2 id="关键步骤"><a href="#关键步骤" class="headerlink" title="关键步骤"></a>关键步骤</h2><p>来到命令行界面，执行</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python2-m pip install --upgrade pip --force-reinstall</span><br><span class="line">python3-m pip install --upgrade pip --force-reinstall</span><br></pre></td></tr></table></figure>
@@ -439,7 +55,7 @@
 <p>以后只需运行<code>pip(2) install XXX</code>和<code>pip3 install XXX</code>即可安装各自的python包。</p>
 <p><strong>注意</strong>，使用<strong>Python2.X</strong>或<strong>pip2</strong>安装东西的时候要注意权限问题，如果当前用户是普通用户，需要切换到管理员用户 <code>sudo -i</code></p>
 <h2 id="pip的使用"><a href="#pip的使用" class="headerlink" title="pip的使用"></a>pip的使用</h2><p>pip 为python的包管理器. 最新的python2和python3都已经自带pip.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 显示帮助</span><br><span class="line">pip</span><br><span class="line">pip --help</span><br><span class="line">pip install -h                      # 显示安装的帮助</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 安装包</span><br><span class="line">pip install PackageName             # latest version</span><br><span class="line">pip install PackageName==1.0.4      # specific version</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 包列表</span><br><span class="line">pip list                            # 显示已安装的包   </span><br><span class="line">pip list --outdated                 # 显示有更新的包</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 显示包的简介, 以及包的源码文件</span><br><span class="line">pip show --files PackageName</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 更新包</span><br><span class="line">pip install --U PackageName</span><br><span class="line">pip install --upgrade PackageName</span><br><span class="line">pip install --upgrade pip           # pip更新自己</span><br><span class="line">python -m pip install --U pip       # -m 表示调用python模块, 这里就是要调用pip</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 卸载包</span><br><span class="line">pip uninstall PackageName</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 遇到SSL问题, 下载失败时, 信任下载源即可</span><br><span class="line"><span class="meta">#</span> [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:XXX)</span><br><span class="line">pip list --outdated --trusted-host pypi.python.org </span><br><span class="line">pip install --trusted-host pypi.python.org PackageName</span><br><span class="line"></span><br><span class="line">pip install pip -U</span><br><span class="line">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 如果还是不行, 再试试下面这句. index-url 将源指定为http格式, 不用https了, 然后设置为信任.</span><br><span class="line"><span class="meta">#</span> 指定单次下载包源</span><br><span class="line">pip install &lt;包名&gt; -i https://mirrors.aliyun.com/pypi/simple</span><br><span class="line">pip install --index-url=http://pypi.python.org/simple/ --trusted-host pypi.python.org </span><br><span class="line"></span><br><span class="line">PackageName</span><br><span class="line">python3 -m pip install --upgrade --force pip </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 安装</span><br><span class="line">sudo easy_install pip</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 列出已安装的包</span><br><span class="line">pip freeze or pip list</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 导出requirements.txt</span><br><span class="line">pip freeze &gt; requirements.txt</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 在线安装</span><br><span class="line">pip install PackageName 或 </span><br><span class="line">pip install -r requirements.txt</span><br><span class="line"></span><br><span class="line">通过使用== &gt;= &lt;= &gt; &lt;来指定版本，不写则安装最新版</span><br><span class="line"></span><br><span class="line">requirements.txt内容格式为：</span><br><span class="line"></span><br><span class="line">APScheduler==2.1.2</span><br><span class="line">Django==1.5.4</span><br><span class="line"></span><br><span class="line">安装本地安装包</span><br><span class="line">pip install &lt;目录&gt;/&lt;文件名&gt; 或 pip install --use-wheel --no-index --find-links=wheelhouse/ PackageName</span><br><span class="line"></span><br><span class="line">PackageName前有空格</span><br><span class="line"></span><br><span class="line">可简写为</span><br><span class="line"></span><br><span class="line">pip install --no-index -f=&lt;目录&gt;/ PackageName</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 卸载包</span><br><span class="line">pip uninstall PackageName 或 pip uninstall -r requirements.txt</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 升级包</span><br><span class="line">pip install -U PackageName</span><br><span class="line"></span><br><span class="line">或：pip install PackageName --upgrade</span><br><span class="line"></span><br><span class="line">升级pip</span><br><span class="line">pip install -U pip</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 显示包所在的目录</span><br><span class="line">pip show -f PackageName</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 搜索包</span><br><span class="line">pip search &lt;搜索关键字&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 查询可升级的包</span><br><span class="line">pip list -o</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 下载包而不安装</span><br><span class="line">pip install PackageName -d &lt;目录&gt; 或 pip install -d &lt;目录&gt; -r requirements.txt</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 打包</span><br><span class="line">pip wheel PackageName</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 显示帮助</span><br><span class="line">pip</span><br><span class="line">pip --help</span><br><span class="line">pip install -h                      # 显示安装的帮助</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 安装包</span><br><span class="line">pip install PackageName             # latest version</span><br><span class="line">pip install PackageName==1.0.4      # specific version</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 包列表</span><br><span class="line">pip list                            # 显示已安装的包   </span><br><span class="line">pip list --outdated                 # 显示有更新的包</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 显示包的简介, 以及包的源码文件</span><br><span class="line">pip show --files PackageName</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 更新包</span><br><span class="line">pip install --U PackageName</span><br><span class="line">pip install --upgradwe PackageName</span><br><span class="line">pip install --upgrade pip           # pip更新自己</span><br><span class="line">python -m pip install --U pip       # -m 表示调用python模块, 这里就是要调用pip</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 卸载包</span><br><span class="line">pip uninstall PackageName</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 遇到SSL问题, 下载失败时, 信任下载源即可</span><br><span class="line">yum install openssl -y</span><br><span class="line"><span class="meta">#</span> [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:XXX)</span><br><span class="line">pip list --outdated --trusted-host pypi.python.org </span><br><span class="line">pip install --trusted-host pypi.python.org PackageName</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pip3 install --upgrade pip --trusted-host=pypi.python.org --trusted-host=pypi.org --trusted-host=files.pythonhosted.org</span><br><span class="line"> </span><br><span class="line">pip install pip -U</span><br><span class="line">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 如果还是不行, 再试试下面这句. index-url 将源指定为http格式, 不用https了, 然后设置为信任.</span><br><span class="line"><span class="meta">#</span> 指定单次下载包源</span><br><span class="line">pip install &lt;包名&gt; -i https://mirrors.aliyun.com/pypi/simple</span><br><span class="line">pip install --index-url=http://pypi.python.org/simple/ --trusted-host pypi.python.org </span><br><span class="line"></span><br><span class="line">PackageName</span><br><span class="line">python3 -m pip install --upgrade --force pip </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 安装</span><br><span class="line">sudo easy_install pip</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 列出已安装的包</span><br><span class="line">pip freeze or pip list</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 导出requirements.txt</span><br><span class="line">pip freeze &gt; requirements.txt</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 在线安装</span><br><span class="line">pip install PackageName 或 </span><br><span class="line">pip install -r requirements.txt</span><br><span class="line"></span><br><span class="line">通过使用== &gt;= &lt;= &gt; &lt;来指定版本，不写则安装最新版</span><br><span class="line"></span><br><span class="line">requirements.txt内容格式为：</span><br><span class="line"></span><br><span class="line">APScheduler==2.1.2</span><br><span class="line">Django==1.5.4</span><br><span class="line"></span><br><span class="line">安装本地安装包</span><br><span class="line">pip install &lt;目录&gt;/&lt;文件名&gt; 或 pip install --use-wheel --no-index --find-links=wheelhouse/ PackageName</span><br><span class="line"></span><br><span class="line">PackageName前有空格</span><br><span class="line"></span><br><span class="line">可简写为</span><br><span class="line"></span><br><span class="line">pip install --no-index -f=&lt;目录&gt;/ PackageName</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 卸载包</span><br><span class="line">pip uninstall PackageName 或 pip uninstall -r requirements.txt</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 升级包</span><br><span class="line">pip install -U PackageName</span><br><span class="line"></span><br><span class="line">或：pip install PackageName --upgrade</span><br><span class="line"></span><br><span class="line">升级pip</span><br><span class="line">pip install -U pip</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 显示包所在的目录</span><br><span class="line">pip show -f PackageName</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 搜索包</span><br><span class="line">pip search &lt;搜索关键字&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 查询可升级的包</span><br><span class="line">pip list -o</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 下载包而不安装</span><br><span class="line">pip install PackageName -d &lt;目录&gt; 或 pip install -d &lt;目录&gt; -r requirements.txt</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 打包</span><br><span class="line">pip wheel PackageName</span><br></pre></td></tr></table></figure>
 <p><a href="https://www.cnblogs.com/zhangxinqi/p/9074546.html" target="_blank" rel="noopener">pip安装</a></p>
 <p><a href="https://pip.pypa.io/en/latest/#" target="_blank" rel="noopener">pip documentation</a> </p>
 <p><a href="https://pip.readthedocs.io/en/1.1/index.html" target="_blank" rel="noopener">readthdoc</a></p>
@@ -505,409 +121,54 @@
 <p><a href="https://www.cnblogs.com/zhangxinqi/p/9073191.html#_labelTop" target="_blank" rel="noopener">py.qi</a></p>
 <p><a href="https://pipenv.readthedocs.io/en/latest/#pipenv-python-dev-workflow-for-humans" target="_blank" rel="noopener">Pipenv: Python Dev Workflow for Humans</a></p>
 <p><a href="http://www.liujiangblog.com/blog/18/" target="_blank" rel="noopener">via</a></p>
+</section>
+</article>
 
-      
-    </div>
-    
-    
-    
+<section class="card article-toc">
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pip-的安装-amp-更新"><span class="toc-text">pip 的安装 &amp; 更新</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#确保您已经有了-Python-和-pip"><span class="toc-text">确保您已经有了 Python 和 pip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关键步骤"><span class="toc-text">关键步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看版本"><span class="toc-text">查看版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#卸载-安装pip"><span class="toc-text">卸载 安装pip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#升级pip"><span class="toc-text">升级pip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pip的使用"><span class="toc-text">pip的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更换国内pypi镜像"><span class="toc-text">更换国内pypi镜像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#国内pypi镜像"><span class="toc-text">国内pypi镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指定单次安装源"><span class="toc-text">指定单次安装源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指定全局安装源"><span class="toc-text">指定全局安装源</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pipenv-amp-虚拟环境"><span class="toc-text">Pipenv &amp; 虚拟环境</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装pipenv"><span class="toc-text">安装pipenv</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Pipenv"><span class="toc-text">安装 Pipenv</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Pipenv-1"><span class="toc-text">安装 Pipenv</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pipenv使用方法命令名"><span class="toc-text">pipenv使用方法命令名　　</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为项目建立虚拟环境"><span class="toc-text">为项目建立虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为项目安装第三方依赖包"><span class="toc-text">为项目安装第三方依赖包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更新-pypi源来提高依赖库安装的速度"><span class="toc-text">更新 pypi源来提高依赖库安装的速度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#linux下的双版本"><span class="toc-text">linux下的双版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#源码内指定版本"><span class="toc-text">源码内指定版本</span></a></li></ol></li></ol></li></ol></li></ol>
+</section>
 
-    
+<section class="article slide-in-right">
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Python/" rel="tag"># Python</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/11/02/python socketbasic knowledge/" rel="next" title="Python socket 基本知识与工作原理">
-                <i class="fa fa-chevron-left"></i> Python socket 基本知识与工作原理
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/15/python一些小技巧/" rel="prev" title="Python 一点基本技巧">
-                Python 一点基本技巧 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
+  <div class="loader" id="loader">
+    <svg viewBox="0 0 50 50">
+      <circle class="ring" cx="25" cy="25" r="20"></circle>
+      <circle class="ball" cx="25" cy="5" r="3.5"></circle>
+    </svg>
   </div>
 
+  <div class="comment" id="utteranc"></div>
+  <noscript>为正常使用评论功能请激活 JavaScript</noscript>
+</section>
 
-          </div>
-          
+<a class="card back-to-top" id="backTop">&UpArrow;</a>
 
-
-          
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.png"
-               alt="kinzun" />
-          <p class="site-author-name" itemprop="name">kinzun</p>
-           
-              <p class="site-description motion-element" itemprop="description">Try not to become a man of success but rather try to become a man of value. </p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">37</span>
-                <span class="site-state-item-name">posts</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
-                <span class="site-state-item-name">tags</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/kinzun" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                    
-                      GitHub
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/1916882360" target="_blank" title="Weibo">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                    
-                      Weibo
-                    
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pip-的安装-amp-更新"><span class="nav-number">1.</span> <span class="nav-text">pip 的安装 &amp; 更新</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#确保您已经有了-Python-和-pip"><span class="nav-number">1.1.</span> <span class="nav-text">确保您已经有了 Python 和 pip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键步骤"><span class="nav-number">1.2.</span> <span class="nav-text">关键步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看版本"><span class="nav-number">1.3.</span> <span class="nav-text">查看版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#卸载-安装pip"><span class="nav-number">1.4.</span> <span class="nav-text">卸载 安装pip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#升级pip"><span class="nav-number">1.5.</span> <span class="nav-text">升级pip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pip的使用"><span class="nav-number">1.6.</span> <span class="nav-text">pip的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更换国内pypi镜像"><span class="nav-number">1.7.</span> <span class="nav-text">更换国内pypi镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#国内pypi镜像"><span class="nav-number">1.7.1.</span> <span class="nav-text">国内pypi镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定单次安装源"><span class="nav-number">1.7.2.</span> <span class="nav-text">指定单次安装源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定全局安装源"><span class="nav-number">1.7.3.</span> <span class="nav-text">指定全局安装源</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pipenv-amp-虚拟环境"><span class="nav-number">2.</span> <span class="nav-text">Pipenv &amp; 虚拟环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装pipenv"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">安装pipenv</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Pipenv"><span class="nav-number">2.1.</span> <span class="nav-text">安装 Pipenv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Pipenv-1"><span class="nav-number">2.2.</span> <span class="nav-text">安装 Pipenv</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pipenv使用方法命令名"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">pipenv使用方法命令名　　</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为项目建立虚拟环境"><span class="nav-number">2.2.0.2.</span> <span class="nav-text">为项目建立虚拟环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为项目安装第三方依赖包"><span class="nav-number">2.2.0.3.</span> <span class="nav-text">为项目安装第三方依赖包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新-pypi源来提高依赖库安装的速度"><span class="nav-number">2.2.0.4.</span> <span class="nav-text">更新 pypi源来提高依赖库安装的速度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#linux下的双版本"><span class="nav-number">2.2.0.5.</span> <span class="nav-text">linux下的双版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#源码内指定版本"><span class="nav-number">2.2.0.6.</span> <span class="nav-text">源码内指定版本</span></a></li></ol></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">kinzun</span>
-</div>
-
-
-<!--
-< div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
-</div>
-
-<div class="theme-info">
-  Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div> -->
-
-
-        
-
-        
-      </div>
-    </footer>
+</main>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
 
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+    <script>
+	window.COLD_STONE = {
+	  repo: "kinzun/kinzun.github.io",
+	  gaid: "xxxxxxxxxxxxxx"
+	}
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
+<script src="/scripts/cold-stone.js"></script>
 
 
+  <script src="https://www.googletagmanager.com/gtag/js?id=xxxxxxxxxxxxxx"></script>
 
+  <script>
+	window.dataLayer = window.dataLayer || []
+	function gtag() {
+		dataLayer.push(arguments)
+	}
+	gtag('js', new Date())
+	gtag('config', window.COLD_STONE.gaid)
+  </script>
 
 
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.3/jquery.lazyload.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.ui.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://discussde.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'https://kinzun.github.io/2018/11/10/Python pip&pipenv/';
-          this.page.identifier = '2018/11/10/Python pip&pipenv/';
-          this.page.title = 'Pipenv & 虚拟环境';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://discussde.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-  
-
-
-
-
-  
-  
-  
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
-
-  
-  
-  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
-  
-
-  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-</body>
+  </body>
 </html>

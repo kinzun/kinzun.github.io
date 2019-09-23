@@ -1,438 +1,50 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-  
-  
-    
-      
-    
-    
-      
-    
-  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-    
-    
-    <link href="//fonts.lug.ustc.edu.cn/css?family="Noto Sans SC","PingFang SC","Microsoft YaHei","Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei Light","Source Han Sans CN","WenQuanYi Micro Hei",Arial,sans-serif:300,300italic,400,400italic,700,700italic|"Open Sans","Hiragino Sans GB","Noto Sans SC","Helvetica Neue","Source Han Serif SC","Source Han Serif",source-han-serif-sc,serif,Lato,"PingFang SC","Microsoft YaHei", ans-serif:300,300italic,400,400italic,700,700italic|"Noto Serif CJK SC","Helvetica Neue","Source Han Serif SC","Source Han Serif",source-han-serif-sc,serif,Lato,"PingFang SC","Microsoft YaHei",sans-serif:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-  
-
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Python," />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
-
-
-
-
-
-
-<meta name="description" content="套接字由于TCP/IP协议族被设计成能够运行在多种操作系统的环境下，TCP/IP标准允许系统设计者能够选择有关API的具体实现细节。 目前，可供应用程序使用TCP/IP的应用编程接口API的最著名的是套接字接口 而套接字不是物理实体，而是一种抽象，套接字是提供应用程序创建和使用的数据结构 Socket通常也称作“套接字”，用于描述IP地址和端口，是一个通信链的句柄  Socket有两种类型：">
-<meta name="keywords" content="Python">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Python socket 基本知识与工作原理">
-<meta property="og:url" content="https://kinzun.github.io/2018/11/02/python socketbasic knowledge/index.html">
-<meta property="og:site_name" content="kinzun">
-<meta property="og:description" content="套接字由于TCP/IP协议族被设计成能够运行在多种操作系统的环境下，TCP/IP标准允许系统设计者能够选择有关API的具体实现细节。 目前，可供应用程序使用TCP/IP的应用编程接口API的最著名的是套接字接口 而套接字不是物理实体，而是一种抽象，套接字是提供应用程序创建和使用的数据结构 Socket通常也称作“套接字”，用于描述IP地址和端口，是一个通信链的句柄  Socket有两种类型：">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="https://kinzun.github.io/images/python/1652f12fa6e94275.png">
-<meta property="og:image" content="https://kinzun.github.io/images/python/image-20181017155606248.png">
-<meta property="og:image" content="https://kinzun.github.io/images/python/C19943F3-ECA3-4C44-8EB5-6BD7B8C17C6B.jpg">
-<meta property="og:updated_time" content="2018-12-06T01:50:35.042Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python socket 基本知识与工作原理">
-<meta name="twitter:description" content="套接字由于TCP/IP协议族被设计成能够运行在多种操作系统的环境下，TCP/IP标准允许系统设计者能够选择有关API的具体实现细节。 目前，可供应用程序使用TCP/IP的应用编程接口API的最著名的是套接字接口 而套接字不是物理实体，而是一种抽象，套接字是提供应用程序创建和使用的数据结构 Socket通常也称作“套接字”，用于描述IP地址和端口，是一个通信链的句柄  Socket有两种类型：">
-<meta name="twitter:image" content="https://kinzun.github.io/images/python/1652f12fa6e94275.png">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: 'DCVS5PBBDG',
-      apiKey: '8891b52927924071005948ebf1d385f0',
-      indexName: 'dev_jobbymsblog',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://kinzun.github.io/2018/11/02/python socketbasic knowledge/"/>
-
-
-
-
-
-  <title>Python socket 基本知识与工作原理 | kinzun</title>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="referrer" content="no-referrer">
+    <meta name="theme-color" content="#333333">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="google" content="notranslate">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keyword"  content="">
+    <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
+    <title>Python socket 基本知识与工作原理 - kinzun</title>
+    <base href="/">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="shortcut icon" href="/icons/icon-72x72.png">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    <link rel="stylesheet" href="/styles/sanitize.css">
+<link rel="stylesheet" href="/styles/cold-stone.css">
+    <noscript>
+      <p class="text-center">你的浏览器还没开启 Javascript 功能！</p>
+    </noscript>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <body>
     
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">kinzun</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
+    <main class="main wrapper"><article class="article slide-in-right">
+  <section>
+    <h1 class="article-title">
+      Python socket 基本知识与工作原理    </h1>
+    <p class="article-meta">
+      <span class="meta-info">
+        LastUpdate：2018-12-06 09:50:35
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
+          Tags：
+          
+            <a class="meta-tag" href="/tags/#Python" title="Python">Python</a>
+          
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            About
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            Search
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  
-  <div class="algolia-popup popup search-popup">
-    <div class="algolia-search">
-      <div class="algolia-search-input-icon">
-        <i class="fa fa-search"></i>
-      </div>
-      <div class="algolia-search-input" id="algolia-search-input"></div>
-    </div>
-
-    <div class="algolia-results">
-      <div id="algolia-stats"></div>
-      <div id="algolia-hits"></div>
-      <div id="algolia-pagination" class="algolia-pagination"></div>
-    </div>
-
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-  </div>
-
-
-
-
-    </div>
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kinzun.github.io/2018/11/02/python socketbasic knowledge/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="kinzun">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="kinzun">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">Python socket 基本知识与工作原理</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-02T10:38:22+08:00">
-                2018-11-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/11/02/python socketbasic knowledge/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/02/python socketbasic knowledge/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h3 id="套接字"><a href="#套接字" class="headerlink" title="套接字"></a>套接字</h3><p>由于TCP/IP协议族被设计成能够运行在多种操作系统的环境下，TCP/IP标准允许系统设计者能够选择有关API的具体实现细节。</p>
+      </span>
+      <a  class="meta-link" href="/">返回</a>
+    </p>
+  </section>
+  <section><h3 id="套接字"><a href="#套接字" class="headerlink" title="套接字"></a>套接字</h3><p>由于TCP/IP协议族被设计成能够运行在多种操作系统的环境下，TCP/IP标准允许系统设计者能够选择有关API的具体实现细节。</p>
 <p>目前，可供应用程序使用TCP/IP的应用编程接口API的最著名的是<strong>套接字接口</strong></p>
 <p><strong>而套接字不是物理实体，而是一种抽象，套接字是提供应用程序创建和使用的数据结构</strong></p>
 <p><code>Socket</code>通常也称作“<strong>套接字</strong>”，用于描述<strong>IP地址</strong>和<strong>端口</strong>，是一个通信链的句柄</p>
@@ -461,409 +73,54 @@
 <h2 id="解决在应用层程序中的黏包现象"><a href="#解决在应用层程序中的黏包现象" class="headerlink" title="解决在应用层程序中的黏包现象"></a>解决在应用层程序中的黏包现象</h2><h2 id="如何解决粘包"><a href="#如何解决粘包" class="headerlink" title="如何解决粘包"></a>如何解决粘包</h2><ul>
 <li>自定义协议<br>先发送即将发送 <strong>数据的长度</strong>，然后再 <strong>发送数据</strong><br>先<strong>接受</strong> 数据的长度，在根据接受的<strong>长度接受数据</strong><br>用到了<code>struct</code> 模块， 来控制<strong>第一次</strong>发送数据长度的这条<strong>信息的长度</strong></li>
 </ul>
+</section>
+</article>
 
-      
-    </div>
-    
-    
-    
+<section class="card article-toc">
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#套接字"><span class="toc-text">套接字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Socket有两种类型："><span class="toc-text">Socket有两种类型：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Socket通信协议分析"><span class="toc-text">Socket通信协议分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP协议"><span class="toc-text">UDP协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP协议"><span class="toc-text">TCP协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两种协议区别及选择"><span class="toc-text">两种协议区别及选择</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于TCP协议的-Socket编程基本流程图"><span class="toc-text">基于TCP协议的 Socket编程基本流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Socket的通信过程"><span class="toc-text">Socket的通信过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#服务端："><span class="toc-text">服务端：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#客户端："><span class="toc-text">客户端：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#粘包现象是如何产生的"><span class="toc-text">粘包现象是如何产生的???</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#黏包一定是坏现象么"><span class="toc-text">黏包一定是坏现象么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决在应用层程序中的黏包现象"><span class="toc-text">解决在应用层程序中的黏包现象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何解决粘包"><span class="toc-text">如何解决粘包</span></a>
+</section>
 
-    
+<section class="article slide-in-right">
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Python/" rel="tag"># Python</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/10/09/Python Socket 编程/" rel="next" title="Python Socket 编程">
-                <i class="fa fa-chevron-left"></i> Python Socket 编程
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/10/Python pip&pipenv/" rel="prev" title="Pipenv & 虚拟环境">
-                Pipenv & 虚拟环境 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
+  <div class="loader" id="loader">
+    <svg viewBox="0 0 50 50">
+      <circle class="ring" cx="25" cy="25" r="20"></circle>
+      <circle class="ball" cx="25" cy="5" r="3.5"></circle>
+    </svg>
   </div>
 
+  <div class="comment" id="utteranc"></div>
+  <noscript>为正常使用评论功能请激活 JavaScript</noscript>
+</section>
 
-          </div>
-          
+<a class="card back-to-top" id="backTop">&UpArrow;</a>
 
-
-          
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.png"
-               alt="kinzun" />
-          <p class="site-author-name" itemprop="name">kinzun</p>
-           
-              <p class="site-description motion-element" itemprop="description">Try not to become a man of success but rather try to become a man of value. </p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">37</span>
-                <span class="site-state-item-name">posts</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
-                <span class="site-state-item-name">tags</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/kinzun" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                    
-                      GitHub
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/1916882360" target="_blank" title="Weibo">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                    
-                      Weibo
-                    
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#套接字"><span class="nav-number">1.</span> <span class="nav-text">套接字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket有两种类型："><span class="nav-number"></span> <span class="nav-text">Socket有两种类型：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket通信协议分析"><span class="nav-number"></span> <span class="nav-text">Socket通信协议分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP协议"><span class="nav-number">1.</span> <span class="nav-text">UDP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP协议"><span class="nav-number">2.</span> <span class="nav-text">TCP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两种协议区别及选择"><span class="nav-number">3.</span> <span class="nav-text">两种协议区别及选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于TCP协议的-Socket编程基本流程图"><span class="nav-number"></span> <span class="nav-text">基于TCP协议的 Socket编程基本流程图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket的通信过程"><span class="nav-number"></span> <span class="nav-text">Socket的通信过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端："><span class="nav-number">1.</span> <span class="nav-text">服务端：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端："><span class="nav-number">2.</span> <span class="nav-text">客户端：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#粘包现象是如何产生的"><span class="nav-number"></span> <span class="nav-text">粘包现象是如何产生的???</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#黏包一定是坏现象么"><span class="nav-number"></span> <span class="nav-text">黏包一定是坏现象么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决在应用层程序中的黏包现象"><span class="nav-number"></span> <span class="nav-text">解决在应用层程序中的黏包现象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何解决粘包"><span class="nav-number"></span> <span class="nav-text">如何解决粘包</span></a></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">kinzun</span>
-</div>
-
-
-<!--
-< div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
-</div>
-
-<div class="theme-info">
-  Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div> -->
-
-
-        
-
-        
-      </div>
-    </footer>
+</main>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
 
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+    <script>
+	window.COLD_STONE = {
+	  repo: "kinzun/kinzun.github.io",
+	  gaid: "xxxxxxxxxxxxxx"
+	}
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
+<script src="/scripts/cold-stone.js"></script>
 
 
+  <script src="https://www.googletagmanager.com/gtag/js?id=xxxxxxxxxxxxxx"></script>
 
+  <script>
+	window.dataLayer = window.dataLayer || []
+	function gtag() {
+		dataLayer.push(arguments)
+	}
+	gtag('js', new Date())
+	gtag('config', window.COLD_STONE.gaid)
+  </script>
 
 
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.3/jquery.lazyload.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.ui.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://discussde.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'https://kinzun.github.io/2018/11/02/python socketbasic knowledge/';
-          this.page.identifier = '2018/11/02/python socketbasic knowledge/';
-          this.page.title = 'Python socket 基本知识与工作原理';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://discussde.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-  
-
-
-
-
-  
-  
-  
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
-
-  
-  
-  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
-  
-
-  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-</body>
+  </body>
 </html>

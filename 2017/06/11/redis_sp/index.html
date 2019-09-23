@@ -1,435 +1,50 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-  
-  
-    
-      
-    
-    
-      
-    
-  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-    
-    
-    <link href="//fonts.lug.ustc.edu.cn/css?family="Noto Sans SC","PingFang SC","Microsoft YaHei","Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei Light","Source Han Sans CN","WenQuanYi Micro Hei",Arial,sans-serif:300,300italic,400,400italic,700,700italic|"Open Sans","Hiragino Sans GB","Noto Sans SC","Helvetica Neue","Source Han Serif SC","Source Han Serif",source-han-serif-sc,serif,Lato,"PingFang SC","Microsoft YaHei", ans-serif:300,300italic,400,400italic,700,700italic|"Noto Serif CJK SC","Helvetica Neue","Source Han Serif SC","Source Han Serif",source-han-serif-sc,serif,Lato,"PingFang SC","Microsoft YaHei",sans-serif:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-  
-
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Redis," />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
-
-
-
-
-
-
-<meta name="description" content="server">
-<meta name="keywords" content="Redis">
-<meta property="og:type" content="article">
-<meta property="og:title" content="redis学习简记">
-<meta property="og:url" content="https://kinzun.github.io/2017/06/11/redis_sp/index.html">
-<meta property="og:site_name" content="kinzun">
-<meta property="og:description" content="server">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-04T08:12:40.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="redis学习简记">
-<meta name="twitter:description" content="server">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: 'DCVS5PBBDG',
-      apiKey: '8891b52927924071005948ebf1d385f0',
-      indexName: 'dev_jobbymsblog',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://kinzun.github.io/2017/06/11/redis_sp/"/>
-
-
-
-
-
-  <title>redis学习简记 | kinzun</title>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="referrer" content="no-referrer">
+    <meta name="theme-color" content="#333333">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="google" content="notranslate">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keyword"  content="">
+    <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
+    <title>redis学习简记 - kinzun</title>
+    <base href="/">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="shortcut icon" href="/icons/icon-72x72.png">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    <link rel="stylesheet" href="/styles/sanitize.css">
+<link rel="stylesheet" href="/styles/cold-stone.css">
+    <noscript>
+      <p class="text-center">你的浏览器还没开启 Javascript 功能！</p>
+    </noscript>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <body>
     
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">kinzun</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
+    <main class="main wrapper"><article class="article slide-in-right">
+  <section>
+    <h1 class="article-title">
+      redis学习简记    </h1>
+    <p class="article-meta">
+      <span class="meta-info">
+        LastUpdate：2018-10-04 16:12:40
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
+          Tags：
+          
+            <a class="meta-tag" href="/tags/#Redis" title="Redis">Redis</a>
+          
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            About
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            Search
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  
-  <div class="algolia-popup popup search-popup">
-    <div class="algolia-search">
-      <div class="algolia-search-input-icon">
-        <i class="fa fa-search"></i>
-      </div>
-      <div class="algolia-search-input" id="algolia-search-input"></div>
-    </div>
-
-    <div class="algolia-results">
-      <div id="algolia-stats"></div>
-      <div id="algolia-hits"></div>
-      <div id="algolia-pagination" class="algolia-pagination"></div>
-    </div>
-
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-  </div>
-
-
-
-
-    </div>
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kinzun.github.io/2017/06/11/redis_sp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="kinzun">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="kinzun">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">redis学习简记</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-11T23:54:40+08:00">
-                2017-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/11/redis_sp/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/11/redis_sp/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h4 id="server"><a href="#server" class="headerlink" title="server"></a>server</h4><a id="more"></a>  
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">BGREWRITEAOF  #重写会创建一个当前 AOF 文件的体积优化版本</span><br><span class="line">BGSAVE  #保存当前数据库到磁盘</span><br><span class="line">CLIENT GETNAME #连接名设置  </span><br><span class="line">CLIENT SETNAME #当前连接分配一个名字</span><br><span class="line">CLINENT LIST  #列出所有已连接客户端</span><br><span class="line">  以下是域的含义：</span><br><span class="line">  • addr ：客户端的地址和端口</span><br><span class="line">  • fd ：套接字所使用的文件描述符</span><br><span class="line">  • age ：以秒计算的已连接时长</span><br><span class="line">  • idle ：以秒计算的空闲时长</span><br><span class="line">  • flags ：客户端 flag （见下文）</span><br><span class="line">  • db ：该客户端正在使用的数据库 ID</span><br><span class="line">  • sub ：已订阅频道的数量</span><br><span class="line">  • psub ：已订阅模式的数量</span><br><span class="line">  • multi ：在事务中被执行的命令数量</span><br><span class="line">  • qbuf ：查询缓存的长度（0 表示没有查询在等待）</span><br><span class="line">  • qbuf-free ：查询缓存的剩余空间（0 表示没有剩余空间）</span><br><span class="line">  • obl ：输出缓存的长度</span><br><span class="line">  • oll ：输出列表的长度（当输出缓存没有剩余空间时，回复被入队到这个队列里）</span><br><span class="line">  • omem ：输出缓存的内存占用量</span><br><span class="line">  • events ：文件描述符事件（见下文）</span><br><span class="line">  • cmd ：最近一次执行的命令</span><br><span class="line">  客户端 flag 可以由以下部分组成：</span><br><span class="line">  • O ：客户端是 MONITOR 模式下的附属节点（slave）</span><br><span class="line">  • S ：客户端是一般模式下（normal）的附属节点</span><br><span class="line">  • M ：客户端是主节点（master）</span><br><span class="line">  • x ：客户端正在执行事务</span><br><span class="line">  • b ：客户端正在等待阻塞事件</span><br><span class="line">  • i ：客户端正在等待 VM I/O 操作（已废弃）</span><br><span class="line">  • d ：一个受监视（watched）的键已被修改，EXEC 命令将失败</span><br><span class="line">  • c : 在将回复完整地写出之后，关闭链接</span><br><span class="line">  • u : 客户端未被阻塞（unblocked）</span><br><span class="line">  • A : 尽可能快地关闭连接</span><br><span class="line">  • N : 未设置任何 flag</span><br><span class="line">  文件描述符事件可以是：</span><br><span class="line">  • r : 客户端套接字（在事件 loop 中）是可读的（readable）</span><br><span class="line">  • w : 客户端套接字（在事件 loop 中）是可写的（writeable）</span><br><span class="line"></span><br><span class="line">CLIENT KILL #杀死当前客户端连接</span><br><span class="line">CONFIG GET # 获取Redis 服务器的配置参数 </span><br><span class="line">	redis&gt; CONFIG GET s* #获取以s开头的配置参数的值 </span><br><span class="line">CONFIG SET #修改配置参数，或者改变 Redis 的持久化 (Persistence) 方式。动态调整，无需重启，ONFIG SET 的值只能通过数字值显式地设定。</span><br><span class="line">CONFIG RESETSTAT #重置INFO 命令中的某些统计数据,包括：</span><br><span class="line">  • Keyspace hits (键空间命中次数)</span><br><span class="line">  • Keyspace misses (键空间不命中次数)</span><br><span class="line">  • Number of commands processed (执行命令的次数)</span><br><span class="line">  • Number of connections received (连接服务器的次数)</span><br><span class="line">  • Number of expired keys (过期 key 的数量)</span><br><span class="line">  • Number of rejected connections (被拒绝的连接数量)</span><br><span class="line">  • Latest fork(2) time(最后执行 fork(2) 的时间)</span><br><span class="line">  • The aof_delayed_fsync counter(aof_delayed_fsync 计数器的值)</span><br><span class="line"> </span><br><span class="line">CONFIG REWRITE #重新构建并生成出一个新的 redis.conf 文件 原子性重写</span><br><span class="line"> </span><br><span class="line">DBSIZE #返回当前数据库的 key 的数量。</span><br><span class="line"> </span><br><span class="line">DEBUG OBJECT #调试命令，当 key 存在时，返回有关信息。当 key 不存在时，返回一个错误</span><br><span class="line"> </span><br><span class="line">FLUSHALL #清空整个 Redis 服务器的数据 所有(删除所有数据库的所有 key )</span><br><span class="line">FLUSHDB #清空当前数据库中的所有 key。此命令从不失败</span><br><span class="line">INFO #Redis 服务器的各种信息和统计数值</span><br><span class="line">LASTSAVE #返回最近一次 Redis 成功将数据保存到磁盘上的时间，以 UNIX 时间戳格式表示。</span><br><span class="line">MONITOR #实时打印出 Redis 服务器接收到的命令，调试用。</span><br><span class="line">PSYNC #用于复制功能 (replication) 的内部命令。</span><br><span class="line">SAVE #将当前 Redis 实例的所有数据快照 (snapshot) 以 RDB 文件的形式保存到硬盘。</span><br><span class="line">SHUTDOWN </span><br><span class="line">SLAVEOF #用于在 Redis 运行时动态地修改复制 (replication) 功能的行为</span><br><span class="line">  •SLAVEOF NO ONE 对一个从属服务器执行命令  将使得这个从属服务器关闭复制功能,并从从属服务器</span><br><span class="line">转变回主服务器,原来同步数据不会丢失</span><br><span class="line">  •以将当前服务器转变为指定服务器的从属服务器 (slave server)。</span><br><span class="line">如果当前服务器已经是某个主服务器 (master server) 的从属服务器，那么执行 SLAVEOF host port 将使当</span><br><span class="line">前服务器停止对旧主服务器的同步，丢弃旧数据集，转而开始对新主服务器进行同步。</span><br><span class="line"></span><br><span class="line">SLOWLOG #用于复制功能 (replication) 的内部命令</span><br><span class="line">Slow log 是 Redis 用来记录查询执行时间的日志系统 [Replication](https://redis.io/topics/replication)</span><br><span class="line">SYNC # 个包含两个字符串的列表：第一个字符串是当前时间 (以 UNIX 时间戳格式表示)，而第二个字</span><br><span class="line">符串是当前这一秒钟已经逝去的微秒数。</span><br></pre></td></tr></table></figure>
+      </span>
+      <a  class="meta-link" href="/">返回</a>
+    </p>
+  </section>
+  <section><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">BGREWRITEAOF  #重写会创建一个当前 AOF 文件的体积优化版本</span><br><span class="line">BGSAVE  #保存当前数据库到磁盘</span><br><span class="line">CLIENT GETNAME #连接名设置  </span><br><span class="line">CLIENT SETNAME #当前连接分配一个名字</span><br><span class="line">CLINENT LIST  #列出所有已连接客户端</span><br><span class="line">  以下是域的含义：</span><br><span class="line">  • addr ：客户端的地址和端口</span><br><span class="line">  • fd ：套接字所使用的文件描述符</span><br><span class="line">  • age ：以秒计算的已连接时长</span><br><span class="line">  • idle ：以秒计算的空闲时长</span><br><span class="line">  • flags ：客户端 flag （见下文）</span><br><span class="line">  • db ：该客户端正在使用的数据库 ID</span><br><span class="line">  • sub ：已订阅频道的数量</span><br><span class="line">  • psub ：已订阅模式的数量</span><br><span class="line">  • multi ：在事务中被执行的命令数量</span><br><span class="line">  • qbuf ：查询缓存的长度（0 表示没有查询在等待）</span><br><span class="line">  • qbuf-free ：查询缓存的剩余空间（0 表示没有剩余空间）</span><br><span class="line">  • obl ：输出缓存的长度</span><br><span class="line">  • oll ：输出列表的长度（当输出缓存没有剩余空间时，回复被入队到这个队列里）</span><br><span class="line">  • omem ：输出缓存的内存占用量</span><br><span class="line">  • events ：文件描述符事件（见下文）</span><br><span class="line">  • cmd ：最近一次执行的命令</span><br><span class="line">  客户端 flag 可以由以下部分组成：</span><br><span class="line">  • O ：客户端是 MONITOR 模式下的附属节点（slave）</span><br><span class="line">  • S ：客户端是一般模式下（normal）的附属节点</span><br><span class="line">  • M ：客户端是主节点（master）</span><br><span class="line">  • x ：客户端正在执行事务</span><br><span class="line">  • b ：客户端正在等待阻塞事件</span><br><span class="line">  • i ：客户端正在等待 VM I/O 操作（已废弃）</span><br><span class="line">  • d ：一个受监视（watched）的键已被修改，EXEC 命令将失败</span><br><span class="line">  • c : 在将回复完整地写出之后，关闭链接</span><br><span class="line">  • u : 客户端未被阻塞（unblocked）</span><br><span class="line">  • A : 尽可能快地关闭连接</span><br><span class="line">  • N : 未设置任何 flag</span><br><span class="line">  文件描述符事件可以是：</span><br><span class="line">  • r : 客户端套接字（在事件 loop 中）是可读的（readable）</span><br><span class="line">  • w : 客户端套接字（在事件 loop 中）是可写的（writeable）</span><br><span class="line"></span><br><span class="line">CLIENT KILL #杀死当前客户端连接</span><br><span class="line">CONFIG GET # 获取Redis 服务器的配置参数 </span><br><span class="line">	redis&gt; CONFIG GET s* #获取以s开头的配置参数的值 </span><br><span class="line">CONFIG SET #修改配置参数，或者改变 Redis 的持久化 (Persistence) 方式。动态调整，无需重启，ONFIG SET 的值只能通过数字值显式地设定。</span><br><span class="line">CONFIG RESETSTAT #重置INFO 命令中的某些统计数据,包括：</span><br><span class="line">  • Keyspace hits (键空间命中次数)</span><br><span class="line">  • Keyspace misses (键空间不命中次数)</span><br><span class="line">  • Number of commands processed (执行命令的次数)</span><br><span class="line">  • Number of connections received (连接服务器的次数)</span><br><span class="line">  • Number of expired keys (过期 key 的数量)</span><br><span class="line">  • Number of rejected connections (被拒绝的连接数量)</span><br><span class="line">  • Latest fork(2) time(最后执行 fork(2) 的时间)</span><br><span class="line">  • The aof_delayed_fsync counter(aof_delayed_fsync 计数器的值)</span><br><span class="line"> </span><br><span class="line">CONFIG REWRITE #重新构建并生成出一个新的 redis.conf 文件 原子性重写</span><br><span class="line"> </span><br><span class="line">DBSIZE #返回当前数据库的 key 的数量。</span><br><span class="line"> </span><br><span class="line">DEBUG OBJECT #调试命令，当 key 存在时，返回有关信息。当 key 不存在时，返回一个错误</span><br><span class="line"> </span><br><span class="line">FLUSHALL #清空整个 Redis 服务器的数据 所有(删除所有数据库的所有 key )</span><br><span class="line">FLUSHDB #清空当前数据库中的所有 key。此命令从不失败</span><br><span class="line">INFO #Redis 服务器的各种信息和统计数值</span><br><span class="line">LASTSAVE #返回最近一次 Redis 成功将数据保存到磁盘上的时间，以 UNIX 时间戳格式表示。</span><br><span class="line">MONITOR #实时打印出 Redis 服务器接收到的命令，调试用。</span><br><span class="line">PSYNC #用于复制功能 (replication) 的内部命令。</span><br><span class="line">SAVE #将当前 Redis 实例的所有数据快照 (snapshot) 以 RDB 文件的形式保存到硬盘。</span><br><span class="line">SHUTDOWN </span><br><span class="line">SLAVEOF #用于在 Redis 运行时动态地修改复制 (replication) 功能的行为</span><br><span class="line">  •SLAVEOF NO ONE 对一个从属服务器执行命令  将使得这个从属服务器关闭复制功能,并从从属服务器</span><br><span class="line">转变回主服务器,原来同步数据不会丢失</span><br><span class="line">  •以将当前服务器转变为指定服务器的从属服务器 (slave server)。</span><br><span class="line">如果当前服务器已经是某个主服务器 (master server) 的从属服务器，那么执行 SLAVEOF host port 将使当</span><br><span class="line">前服务器停止对旧主服务器的同步，丢弃旧数据集，转而开始对新主服务器进行同步。</span><br><span class="line"></span><br><span class="line">SLOWLOG #用于复制功能 (replication) 的内部命令</span><br><span class="line">Slow log 是 Redis 用来记录查询执行时间的日志系统 [Replication](https://redis.io/topics/replication)</span><br><span class="line">SYNC # 个包含两个字符串的列表：第一个字符串是当前时间 (以 UNIX 时间戳格式表示)，而第二个字</span><br><span class="line">符串是当前这一秒钟已经逝去的微秒数。</span><br></pre></td></tr></table></figure>
 <h4 id="connection"><a href="#connection" class="headerlink" title="connection"></a>connection</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">AUTH </span><br><span class="line">	 CONFIG SET requirepass password #可以使用密</span><br><span class="line">码来保护 Redis 服务器</span><br><span class="line">ECHO message</span><br><span class="line">PING</span><br><span class="line">QUIT</span><br><span class="line">SELECT #切换到指定的数据库，数据库索引号 index 用数字值指定，以 0 作为起始索引值。默认使用0号数据库</span><br></pre></td></tr></table></figure>
 <h4 id="部分常用命令"><a href="#部分常用命令" class="headerlink" title="部分常用命令"></a>部分常用命令</h4><p><strong>1）获取sentinel的状态</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">(1）info</span><br><span class="line"></span><br><span class="line">查看sentinel的zhuangtai</span><br><span class="line"></span><br><span class="line">(2）sentinel masters </span><br><span class="line"></span><br><span class="line">获取sentinel中监控的所有master的节点</span><br><span class="line"></span><br><span class="line">(3）sentinel master </span><br><span class="line"></span><br><span class="line">获取master-name节点redis的状态信息</span><br><span class="line"></span><br><span class="line">(4）sentinel slaves </span><br><span class="line"></span><br><span class="line">获取master-name节点下所有的slaves的状态信息。</span><br><span class="line"></span><br><span class="line">(5) SENTINEL get-master-addr-by-name</span><br><span class="line"></span><br><span class="line">通过sentinel中的节点名获取其ip地址</span><br></pre></td></tr></table></figure>
@@ -478,410 +93,54 @@
 <h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul>
 <li><a href="http://blog.nosqlfan.com/html/4166.html" target="_blank" rel="noopener">NoSQL</a></li>
 <li><a href="http://www.cnblogs.com/zhoujinyi/p/5570024.html" target="_blank" rel="noopener">Redis 复制、Sentinel的搭建和原理说明</a></li>
-</ul>
+</ul></section>
+</article>
 
-      
-    </div>
-    
-    
-    
+<section class="card article-toc">
+  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#connection"><span class="toc-text">connection</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#部分常用命令"><span class="toc-text">部分常用命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#redis安装"><span class="toc-text">redis安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验过程"><span class="toc-text">实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#复制功能的运作原理"><span class="toc-text">复制功能的运作原理</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-主备复制"><span class="toc-text">1.主备复制</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-配置-Sentinel"><span class="toc-text">2.配置 Sentinel</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#验证"><span class="toc-text">验证</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol></li></ol>
+</section>
 
-    
+<section class="article slide-in-right">
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Redis/" rel="tag"># Redis</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/06/05/Git_advancedguide/" rel="next" title="Git 进阶指南">
-                <i class="fa fa-chevron-left"></i> Git 进阶指南
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/12/command-shell-code/" rel="prev" title="命令行的艺术">
-                命令行的艺术 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
+  <div class="loader" id="loader">
+    <svg viewBox="0 0 50 50">
+      <circle class="ring" cx="25" cy="25" r="20"></circle>
+      <circle class="ball" cx="25" cy="5" r="3.5"></circle>
+    </svg>
   </div>
 
+  <div class="comment" id="utteranc"></div>
+  <noscript>为正常使用评论功能请激活 JavaScript</noscript>
+</section>
 
-          </div>
-          
+<a class="card back-to-top" id="backTop">&UpArrow;</a>
 
-
-          
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.png"
-               alt="kinzun" />
-          <p class="site-author-name" itemprop="name">kinzun</p>
-           
-              <p class="site-description motion-element" itemprop="description">Try not to become a man of success but rather try to become a man of value. </p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">37</span>
-                <span class="site-state-item-name">posts</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
-                <span class="site-state-item-name">tags</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/kinzun" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                    
-                      GitHub
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/1916882360" target="_blank" title="Weibo">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                    
-                      Weibo
-                    
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#server"><span class="nav-number">1.</span> <span class="nav-text">server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#connection"><span class="nav-number">2.</span> <span class="nav-text">connection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部分常用命令"><span class="nav-number">3.</span> <span class="nav-text">部分常用命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#redis安装"><span class="nav-number">4.</span> <span class="nav-text">redis安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实验过程"><span class="nav-number">5.</span> <span class="nav-text">实验过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#复制功能的运作原理"><span class="nav-number">5.1.</span> <span class="nav-text">复制功能的运作原理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-主备复制"><span class="nav-number">6.</span> <span class="nav-text">1.主备复制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-配置-Sentinel"><span class="nav-number">6.1.</span> <span class="nav-text">2.配置 Sentinel</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#验证"><span class="nav-number">7.</span> <span class="nav-text">验证</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#参考"><span class="nav-number">7.1.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">kinzun</span>
-</div>
-
-
-<!--
-< div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
-</div>
-
-<div class="theme-info">
-  Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div> -->
-
-
-        
-
-        
-      </div>
-    </footer>
+</main>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
 
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+    <script>
+	window.COLD_STONE = {
+	  repo: "kinzun/kinzun.github.io",
+	  gaid: "xxxxxxxxxxxxxx"
+	}
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
+<script src="/scripts/cold-stone.js"></script>
 
 
+  <script src="https://www.googletagmanager.com/gtag/js?id=xxxxxxxxxxxxxx"></script>
 
+  <script>
+	window.dataLayer = window.dataLayer || []
+	function gtag() {
+		dataLayer.push(arguments)
+	}
+	gtag('js', new Date())
+	gtag('config', window.COLD_STONE.gaid)
+  </script>
 
 
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.3/jquery.lazyload.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.3/velocity.ui.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://discussde.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'https://kinzun.github.io/2017/06/11/redis_sp/';
-          this.page.identifier = '2017/06/11/redis_sp/';
-          this.page.title = 'redis学习简记';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://discussde.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-  
-
-
-
-
-  
-  
-  
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
-
-  
-  
-  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
-  
-
-  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-</body>
+  </body>
 </html>
