@@ -1,50 +1,239 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="referrer" content="no-referrer">
-    <meta name="theme-color" content="#333333">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="google" content="notranslate">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="keyword"  content="">
-    <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
-    <title>python常用模块02 - kinzun</title>
-    <base href="/">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="shortcut icon" href="/icons/icon-72x72.png">
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    <link rel="stylesheet" href="/styles/sanitize.css">
-<link rel="stylesheet" href="/styles/cold-stone.css">
-    <noscript>
-      <p class="text-center">你的浏览器还没开启 Javascript 功能！</p>
-    </noscript>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
+  <meta name="author" content="kinzun">
+  <meta name="keywords" content>
+  <meta name="description" content="一.什么是序列化​    在数据存储和网络传输的时候，需要对我们的对象进行处理，处理方便存储和传输的数据格式，这个过程叫序列化。不同序列，处理的方式不同，但目的想相同，都是为达到方便存储、传输。序列化是为了解决对象的传输问题。 ​    在python中存在三种序列化的方案  pickle python 任意数据类型转化成bytes并写入文件中。同样也可以将文件bytes转换回我们python的数">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python常用模块02">
+<meta property="og:url" content="https://kinzun.github.io/2018/10/09/python常用模块02/index.html">
+<meta property="og:site_name" content="kinzun">
+<meta property="og:description" content="一.什么是序列化​    在数据存储和网络传输的时候，需要对我们的对象进行处理，处理方便存储和传输的数据格式，这个过程叫序列化。不同序列，处理的方式不同，但目的想相同，都是为达到方便存储、传输。序列化是为了解决对象的传输问题。 ​    在python中存在三种序列化的方案  pickle python 任意数据类型转化成bytes并写入文件中。同样也可以将文件bytes转换回我们python的数">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-14T04:01:57.091Z">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="python常用模块02">
+<meta name="twitter:description" content="一.什么是序列化​    在数据存储和网络传输的时候，需要对我们的对象进行处理，处理方便存储和传输的数据格式，这个过程叫序列化。不同序列，处理的方式不同，但目的想相同，都是为达到方便存储、传输。序列化是为了解决对象的传输问题。 ​    在python中存在三种序列化的方案  pickle python 任意数据类型转化成bytes并写入文件中。同样也可以将文件bytes转换回我们python的数">
+  
+  <title>python常用模块02 - kinzun</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css">
+  <link rel="stylesheet" href="/lib/hint/hint.min.css">
+
+  
+    
+    
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css">
+    
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/color-schema.js"></script>
 </head>
 
-  <body>
-    
 
-    <main class="main wrapper"><article class="article slide-in-right">
-  <section>
-    <h1 class="article-title">
-      python常用模块02    </h1>
-    <p class="article-meta">
-      <span class="meta-info">
-        LastUpdate：2018-10-14 12:01:57
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>kinzun</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-          Tags：
           
-            <a class="meta-tag" href="/tags/#Python" title="Python">Python</a>
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
           
         
-      </span>
-      <a  class="meta-link" href="/">返回</a>
-    </p>
-  </section>
-  <section><h4 id="一-什么是序列化"><a href="#一-什么是序列化" class="headerlink" title="一.什么是序列化"></a>一.什么是序列化</h4><p>​    在数据存储和网络传输的时候，需要对我们的对象进行处理，处理方便存储和传输的数据格式，这个过程叫序列化。不同序列，处理的方式不同，但目的想相同，都是为达到方便存储、传输。序列化是为了解决对象的传输问题。</p>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="python常用模块02">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2018-10-09 14:40" pubdate>
+        2018年10月9日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">python常用模块02</h1>
+            
+            <div class="markdown-body">
+              <h4 id="一-什么是序列化"><a href="#一-什么是序列化" class="headerlink" title="一.什么是序列化"></a>一.什么是序列化</h4><p>​    在数据存储和网络传输的时候，需要对我们的对象进行处理，处理方便存储和传输的数据格式，这个过程叫序列化。不同序列，处理的方式不同，但目的想相同，都是为达到方便存储、传输。序列化是为了解决对象的传输问题。</p>
 <p>​    在python中存在三种序列化的方案</p>
 <ol>
 <li><code>pickle</code> python 任意数据类型转化成bytes并写入文件中。同样也可以将文件bytes转换回我们python的数据，这个过程叫反序列化。</li>
@@ -52,94 +241,252 @@
 <li><code>json</code>将pythoh中常见的字典，列表转化成字符串，是前后端数据交换使用频率最高的的一种数据格式</li>
 </ol>
 <h4 id="二-pickle"><a href="#二-pickle" class="headerlink" title="二.pickle"></a>二.pickle</h4><p>​    pickle就是将python对象写入文件中一种解决方案，但写入的是bytes。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#生成一只猫，今天我要把猫打扁。让他变成机器猫。</span></span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,age)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">catchMouse</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(self.name,self.age,<span class="string">'抓老鼠'</span>)</span><br><span class="line"><span class="comment">#序列化</span></span><br><span class="line">cat = Cat(<span class="string">'tom'</span>,<span class="number">12</span>) <span class="comment">#生成一个对象</span></span><br><span class="line">bs = pickle.dumps(cat) <span class="comment">#把对象转化bytes 序列化</span></span><br><span class="line">print(bs) <span class="comment">#</span></span><br><span class="line"><span class="comment">#对象变成bytes了 </span></span><br><span class="line"><span class="string">''' b'\x80\x03c__main__\nCat\nq\x00)\x81q\x01&#125;q\x02(X\x04\x00\x00\x00nameq\x03X\x03\x00\x00\x00tomq\x04X\x03\x00\x00\x00ageq\x05K\x13ub.'</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment">#反序列化</span></span><br><span class="line"><span class="comment"># #把bytes 转换回对象 ，反序列化</span></span><br><span class="line"></span><br><span class="line">cf = pickle.loads(bs) </span><br><span class="line">cf.catchMouse() <span class="comment">#猫 还可以抓抓老鼠</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#对字典的巡序列化</span></span><br><span class="line">dic = &#123;<span class="string">"tom"</span>:<span class="string">"贾老练"</span>,<span class="string">'jj'</span>:<span class="string">"渣渣"</span>&#125;</span><br><span class="line"></span><br><span class="line">bs = pickle.dumps(dic)</span><br><span class="line">print(bs)</span><br><span class="line">d = pickle.loads(bs)</span><br><span class="line">print(d</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-comment">#生成一只猫，今天我要把猫打扁。让他变成机器猫。</span><br><span class="hljs-keyword">import</span> pickle<br><span class="hljs-comment">#</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cat</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self,name,age)</span>:</span><br>        self.name = name<br>        self.age = age<br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">catchMouse</span><span class="hljs-params">(self)</span>:</span><br>        print(self.name,self.age,<span class="hljs-string">'抓老鼠'</span>)<br><span class="hljs-comment">#序列化</span><br>cat = Cat(<span class="hljs-string">'tom'</span>,<span class="hljs-number">12</span>) <span class="hljs-comment">#生成一个对象</span><br>bs = pickle.dumps(cat) <span class="hljs-comment">#把对象转化bytes 序列化</span><br>print(bs) <span class="hljs-comment">#</span><br><span class="hljs-comment">#对象变成bytes了 </span><br><span class="hljs-string">''' b'\x80\x03c__main__\nCat\nq\x00)\x81q\x01&#125;q\x02(X\x04\x00\x00\x00nameq\x03X\x03\x00\x00\x00tomq\x04X\x03\x00\x00\x00ageq\x05K\x13ub.'<br>'''</span><br><span class="hljs-comment">#反序列化</span><br><span class="hljs-comment"># #把bytes 转换回对象 ，反序列化</span><br><br>cf = pickle.loads(bs) <br>cf.catchMouse() <span class="hljs-comment">#猫 还可以抓抓老鼠</span><br><br><br><br><span class="hljs-comment">#对字典的巡序列化</span><br>dic = &#123;<span class="hljs-string">"tom"</span>:<span class="hljs-string">"贾老练"</span>,<span class="hljs-string">'jj'</span>:<span class="hljs-string">"渣渣"</span>&#125;<br><br>bs = pickle.dumps(dic)<br>print(bs)<br>d = pickle.loads(bs)<br>print(d<br></code></pre></div></td></tr></table></figure>
 <p>Pickle中<code>dumps</code> 可以序列化一个对象， loads反序列化，dump可以将对象写入文件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># f = open('cat',mode='wb')  #将猫写入文件中</span></span><br><span class="line"><span class="comment"># pickle.dump(tom,f)</span></span><br><span class="line"></span><br><span class="line">rf = open(<span class="string">'cat'</span>,mode=<span class="string">'rb'</span>) <span class="comment"># 读取文件中猫</span></span><br><span class="line">cc = pickle.load(rf)</span><br><span class="line">cc.catchMouse() <span class="comment">#让猫抓老鼠</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br><span class="hljs-comment"># f = open('cat',mode='wb')  #将猫写入文件中</span><br><span class="hljs-comment"># pickle.dump(tom,f)</span><br><br>rf = open(<span class="hljs-string">'cat'</span>,mode=<span class="hljs-string">'rb'</span>) <span class="hljs-comment"># 读取文件中猫</span><br>cc = pickle.load(rf)<br>cc.catchMouse() <span class="hljs-comment">#让猫抓老鼠</span><br></code></pre></div></td></tr></table></figure>
 <p>pickle多个对象写入</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#多个对象写入文件</span></span><br><span class="line">lst = [Cat(<span class="string">'jerry'</span>,<span class="number">20</span>),Cat(<span class="string">'jek'</span>,<span class="number">14</span>),Cat(<span class="string">'blue'</span>,<span class="number">22</span>)]</span><br><span class="line"><span class="comment">#</span></span><br><span class="line">f = open(<span class="string">'cat'</span>,mode=<span class="string">'wb'</span>) <span class="comment">#写入文件中</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#for el in lst:</span></span><br><span class="line"><span class="comment">#   pickle.dump(el,f)</span></span><br><span class="line"><span class="comment">#f.close()</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#从文件读取对象；</span></span><br><span class="line">f = open(<span class="string">'cat'</span>,mode=<span class="string">'rb'</span>) <span class="comment">#从文件读取对象</span></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        c1 = pickle.load(f)</span><br><span class="line">        c1.catchMouse()</span><br><span class="line">    <span class="keyword">except</span> EOFError:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-comment">#多个对象写入文件</span><br>lst = [Cat(<span class="hljs-string">'jerry'</span>,<span class="hljs-number">20</span>),Cat(<span class="hljs-string">'jek'</span>,<span class="hljs-number">14</span>),Cat(<span class="hljs-string">'blue'</span>,<span class="hljs-number">22</span>)]<br><span class="hljs-comment">#</span><br>f = open(<span class="hljs-string">'cat'</span>,mode=<span class="hljs-string">'wb'</span>) <span class="hljs-comment">#写入文件中</span><br><br><span class="hljs-comment">#for el in lst:</span><br><span class="hljs-comment">#   pickle.dump(el,f)</span><br><span class="hljs-comment">#f.close()</span><br><br><span class="hljs-comment">#从文件读取对象；</span><br>f = open(<span class="hljs-string">'cat'</span>,mode=<span class="hljs-string">'rb'</span>) <span class="hljs-comment">#从文件读取对象</span><br><span class="hljs-keyword">while</span> <span class="hljs-number">1</span>:<br>    <span class="hljs-keyword">try</span>:<br>        c1 = pickle.load(f)<br>        c1.catchMouse()<br>    <span class="hljs-keyword">except</span> EOFError:<br>        <span class="hljs-keyword">break</span><br></code></pre></div></td></tr></table></figure>
 <ul>
 <li><p>另一种推荐方式读取写入</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#多个对象装入list中，然后读取写入都用着list</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#写入</span></span><br><span class="line">lst = [Cat(<span class="string">'jerry'</span>,<span class="number">20</span>),Cat(<span class="string">'jek'</span>,<span class="number">14</span>),Cat(<span class="string">'blue'</span>,<span class="number">22</span>)]</span><br><span class="line">f = open(<span class="string">'cat'</span>,mode=<span class="string">'wb'</span>) <span class="comment">#打开文件</span></span><br><span class="line">pickle.dump(lst,f）</span><br><span class="line">        </span><br><span class="line">     </span><br><span class="line"><span class="comment">#读取</span></span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'cat'</span>,mode=<span class="string">'rb'</span>)</span><br><span class="line">ll = pickle.load(f)</span><br><span class="line"><span class="keyword">for</span> el <span class="keyword">in</span> ll:</span><br><span class="line">    el.catchMouse()</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-comment">#多个对象装入list中，然后读取写入都用着list</span><br><br><span class="hljs-comment">#写入</span><br>lst = [Cat(<span class="hljs-string">'jerry'</span>,<span class="hljs-number">20</span>),Cat(<span class="hljs-string">'jek'</span>,<span class="hljs-number">14</span>),Cat(<span class="hljs-string">'blue'</span>,<span class="hljs-number">22</span>)]<br>f = open(<span class="hljs-string">'cat'</span>,mode=<span class="hljs-string">'wb'</span>) <span class="hljs-comment">#打开文件</span><br>pickle.dump(lst,f）<br>        <br>     <br><span class="hljs-comment">#读取</span><br><br>f = open(<span class="hljs-string">'cat'</span>,mode=<span class="hljs-string">'rb'</span>)<br>ll = pickle.load(f)<br><span class="hljs-keyword">for</span> el <span class="hljs-keyword">in</span> ll:<br>    el.catchMouse()<br><br><span class="hljs-comment">#</span><br></code></pre></div></td></tr></table></figure>
 </li>
 </ul>
 <h4 id="二-shelve"><a href="#二-shelve" class="headerlink" title="二.shelve"></a>二.shelve</h4><p>​    shelve提供python持久化操作。持久化往往依赖于数据库，为了长期存储。在操作shelve像是操作python中字典。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> shelve</span><br><span class="line"></span><br><span class="line">shelf = shelve.open(<span class="string">"ss"</span>)</span><br><span class="line"></span><br><span class="line">shelf[<span class="string">'arm'</span>]  = <span class="string">'馒头'</span></span><br><span class="line">print(shelf[<span class="string">'arm'</span>])</span><br><span class="line"></span><br><span class="line">shelf.close()</span><br><span class="line"></span><br><span class="line"><span class="comment">#文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#打开一个文件</span></span><br><span class="line">f = shelve.open(<span class="string">"info"</span>, writeback=<span class="keyword">True</span>) <span class="comment">#动态的将修改信息写入文件。</span></span><br><span class="line">f[<span class="string">'jj'</span>] = <span class="string">"老王"</span></span><br><span class="line">f[<span class="string">'nk'</span>] = <span class="string">"脑壳"</span></span><br><span class="line">f[<span class="string">'zds'</span>] = <span class="string">"张德帅"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#f = &#123;&#125;</span></span><br><span class="line"><span class="comment">#像操作字典一样操作文件</span></span><br><span class="line">f[<span class="string">"jay"</span>] = <span class="string">"周杰伦"</span></span><br><span class="line">print(f[<span class="string">'jay'</span>])</span><br><span class="line"></span><br><span class="line">f[<span class="string">"jay"</span>] = &#123;<span class="string">'name'</span>: <span class="string">"周杰伦"</span>, <span class="string">'age'</span>: <span class="number">38</span>, <span class="string">"hobby"</span>: <span class="string">"吃喝拉撒睡"</span>&#125;</span><br><span class="line">f[<span class="string">'jay'</span>][<span class="string">'name'</span>] = <span class="string">"胡辣汤"</span></span><br><span class="line">print(f[<span class="string">'jay'</span>][<span class="string">'name'</span>])</span><br><span class="line">print(f[<span class="string">'jay'</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> f.items():</span><br><span class="line">    print(k,v)</span><br><span class="line"></span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># print(f.keys())</span></span><br><span class="line"><span class="comment"># for k in f.keys(): # 可以获取到所有的key</span></span><br><span class="line"><span class="comment">#     print(k)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># for k in f:</span></span><br><span class="line"><span class="comment">#     print(k)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># for k, v in f.items():</span></span><br><span class="line"><span class="comment">#     print(k, v)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br><span class="hljs-keyword">import</span> shelve<br><br>shelf = shelve.open(<span class="hljs-string">"ss"</span>)<br><br>shelf[<span class="hljs-string">'arm'</span>]  = <span class="hljs-string">'馒头'</span><br>print(shelf[<span class="hljs-string">'arm'</span>])<br><br>shelf.close()<br><br><span class="hljs-comment">#文件</span><br><br><span class="hljs-comment">#打开一个文件</span><br>f = shelve.open(<span class="hljs-string">"info"</span>, writeback=<span class="hljs-keyword">True</span>) <span class="hljs-comment">#动态的将修改信息写入文件。</span><br>f[<span class="hljs-string">'jj'</span>] = <span class="hljs-string">"老王"</span><br>f[<span class="hljs-string">'nk'</span>] = <span class="hljs-string">"脑壳"</span><br>f[<span class="hljs-string">'zds'</span>] = <span class="hljs-string">"张德帅"</span><br><br><span class="hljs-comment">#f = &#123;&#125;</span><br><span class="hljs-comment">#像操作字典一样操作文件</span><br>f[<span class="hljs-string">"jay"</span>] = <span class="hljs-string">"周杰伦"</span><br>print(f[<span class="hljs-string">'jay'</span>])<br><br>f[<span class="hljs-string">"jay"</span>] = &#123;<span class="hljs-string">'name'</span>: <span class="hljs-string">"周杰伦"</span>, <span class="hljs-string">'age'</span>: <span class="hljs-number">38</span>, <span class="hljs-string">"hobby"</span>: <span class="hljs-string">"吃喝拉撒睡"</span>&#125;<br>f[<span class="hljs-string">'jay'</span>][<span class="hljs-string">'name'</span>] = <span class="hljs-string">"胡辣汤"</span><br>print(f[<span class="hljs-string">'jay'</span>][<span class="hljs-string">'name'</span>])<br>print(f[<span class="hljs-string">'jay'</span>])<br><br><br><span class="hljs-keyword">for</span> k,v <span class="hljs-keyword">in</span> f.items():<br>    print(k,v)<br><br>f.close()<br><br><br><br><span class="hljs-comment"># print(f.keys())</span><br><span class="hljs-comment"># for k in f.keys(): # 可以获取到所有的key</span><br><span class="hljs-comment">#     print(k)</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># for k in f:</span><br><span class="hljs-comment">#     print(k)</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># for k, v in f.items():</span><br><span class="hljs-comment">#     print(k, v)</span><br></code></pre></div></td></tr></table></figure>
 <h4 id="四-json"><a href="#四-json" class="headerlink" title="四.json"></a>四.json</h4><p>​    json是我们前后端交互的枢纽。因为json的语法格式可以完美表示一个对象。json 全称（javascript object natation）翻译js对象简谱</p>
 <p>在python中这玩意就字典。在JavaScript叫json</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wf = &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"汪峰"</span>,</span><br><span class="line">    <span class="string">"age"</span>: <span class="number">18</span>,</span><br><span class="line">    <span class="string">"hobby"</span>: <span class="string">"抢头条"</span>,</span><br><span class="line">    <span class="string">"wife"</span>: &#123;</span><br><span class="line">        <span class="string">"name"</span>: <span class="string">"子怡"</span>,</span><br><span class="line">        <span class="string">"age"</span>: <span class="number">19</span>,</span><br><span class="line">        <span class="string">"hobby"</span>:[<span class="string">"唱歌"</span>, <span class="string">"跳舞"</span>, <span class="string">"演戏"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br>wf = &#123;<br>    <span class="hljs-string">"name"</span>: <span class="hljs-string">"汪峰"</span>,<br>    <span class="hljs-string">"age"</span>: <span class="hljs-number">18</span>,<br>    <span class="hljs-string">"hobby"</span>: <span class="hljs-string">"抢头条"</span>,<br>    <span class="hljs-string">"wife"</span>: &#123;<br>        <span class="hljs-string">"name"</span>: <span class="hljs-string">"子怡"</span>,<br>        <span class="hljs-string">"age"</span>: <span class="hljs-number">19</span>,<br>        <span class="hljs-string">"hobby"</span>:[<span class="hljs-string">"唱歌"</span>, <span class="hljs-string">"跳舞"</span>, <span class="hljs-string">"演戏"</span>]<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
 <p>因为是python中写的，前端需要js来解析json。所以需要将程序产生的字典转化成json格式的json字符串。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line">dic = &#123;<span class="string">"a"</span>:<span class="string">'普罗米修斯'</span>,<span class="string">'b'</span>:<span class="string">'异性'</span>,<span class="string">'c'</span>:<span class="string">"星际穿越"</span>&#125;</span><br><span class="line">strd = json.dumps(dic)</span><br><span class="line">print(strd)</span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line"><span class="comment">#&#123;"a": "\u666e\u7f57\u7c73\u4fee\u65af", "b": "\u5f02\u6027", "c": "\u661f\u9645\u7a7f\u8d8a"&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br><span class="hljs-keyword">import</span> json<br>dic = &#123;<span class="hljs-string">"a"</span>:<span class="hljs-string">'普罗米修斯'</span>,<span class="hljs-string">'b'</span>:<span class="hljs-string">'异性'</span>,<span class="hljs-string">'c'</span>:<span class="hljs-string">"星际穿越"</span>&#125;<br>strd = json.dumps(dic)<br>print(strd)<br><span class="hljs-comment">#输出结果</span><br><span class="hljs-comment">#&#123;"a": "\u666e\u7f57\u7c73\u4fee\u65af", "b": "\u5f02\u6027", "c": "\u661f\u9645\u7a7f\u8d8a"&#125;</span><br></code></pre></div></td></tr></table></figure>
 <p>​    结果很不友好，处理中文需要dumps的一个参数<code>ensure_ascii=False</code> ，转换字符<code>son.dumps</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">dic = &#123;<span class="string">"a"</span>:<span class="string">'普罗米修斯'</span>,<span class="string">'b'</span>:<span class="string">'异性'</span>,<span class="string">'c'</span>:<span class="string">"星际穿越"</span>&#125;</span><br><span class="line">b = json.dumps(dic,ensure_ascii=<span class="keyword">False</span>) <span class="comment">#字典转化为字符串</span></span><br><span class="line">print(type(b),b) </span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line"><span class="comment">#&lt;class 'str'&gt; &#123;"a": "普罗米修斯", "b": "异性", "c": "星际穿越"&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> json<br>dic = &#123;<span class="hljs-string">"a"</span>:<span class="hljs-string">'普罗米修斯'</span>,<span class="hljs-string">'b'</span>:<span class="hljs-string">'异性'</span>,<span class="hljs-string">'c'</span>:<span class="hljs-string">"星际穿越"</span>&#125;<br>b = json.dumps(dic,ensure_ascii=<span class="hljs-keyword">False</span>) <span class="hljs-comment">#字典转化为字符串</span><br>print(type(b),b) <br><span class="hljs-comment">#输出结果</span><br><span class="hljs-comment">#&lt;class 'str'&gt; &#123;"a": "普罗米修斯", "b": "异性", "c": "星际穿越"&#125;</span><br></code></pre></div></td></tr></table></figure>
 <p>​    处理前端传过来的json字符串转化为字典利用<code>json.loads</code>参数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span></span><br><span class="line">s = <span class="string">'&#123;"a":'</span>普罗米修斯<span class="string">','</span><span class="string">b':'</span>异性<span class="string">','</span>c<span class="string">':"星际穿越"&#125;'</span></span><br><span class="line">dic = json.loads(s) <span class="comment">#字符串解析成字典</span></span><br><span class="line">print(type(dic),dic)</span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line"><span class="comment">#&lt;class 'dict'&gt; &#123;'a': '普罗米修斯', 'b': '异性', 'c': '星际穿越'&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span><br>s = <span class="hljs-string">'&#123;"a":'</span>普罗米修斯<span class="hljs-string">','</span><span class="hljs-string">b':'</span>异性<span class="hljs-string">','</span>c<span class="hljs-string">':"星际穿越"&#125;'</span><br>dic = json.loads(s) <span class="hljs-comment">#字符串解析成字典</span><br>print(type(dic),dic)<br><span class="hljs-comment">#输出结果</span><br><span class="hljs-comment">#&lt;class 'dict'&gt; &#123;'a': '普罗米修斯', 'b': '异性', 'c': '星际穿越'&#125;</span><br></code></pre></div></td></tr></table></figure>
 <h5 id="json写入读取"><a href="#json写入读取" class="headerlink" title="json写入读取"></a>json写入读取</h5><p>​    json序列化结果写入文件中。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">dic = &#123;<span class="string">"a"</span>:<span class="string">'普罗米修斯'</span>,<span class="string">'b'</span>:<span class="string">'异性'</span>,<span class="string">'c'</span>:<span class="string">"星际穿越"</span>&#125;</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'test.json'</span>,mode=<span class="string">'w'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">json.dump(dic,f,ensure_ascii=<span class="keyword">False</span>)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> json<br><br>dic = &#123;<span class="hljs-string">"a"</span>:<span class="hljs-string">'普罗米修斯'</span>,<span class="hljs-string">'b'</span>:<span class="hljs-string">'异性'</span>,<span class="hljs-string">'c'</span>:<span class="hljs-string">"星际穿越"</span>&#125;<br><br>f = open(<span class="hljs-string">'test.json'</span>,mode=<span class="hljs-string">'w'</span>,encoding=<span class="hljs-string">'utf-8'</span>)<br>json.dump(dic,f,ensure_ascii=<span class="hljs-keyword">False</span>)<br>f.close()<br></code></pre></div></td></tr></table></figure>
 <p>​    读取文件中一个json</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">rf = open(<span class="string">'test.json'</span>,mode=<span class="string">'r'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">rdic = json.load(rf)</span><br><span class="line">rf.close()</span><br><span class="line">print(type(rdic),rdic)</span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line"><span class="comment">#&lt;class 'dict'&gt; &#123;'a': '普罗米修斯', 'b': '异性', 'c': '星际穿越'&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br>rf = open(<span class="hljs-string">'test.json'</span>,mode=<span class="hljs-string">'r'</span>,encoding=<span class="hljs-string">'utf-8'</span>)<br>rdic = json.load(rf)<br>rf.close()<br>print(type(rdic),rdic)<br><span class="hljs-comment">#输出结果</span><br><span class="hljs-comment">#&lt;class 'dict'&gt; &#123;'a': '普罗米修斯', 'b': '异性', 'c': '星际穿越'&#125;</span><br></code></pre></div></td></tr></table></figure>
 <p><strong>注意</strong> 可以向一个文件写入多个json串，但读不行。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">lst = [&#123;<span class="string">'a'</span>:<span class="number">1</span>&#125;,&#123;<span class="string">'b'</span>:<span class="string">'包子'</span>&#125;,&#123;<span class="string">"c"</span>:<span class="string">'馒头'</span>&#125;]</span><br><span class="line">f = open(<span class="string">'test.json'</span>,mode=<span class="string">'w'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> el <span class="keyword">in</span> lst:</span><br><span class="line"></span><br><span class="line">     json.dump(el,f,ensure_ascii=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line">f.close()</span><br><span class="line"><span class="comment">#输出结果，内容都在一行无法正常读取。</span></span><br><span class="line"><span class="comment">#&#123;"a": 1&#125;&#123;"b": "包子"&#125;&#123;"c": "馒头"&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> json<br>lst = [&#123;<span class="hljs-string">'a'</span>:<span class="hljs-number">1</span>&#125;,&#123;<span class="hljs-string">'b'</span>:<span class="hljs-string">'包子'</span>&#125;,&#123;<span class="hljs-string">"c"</span>:<span class="hljs-string">'馒头'</span>&#125;]<br>f = open(<span class="hljs-string">'test.json'</span>,mode=<span class="hljs-string">'w'</span>,encoding=<span class="hljs-string">'utf-8'</span>)<br><br><span class="hljs-keyword">for</span> el <span class="hljs-keyword">in</span> lst:<br><br>     json.dump(el,f,ensure_ascii=<span class="hljs-keyword">False</span>)<br><br>f.close()<br><span class="hljs-comment">#输出结果，内容都在一行无法正常读取。</span><br><span class="hljs-comment">#&#123;"a": 1&#125;&#123;"b": "包子"&#125;&#123;"c": "馒头"&#125;</span><br></code></pre></div></td></tr></table></figure>
 <ul>
 <li><p>解决方案</p>
 <p>对每一行进行处理，把<code>dump</code>  换成<code>dumps</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">lst = [&#123;<span class="string">'a'</span>:<span class="number">1</span>&#125;,&#123;<span class="string">'b'</span>:<span class="string">'包子'</span>&#125;,&#123;<span class="string">"c"</span>:<span class="string">'馒头'</span>&#125;]</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'test.json'</span>,mode=<span class="string">'w'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> el <span class="keyword">in</span> lst:</span><br><span class="line">    elo = json.dumps(el,ensure_ascii=<span class="keyword">False</span>) + <span class="string">"\n"</span> <span class="comment"># 将字典转为json字符串</span></span><br><span class="line">    f.write(elo)</span><br><span class="line"></span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#读取</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'test.json'</span>,mode=<span class="string">'r'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> f:</span><br><span class="line">    dic = json.loads(line.strip()) <span class="comment">#逐行读取json字符串，转换为字典</span></span><br><span class="line">    print(dic)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br><span class="hljs-keyword">import</span> json<br><br>lst = [&#123;<span class="hljs-string">'a'</span>:<span class="hljs-number">1</span>&#125;,&#123;<span class="hljs-string">'b'</span>:<span class="hljs-string">'包子'</span>&#125;,&#123;<span class="hljs-string">"c"</span>:<span class="hljs-string">'馒头'</span>&#125;]<br><br>f = open(<span class="hljs-string">'test.json'</span>,mode=<span class="hljs-string">'w'</span>,encoding=<span class="hljs-string">'utf-8'</span>)<br><br><span class="hljs-keyword">for</span> el <span class="hljs-keyword">in</span> lst:<br>    elo = json.dumps(el,ensure_ascii=<span class="hljs-keyword">False</span>) + <span class="hljs-string">"\n"</span> <span class="hljs-comment"># 将字典转为json字符串</span><br>    f.write(elo)<br><br>f.close()<br><br><br><br><span class="hljs-comment">#读取</span><br><br><br><span class="hljs-keyword">import</span> json<br><br>f = open(<span class="hljs-string">'test.json'</span>,mode=<span class="hljs-string">'r'</span>,encoding=<span class="hljs-string">'utf-8'</span>)<br><br><span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> f:<br>    dic = json.loads(line.strip()) <span class="hljs-comment">#逐行读取json字符串，转换为字典</span><br>    print(dic)<br>f.close()<br></code></pre></div></td></tr></table></figure>
 </li>
 </ul>
 <h4 id="五-configparser模块"><a href="#五-configparser模块" class="headerlink" title="五.configparser模块"></a>五.configparser模块</h4><p>​    该模块用于配置文件的格式与windows ini文件类似，可以包含多个章节（section）每个可以节可以有多个参数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[DEFAULT] </span><br><span class="line">ServerAliveInterval = <span class="number">45</span></span><br><span class="line">Compression = yes </span><br><span class="line">CompressionLevel = <span class="number">9</span> </span><br><span class="line">ForwardX11 = yes</span><br><span class="line"></span><br><span class="line">[bitbucket.org]</span><br><span class="line">User = hg</span><br><span class="line"></span><br><span class="line">[topsecret.server.com] </span><br><span class="line">Port = <span class="number">50022</span> </span><br><span class="line">ForwardX11 = no</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> configparser</span><br><span class="line"></span><br><span class="line">conf = configparser.ConfigParser()</span><br><span class="line">conf[<span class="string">'DEFAULT'</span>] = &#123;</span><br><span class="line">    <span class="string">'session-time-out'</span>:<span class="number">30</span>,</span><br><span class="line">    <span class="string">'user-alive'</span>:<span class="number">60</span>,</span><br><span class="line">    <span class="string">'connect-alive'</span>:<span class="number">10</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">conf[<span class="string">'172-DB'</span>] = &#123;</span><br><span class="line">    <span class="string">'ip'</span>:<span class="string">'172.16.10.20'</span>,</span><br><span class="line">    <span class="string">'port'</span>: <span class="string">"3306"</span>,</span><br><span class="line">    <span class="string">'username'</span>:<span class="string">'root'</span>,</span><br><span class="line">     <span class="string">"password"</span>: <span class="string">"root"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">conf[<span class="string">'192-DB'</span>] = &#123;</span><br><span class="line">    <span class="string">'ip'</span>:<span class="string">'192.168.10.10'</span>,</span><br><span class="line">         <span class="string">'port'</span>: <span class="string">"3306"</span>,</span><br><span class="line">                <span class="string">'username'</span>:<span class="string">'root'</span>,</span><br><span class="line">                           <span class="string">"password"</span>:<span class="string">'toor'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'db.ini'</span>,mode=<span class="string">'w'</span>)</span><br><span class="line">conf.write(f) <span class="comment"># 写入文件</span></span><br><span class="line">f.flush()</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python">[DEFAULT] <br>ServerAliveInterval = <span class="hljs-number">45</span><br>Compression = yes <br>CompressionLevel = <span class="hljs-number">9</span> <br>ForwardX11 = yes<br><br>[bitbucket.org]<br>User = hg<br><br>[topsecret.server.com] <br>Port = <span class="hljs-number">50022</span> <br>ForwardX11 = no<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br><span class="hljs-keyword">import</span> configparser<br><br>conf = configparser.ConfigParser()<br>conf[<span class="hljs-string">'DEFAULT'</span>] = &#123;<br>    <span class="hljs-string">'session-time-out'</span>:<span class="hljs-number">30</span>,<br>    <span class="hljs-string">'user-alive'</span>:<span class="hljs-number">60</span>,<br>    <span class="hljs-string">'connect-alive'</span>:<span class="hljs-number">10</span><br>&#125;<br><br>conf[<span class="hljs-string">'172-DB'</span>] = &#123;<br>    <span class="hljs-string">'ip'</span>:<span class="hljs-string">'172.16.10.20'</span>,<br>    <span class="hljs-string">'port'</span>: <span class="hljs-string">"3306"</span>,<br>    <span class="hljs-string">'username'</span>:<span class="hljs-string">'root'</span>,<br>     <span class="hljs-string">"password"</span>: <span class="hljs-string">"root"</span><br><br><br>&#125;<br>conf[<span class="hljs-string">'192-DB'</span>] = &#123;<br>    <span class="hljs-string">'ip'</span>:<span class="hljs-string">'192.168.10.10'</span>,<br>         <span class="hljs-string">'port'</span>: <span class="hljs-string">"3306"</span>,<br>                <span class="hljs-string">'username'</span>:<span class="hljs-string">'root'</span>,<br>                           <span class="hljs-string">"password"</span>:<span class="hljs-string">'toor'</span><br>&#125;<br><br>f = open(<span class="hljs-string">'db.ini'</span>,mode=<span class="hljs-string">'w'</span>)<br>conf.write(f) <span class="hljs-comment"># 写入文件</span><br>f.flush()<br>f.close()<br></code></pre></div></td></tr></table></figure>
 <p>读取文件信息</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> configparser</span><br><span class="line"></span><br><span class="line">conf = configparser.ConfigParser()</span><br><span class="line">conf.read(<span class="string">'db.ini'</span>)</span><br><span class="line"></span><br><span class="line">print(conf.sections()) <span class="comment"># 获取章节keys()</span></span><br><span class="line">print(conf[<span class="string">'172-DB'</span>][<span class="string">'ip'</span>]) <span class="comment">#跟字典一样</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> conf[<span class="string">'172-DB'</span>].items():</span><br><span class="line">    print(k,v)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> conf[<span class="string">'192-DB'</span>].values():</span><br><span class="line">    print(key)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br><span class="hljs-keyword">import</span> configparser<br><br>conf = configparser.ConfigParser()<br>conf.read(<span class="hljs-string">'db.ini'</span>)<br><br>print(conf.sections()) <span class="hljs-comment"># 获取章节keys()</span><br>print(conf[<span class="hljs-string">'172-DB'</span>][<span class="hljs-string">'ip'</span>]) <span class="hljs-comment">#跟字典一样</span><br><br><span class="hljs-keyword">for</span> k,v <span class="hljs-keyword">in</span> conf[<span class="hljs-string">'172-DB'</span>].items():<br>    print(k,v)<br><br><span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> conf[<span class="hljs-string">'192-DB'</span>].values():<br>    print(key)<br></code></pre></div></td></tr></table></figure>
 <p>​    增删改查</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#增删改查</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> configparser</span><br><span class="line"></span><br><span class="line">conf = configparser.ConfigParser()</span><br><span class="line"></span><br><span class="line"><span class="comment">#添加一个章节</span></span><br><span class="line">conf.read(<span class="string">'db.ini'</span>) <span class="comment">#读取文件</span></span><br><span class="line"></span><br><span class="line">conf.add_section(<span class="string">'10-DB'</span>)</span><br><span class="line"><span class="comment">#添加章节信息</span></span><br><span class="line">conf[<span class="string">'10-DB'</span>] = &#123;</span><br><span class="line">    <span class="string">"ip"</span>: <span class="string">'10.15.20.12'</span>,</span><br><span class="line">    <span class="string">'user'</span>: <span class="string">'root'</span>,</span><br><span class="line">    <span class="string">'psw'</span>: <span class="string">'toor'</span>,</span><br><span class="line">&#125;</span><br><span class="line">conf.write(open(<span class="string">"db.ini"</span>, mode=<span class="string">"w"</span>))</span><br><span class="line"></span><br><span class="line">修改信息</span><br><span class="line">conf.set(<span class="string">'10-DB'</span>,<span class="string">"ip"</span>,<span class="string">'192.168.255.255'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#删除章节</span></span><br><span class="line">conf.remove_section(<span class="string">"10-DB"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#删除元素信息</span></span><br><span class="line">conf.remove_option(<span class="string">'10-DB'</span>,<span class="string">'psw'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#最后都需要写回文件</span></span><br><span class="line">conf.write(open(<span class="string">"db.ini"</span>, mode=<span class="string">"w"</span>))</span><br></pre></td></tr></table></figure>
-</section>
-</article>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-comment">#增删改查</span><br><br><span class="hljs-keyword">import</span> configparser<br><br>conf = configparser.ConfigParser()<br><br><span class="hljs-comment">#添加一个章节</span><br>conf.read(<span class="hljs-string">'db.ini'</span>) <span class="hljs-comment">#读取文件</span><br><br>conf.add_section(<span class="hljs-string">'10-DB'</span>)<br><span class="hljs-comment">#添加章节信息</span><br>conf[<span class="hljs-string">'10-DB'</span>] = &#123;<br>    <span class="hljs-string">"ip"</span>: <span class="hljs-string">'10.15.20.12'</span>,<br>    <span class="hljs-string">'user'</span>: <span class="hljs-string">'root'</span>,<br>    <span class="hljs-string">'psw'</span>: <span class="hljs-string">'toor'</span>,<br>&#125;<br>conf.write(open(<span class="hljs-string">"db.ini"</span>, mode=<span class="hljs-string">"w"</span>))<br><br>修改信息<br>conf.set(<span class="hljs-string">'10-DB'</span>,<span class="hljs-string">"ip"</span>,<span class="hljs-string">'192.168.255.255'</span>)<br><br><span class="hljs-comment">#删除章节</span><br>conf.remove_section(<span class="hljs-string">"10-DB"</span>)<br><br><span class="hljs-comment">#删除元素信息</span><br>conf.remove_option(<span class="hljs-string">'10-DB'</span>,<span class="hljs-string">'psw'</span>)<br><br><br><br><span class="hljs-comment">#最后都需要写回文件</span><br>conf.write(open(<span class="hljs-string">"db.ini"</span>, mode=<span class="hljs-string">"w"</span>))<br></code></pre></div></td></tr></table></figure>
 
-<section class="card article-toc">
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一-什么是序列化"><span class="toc-text">一.什么是序列化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二-pickle"><span class="toc-text">二.pickle</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二-shelve"><span class="toc-text">二.shelve</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四-json"><span class="toc-text">四.json</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#json写入读取"><span class="toc-text">json写入读取</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五-configparser模块"><span class="toc-text">五.configparser模块</span></a></li></ol>
-</section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/10/09/Python Socket 编程/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python Socket 编程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/10/07/python常用模块01/">
+                        <span class="hidden-mobile">Python常用模块01</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-<section class="article slide-in-right">
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
 
-  <div class="loader" id="loader">
-    <svg viewBox="0 0 50 50">
-      <circle class="ring" cx="25" cy="25" r="20"></circle>
-      <circle class="ball" cx="25" cy="5" r="3.5"></circle>
-    </svg>
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
   </div>
+</div>
 
-  <div class="comment" id="utteranc"></div>
-  <noscript>为正常使用评论功能请激活 JavaScript</noscript>
-</section>
+<!-- Custom -->
 
-<a class="card back-to-top" id="backTop">&UpArrow;</a>
-
-</main>
 
     
 
-    <script>
-	window.COLD_STONE = {
-	  repo: "kinzun/kinzun.github.io",
-	  gaid: "xxxxxxxxxxxxxx"
-	}
-</script>
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
-<script src="/scripts/cold-stone.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
 
 
-  <script src="https://www.googletagmanager.com/gtag/js?id=xxxxxxxxxxxxxx"></script>
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
   <script>
-	window.dataLayer = window.dataLayer || []
-	function gtag() {
-		dataLayer.push(arguments)
-	}
-	gtag('js', new Date())
-	gtag('config', window.COLD_STONE.gaid)
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
   </script>
 
 
-  </body>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>

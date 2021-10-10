@@ -1,50 +1,243 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="referrer" content="no-referrer">
-    <meta name="theme-color" content="#333333">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="google" content="notranslate">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="keyword"  content="">
-    <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
-    <title>Python GeventWebSocket - kinzun</title>
-    <base href="/">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="shortcut icon" href="/icons/icon-72x72.png">
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    <link rel="stylesheet" href="/styles/sanitize.css">
-<link rel="stylesheet" href="/styles/cold-stone.css">
-    <noscript>
-      <p class="text-center">你的浏览器还没开启 Javascript 功能！</p>
-    </noscript>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
+  <meta name="author" content="kinzun">
+  <meta name="keywords" content>
+  <meta name="description" content="WebSocket 介绍什么是 WebSocket ?WebSocket 是独立的、创建在 TCP 上的协议。 Websocket 通过 HTTP/1.1 协议的101状态码进行握手。 为了创建 Websocket 连接，需要通过浏览器发出请求，之后服务器进行回应，这个过程通常称为 “握手)”（handshaking）。  HTTP 是运行在 TCP 协议传输层的应用协议 ，WebSocket 是">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python GeventWebSocket">
+<meta property="og:url" content="https://kinzun.github.io/2019/04/01/Python GeventWebSocket/index.html">
+<meta property="og:site_name" content="kinzun">
+<meta property="og:description" content="WebSocket 介绍什么是 WebSocket ?WebSocket 是独立的、创建在 TCP 上的协议。 Websocket 通过 HTTP/1.1 协议的101状态码进行握手。 为了创建 Websocket 连接，需要通过浏览器发出请求，之后服务器进行回应，这个过程通常称为 “握手)”（handshaking）。  HTTP 是运行在 TCP 协议传输层的应用协议 ，WebSocket 是">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://kinzun.github.io/images/python/python_socker1.png">
+<meta property="og:image" content="https://kinzun.github.io/images/python/python_socker2.png">
+<meta property="og:image" content="https://kinzun.github.io/images/python/python_socker3.png">
+<meta property="og:updated_time" content="2019-05-12T17:17:45.631Z">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Python GeventWebSocket">
+<meta name="twitter:description" content="WebSocket 介绍什么是 WebSocket ?WebSocket 是独立的、创建在 TCP 上的协议。 Websocket 通过 HTTP/1.1 协议的101状态码进行握手。 为了创建 Websocket 连接，需要通过浏览器发出请求，之后服务器进行回应，这个过程通常称为 “握手)”（handshaking）。  HTTP 是运行在 TCP 协议传输层的应用协议 ，WebSocket 是">
+<meta name="twitter:image" content="https://kinzun.github.io/images/python/python_socker1.png">
+  
+  <title>Python GeventWebSocket - kinzun</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css">
+  <link rel="stylesheet" href="/lib/hint/hint.min.css">
+
+  
+    
+    
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css">
+    
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/color-schema.js"></script>
 </head>
 
-  <body>
-    
 
-    <main class="main wrapper"><article class="article slide-in-right">
-  <section>
-    <h1 class="article-title">
-      Python GeventWebSocket    </h1>
-    <p class="article-meta">
-      <span class="meta-info">
-        LastUpdate：2019-05-13 01:17:45
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>kinzun</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-          Tags：
           
-            <a class="meta-tag" href="/tags/#Python" title="Python">Python</a>
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
           
         
-      </span>
-      <a  class="meta-link" href="/">返回</a>
-    </p>
-  </section>
-  <section><h2 id="WebSocket-介绍"><a href="#WebSocket-介绍" class="headerlink" title="WebSocket 介绍"></a>WebSocket 介绍</h2><h2 id="什么是-WebSocket"><a href="#什么是-WebSocket" class="headerlink" title="什么是 WebSocket ?"></a>什么是 WebSocket ?</h2><p>WebSocket 是独立的、创建在 TCP 上的协议。</p>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Python GeventWebSocket">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-04-01 10:38" pubdate>
+        2019年4月1日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      10k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      33 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Python GeventWebSocket</h1>
+            
+            <div class="markdown-body">
+              <h2 id="WebSocket-介绍"><a href="#WebSocket-介绍" class="headerlink" title="WebSocket 介绍"></a>WebSocket 介绍</h2><h2 id="什么是-WebSocket"><a href="#什么是-WebSocket" class="headerlink" title="什么是 WebSocket ?"></a>什么是 WebSocket ?</h2><p>WebSocket 是独立的、创建在 TCP 上的协议。</p>
 <p>Websocket 通过 <a href="https://zh.wikipedia.org/wiki/HTTP" target="_blank" rel="noopener">HTTP</a>/1.1 协议的101<a href="https://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81" target="_blank" rel="noopener">状态码</a>进行握手。</p>
 <p>为了创建 <code>Websocket</code> 连接，需要通过浏览器发出请求，之后服务器进行回应，这个过程通常称为 “<a href="https://zh.wikipedia.org/wiki/%E6%8F%A1%E6%89%8B_(%E6%8A%80%E6%9C%AF" target="_blank" rel="noopener">握手</a>)”（<code>handshaking</code>）。</p>
 <ul>
@@ -53,19 +246,19 @@
 </ul>
 <h2 id="使用-Python-scoket"><a href="#使用-Python-scoket" class="headerlink" title="使用 Python scoket"></a>使用 Python scoket</h2><ul>
 <li><p>服务端暂时只是获取 <code>HTTP</code> 和 <code>Websocket</code> 请求头。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line">HOST = <span class="string">"127.0.0.1"</span></span><br><span class="line">PORT = <span class="number">9999</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> socket.socket(socket.AF_INET, socket.SOCK_STREAM) <span class="keyword">as</span> s:</span><br><span class="line">    <span class="comment"># 端口重用</span></span><br><span class="line">    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, <span class="number">1</span>)</span><br><span class="line">    s.bind((HOST, PORT))</span><br><span class="line">    s.listen()</span><br><span class="line">    conn, addr = s.accept()</span><br><span class="line">    <span class="comment"># 获取客户端的握手信息</span></span><br><span class="line">    <span class="keyword">with</span> conn:</span><br><span class="line">        <span class="comment"># print('Connected by', addr)</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">            data = conn.recv(<span class="number">1024</span>)</span><br><span class="line">            frmat = data.decode()</span><br><span class="line">            print(frmat)</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> data: <span class="keyword">break</span></span><br><span class="line">            conn.sendall(data)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> socket<br><span class="hljs-keyword">import</span> base64<br><span class="hljs-keyword">import</span> hashlib<br><br>HOST = <span class="hljs-string">"127.0.0.1"</span><br>PORT = <span class="hljs-number">9999</span><br><br><span class="hljs-keyword">with</span> socket.socket(socket.AF_INET, socket.SOCK_STREAM) <span class="hljs-keyword">as</span> s:<br>    <span class="hljs-comment"># 端口重用</span><br>    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, <span class="hljs-number">1</span>)<br>    s.bind((HOST, PORT))<br>    s.listen()<br>    conn, addr = s.accept()<br>    <span class="hljs-comment"># 获取客户端的握手信息</span><br>    <span class="hljs-keyword">with</span> conn:<br>        <span class="hljs-comment"># print('Connected by', addr)</span><br>        <span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:<br>            data = conn.recv(<span class="hljs-number">1024</span>)<br>            frmat = data.decode()<br>            print(frmat)<br>            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> data: <span class="hljs-keyword">break</span><br>            conn.sendall(data)<br></code></pre></div></td></tr></table></figure>
 </li>
 <li><p>WebSocket 客户端代码，只做连接</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt; </span><br><span class="line">	<span class="keyword">var</span> ws = <span class="keyword">new</span> WebSocket(<span class="string">"ws://127.0.0.1:9999"</span>)</span><br><span class="line"></span><br><span class="line">    ws.onmessage = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(event.data);</span><br><span class="line">    &#125;;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;script type=<span class="hljs-string">"text/javascript"</span>&gt; <br>	<span class="hljs-keyword">var</span> ws = <span class="hljs-keyword">new</span> WebSocket(<span class="hljs-string">"ws://127.0.0.1:9999"</span>)<br><br>    ws.onmessage = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>&#123;<br>        <span class="hljs-built_in">console</span>.log(event.data);<br>    &#125;;<br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></code></pre></div></td></tr></table></figure>
 </li>
 </ul>
 <p>以下为获取<strong>请求头</strong>。</p>
 <p>原始 <code>HTTP</code> 请求头（ 上图 ） 对比 <code>WebSocket</code> </p>
-<p><img src="/images/python/python_socker1.png" alt="image-20190322203358514"></p>
+<p><img src="/images/python/python_socker1.png" srcset="/img/loading.gif" lazyload alt="image-20190322203358514"></p>
 <p>+=</p>
-<p><img src="/images/python/python_socker2.png" alt="image-20190322203504577"></p>
+<p><img src="/images/python/python_socker2.png" srcset="/img/loading.gif" lazyload alt="image-20190322203504577"></p>
 <p>获取 <code>Sec-WebSocket-Key</code> 的值</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_headers</span><span class="params">(data)</span>:</span></span><br><span class="line">    header_dict = &#123;&#125;</span><br><span class="line">    header_str = data.decode(<span class="string">"utf8"</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> header_str.split(<span class="string">"\r\n"</span>):</span><br><span class="line">        <span class="keyword">if</span> str(i).startswith(<span class="string">"Sec-WebSocket-Key"</span>):</span><br><span class="line">            header_dict[<span class="string">"Sec-WebSocket-Key"</span>] = i.split(<span class="string">":"</span>)[<span class="number">1</span>].strip()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> header_dict</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_headers</span><span class="hljs-params">(data)</span>:</span><br>    header_dict = &#123;&#125;<br>    header_str = data.decode(<span class="hljs-string">"utf8"</span>)<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> header_str.split(<span class="hljs-string">"\r\n"</span>):<br>        <span class="hljs-keyword">if</span> str(i).startswith(<span class="hljs-string">"Sec-WebSocket-Key"</span>):<br>            header_dict[<span class="hljs-string">"Sec-WebSocket-Key"</span>] = i.split(<span class="hljs-string">":"</span>)[<span class="hljs-number">1</span>].strip()<br><br>    <span class="hljs-keyword">return</span> header_dict<br></code></pre></div></td></tr></table></figure>
 <p> 请求和响应的<strong>握手</strong>信息需要遵循规则：</p>
 <ul>
 <li>从请求<strong>握手</strong>信息中提取 <code>S·ec-WebSocket-Key</code> 的值</li>
@@ -81,69 +274,227 @@
 <li>CLOSED (3)：连接已经关闭或无法打开；</li>
 </ul>
 <hr>
-<p><img src="/images/python/python_socker3.png" alt="2019-03-22 at 10.41 PM"></p>
+<p><img src="/images/python/python_socker3.png" srcset="/img/loading.gif" lazyload alt="2019-03-22 at 10.41 PM"></p>
 <p>客户端 接受客户端信息解密，流程</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">hashstr = <span class="string">b'\x81\x8b\xf1\x9c*=\x99\xf9FQ\x9e\xb0]R\x83\xf0N'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将第二个字节也就是 \x83 第9-16位 进行与127进行位运算</span></span><br><span class="line">payload = hashstr[<span class="number">1</span>] &amp; <span class="number">127</span></span><br><span class="line">print(payload)</span><br><span class="line"><span class="keyword">if</span> payload == <span class="number">127</span>:</span><br><span class="line">    extend_payload_len = hashstr[<span class="number">2</span>:<span class="number">10</span>]</span><br><span class="line">    mask = hashstr[<span class="number">10</span>:<span class="number">14</span>]</span><br><span class="line">    decoded = hashstr[<span class="number">14</span>:]</span><br><span class="line"><span class="comment"># 当位运算结果等于127时,则第3-10个字节为数据长度</span></span><br><span class="line"><span class="comment"># 第11-14字节为mask 解密所需字符串</span></span><br><span class="line"><span class="comment"># 则数据为第15字节至结尾</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> payload == <span class="number">126</span>:</span><br><span class="line">    extend_payload_len = hashstr[<span class="number">2</span>:<span class="number">4</span>]</span><br><span class="line">    mask = hashstr[<span class="number">4</span>:<span class="number">8</span>]</span><br><span class="line">    decoded = hashstr[<span class="number">8</span>:]</span><br><span class="line"><span class="comment"># 当位运算结果等于126时,则第3-4个字节为数据长度</span></span><br><span class="line"><span class="comment"># 第5-8字节为mask 解密所需字符串</span></span><br><span class="line"><span class="comment"># 则数据为第9字节至结尾</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> payload &lt;= <span class="number">125</span>:</span><br><span class="line">    extend_payload_len = <span class="keyword">None</span></span><br><span class="line">    mask = hashstr[<span class="number">2</span>:<span class="number">6</span>]</span><br><span class="line">    decoded = hashstr[<span class="number">6</span>:]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当位运算结果小于等于125时,则这个数字就是数据的长度</span></span><br><span class="line"><span class="comment"># 第3-6字节为mask 解密所需字符串</span></span><br><span class="line"><span class="comment"># 则数据为第7字节至结尾</span></span><br><span class="line"></span><br><span class="line">str_byte = bytearray()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(decoded)):</span><br><span class="line">    byte = decoded[i] ^ mask[i % <span class="number">4</span>]</span><br><span class="line">    str_byte.append(byte)</span><br><span class="line"></span><br><span class="line">print(str_byte.decode(<span class="string">"utf8"</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br>hashstr = <span class="hljs-string">b'\x81\x8b\xf1\x9c*=\x99\xf9FQ\x9e\xb0]R\x83\xf0N'</span><br><br><span class="hljs-comment"># 将第二个字节也就是 \x83 第9-16位 进行与127进行位运算</span><br>payload = hashstr[<span class="hljs-number">1</span>] &amp; <span class="hljs-number">127</span><br>print(payload)<br><span class="hljs-keyword">if</span> payload == <span class="hljs-number">127</span>:<br>    extend_payload_len = hashstr[<span class="hljs-number">2</span>:<span class="hljs-number">10</span>]<br>    mask = hashstr[<span class="hljs-number">10</span>:<span class="hljs-number">14</span>]<br>    decoded = hashstr[<span class="hljs-number">14</span>:]<br><span class="hljs-comment"># 当位运算结果等于127时,则第3-10个字节为数据长度</span><br><span class="hljs-comment"># 第11-14字节为mask 解密所需字符串</span><br><span class="hljs-comment"># 则数据为第15字节至结尾</span><br><br><span class="hljs-keyword">if</span> payload == <span class="hljs-number">126</span>:<br>    extend_payload_len = hashstr[<span class="hljs-number">2</span>:<span class="hljs-number">4</span>]<br>    mask = hashstr[<span class="hljs-number">4</span>:<span class="hljs-number">8</span>]<br>    decoded = hashstr[<span class="hljs-number">8</span>:]<br><span class="hljs-comment"># 当位运算结果等于126时,则第3-4个字节为数据长度</span><br><span class="hljs-comment"># 第5-8字节为mask 解密所需字符串</span><br><span class="hljs-comment"># 则数据为第9字节至结尾</span><br><br><br><span class="hljs-keyword">if</span> payload &lt;= <span class="hljs-number">125</span>:<br>    extend_payload_len = <span class="hljs-keyword">None</span><br>    mask = hashstr[<span class="hljs-number">2</span>:<span class="hljs-number">6</span>]<br>    decoded = hashstr[<span class="hljs-number">6</span>:]<br><br><span class="hljs-comment"># 当位运算结果小于等于125时,则这个数字就是数据的长度</span><br><span class="hljs-comment"># 第3-6字节为mask 解密所需字符串</span><br><span class="hljs-comment"># 则数据为第7字节至结尾</span><br><br>str_byte = bytearray()<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(decoded)):<br>    byte = decoded[i] ^ mask[i % <span class="hljs-number">4</span>]<br>    str_byte.append(byte)<br><br>print(str_byte.decode(<span class="hljs-string">"utf8"</span>))<br></code></pre></div></td></tr></table></figure>
 <p>加密</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line">msg_bytes = <span class="string">"hello"</span>.encode(<span class="string">"utf8"</span>)</span><br><span class="line">token = <span class="string">b"\x81"</span></span><br><span class="line">length = len(msg_bytes)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> length &lt; <span class="number">126</span>:</span><br><span class="line">    token += struct.pack(<span class="string">"B"</span>, length)</span><br><span class="line"><span class="keyword">elif</span> length == <span class="number">126</span>:</span><br><span class="line">    token += struct.pack(<span class="string">"!BH"</span>, <span class="number">126</span>, length)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    token += struct.pack(<span class="string">"!BQ"</span>, <span class="number">127</span>, length)</span><br><span class="line"></span><br><span class="line">msg = token + msg_bytes</span><br><span class="line"></span><br><span class="line">print(msg)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> struct<br>msg_bytes = <span class="hljs-string">"hello"</span>.encode(<span class="hljs-string">"utf8"</span>)<br>token = <span class="hljs-string">b"\x81"</span><br>length = len(msg_bytes)<br><br><span class="hljs-keyword">if</span> length &lt; <span class="hljs-number">126</span>:<br>    token += struct.pack(<span class="hljs-string">"B"</span>, length)<br><span class="hljs-keyword">elif</span> length == <span class="hljs-number">126</span>:<br>    token += struct.pack(<span class="hljs-string">"!BH"</span>, <span class="hljs-number">126</span>, length)<br><span class="hljs-keyword">else</span>:<br>    token += struct.pack(<span class="hljs-string">"!BQ"</span>, <span class="hljs-number">127</span>, length)<br><br>msg = token + msg_bytes<br><br>print(msg)<br></code></pre></div></td></tr></table></figure>
 <h2 id="完整代码示例"><a href="#完整代码示例" class="headerlink" title="完整代码示例"></a>完整代码示例</h2><p>不再赘述</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line">HOST = <span class="string">"127.0.0.1"</span></span><br><span class="line">PORT = <span class="number">9999</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务器回应,响应头</span></span><br><span class="line">response_tpl = <span class="string">"HTTP/1.1 101 Switching Protocols\r\n"</span> \</span><br><span class="line">               <span class="string">"Upgrade:websocket\r\n"</span> \</span><br><span class="line">               <span class="string">"Connection: Upgrade\r\n"</span> \</span><br><span class="line">               <span class="string">"Sec-WebSocket-Accept: %s\r\n"</span> \</span><br><span class="line">               <span class="string">"WebSocket-Location: ws://127.0.0.1:9999\r\n\r\n"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_headers</span><span class="params">(data)</span>:</span></span><br><span class="line">    <span class="comment"># 获取 sec-websocket-key</span></span><br><span class="line">    header_dict = &#123;&#125;</span><br><span class="line">    header_str = data.decode(<span class="string">"utf8"</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> header_str.split(<span class="string">"\r\n"</span>):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> str(i).startswith(<span class="string">"Sec-WebSocket-Key"</span>):</span><br><span class="line">            header_dict[<span class="string">"Sec-WebSocket-Key"</span>] = i.split(<span class="string">":"</span>)[<span class="number">1</span>].strip()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> header_dict</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt_client_info</span><span class="params">(msg)</span>:</span></span><br><span class="line">    <span class="string">'''解密客户端发送的信息'''</span></span><br><span class="line"></span><br><span class="line">    hashstr = msg</span><br><span class="line">    <span class="comment"># 将第二个字节也就是 \x83 第9-16位 进行与127进行位运算</span></span><br><span class="line">    payload = hashstr[<span class="number">1</span>] &amp; <span class="number">127</span></span><br><span class="line">    print(payload)</span><br><span class="line">    <span class="keyword">if</span> payload == <span class="number">127</span>:</span><br><span class="line">        extend_payload_len = hashstr[<span class="number">2</span>:<span class="number">10</span>]</span><br><span class="line">        mask = hashstr[<span class="number">10</span>:<span class="number">14</span>]</span><br><span class="line">        decoded = hashstr[<span class="number">14</span>:]</span><br><span class="line">    <span class="comment"># 当位运算结果等于127时,则第3-10个字节为数据长度</span></span><br><span class="line">    <span class="comment"># 第11-14字节为mask 解密所需字符串</span></span><br><span class="line">    <span class="comment"># 则数据为第15字节至结尾</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> payload == <span class="number">126</span>:</span><br><span class="line">        extend_payload_len = hashstr[<span class="number">2</span>:<span class="number">4</span>]</span><br><span class="line">        mask = hashstr[<span class="number">4</span>:<span class="number">8</span>]</span><br><span class="line">        decoded = hashstr[<span class="number">8</span>:]</span><br><span class="line">    <span class="comment"># 当位运算结果等于126时,则第3-4个字节为数据长度</span></span><br><span class="line">    <span class="comment"># 第5-8字节为mask 解密所需字符串</span></span><br><span class="line">    <span class="comment"># 则数据为第9字节至结尾</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> payload &lt;= <span class="number">125</span>:</span><br><span class="line">        extend_payload_len = <span class="keyword">None</span></span><br><span class="line">        mask = hashstr[<span class="number">2</span>:<span class="number">6</span>]</span><br><span class="line">        decoded = hashstr[<span class="number">6</span>:]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 当位运算结果小于等于125时,则这个数字就是数据的长度</span></span><br><span class="line">    <span class="comment"># 第3-6字节为mask 解密所需字符串</span></span><br><span class="line">    <span class="comment"># 则数据为第7字节至结尾</span></span><br><span class="line"></span><br><span class="line">    str_byte = bytearray()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(decoded)):</span><br><span class="line">        byte = decoded[i] ^ mask[i % <span class="number">4</span>]</span><br><span class="line">        str_byte.append(byte)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> str_byte.decode(<span class="string">"utf8"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 发送消息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_msg</span><span class="params">(msg, conn)</span>:</span></span><br><span class="line">    <span class="comment"># 服务端回应，防止粘包现象 使用了 struct 模块</span></span><br><span class="line">    msg_bytes = msg.encode(<span class="string">"utf8"</span>)</span><br><span class="line">    token = <span class="string">b"\x81"</span></span><br><span class="line">    length = len(msg_bytes)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> length &lt; <span class="number">126</span>:</span><br><span class="line">        token += struct.pack(<span class="string">"B"</span>, length)</span><br><span class="line">    <span class="keyword">elif</span> length == <span class="number">126</span>:</span><br><span class="line">        token += struct.pack(<span class="string">"!BH"</span>, <span class="number">126</span>, length)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        token += struct.pack(<span class="string">"!BQ"</span>, <span class="number">127</span>, length)</span><br><span class="line">    msg = token + msg_bytes</span><br><span class="line">    conn.send(msg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> socket.socket(socket.AF_INET, socket.SOCK_STREAM) <span class="keyword">as</span> s:</span><br><span class="line">    <span class="comment"># 端口重用</span></span><br><span class="line">    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, <span class="number">1</span>)</span><br><span class="line">    s.bind((HOST, PORT))</span><br><span class="line">    s.listen()</span><br><span class="line">    conn, addr = s.accept()</span><br><span class="line">    <span class="comment"># 获取客户端的握手信息</span></span><br><span class="line">    <span class="keyword">with</span> conn:</span><br><span class="line">        <span class="comment"># print('Connected by', addr)</span></span><br><span class="line">        data = conn.recv(<span class="number">1024</span>)</span><br><span class="line">        headers = get_headers(data)  <span class="comment"># 提取请求头信息</span></span><br><span class="line">        <span class="comment"># 对请求头中的 sec-websocket-key 进行加密</span></span><br><span class="line">        <span class="comment"># 固定特殊字符串</span></span><br><span class="line">        magic_string = <span class="string">'258EAFA5-E914-47DA-95CA-C5AB0DC85B11'</span></span><br><span class="line">        value = headers[<span class="string">'Sec-WebSocket-Key'</span>] + magic_string</span><br><span class="line">        print(value)</span><br><span class="line">        ac = base64.b64encode(hashlib.sha1(value.encode(<span class="string">'utf-8'</span>)).digest())</span><br><span class="line"></span><br><span class="line">        response_str = response_tpl % (ac.decode(<span class="string">'utf-8'</span>))</span><br><span class="line">        <span class="comment"># 响应握手信息</span></span><br><span class="line">        conn.send(response_str.encode(<span class="string">"utf8"</span>))</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">            msg = conn.recv(<span class="number">8096</span>)</span><br><span class="line">            print(decrypt_client_info(msg))</span><br><span class="line">            send_msg(<span class="string">'你好啊发送发送发送'</span>, conn)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> socket<br><span class="hljs-keyword">import</span> base64<br><span class="hljs-keyword">import</span> hashlib<br><span class="hljs-keyword">import</span> struct<br><br>HOST = <span class="hljs-string">"127.0.0.1"</span><br>PORT = <span class="hljs-number">9999</span><br><br><span class="hljs-comment"># 服务器回应,响应头</span><br>response_tpl = <span class="hljs-string">"HTTP/1.1 101 Switching Protocols\r\n"</span> \<br>               <span class="hljs-string">"Upgrade:websocket\r\n"</span> \<br>               <span class="hljs-string">"Connection: Upgrade\r\n"</span> \<br>               <span class="hljs-string">"Sec-WebSocket-Accept: %s\r\n"</span> \<br>               <span class="hljs-string">"WebSocket-Location: ws://127.0.0.1:9999\r\n\r\n"</span><br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_headers</span><span class="hljs-params">(data)</span>:</span><br>    <span class="hljs-comment"># 获取 sec-websocket-key</span><br>    header_dict = &#123;&#125;<br>    header_str = data.decode(<span class="hljs-string">"utf8"</span>)<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> header_str.split(<span class="hljs-string">"\r\n"</span>):<br><br>        <span class="hljs-keyword">if</span> str(i).startswith(<span class="hljs-string">"Sec-WebSocket-Key"</span>):<br>            header_dict[<span class="hljs-string">"Sec-WebSocket-Key"</span>] = i.split(<span class="hljs-string">":"</span>)[<span class="hljs-number">1</span>].strip()<br><br>    <span class="hljs-keyword">return</span> header_dict<br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decrypt_client_info</span><span class="hljs-params">(msg)</span>:</span><br>    <span class="hljs-string">'''解密客户端发送的信息'''</span><br><br>    hashstr = msg<br>    <span class="hljs-comment"># 将第二个字节也就是 \x83 第9-16位 进行与127进行位运算</span><br>    payload = hashstr[<span class="hljs-number">1</span>] &amp; <span class="hljs-number">127</span><br>    print(payload)<br>    <span class="hljs-keyword">if</span> payload == <span class="hljs-number">127</span>:<br>        extend_payload_len = hashstr[<span class="hljs-number">2</span>:<span class="hljs-number">10</span>]<br>        mask = hashstr[<span class="hljs-number">10</span>:<span class="hljs-number">14</span>]<br>        decoded = hashstr[<span class="hljs-number">14</span>:]<br>    <span class="hljs-comment"># 当位运算结果等于127时,则第3-10个字节为数据长度</span><br>    <span class="hljs-comment"># 第11-14字节为mask 解密所需字符串</span><br>    <span class="hljs-comment"># 则数据为第15字节至结尾</span><br><br>    <span class="hljs-keyword">if</span> payload == <span class="hljs-number">126</span>:<br>        extend_payload_len = hashstr[<span class="hljs-number">2</span>:<span class="hljs-number">4</span>]<br>        mask = hashstr[<span class="hljs-number">4</span>:<span class="hljs-number">8</span>]<br>        decoded = hashstr[<span class="hljs-number">8</span>:]<br>    <span class="hljs-comment"># 当位运算结果等于126时,则第3-4个字节为数据长度</span><br>    <span class="hljs-comment"># 第5-8字节为mask 解密所需字符串</span><br>    <span class="hljs-comment"># 则数据为第9字节至结尾</span><br><br>    <span class="hljs-keyword">if</span> payload &lt;= <span class="hljs-number">125</span>:<br>        extend_payload_len = <span class="hljs-keyword">None</span><br>        mask = hashstr[<span class="hljs-number">2</span>:<span class="hljs-number">6</span>]<br>        decoded = hashstr[<span class="hljs-number">6</span>:]<br><br>    <span class="hljs-comment"># 当位运算结果小于等于125时,则这个数字就是数据的长度</span><br>    <span class="hljs-comment"># 第3-6字节为mask 解密所需字符串</span><br>    <span class="hljs-comment"># 则数据为第7字节至结尾</span><br><br>    str_byte = bytearray()<br><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(decoded)):<br>        byte = decoded[i] ^ mask[i % <span class="hljs-number">4</span>]<br>        str_byte.append(byte)<br><br>    <span class="hljs-keyword">return</span> str_byte.decode(<span class="hljs-string">"utf8"</span>)<br><br><br><span class="hljs-comment"># 发送消息</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">send_msg</span><span class="hljs-params">(msg, conn)</span>:</span><br>    <span class="hljs-comment"># 服务端回应，防止粘包现象 使用了 struct 模块</span><br>    msg_bytes = msg.encode(<span class="hljs-string">"utf8"</span>)<br>    token = <span class="hljs-string">b"\x81"</span><br>    length = len(msg_bytes)<br><br>    <span class="hljs-keyword">if</span> length &lt; <span class="hljs-number">126</span>:<br>        token += struct.pack(<span class="hljs-string">"B"</span>, length)<br>    <span class="hljs-keyword">elif</span> length == <span class="hljs-number">126</span>:<br>        token += struct.pack(<span class="hljs-string">"!BH"</span>, <span class="hljs-number">126</span>, length)<br>    <span class="hljs-keyword">else</span>:<br>        token += struct.pack(<span class="hljs-string">"!BQ"</span>, <span class="hljs-number">127</span>, length)<br>    msg = token + msg_bytes<br>    conn.send(msg)<br><br><br><span class="hljs-keyword">with</span> socket.socket(socket.AF_INET, socket.SOCK_STREAM) <span class="hljs-keyword">as</span> s:<br>    <span class="hljs-comment"># 端口重用</span><br>    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, <span class="hljs-number">1</span>)<br>    s.bind((HOST, PORT))<br>    s.listen()<br>    conn, addr = s.accept()<br>    <span class="hljs-comment"># 获取客户端的握手信息</span><br>    <span class="hljs-keyword">with</span> conn:<br>        <span class="hljs-comment"># print('Connected by', addr)</span><br>        data = conn.recv(<span class="hljs-number">1024</span>)<br>        headers = get_headers(data)  <span class="hljs-comment"># 提取请求头信息</span><br>        <span class="hljs-comment"># 对请求头中的 sec-websocket-key 进行加密</span><br>        <span class="hljs-comment"># 固定特殊字符串</span><br>        magic_string = <span class="hljs-string">'258EAFA5-E914-47DA-95CA-C5AB0DC85B11'</span><br>        value = headers[<span class="hljs-string">'Sec-WebSocket-Key'</span>] + magic_string<br>        print(value)<br>        ac = base64.b64encode(hashlib.sha1(value.encode(<span class="hljs-string">'utf-8'</span>)).digest())<br><br>        response_str = response_tpl % (ac.decode(<span class="hljs-string">'utf-8'</span>))<br>        <span class="hljs-comment"># 响应握手信息</span><br>        conn.send(response_str.encode(<span class="hljs-string">"utf8"</span>))<br>        <span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:<br>            msg = conn.recv(<span class="hljs-number">8096</span>)<br>            print(decrypt_client_info(msg))<br>            send_msg(<span class="hljs-string">'你好啊发送发送发送'</span>, conn)<br></code></pre></div></td></tr></table></figure>
 <p>HTML </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head lang=<span class="string">"en"</span>&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;&lt;/title&gt;</span><br><span class="line">&lt;<span class="regexp">/head&gt;</span></span><br><span class="line"><span class="regexp">&lt;body&gt;</span></span><br><span class="line"><span class="regexp">&lt;div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;input type="text" id="txt"/</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"button"</span> id=<span class="string">"btn"</span> value=<span class="string">"发送消息"</span> onclick=<span class="string">"sendMsg();"</span>/&gt;</span><br><span class="line">    &lt;input type=<span class="string">"button"</span> id=<span class="string">"close"</span> value=<span class="string">"关闭连接"</span> onclick=<span class="string">"closeConn();"</span>/&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;div id="content"&gt;&lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="keyword">var</span> socket = <span class="keyword">new</span> WebSocket(<span class="string">"ws://127.0.0.1:9999"</span>);</span><br><span class="line"></span><br><span class="line">    socket.onopen = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">/* 与服务器端连接成功后，自动执行 */</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> newTag = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">        newTag.innerHTML = <span class="string">"【连接成功】"</span>;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">'content'</span>).appendChild(newTag);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    socket.onmessage = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">        <span class="comment">/* 服务器端向客户端发送数据时，自动执行 */</span></span><br><span class="line">        <span class="keyword">var</span> response = event.data;</span><br><span class="line">        <span class="keyword">var</span> newTag = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">        newTag.innerHTML = response;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">'content'</span>).appendChild(newTag);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    socket.onclose = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">        <span class="comment">/* 服务器端主动断开连接时，自动执行 */</span></span><br><span class="line">        <span class="keyword">var</span> newTag = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">        newTag.innerHTML = <span class="string">"【关闭连接】"</span>;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">'content'</span>).appendChild(newTag);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// socket.addEventListener('message', function (event) &#123;</span></span><br><span class="line">    <span class="comment">//     console.log('Message from server ', event.data);</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="comment">// &#125;);</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">sendMsg</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> txt = <span class="built_in">document</span>.getElementById(<span class="string">'txt'</span>);</span><br><span class="line">        socket.send(txt.value);</span><br><span class="line">        txt.value = <span class="string">""</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">closeConn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        socket.close();</span><br><span class="line">        <span class="keyword">var</span> newTag = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">        newTag.innerHTML = <span class="string">"【关闭连接】"</span>;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">'content'</span>).appendChild(newTag);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>body&gt;</span><br><span class="line">&lt;<span class="regexp">/html&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="gevent-实现-websocker-demo-版本"><a href="#gevent-实现-websocker-demo-版本" class="headerlink" title="gevent 实现 websocker demo 版本"></a>gevent 实现 websocker demo 版本</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> gevent <span class="keyword">import</span> monkey</span><br><span class="line"></span><br><span class="line">monkey.patch_all()</span><br><span class="line">BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))</span><br><span class="line">sys.path.append(BASE_DIR)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pymongo <span class="keyword">import</span> MongoClient</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> render_template, Flask</span><br><span class="line"><span class="keyword">from</span> werkzeug.debug <span class="keyword">import</span> DebuggedApplication</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> geventwebsocket <span class="keyword">import</span> WebSocketServer, WebSocketApplication, Resource</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> mechat.blueprints.ai_baidu <span class="keyword">import</span> Baidu_AI</span><br><span class="line"></span><br><span class="line">baidu_ai = Baidu_AI()</span><br><span class="line"></span><br><span class="line">mgclient = MongoClient(<span class="string">"127.0.0.1"</span>, <span class="number">27017</span>)</span><br><span class="line">MONGO_DB = mgclient[<span class="string">"chat_mess_room"</span>]</span><br><span class="line"></span><br><span class="line">flask_app = Flask(__name__)</span><br><span class="line">flask_app.debug = <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChatApplication</span><span class="params">(WebSocketApplication)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_open</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'connect'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_message</span><span class="params">(self, message)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> message <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        message = json.loads(message)</span><br><span class="line">        <span class="comment"># a = &#123;'msg_type': 'message', 'nickname': 'unknown', 'message': '你啊'&#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> message[<span class="string">'msg_type'</span>] == <span class="string">'message'</span>:</span><br><span class="line">            im = message[<span class="string">'message'</span>]</span><br><span class="line">            tuningre = baidu_ai.tuning(im)</span><br><span class="line">            cur_time = message.get(<span class="string">'cur_time'</span>)</span><br><span class="line">            the_robot = &#123;<span class="string">'msg_type'</span>: <span class="string">'message'</span>, <span class="string">'nickname'</span>: <span class="string">'图灵机器人的爸爸'</span>, <span class="string">'message'</span>: tuningre, <span class="string">'the_robot'</span>: <span class="string">"robot"</span>,</span><br><span class="line">                         <span class="string">'cur_time'</span>: cur_time&#125;</span><br><span class="line"></span><br><span class="line">            self.broadcast(message)</span><br><span class="line">            self.broadcast(the_robot)</span><br><span class="line">            MONGO_DB.groups.insert_many([message, the_robot])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> message[<span class="string">'msg_type'</span>] == <span class="string">'update_clients'</span>:</span><br><span class="line">            self.send_client_list(message)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">send_client_list</span><span class="params">(self, message)</span>:</span></span><br><span class="line">        current_client = self.ws.handler.active_client</span><br><span class="line">        current_client.nickname = message[<span class="string">'nickname'</span>]</span><br><span class="line"></span><br><span class="line">        self.ws.send(json.dumps(&#123;</span><br><span class="line">            <span class="string">'msg_type'</span>: <span class="string">'update_clients'</span>,</span><br><span class="line">            <span class="string">'clients'</span>: [</span><br><span class="line">                getattr(client, <span class="string">'nickname'</span>, <span class="string">'anonymous'</span>)</span><br><span class="line">                <span class="keyword">for</span> client <span class="keyword">in</span> self.ws.handler.server.clients.values()</span><br><span class="line">            ]</span><br><span class="line">        &#125;))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">broadcast</span><span class="params">(self, message)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> client <span class="keyword">in</span> self.ws.handler.server.clients.values():</span><br><span class="line">            <span class="comment"># client.ws.send(json.dumps(&#123;</span></span><br><span class="line">            <span class="comment">#     'msg_type': 'message',</span></span><br><span class="line">            <span class="comment">#     'nickname': message['nickname'],</span></span><br><span class="line">            <span class="comment">#     'message': message['message']</span></span><br><span class="line">            <span class="comment"># &#125;))</span></span><br><span class="line">            client.ws.send(json.dumps(message))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_close</span><span class="params">(self, reason)</span>:</span></span><br><span class="line">        print(<span class="string">'Connectiion closed'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@flask_app.route('/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">home</span><span class="params">()</span>:</span></span><br><span class="line">    te = [&#123;<span class="string">"nickname"</span>: <span class="string">"baozi"</span>, <span class="string">"body"</span>: <span class="string">'你的名字叫啥'</span>&#125;,</span><br><span class="line">          &#123;<span class="string">"nickname"</span>: <span class="string">"baozi"</span>, <span class="string">"body"</span>: <span class="string">'做个自我介绍啊'</span>&#125;,</span><br><span class="line">          &#123;<span class="string">"nickname"</span>: <span class="string">"baozi"</span>, <span class="string">"body"</span>: <span class="string">'发图啊'</span>&#125;]</span><br><span class="line"></span><br><span class="line">    re = list(MONGO_DB.groups.find(&#123;&#125;, &#123;<span class="string">"_id"</span>: <span class="number">0</span>&#125;))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># return render_template("home2.html")</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">"home2.html"</span>, messages=re)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    WebSocketServer((<span class="string">'192.168.1.2'</span>, <span class="number">9999</span>), Resource([</span><br><span class="line">        (<span class="string">'^/chat'</span>, ChatApplication),</span><br><span class="line">        (<span class="string">'^/.*'</span>, DebuggedApplication(flask_app))</span><br><span class="line">    ]), debug=<span class="keyword">False</span>).serve_forever()</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;!DOCTYPE html&gt;<br>&lt;html&gt;<br>&lt;head lang="en"&gt;<br>    &lt;meta charset="UTF-8"&gt;<br>    &lt;title&gt;&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>&lt;div&gt;<br>    &lt;input type="text" id="txt"/&gt;<br>    &lt;input type="button" id="btn" value="发送消息" onclick="sendMsg();"/&gt;<br>    &lt;input type="button" id="close" value="关闭连接" onclick="closeConn();"/&gt;<br>&lt;/div&gt;<br>&lt;div id="content"&gt;&lt;/div&gt;<br><br>&lt;script type="text/javascript"&gt;<br>    var socket = new WebSocket("ws://127.0.0.1:9999");<br><br>    socket.onopen = function () &#123;<br>        /* 与服务器端连接成功后，自动执行 */<br><br>        var newTag = document.createElement('div');<br>        newTag.innerHTML = "【连接成功】";<br>        document.getElementById('content').appendChild(newTag);<br>    &#125;;<br><br>    socket.onmessage = function (event) &#123;<br>        /* 服务器端向客户端发送数据时，自动执行 */<br>        var response = event.data;<br>        var newTag = document.createElement('div');<br>        newTag.innerHTML = response;<br>        document.getElementById('content').appendChild(newTag);<br>    &#125;;<br><br>    socket.onclose = function (event) &#123;<br>        /* 服务器端主动断开连接时，自动执行 */<br>        var newTag = document.createElement('div');<br>        newTag.innerHTML = "【关闭连接】";<br>        document.getElementById('content').appendChild(newTag);<br>    &#125;;<br>    // socket.addEventListener('message', function (event) &#123;<br>    //     console.log('Message from server ', event.data);<br>    //<br>    // &#125;);<br><br><br>    function sendMsg() &#123;<br>        var txt = document.getElementById('txt');<br>        socket.send(txt.value);<br>        txt.value = "";<br>    &#125;<br><br>    function closeConn() &#123;<br>        socket.close();<br>        var newTag = document.createElement('div');<br>        newTag.innerHTML = "【关闭连接】";<br>        document.getElementById('content').appendChild(newTag);<br>    &#125;<br><br>&lt;/script&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></div></td></tr></table></figure>
+<h2 id="gevent-实现-websocker-demo-版本"><a href="#gevent-实现-websocker-demo-版本" class="headerlink" title="gevent 实现 websocker demo 版本"></a>gevent 实现 websocker demo 版本</h2><figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br><span class="hljs-keyword">import</span> json<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">from</span> gevent <span class="hljs-keyword">import</span> monkey<br><br>monkey.patch_all()<br>BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))<br>sys.path.append(BASE_DIR)<br><br><span class="hljs-keyword">from</span> pymongo <span class="hljs-keyword">import</span> MongoClient<br><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> render_template, Flask<br><span class="hljs-keyword">from</span> werkzeug.debug <span class="hljs-keyword">import</span> DebuggedApplication<br><br><span class="hljs-keyword">from</span> geventwebsocket <span class="hljs-keyword">import</span> WebSocketServer, WebSocketApplication, Resource<br><br><span class="hljs-keyword">from</span> mechat.blueprints.ai_baidu <span class="hljs-keyword">import</span> Baidu_AI<br><br>baidu_ai = Baidu_AI()<br><br>mgclient = MongoClient(<span class="hljs-string">"127.0.0.1"</span>, <span class="hljs-number">27017</span>)<br>MONGO_DB = mgclient[<span class="hljs-string">"chat_mess_room"</span>]<br><br>flask_app = Flask(__name__)<br>flask_app.debug = <span class="hljs-keyword">True</span><br><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChatApplication</span><span class="hljs-params">(WebSocketApplication)</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">on_open</span><span class="hljs-params">(self)</span>:</span><br>        print(<span class="hljs-string">'connect'</span>)<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">on_message</span><span class="hljs-params">(self, message)</span>:</span><br>        <span class="hljs-keyword">if</span> message <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:<br>            <span class="hljs-keyword">return</span><br><br>        message = json.loads(message)<br>        <span class="hljs-comment"># a = &#123;'msg_type': 'message', 'nickname': 'unknown', 'message': '你啊'&#125;</span><br><br>        <span class="hljs-keyword">if</span> message[<span class="hljs-string">'msg_type'</span>] == <span class="hljs-string">'message'</span>:<br>            im = message[<span class="hljs-string">'message'</span>]<br>            tuningre = baidu_ai.tuning(im)<br>            cur_time = message.get(<span class="hljs-string">'cur_time'</span>)<br>            the_robot = &#123;<span class="hljs-string">'msg_type'</span>: <span class="hljs-string">'message'</span>, <span class="hljs-string">'nickname'</span>: <span class="hljs-string">'图灵机器人的爸爸'</span>, <span class="hljs-string">'message'</span>: tuningre, <span class="hljs-string">'the_robot'</span>: <span class="hljs-string">"robot"</span>,<br>                         <span class="hljs-string">'cur_time'</span>: cur_time&#125;<br><br>            self.broadcast(message)<br>            self.broadcast(the_robot)<br>            MONGO_DB.groups.insert_many([message, the_robot])<br><br><br><br>        <span class="hljs-keyword">elif</span> message[<span class="hljs-string">'msg_type'</span>] == <span class="hljs-string">'update_clients'</span>:<br>            self.send_client_list(message)<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">send_client_list</span><span class="hljs-params">(self, message)</span>:</span><br>        current_client = self.ws.handler.active_client<br>        current_client.nickname = message[<span class="hljs-string">'nickname'</span>]<br><br>        self.ws.send(json.dumps(&#123;<br>            <span class="hljs-string">'msg_type'</span>: <span class="hljs-string">'update_clients'</span>,<br>            <span class="hljs-string">'clients'</span>: [<br>                getattr(client, <span class="hljs-string">'nickname'</span>, <span class="hljs-string">'anonymous'</span>)<br>                <span class="hljs-keyword">for</span> client <span class="hljs-keyword">in</span> self.ws.handler.server.clients.values()<br>            ]<br>        &#125;))<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">broadcast</span><span class="hljs-params">(self, message)</span>:</span><br>        <span class="hljs-keyword">for</span> client <span class="hljs-keyword">in</span> self.ws.handler.server.clients.values():<br>            <span class="hljs-comment"># client.ws.send(json.dumps(&#123;</span><br>            <span class="hljs-comment">#     'msg_type': 'message',</span><br>            <span class="hljs-comment">#     'nickname': message['nickname'],</span><br>            <span class="hljs-comment">#     'message': message['message']</span><br>            <span class="hljs-comment"># &#125;))</span><br>            client.ws.send(json.dumps(message))<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">on_close</span><span class="hljs-params">(self, reason)</span>:</span><br>        print(<span class="hljs-string">'Connectiion closed'</span>)<br><br><br><span class="hljs-meta">@flask_app.route('/')</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">home</span><span class="hljs-params">()</span>:</span><br>    te = [&#123;<span class="hljs-string">"nickname"</span>: <span class="hljs-string">"baozi"</span>, <span class="hljs-string">"body"</span>: <span class="hljs-string">'你的名字叫啥'</span>&#125;,<br>          &#123;<span class="hljs-string">"nickname"</span>: <span class="hljs-string">"baozi"</span>, <span class="hljs-string">"body"</span>: <span class="hljs-string">'做个自我介绍啊'</span>&#125;,<br>          &#123;<span class="hljs-string">"nickname"</span>: <span class="hljs-string">"baozi"</span>, <span class="hljs-string">"body"</span>: <span class="hljs-string">'发图啊'</span>&#125;]<br><br>    re = list(MONGO_DB.groups.find(&#123;&#125;, &#123;<span class="hljs-string">"_id"</span>: <span class="hljs-number">0</span>&#125;))<br><br>    <span class="hljs-comment"># return render_template("home2.html")</span><br>    <span class="hljs-keyword">return</span> render_template(<span class="hljs-string">"home2.html"</span>, messages=re)<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:<br>    WebSocketServer((<span class="hljs-string">'192.168.1.2'</span>, <span class="hljs-number">9999</span>), Resource([<br>        (<span class="hljs-string">'^/chat'</span>, ChatApplication),<br>        (<span class="hljs-string">'^/.*'</span>, DebuggedApplication(flask_app))<br>    ]), debug=<span class="hljs-keyword">False</span>).serve_forever()<br></code></pre></div></td></tr></table></figure>
 <p>V2</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> print_function</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> gevent <span class="keyword">import</span> monkey</span><br><span class="line"></span><br><span class="line">monkey.patch_all()</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, render_template</span><br><span class="line"><span class="keyword">from</span> werkzeug.debug <span class="keyword">import</span> DebuggedApplication</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> geventwebsocket <span class="keyword">import</span> WebSocketServer, WebSocketApplication, Resource</span><br><span class="line"></span><br><span class="line">websocket = Flask(__name__)</span><br><span class="line">websocket.debug = <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChatApplication</span><span class="params">(WebSocketApplication)</span>:</span></span><br><span class="line">    <span class="string">''' webSocket 消息发送'''</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_open</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"Some client connected!"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_message</span><span class="params">(self, message)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> message <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        message = json.loads(message)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> message.get(<span class="string">'msg_type'</span>) == <span class="string">'send_'</span>:</span><br><span class="line">            print(message)</span><br><span class="line">            self.share_music_friend(message)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> message.get(<span class="string">'msg_type'</span>) == <span class="string">'accept_'</span>:</span><br><span class="line">            self.accept_client_list(message)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">share_music_friend</span><span class="params">(self, message)</span>:</span></span><br><span class="line">        current_client = self.ws.handler.active_client</span><br><span class="line">        <span class="comment"># current_client.from_id = message.get('toy_id')</span></span><br><span class="line">        current_client.from_id = message.get(<span class="string">'toy_id'</span>, message.get(<span class="string">"from_user"</span>))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> client <span class="keyword">in</span> self.ws.handler.server.clients.values():</span><br><span class="line">            <span class="keyword">if</span> getattr(client, <span class="string">'from_id'</span>, <span class="string">'anonymous'</span>) == message[<span class="string">'to_user'</span>]:</span><br><span class="line">                client.ws.send(json.dumps(message))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">accept_client_list</span><span class="params">(self, message)</span>:</span></span><br><span class="line">        print(message)</span><br><span class="line">        current_client = self.ws.handler.active_client</span><br><span class="line">        current_client.from_id = message.get(<span class="string">'toy_id'</span>, message.get(<span class="string">"from_user"</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_close</span><span class="params">(self, reason)</span>:</span></span><br><span class="line">        print(<span class="string">"Connection closed!"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@websocket.route('/toy')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">toy</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">'toy.html'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">WebSocketServer(</span><br><span class="line">    (<span class="string">"192.168.1.2"</span>, <span class="number">8001</span>),</span><br><span class="line"></span><br><span class="line">    Resource([</span><br><span class="line">        (<span class="string">'^/sendone'</span>, ChatApplication),</span><br><span class="line">        (<span class="string">'^/.*'</span>, DebuggedApplication(websocket))</span><br><span class="line">    ]),</span><br><span class="line"></span><br><span class="line">    debug=<span class="keyword">False</span></span><br><span class="line">).serve_forever()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> __future__ <span class="hljs-keyword">import</span> print_function<br><br><span class="hljs-keyword">import</span> json<br><br><span class="hljs-keyword">from</span> gevent <span class="hljs-keyword">import</span> monkey<br><br>monkey.patch_all()<br><br><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask, render_template<br><span class="hljs-keyword">from</span> werkzeug.debug <span class="hljs-keyword">import</span> DebuggedApplication<br><br><span class="hljs-keyword">from</span> geventwebsocket <span class="hljs-keyword">import</span> WebSocketServer, WebSocketApplication, Resource<br><br>websocket = Flask(__name__)<br>websocket.debug = <span class="hljs-keyword">True</span><br><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChatApplication</span><span class="hljs-params">(WebSocketApplication)</span>:</span><br>    <span class="hljs-string">''' webSocket 消息发送'''</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">on_open</span><span class="hljs-params">(self)</span>:</span><br>        print(<span class="hljs-string">"Some client connected!"</span>)<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">on_message</span><span class="hljs-params">(self, message)</span>:</span><br>        <span class="hljs-keyword">if</span> message <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:<br>            <span class="hljs-keyword">return</span><br><br>        message = json.loads(message)<br><br>        <span class="hljs-keyword">if</span> message.get(<span class="hljs-string">'msg_type'</span>) == <span class="hljs-string">'send_'</span>:<br>            print(message)<br>            self.share_music_friend(message)<br><br>        <span class="hljs-keyword">elif</span> message.get(<span class="hljs-string">'msg_type'</span>) == <span class="hljs-string">'accept_'</span>:<br>            self.accept_client_list(message)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-keyword">pass</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">share_music_friend</span><span class="hljs-params">(self, message)</span>:</span><br>        current_client = self.ws.handler.active_client<br>        <span class="hljs-comment"># current_client.from_id = message.get('toy_id')</span><br>        current_client.from_id = message.get(<span class="hljs-string">'toy_id'</span>, message.get(<span class="hljs-string">"from_user"</span>))<br><br>        <span class="hljs-keyword">for</span> client <span class="hljs-keyword">in</span> self.ws.handler.server.clients.values():<br>            <span class="hljs-keyword">if</span> getattr(client, <span class="hljs-string">'from_id'</span>, <span class="hljs-string">'anonymous'</span>) == message[<span class="hljs-string">'to_user'</span>]:<br>                client.ws.send(json.dumps(message))<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">accept_client_list</span><span class="hljs-params">(self, message)</span>:</span><br>        print(message)<br>        current_client = self.ws.handler.active_client<br>        current_client.from_id = message.get(<span class="hljs-string">'toy_id'</span>, message.get(<span class="hljs-string">"from_user"</span>))<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">on_close</span><span class="hljs-params">(self, reason)</span>:</span><br>        print(<span class="hljs-string">"Connection closed!"</span>)<br><br><br><span class="hljs-meta">@websocket.route('/toy')</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">toy</span><span class="hljs-params">()</span>:</span><br>    <span class="hljs-keyword">return</span> render_template(<span class="hljs-string">'toy.html'</span>)<br><br><br>WebSocketServer(<br>    (<span class="hljs-string">"192.168.1.2"</span>, <span class="hljs-number">8001</span>),<br><br>    Resource([<br>        (<span class="hljs-string">'^/sendone'</span>, ChatApplication),<br>        (<span class="hljs-string">'^/.*'</span>, DebuggedApplication(websocket))<br>    ]),<br><br>    debug=<span class="hljs-keyword">False</span><br>).serve_forever()<br></code></pre></div></td></tr></table></figure>
 <p><a href="https://zh.wikipedia.org/wiki/WebSocket" target="_blank" rel="noopener">WebSocket</a></p>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_servers" target="_blank" rel="noopener">Writing WebSocket servers</a></p>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket" target="_blank" rel="noopener"><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/API/WebSocket</a></a></p>
-</section>
-</article>
 
-<section class="card article-toc">
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#WebSocket-介绍"><span class="toc-text">WebSocket 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是-WebSocket"><span class="toc-text">什么是 WebSocket ?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-Python-scoket"><span class="toc-text">使用 Python scoket</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完整代码示例"><span class="toc-text">完整代码示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gevent-实现-websocker-demo-版本"><span class="toc-text">gevent 实现 websocker demo 版本</span></a></li></ol>
-</section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/04/10/python-协程-异步-爬虫对比/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">线程，协程对比和 Python 爬虫使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/12/01/浅显理解 Pyhton 中闭包/">
+                        <span class="hidden-mobile">浅显理解 Pyhton 中闭包</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-<section class="article slide-in-right">
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
 
-  <div class="loader" id="loader">
-    <svg viewBox="0 0 50 50">
-      <circle class="ring" cx="25" cy="25" r="20"></circle>
-      <circle class="ball" cx="25" cy="5" r="3.5"></circle>
-    </svg>
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
   </div>
+</div>
 
-  <div class="comment" id="utteranc"></div>
-  <noscript>为正常使用评论功能请激活 JavaScript</noscript>
-</section>
+<!-- Custom -->
 
-<a class="card back-to-top" id="backTop">&UpArrow;</a>
-
-</main>
 
     
 
-    <script>
-	window.COLD_STONE = {
-	  repo: "kinzun/kinzun.github.io",
-	  gaid: "xxxxxxxxxxxxxx"
-	}
-</script>
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
-<script src="/scripts/cold-stone.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
 
 
-  <script src="https://www.googletagmanager.com/gtag/js?id=xxxxxxxxxxxxxx"></script>
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
   <script>
-	window.dataLayer = window.dataLayer || []
-	function gtag() {
-		dataLayer.push(arguments)
-	}
-	gtag('js', new Date())
-	gtag('config', window.COLD_STONE.gaid)
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
   </script>
 
 
-  </body>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>

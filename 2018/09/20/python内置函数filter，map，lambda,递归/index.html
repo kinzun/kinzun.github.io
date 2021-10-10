@@ -1,50 +1,239 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="referrer" content="no-referrer">
-    <meta name="theme-color" content="#333333">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="google" content="notranslate">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="keyword"  content="">
-    <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
-    <title>python内置函数filter，map，lambda,递归 - kinzun</title>
-    <base href="/">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="shortcut icon" href="/icons/icon-72x72.png">
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    <link rel="stylesheet" href="/styles/sanitize.css">
-<link rel="stylesheet" href="/styles/cold-stone.css">
-    <noscript>
-      <p class="text-center">你的浏览器还没开启 Javascript 功能！</p>
-    </noscript>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
+  <meta name="author" content="kinzun">
+  <meta name="keywords" content>
+  <meta name="description" content="lambda匿名函数12345678# 计算n的n次⽅def func(n):   	return n**nprint(func(10))f = lambda n: n**nprint(f(10)) lambda表⽰的是匿名函数. 不需要⽤def来声明, ⼀句话就可以声明出⼀个函数 语法 = lambda 参数：返回值 注意：  函数的参数可以是多个，逗号隔开 匿名函数不管多复杂，只能写一行，逻辑">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python内置函数filter，map，lambda,递归">
+<meta property="og:url" content="https://kinzun.github.io/2018/09/20/python内置函数filter，map，lambda,递归/index.html">
+<meta property="og:site_name" content="kinzun">
+<meta property="og:description" content="lambda匿名函数12345678# 计算n的n次⽅def func(n):   	return n**nprint(func(10))f = lambda n: n**nprint(f(10)) lambda表⽰的是匿名函数. 不需要⽤def来声明, ⼀句话就可以声明出⼀个函数 语法 = lambda 参数：返回值 注意：  函数的参数可以是多个，逗号隔开 匿名函数不管多复杂，只能写一行，逻辑">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-16T01:55:34.261Z">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="python内置函数filter，map，lambda,递归">
+<meta name="twitter:description" content="lambda匿名函数12345678# 计算n的n次⽅def func(n):   	return n**nprint(func(10))f = lambda n: n**nprint(f(10)) lambda表⽰的是匿名函数. 不需要⽤def来声明, ⼀句话就可以声明出⼀个函数 语法 = lambda 参数：返回值 注意：  函数的参数可以是多个，逗号隔开 匿名函数不管多复杂，只能写一行，逻辑">
+  
+  <title>python内置函数filter，map，lambda,递归 - kinzun</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css">
+  <link rel="stylesheet" href="/lib/hint/hint.min.css">
+
+  
+    
+    
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css">
+    
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/color-schema.js"></script>
 </head>
 
-  <body>
-    
 
-    <main class="main wrapper"><article class="article slide-in-right">
-  <section>
-    <h1 class="article-title">
-      python内置函数filter，map，lambda,递归    </h1>
-    <p class="article-meta">
-      <span class="meta-info">
-        LastUpdate：2018-10-16 09:55:34
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>kinzun</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-          Tags：
           
-            <a class="meta-tag" href="/tags/#Python" title="Python">Python</a>
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
           
         
-      </span>
-      <a  class="meta-link" href="/">返回</a>
-    </p>
-  </section>
-  <section><h4 id="lambda匿名函数"><a href="#lambda匿名函数" class="headerlink" title="lambda匿名函数"></a>lambda匿名函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 计算n的n次⽅</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(n)</span>:</span>   </span><br><span class="line">	<span class="keyword">return</span> n**n</span><br><span class="line">print(func(<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f = <span class="keyword">lambda</span> n: n**n</span><br><span class="line">print(f(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="python内置函数filter，map，lambda,递归">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2018-09-20 16:24" pubdate>
+        2018年9月20日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">python内置函数filter，map，lambda,递归</h1>
+            
+            <div class="markdown-body">
+              <h4 id="lambda匿名函数"><a href="#lambda匿名函数" class="headerlink" title="lambda匿名函数"></a>lambda匿名函数</h4><figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 计算n的n次⽅</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(n)</span>:</span>   <br>	<span class="hljs-keyword">return</span> n**n<br>print(func(<span class="hljs-number">10</span>))<br><br><br>f = <span class="hljs-keyword">lambda</span> n: n**n<br>print(f(<span class="hljs-number">10</span>))<br></code></pre></div></td></tr></table></figure>
 <p>lambda表⽰的是匿名函数. 不需要⽤def来声明, ⼀句话就可以声明出⼀个函数</p>
 <p>语法 = lambda 参数：返回值</p>
 <p>注意：</p>
@@ -57,68 +246,226 @@
 <p>​    Iterable：可迭代对象</p>
 <p>​    key：排序规则（排序函数）sorted内部会将可迭代对象中每一个元素传递给一个参数，根据函数结果进行排序</p>
 <p>​    reverse ：是否是倒叙，reverse=True 倒叙 ，reverse=False 正序</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#自带的排序功能</span></span><br><span class="line">lst = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">78</span>,<span class="number">91</span>,<span class="number">14</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">lst.sort() <span class="comment"># lst自带的排序功能</span></span><br><span class="line">li = sorted(lst)</span><br><span class="line">print(li)</span><br><span class="line">lst = [<span class="string">"馒头"</span>,<span class="string">"包子"</span>,<span class="string">"欧阳大锤"</span>,<span class="string">"小笼包"</span>,<span class="string">"赵四"</span>,<span class="string">"刘能"</span>,<span class="string">"头"</span>]</span><br><span class="line">li = sorted(lst)</span><br><span class="line"></span><br><span class="line"><span class="comment">#结合函数进行排序</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(name)</span>:</span></span><br><span class="line">   <span class="keyword">return</span> len(name) <span class="comment"># 返回一个数字</span></span><br><span class="line"></span><br><span class="line">li = sorted(lst,key=func)</span><br><span class="line">print(li)</span><br><span class="line"><span class="comment">#结合lambda</span></span><br><span class="line">lst = [<span class="string">"馒头"</span>,<span class="string">"包子"</span>,<span class="string">"欧阳大锤"</span>,<span class="string">"小笼包"</span>,<span class="string">"赵四"</span>,<span class="string">"刘能"</span>,<span class="string">"头"</span>]</span><br><span class="line"></span><br><span class="line">li = sorted(lst,key=<span class="keyword">lambda</span> name:len(name)%<span class="number">3</span>)</span><br><span class="line">print(li)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">lst = [&#123;<span class="string">"id"</span>: <span class="number">1</span>, <span class="string">"name"</span>: <span class="string">'alex'</span>, <span class="string">"age"</span>: <span class="number">18</span>&#125;,</span><br><span class="line">      &#123;<span class="string">"id"</span>: <span class="number">2</span>, <span class="string">"name"</span>: <span class="string">'wusir'</span>, <span class="string">"age"</span>: <span class="number">16</span>&#125;,</span><br><span class="line">      &#123;<span class="string">"id"</span>: <span class="number">3</span>, <span class="string">"name"</span>: <span class="string">'taibai'</span>, <span class="string">"age"</span>: <span class="number">17</span>&#125;]</span><br><span class="line">按照年龄对学⽣信息进⾏排序</span><br><span class="line">print(lst[<span class="number">0</span>][<span class="string">"age"</span>])</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">age2</span><span class="params">(lst)</span>:</span></span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> range(len(lst)):</span><br><span class="line">      <span class="keyword">return</span> lst[i][<span class="string">"age"</span>]想</span><br><span class="line">li = sorted(lst,key=age2)</span><br><span class="line"></span><br><span class="line">print(li)<span class="comment">## </span></span><br><span class="line"></span><br><span class="line"><span class="comment">#流程:把迭代对象的每一项传递给函数,函数返回一个数字,根据这个数字完成排序</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#通过lambda</span></span><br><span class="line"></span><br><span class="line">li = sorted(lst,key=<span class="keyword">lambda</span> dic:dic[<span class="string">'age'</span>])</span><br><span class="line"></span><br><span class="line">li = sorted(lst,key=<span class="keyword">lambda</span> age2:age2[<span class="string">'age'</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> 按照年龄对学⽣信息进⾏排序</span><br><span class="line"><span class="comment"># def func(dic):</span></span><br><span class="line"><span class="comment">#     return dic['age']</span></span><br><span class="line"><span class="comment"># l2 = sorted(lst, key=func) # 流程: 把可迭代对象的每一项传递给函数. 函数返回一个数字. 根据这个数字完成排序</span></span><br><span class="line"><span class="comment"># print(l2)</span></span><br><span class="line"><span class="comment"># l3 = sorted(lst, key=lambda dic: dic['age'])</span></span><br><span class="line"><span class="comment"># l4 = sorted(lst, key=lambda dic: len(dic['name']))</span></span><br><span class="line"><span class="comment"># l4 = sorted(lst, key=lambda dic: ascii(dic['name'][0]))  # ord()</span></span><br><span class="line"><span class="comment"># print(l4)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br><span class="hljs-comment">#自带的排序功能</span><br>lst = [<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">78</span>,<span class="hljs-number">91</span>,<span class="hljs-number">14</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]<br>lst.sort() <span class="hljs-comment"># lst自带的排序功能</span><br>li = sorted(lst)<br>print(li)<br>lst = [<span class="hljs-string">"馒头"</span>,<span class="hljs-string">"包子"</span>,<span class="hljs-string">"欧阳大锤"</span>,<span class="hljs-string">"小笼包"</span>,<span class="hljs-string">"赵四"</span>,<span class="hljs-string">"刘能"</span>,<span class="hljs-string">"头"</span>]<br>li = sorted(lst)<br><br><span class="hljs-comment">#结合函数进行排序</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(name)</span>:</span><br>   <span class="hljs-keyword">return</span> len(name) <span class="hljs-comment"># 返回一个数字</span><br><br>li = sorted(lst,key=func)<br>print(li)<br><span class="hljs-comment">#结合lambda</span><br>lst = [<span class="hljs-string">"馒头"</span>,<span class="hljs-string">"包子"</span>,<span class="hljs-string">"欧阳大锤"</span>,<span class="hljs-string">"小笼包"</span>,<span class="hljs-string">"赵四"</span>,<span class="hljs-string">"刘能"</span>,<span class="hljs-string">"头"</span>]<br><br>li = sorted(lst,key=<span class="hljs-keyword">lambda</span> name:len(name)%<span class="hljs-number">3</span>)<br>print(li)<br><br><br><br>lst = [&#123;<span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>, <span class="hljs-string">"name"</span>: <span class="hljs-string">'alex'</span>, <span class="hljs-string">"age"</span>: <span class="hljs-number">18</span>&#125;,<br>      &#123;<span class="hljs-string">"id"</span>: <span class="hljs-number">2</span>, <span class="hljs-string">"name"</span>: <span class="hljs-string">'wusir'</span>, <span class="hljs-string">"age"</span>: <span class="hljs-number">16</span>&#125;,<br>      &#123;<span class="hljs-string">"id"</span>: <span class="hljs-number">3</span>, <span class="hljs-string">"name"</span>: <span class="hljs-string">'taibai'</span>, <span class="hljs-string">"age"</span>: <span class="hljs-number">17</span>&#125;]<br>按照年龄对学⽣信息进⾏排序<br>print(lst[<span class="hljs-number">0</span>][<span class="hljs-string">"age"</span>])<br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">age2</span><span class="hljs-params">(lst)</span>:</span><br>   <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(lst)):<br>      <span class="hljs-keyword">return</span> lst[i][<span class="hljs-string">"age"</span>]想<br>li = sorted(lst,key=age2)<br><br>print(li)<span class="hljs-comment">## </span><br><br><span class="hljs-comment">#流程:把迭代对象的每一项传递给函数,函数返回一个数字,根据这个数字完成排序</span><br><br><span class="hljs-comment">#通过lambda</span><br><br>li = sorted(lst,key=<span class="hljs-keyword">lambda</span> dic:dic[<span class="hljs-string">'age'</span>])<br><br>li = sorted(lst,key=<span class="hljs-keyword">lambda</span> age2:age2[<span class="hljs-string">'age'</span>])<br><br><br><br><br> 按照年龄对学⽣信息进⾏排序<br><span class="hljs-comment"># def func(dic):</span><br><span class="hljs-comment">#     return dic['age']</span><br><span class="hljs-comment"># l2 = sorted(lst, key=func) # 流程: 把可迭代对象的每一项传递给函数. 函数返回一个数字. 根据这个数字完成排序</span><br><span class="hljs-comment"># print(l2)</span><br><span class="hljs-comment"># l3 = sorted(lst, key=lambda dic: dic['age'])</span><br><span class="hljs-comment"># l4 = sorted(lst, key=lambda dic: len(dic['name']))</span><br><span class="hljs-comment"># l4 = sorted(lst, key=lambda dic: ascii(dic['name'][0]))  # ord()</span><br><span class="hljs-comment"># print(l4)</span><br></code></pre></div></td></tr></table></figure>
 <h4 id="filter-筛选函数"><a href="#filter-筛选函数" class="headerlink" title="filter()筛选函数"></a>filter()筛选函数</h4><p>语法：filter(funciton， Iterable)</p>
 <p>​    function:用来筛选的函数，filter会自动把iterable（可迭代对象）的元素传递给function，然后function返回True或False判断是否保留此项数据</p>
 <p>​    Iterabel：可迭代对象</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">lst = [<span class="number">23</span>,<span class="number">28</span>,<span class="number">15</span>,<span class="number">27</span>,<span class="number">25</span>,<span class="number">23</span>]</span><br><span class="line"><span class="comment">#通过函数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(age)</span>:</span></span><br><span class="line">   <span class="keyword">return</span> age &gt; <span class="number">18</span></span><br><span class="line">fu = filter(func,lst )</span><br><span class="line">print(lsit(fu))</span><br><span class="line"><span class="comment">#匿名函数</span></span><br><span class="line">f = filter(<span class="keyword">lambda</span> age:age&gt;<span class="number">18</span>,lst)</span><br><span class="line"></span><br><span class="line">print(f)<span class="comment">#&lt;filter object at 0x1099c5710&gt;</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"__iter__"</span> <span class="keyword">in</span> dir(f))</span><br><span class="line">print(f.__next__())</span><br><span class="line">print(f.__next__())</span><br><span class="line">print(f.__next__())</span><br><span class="line"><span class="keyword">for</span> el <span class="keyword">in</span> f:</span><br><span class="line">   print(el)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(age)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> age &gt; <span class="number">18</span> <span class="keyword">and</span> age %<span class="number">2</span> ==<span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f1 = filter(<span class="keyword">lambda</span> age:age&gt;<span class="number">18</span> <span class="keyword">and</span> age %<span class="number">2</span> ==<span class="number">0</span>,lst)</span><br><span class="line">print(sorted(f))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> f1:</span><br><span class="line">   print(i)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#筛选年龄大于等于17岁</span></span><br><span class="line">lst = [&#123;<span class="string">"id"</span>: <span class="number">1</span>, <span class="string">"name"</span>: <span class="string">'alex'</span>, <span class="string">"age"</span>: <span class="number">18</span>&#125;,</span><br><span class="line">       &#123;<span class="string">"id"</span>: <span class="number">2</span>, <span class="string">"name"</span>: <span class="string">'wusir'</span>, <span class="string">"age"</span>: <span class="number">16</span>&#125;,</span><br><span class="line">       &#123;<span class="string">"id"</span>: <span class="number">3</span>, <span class="string">"name"</span>: <span class="string">'taibai'</span>, <span class="string">"age"</span>: <span class="number">17</span>&#125;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f2= filter(<span class="keyword">lambda</span> dic:dic[<span class="string">"age"</span>] &gt;=<span class="number">17</span> ,lst)</span><br><span class="line">f2= filter(<span class="keyword">lambda</span> dic:dic[<span class="string">"age"</span>] &gt;=<span class="number">17</span> ,lst)</span><br><span class="line"></span><br><span class="line"><span class="comment">#for i in f2:</span></span><br><span class="line"><span class="comment">#       print(i)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># # 筛选出年龄大于等于17岁的人</span></span><br><span class="line">print(list(sorted(filter(<span class="keyword">lambda</span> dic: dic[<span class="string">'age'</span>] &gt;= <span class="number">17</span>, lst), key=<span class="keyword">lambda</span> dic: dic[<span class="string">'age'</span>]))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br>lst = [<span class="hljs-number">23</span>,<span class="hljs-number">28</span>,<span class="hljs-number">15</span>,<span class="hljs-number">27</span>,<span class="hljs-number">25</span>,<span class="hljs-number">23</span>]<br><span class="hljs-comment">#通过函数</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(age)</span>:</span><br>   <span class="hljs-keyword">return</span> age &gt; <span class="hljs-number">18</span><br>fu = filter(func,lst )<br>print(lsit(fu))<br><span class="hljs-comment">#匿名函数</span><br>f = filter(<span class="hljs-keyword">lambda</span> age:age&gt;<span class="hljs-number">18</span>,lst)<br><br>print(f)<span class="hljs-comment">#&lt;filter object at 0x1099c5710&gt;</span><br><br>print(<span class="hljs-string">"__iter__"</span> <span class="hljs-keyword">in</span> dir(f))<br>print(f.__next__())<br>print(f.__next__())<br>print(f.__next__())<br><span class="hljs-keyword">for</span> el <span class="hljs-keyword">in</span> f:<br>   print(el)<br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(age)</span>:</span><br>    <span class="hljs-keyword">return</span> age &gt; <span class="hljs-number">18</span> <span class="hljs-keyword">and</span> age %<span class="hljs-number">2</span> ==<span class="hljs-number">0</span><br><br><br>f1 = filter(<span class="hljs-keyword">lambda</span> age:age&gt;<span class="hljs-number">18</span> <span class="hljs-keyword">and</span> age %<span class="hljs-number">2</span> ==<span class="hljs-number">0</span>,lst)<br>print(sorted(f))<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> f1:<br>   print(i)<br><br><br><br><br><span class="hljs-comment">#筛选年龄大于等于17岁</span><br>lst = [&#123;<span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>, <span class="hljs-string">"name"</span>: <span class="hljs-string">'alex'</span>, <span class="hljs-string">"age"</span>: <span class="hljs-number">18</span>&#125;,<br>       &#123;<span class="hljs-string">"id"</span>: <span class="hljs-number">2</span>, <span class="hljs-string">"name"</span>: <span class="hljs-string">'wusir'</span>, <span class="hljs-string">"age"</span>: <span class="hljs-number">16</span>&#125;,<br>       &#123;<span class="hljs-string">"id"</span>: <span class="hljs-number">3</span>, <span class="hljs-string">"name"</span>: <span class="hljs-string">'taibai'</span>, <span class="hljs-string">"age"</span>: <span class="hljs-number">17</span>&#125;]<br><br><br>f2= filter(<span class="hljs-keyword">lambda</span> dic:dic[<span class="hljs-string">"age"</span>] &gt;=<span class="hljs-number">17</span> ,lst)<br>f2= filter(<span class="hljs-keyword">lambda</span> dic:dic[<span class="hljs-string">"age"</span>] &gt;=<span class="hljs-number">17</span> ,lst)<br><br><span class="hljs-comment">#for i in f2:</span><br><span class="hljs-comment">#       print(i)</span><br><br><span class="hljs-comment"># # 筛选出年龄大于等于17岁的人</span><br>print(list(sorted(filter(<span class="hljs-keyword">lambda</span> dic: dic[<span class="hljs-string">'age'</span>] &gt;= <span class="hljs-number">17</span>, lst), key=<span class="hljs-keyword">lambda</span> dic: dic[<span class="hljs-string">'age'</span>]))<br></code></pre></div></td></tr></table></figure>
 <h4 id="map-映射函数"><a href="#map-映射函数" class="headerlink" title="map()映射函数"></a>map()映射函数</h4><p>​    语法:map(funtction,iterable) 可以对每一个元素依次只想function（item)，执行结果组成一个list返回</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">lst = [<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">9</span>]</span><br><span class="line">ll = [i*i <span class="keyword">for</span> i <span class="keyword">in</span> lst]</span><br><span class="line">print(ll)</span><br><span class="line">m = map(<span class="keyword">lambda</span> x:x**<span class="number">2</span>,lst) <span class="comment">#m = map(lambda x:x*x,lst)</span></span><br><span class="line">print(list(m))</span><br><span class="line"></span><br><span class="line">lst = [<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">9</span>]</span><br><span class="line">ll = [i*i <span class="keyword">for</span> i <span class="keyword">in</span> lst]</span><br><span class="line">print(ll)</span><br><span class="line"></span><br><span class="line">ll2 = map(<span class="keyword">lambda</span> x:x*x,lst)</span><br><span class="line">print(list(ll2))</span><br><span class="line"></span><br><span class="line"><span class="comment">#另外map也支持多个sequence，这就要求function也支持相应数量的参数输入：</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x, y)</span>:</span> <span class="keyword">return</span> x+y</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>map(add, range(<span class="number">8</span>), range(<span class="number">8</span>))</span><br><span class="line">[<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">14</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算两个列表相同位置的数据的和</span></span><br><span class="line">lst1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">lst2 = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>]</span><br><span class="line">print(list(map(<span class="keyword">lambda</span> x,y:x+y,lst1,lst2)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br>lst = [<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">9</span>]<br>ll = [i*i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> lst]<br>print(ll)<br>m = map(<span class="hljs-keyword">lambda</span> x:x**<span class="hljs-number">2</span>,lst) <span class="hljs-comment">#m = map(lambda x:x*x,lst)</span><br>print(list(m))<br><br>lst = [<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">9</span>]<br>ll = [i*i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> lst]<br>print(ll)<br><br>ll2 = map(<span class="hljs-keyword">lambda</span> x:x*x,lst)<br>print(list(ll2))<br><br><span class="hljs-comment">#另外map也支持多个sequence，这就要求function也支持相应数量的参数输入：</span><br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add</span><span class="hljs-params">(x, y)</span>:</span> <span class="hljs-keyword">return</span> x+y<br><span class="hljs-meta">&gt;&gt;&gt; </span>map(add, range(<span class="hljs-number">8</span>), range(<span class="hljs-number">8</span>))<br>[<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>, <span class="hljs-number">10</span>, <span class="hljs-number">12</span>, <span class="hljs-number">14</span>]<br><br><span class="hljs-comment"># 计算两个列表相同位置的数据的和</span><br>lst1 = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]<br>lst2 = [<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>,<span class="hljs-number">8</span>,<span class="hljs-number">10</span>]<br>print(list(map(<span class="hljs-keyword">lambda</span> x,y:x+y,lst1,lst2)))<br></code></pre></div></td></tr></table></figure>
 <h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><p>在函数中调⽤函数本⾝. 就是递归</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span>     </span><br><span class="line">	print(<span class="string">"我是谁"</span>)     </span><br><span class="line">	func() </span><br><span class="line">func()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">()</span>:</span>     <br>	print(<span class="hljs-string">"我是谁"</span>)     <br>	func() <br>func()<br></code></pre></div></td></tr></table></figure>
 <p>在python中递归的深度最⼤到998 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(n)</span>:</span>     </span><br><span class="line">	print(n)     </span><br><span class="line">	n += <span class="number">1</span>     </span><br><span class="line">	foo(n) </span><br><span class="line">foo(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span><span class="hljs-params">(n)</span>:</span>     <br>	print(n)     <br>	n += <span class="hljs-number">1</span>     <br>	foo(n) <br>foo(<span class="hljs-number">1</span>)<br></code></pre></div></td></tr></table></figure>
 <p>递归的应⽤:<br>我们可以使⽤递归来遍历各种树形结构, 比如我们的⽂件夹系统. 可以使⽤递归来遍历该⽂件夹中的所有⽂件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(file_path,ceng)</span>:</span></span><br><span class="line">    lst = os.listdir(file_path) <span class="comment">#获取到当前⽂件夹中的所有⽂件</span></span><br><span class="line">    <span class="keyword">for</span> file <span class="keyword">in</span> lst: <span class="comment">#获取到当前⽂件夹中的所有⽂件</span></span><br><span class="line">        full_path = os.path.join(file_path,file) <span class="comment"># 加⼊⽂件夹 获取到⽂件夹+⽂件</span></span><br><span class="line">        <span class="keyword">if</span> os.path.isdir(full_path): <span class="comment"># 如果该路径下的⽂件是⽂件</span></span><br><span class="line">            print(<span class="string">"\t"</span>*ceng,file)</span><br><span class="line">            func(full_path,ceng +<span class="number">1</span>) <span class="comment"># 继续进⾏相同的操作</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"\t"</span>*ceng,file) <span class="comment"># 递归出⼝. 最终在这⾥隐含着return</span></span><br><span class="line"><span class="comment">#递归遍历⽬录下所有⽂件read('../oldboy/', 0)</span></span><br><span class="line">func(<span class="string">"./"</span>,<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br><span class="hljs-keyword">import</span> os<br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(file_path,ceng)</span>:</span><br>    lst = os.listdir(file_path) <span class="hljs-comment">#获取到当前⽂件夹中的所有⽂件</span><br>    <span class="hljs-keyword">for</span> file <span class="hljs-keyword">in</span> lst: <span class="hljs-comment">#获取到当前⽂件夹中的所有⽂件</span><br>        full_path = os.path.join(file_path,file) <span class="hljs-comment"># 加⼊⽂件夹 获取到⽂件夹+⽂件</span><br>        <span class="hljs-keyword">if</span> os.path.isdir(full_path): <span class="hljs-comment"># 如果该路径下的⽂件是⽂件</span><br>            print(<span class="hljs-string">"\t"</span>*ceng,file)<br>            func(full_path,ceng +<span class="hljs-number">1</span>) <span class="hljs-comment"># 继续进⾏相同的操作</span><br>        <span class="hljs-keyword">else</span>:<br>            print(<span class="hljs-string">"\t"</span>*ceng,file) <span class="hljs-comment"># 递归出⼝. 最终在这⾥隐含着return</span><br><span class="hljs-comment">#递归遍历⽬录下所有⽂件read('../oldboy/', 0)</span><br>func(<span class="hljs-string">"./"</span>,<span class="hljs-number">0</span>)<br></code></pre></div></td></tr></table></figure>
 <h4 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h4><p>···</p>
-</section>
-</article>
 
-<section class="card article-toc">
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#lambda匿名函数"><span class="toc-text">lambda匿名函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sorted-排序函数"><span class="toc-text">sorted()排序函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#filter-筛选函数"><span class="toc-text">filter()筛选函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#map-映射函数"><span class="toc-text">map()映射函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#递归"><span class="toc-text">递归</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二分查找"><span class="toc-text">二分查找</span></a></li></ol>
-</section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/09/26/python-base速写/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python base 速写</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/09/17/深浅拷贝/">
+                        <span class="hidden-mobile">Python 深浅拷贝</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-<section class="article slide-in-right">
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
 
-  <div class="loader" id="loader">
-    <svg viewBox="0 0 50 50">
-      <circle class="ring" cx="25" cy="25" r="20"></circle>
-      <circle class="ball" cx="25" cy="5" r="3.5"></circle>
-    </svg>
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
   </div>
+</div>
 
-  <div class="comment" id="utteranc"></div>
-  <noscript>为正常使用评论功能请激活 JavaScript</noscript>
-</section>
+<!-- Custom -->
 
-<a class="card back-to-top" id="backTop">&UpArrow;</a>
-
-</main>
 
     
 
-    <script>
-	window.COLD_STONE = {
-	  repo: "kinzun/kinzun.github.io",
-	  gaid: "xxxxxxxxxxxxxx"
-	}
-</script>
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
-<script src="/scripts/cold-stone.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
 
 
-  <script src="https://www.googletagmanager.com/gtag/js?id=xxxxxxxxxxxxxx"></script>
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
   <script>
-	window.dataLayer = window.dataLayer || []
-	function gtag() {
-		dataLayer.push(arguments)
-	}
-	gtag('js', new Date())
-	gtag('config', window.COLD_STONE.gaid)
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
   </script>
 
 
-  </body>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>

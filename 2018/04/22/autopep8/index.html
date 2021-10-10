@@ -1,63 +1,254 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="referrer" content="no-referrer">
-    <meta name="theme-color" content="#333333">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="google" content="notranslate">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="keyword"  content="">
-    <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
-    <title>在mac下pycharm配置autopep8 - kinzun</title>
-    <base href="/">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="shortcut icon" href="/icons/icon-72x72.png">
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    <link rel="stylesheet" href="/styles/sanitize.css">
-<link rel="stylesheet" href="/styles/cold-stone.css">
-    <noscript>
-      <p class="text-center">你的浏览器还没开启 Javascript 功能！</p>
-    </noscript>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
+  <meta name="author" content="kinzun">
+  <meta name="keywords" content>
+  <meta name="description" content="关于PEP 8PEP 8，Style Guide for Python Code，是Python官方推出的Python编码风格的约定，虽然这不是硬性的规定，但是如果Python程序员都尽量遵循这个文档，那么编码风格的统一会让代码的可读性大大提升。 在Pycharm里边默认也是有进行PEP8的检测，强迫症的人表示，看到代码中有黄色波浪线，就一定得先改好它。 关于autopep8autopep8官网的">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在mac下pycharm配置autopep8">
+<meta property="og:url" content="https://kinzun.github.io/2018/04/22/autopep8/index.html">
+<meta property="og:site_name" content="kinzun">
+<meta property="og:description" content="关于PEP 8PEP 8，Style Guide for Python Code，是Python官方推出的Python编码风格的约定，虽然这不是硬性的规定，但是如果Python程序员都尽量遵循这个文档，那么编码风格的统一会让代码的可读性大大提升。 在Pycharm里边默认也是有进行PEP8的检测，强迫症的人表示，看到代码中有黄色波浪线，就一定得先改好它。 关于autopep8autopep8官网的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://kinzun.github.io/images/python/pycharmautopep8.png">
+<meta property="og:updated_time" content="2018-10-12T12:22:52.233Z">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="在mac下pycharm配置autopep8">
+<meta name="twitter:description" content="关于PEP 8PEP 8，Style Guide for Python Code，是Python官方推出的Python编码风格的约定，虽然这不是硬性的规定，但是如果Python程序员都尽量遵循这个文档，那么编码风格的统一会让代码的可读性大大提升。 在Pycharm里边默认也是有进行PEP8的检测，强迫症的人表示，看到代码中有黄色波浪线，就一定得先改好它。 关于autopep8autopep8官网的">
+<meta name="twitter:image" content="https://kinzun.github.io/images/python/pycharmautopep8.png">
+  
+  <title>在mac下pycharm配置autopep8 - kinzun</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css">
+  <link rel="stylesheet" href="/lib/hint/hint.min.css">
+
+  
+    
+    
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css">
+    
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/color-schema.js"></script>
 </head>
 
-  <body>
-    
 
-    <main class="main wrapper"><article class="article slide-in-right">
-  <section>
-    <h1 class="article-title">
-      在mac下pycharm配置autopep8    </h1>
-    <p class="article-meta">
-      <span class="meta-info">
-        LastUpdate：2018-10-12 20:22:52
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>kinzun</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-          Tags：
           
-            <a class="meta-tag" href="/tags/#Python" title="Python">Python</a>
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
           
         
-      </span>
-      <a  class="meta-link" href="/">返回</a>
-    </p>
-  </section>
-  <section><h3 id="关于PEP-8"><a href="#关于PEP-8" class="headerlink" title="关于PEP 8"></a>关于PEP 8</h3><p><a href="https://www.python.org/dev/peps/pep-0008/" target="_blank" rel="noopener">PEP 8</a>，Style Guide for Python Code，是Python官方推出的Python编码风格的约定，虽然这不是硬性的规定，但是如果Python程序员都尽量遵循这个文档，那么编码风格的统一会让代码的可读性大大提升。</p>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="在mac下pycharm配置autopep8">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2018-04-22 08:38" pubdate>
+        2018年4月22日 早上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      7 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">在mac下pycharm配置autopep8</h1>
+            
+            <div class="markdown-body">
+              <h3 id="关于PEP-8"><a href="#关于PEP-8" class="headerlink" title="关于PEP 8"></a>关于PEP 8</h3><p><a href="https://www.python.org/dev/peps/pep-0008/" target="_blank" rel="noopener">PEP 8</a>，Style Guide for Python Code，是Python官方推出的Python编码风格的约定，虽然这不是硬性的规定，但是如果Python程序员都尽量遵循这个文档，那么编码风格的统一会让代码的可读性大大提升。</p>
 <p>在Pycharm里边默认也是有进行PEP8的检测，强迫症的人表示，看到代码中有黄色波浪线，就一定得先改好它。</p>
 <h3 id="关于autopep8"><a href="#关于autopep8" class="headerlink" title="关于autopep8"></a>关于autopep8</h3><p><a href="https://github.com/hhatto/autopep8#installation" target="_blank" rel="noopener">autopep8官网</a>的描述是：</p>
 <blockquote>
 <p>autopep8 automatically formats Python code to conform to the PEP 8 style guide. It uses the pep8 utility to determine what parts of the code needs to be formatted. autopep8 is capable of fixing most of the formatting issues that can be reported by pep8.</p>
 </blockquote>
 <p>通过它，可以修复大部分PEP8工具中报告的代码排版问题。举个官网的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def example1():</span><br><span class="line">    ####This is a long comment. This should be wrapped to fit within 72 characters.</span><br><span class="line">    some_tuple=(   1,2, 3,&apos;a&apos;  );</span><br><span class="line">    some_variable=&#123;&apos;long&apos;:&apos;Long code lines should be wrapped within 79 characters.&apos;,</span><br><span class="line">    &apos;other&apos;:[math.pi, 100,200,300,9876543210,&apos;This is a long string that goes on&apos;],</span><br><span class="line">    &apos;more&apos;:&#123;&apos;inner&apos;:&apos;This whole logical line should be wrapped.&apos;,some_tuple:[1,</span><br><span class="line">    20,300,40000,500000000,60000000000000000]&#125;&#125;</span><br><span class="line">    return (some_tuple, some_variable)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">example1</span><span class="hljs-params">()</span>:</span><br>    <span class="hljs-comment">####This is a long comment. This should be wrapped to fit within 72 characters.</span><br>    some_tuple=(   <span class="hljs-number">1</span>,<span class="hljs-number">2</span>, <span class="hljs-number">3</span>,<span class="hljs-string">'a'</span>  );<br>    some_variable=&#123;<span class="hljs-string">'long'</span>:<span class="hljs-string">'Long code lines should be wrapped within 79 characters.'</span>,<br>    <span class="hljs-string">'other'</span>:[math.pi, <span class="hljs-number">100</span>,<span class="hljs-number">200</span>,<span class="hljs-number">300</span>,<span class="hljs-number">9876543210</span>,<span class="hljs-string">'This is a long string that goes on'</span>],<br>    <span class="hljs-string">'more'</span>:&#123;<span class="hljs-string">'inner'</span>:<span class="hljs-string">'This whole logical line should be wrapped.'</span>,some_tuple:[<span class="hljs-number">1</span>,<br>    <span class="hljs-number">20</span>,<span class="hljs-number">300</span>,<span class="hljs-number">40000</span>,<span class="hljs-number">500000000</span>,<span class="hljs-number">60000000000000000</span>]&#125;&#125;<br>    <span class="hljs-keyword">return</span> (some_tuple, some_variable)<br></code></pre></div></td></tr></table></figure>
 <p>这是一个比较极端情况的例子，在使用了autopep8自动修复后：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def example1():</span><br><span class="line">    # This is a long comment. This should be wrapped to fit within 72 characters.</span><br><span class="line">    some_tuple = (1, 2, 3, &apos;a&apos;)</span><br><span class="line">    some_variable = &#123;&apos;long&apos;: &apos;Long code lines should be wrapped within 79 characters.&apos;,</span><br><span class="line">                     &apos;other&apos;: [math.pi, 100, 200, 300, 9876543210, &apos;This is a long string that goes on&apos;],</span><br><span class="line">                     &apos;more&apos;: &#123;&apos;inner&apos;: &apos;This whole logical line should be wrapped.&apos;, some_tuple: [1,</span><br><span class="line">                                                                                                  20, 300, 40000, 500000000, 60000000000000000]&#125;&#125;</span><br><span class="line">    return (some_tuple, some_variable)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">example1</span><span class="hljs-params">()</span>:</span><br>    <span class="hljs-comment"># This is a long comment. This should be wrapped to fit within 72 characters.</span><br>    some_tuple = (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-string">'a'</span>)<br>    some_variable = &#123;<span class="hljs-string">'long'</span>: <span class="hljs-string">'Long code lines should be wrapped within 79 characters.'</span>,<br>                     <span class="hljs-string">'other'</span>: [math.pi, <span class="hljs-number">100</span>, <span class="hljs-number">200</span>, <span class="hljs-number">300</span>, <span class="hljs-number">9876543210</span>, <span class="hljs-string">'This is a long string that goes on'</span>],<br>                     <span class="hljs-string">'more'</span>: &#123;<span class="hljs-string">'inner'</span>: <span class="hljs-string">'This whole logical line should be wrapped.'</span>, some_tuple: [<span class="hljs-number">1</span>,<br>                                                                                                  <span class="hljs-number">20</span>, <span class="hljs-number">300</span>, <span class="hljs-number">40000</span>, <span class="hljs-number">500000000</span>, <span class="hljs-number">60000000000000000</span>]&#125;&#125;<br>    <span class="hljs-keyword">return</span> (some_tuple, some_variable)<br></code></pre></div></td></tr></table></figure>
 <p>是不是看起来焕然一新了？</p>
-<h3 id="Pycharm中使用autopep8作为扩展工具"><a href="#Pycharm中使用autopep8作为扩展工具" class="headerlink" title="Pycharm中使用autopep8作为扩展工具"></a>Pycharm中使用autopep8作为扩展工具</h3><h4 id="安装autopep8"><a href="#安装autopep8" class="headerlink" title="安装autopep8"></a>安装autopep8</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install autopep8</span><br></pre></td></tr></table></figure>
-<h4 id="Pycharm进行设置"><a href="#Pycharm进行设置" class="headerlink" title="Pycharm进行设置"></a>Pycharm进行设置</h4><p><img src="/images/python/pycharmautopep8.png" alt="pycharmautopep8"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mac 在终端如何进入名称带空格的目录</span><br><span class="line"></span><br><span class="line">后来找到原因，是因为要对空格转义或者输入“ ”或‘ ’，方案如下：</span><br><span class="line"></span><br><span class="line">        <span class="number">1.</span> cd Appications/Android\Studio.app/sdk </span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> cd Appications/Android<span class="string">' '</span>Studio.app/sdk</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> cd Appications/Android<span class="string">" "</span>Studio.app/sdk</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">采取以上任意方式，都能进入目录！</span><br></pre></td></tr></table></figure>
+<h3 id="Pycharm中使用autopep8作为扩展工具"><a href="#Pycharm中使用autopep8作为扩展工具" class="headerlink" title="Pycharm中使用autopep8作为扩展工具"></a>Pycharm中使用autopep8作为扩展工具</h3><h4 id="安装autopep8"><a href="#安装autopep8" class="headerlink" title="安装autopep8"></a>安装autopep8</h4><figure class="highlight cmake"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">pip <span class="hljs-keyword">install</span> autopep8<br></code></pre></div></td></tr></table></figure>
+<h4 id="Pycharm进行设置"><a href="#Pycharm进行设置" class="headerlink" title="Pycharm进行设置"></a>Pycharm进行设置</h4><p><img src="/images/python/pycharmautopep8.png" srcset="/img/loading.gif" lazyload alt="pycharmautopep8"></p>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python">mac 在终端如何进入名称带空格的目录<br><br>后来找到原因，是因为要对空格转义或者输入“ ”或‘ ’，方案如下：<br><br>        <span class="hljs-number">1.</span> cd Appications/Android\Studio.app/sdk <br><br><span class="hljs-number">2.</span> cd Appications/Android<span class="hljs-string">' '</span>Studio.app/sdk<br><br><span class="hljs-number">3.</span> cd Appications/Android<span class="hljs-string">" "</span>Studio.app/sdk<br><br><br><br>采取以上任意方式，都能进入目录！<br></code></pre></div></td></tr></table></figure>
 <p><strong>注意</strong> mac系统中，在图片变量位置加上双<code>“ ”</code> </p>
 <ul>
 <li>Settings–&gt;Tools–&gt;External Tools 点击添加按钮<ul>
@@ -85,54 +276,212 @@
 <p><a href="http://jianbing.github.io/2016/06/29/pycharm-autopep8/" target="_blank" rel="noopener">via</a></p>
 <p><a href="https://github.com/hscgavin/autopep8-on-pycharm#autopep8-on-pycharm" target="_blank" rel="noopener">github</a></p>
 <p><a href="https://github.com/hhatto/autopep8#installation" target="_blank" rel="noopener">autopep8</a></p>
-</section>
-</article>
 
-<section class="card article-toc">
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于PEP-8"><span class="toc-text">关于PEP 8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于autopep8"><span class="toc-text">关于autopep8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pycharm中使用autopep8作为扩展工具"><span class="toc-text">Pycharm中使用autopep8作为扩展工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装autopep8"><span class="toc-text">安装autopep8</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Pycharm进行设置"><span class="toc-text">Pycharm进行设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实际使用"><span class="toc-text">实际使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#autopep8的一些设置点"><span class="toc-text">autopep8的一些设置点</span></a></li></ol>
-</section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/05/20/Docker_cheat_sheet/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Docker Cheat Sheet</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2017/06/12/redisde/">
+                        <span class="hidden-mobile">部署高可用的Redis集群架构</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-<section class="article slide-in-right">
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
 
-  <div class="loader" id="loader">
-    <svg viewBox="0 0 50 50">
-      <circle class="ring" cx="25" cy="25" r="20"></circle>
-      <circle class="ball" cx="25" cy="5" r="3.5"></circle>
-    </svg>
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
   </div>
+</div>
 
-  <div class="comment" id="utteranc"></div>
-  <noscript>为正常使用评论功能请激活 JavaScript</noscript>
-</section>
+<!-- Custom -->
 
-<a class="card back-to-top" id="backTop">&UpArrow;</a>
-
-</main>
 
     
 
-    <script>
-	window.COLD_STONE = {
-	  repo: "kinzun/kinzun.github.io",
-	  gaid: "xxxxxxxxxxxxxx"
-	}
-</script>
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
-<script src="/scripts/cold-stone.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
 
 
-  <script src="https://www.googletagmanager.com/gtag/js?id=xxxxxxxxxxxxxx"></script>
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
   <script>
-	window.dataLayer = window.dataLayer || []
-	function gtag() {
-		dataLayer.push(arguments)
-	}
-	gtag('js', new Date())
-	gtag('config', window.COLD_STONE.gaid)
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
   </script>
 
 
-  </body>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>

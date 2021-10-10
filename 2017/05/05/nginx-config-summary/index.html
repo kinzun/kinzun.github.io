@@ -1,110 +1,460 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="referrer" content="no-referrer">
-    <meta name="theme-color" content="#333333">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="google" content="notranslate">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="keyword"  content="">
-    <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
-    <title>Nginx 配置文件总结 - kinzun</title>
-    <base href="/">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="shortcut icon" href="/icons/icon-72x72.png">
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    <link rel="stylesheet" href="/styles/sanitize.css">
-<link rel="stylesheet" href="/styles/cold-stone.css">
-    <noscript>
-      <p class="text-center">你的浏览器还没开启 Javascript 功能！</p>
-    </noscript>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="顶级配置1234567891011121314#定义 Nginx 运行的用户和用户组user nginx;#进程文件pid /var/run/nginx.pid;#错误日志位置和级别，debug、info、notice、warn、error、criterror_log  /var/log/nginx/error.log warn;#Nginx worker 的进程数，一般可设置为可用的CPU内核数">
+  <meta name="author" content="kinzun">
+  <meta name="keywords" content>
+  <meta name="description" content="顶级配置1234567891011121314#定义 Nginx 运行的用户和用户组user nginx;#进程文件pid /var/run/nginx.pid;#错误日志位置和级别，debug、info、notice、warn、error、criterror_log  /var/log/nginx/error.log warn;#Nginx worker 的进程数，一般可设置为可用的CPU内核数">
+<meta name="keywords" content="Nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx 配置文件总结">
+<meta property="og:url" content="https://kinzun.github.io/2017/05/05/nginx-config-summary/index.html">
+<meta property="og:site_name" content="kinzun">
+<meta property="og:description" content="顶级配置1234567891011121314#定义 Nginx 运行的用户和用户组user nginx;#进程文件pid /var/run/nginx.pid;#错误日志位置和级别，debug、info、notice、warn、error、criterror_log  /var/log/nginx/error.log warn;#Nginx worker 的进程数，一般可设置为可用的CPU内核数">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-04T08:12:40.000Z">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nginx 配置文件总结">
+<meta name="twitter:description" content="顶级配置1234567891011121314#定义 Nginx 运行的用户和用户组user nginx;#进程文件pid /var/run/nginx.pid;#错误日志位置和级别，debug、info、notice、warn、error、criterror_log  /var/log/nginx/error.log warn;#Nginx worker 的进程数，一般可设置为可用的CPU内核数">
+  
+  <title>Nginx 配置文件总结 - kinzun</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css">
+  <link rel="stylesheet" href="/lib/hint/hint.min.css">
+
+  
+    
+    
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css">
+    
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/color-schema.js"></script>
 </head>
 
-  <body>
-    
 
-    <main class="main wrapper"><article class="article slide-in-right">
-  <section>
-    <h1 class="article-title">
-      Nginx 配置文件总结    </h1>
-    <p class="article-meta">
-      <span class="meta-info">
-        LastUpdate：2018-10-04 16:12:40
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>kinzun</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-          Tags：
           
-            <a class="meta-tag" href="/tags/#Nginx" title="Nginx">Nginx</a>
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
           
         
-      </span>
-      <a  class="meta-link" href="/">返回</a>
-    </p>
-  </section>
-  <section><p>修改系统文件打开数量限制：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sh -c ulimit -HSn 65535 //临时修改</span><br></pre></td></tr></table></figure>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Nginx 配置文件总结">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2017-05-05 12:22" pubdate>
+        2017年5月5日 中午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      16 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Nginx 配置文件总结</h1>
+            
+            <div class="markdown-body">
+              <h4 id="顶级配置"><a href="#顶级配置" class="headerlink" title="顶级配置"></a>顶级配置</h4><figure class="highlight routeros"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-comment">#定义 Nginx 运行的用户和用户组</span><span class="hljs-built_in"><br>user </span>nginx;<br><br><span class="hljs-comment">#进程文件</span><br>pid /var/run/nginx.pid;<br><br><span class="hljs-comment">#错误日志位置和级别，debug、info、notice、warn、error、crit</span><br>error_log  /var/log/nginx/error.log warn;<br><br><span class="hljs-comment">#Nginx worker 的进程数，一般可设置为可用的CPU内核数。</span><br>worker_processes 8;<br><br><span class="hljs-comment">#每个 worker 打开文件描述符的最大数量限制。理论值应该是最多打开文件数（系统的值ulimit -n）与 nginx 进程数相除，但是 nginx 分配请求并不均匀，所以建议与ulimit -n的值保持一致。</span><br>worker_rlimit_nofile 65535;<br></code></pre></div></td></tr></table></figure>
+<a id="more"></a>
+<p>修改系统文件打开数量限制：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">sudo sh -c ulimit -HSn <span class="hljs-number">65535</span> <span class="hljs-comment">//临时修改</span><br></code></pre></div></td></tr></table></figure>
 <p>重启后永久生效，则需要设置修改：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/security/limits.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">sudo <span class="hljs-keyword">vim</span> /etc/security/limits.<span class="hljs-keyword">conf</span><br></code></pre></div></td></tr></table></figure>
 <p>在文件尾部添加：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* soft nofile 200000</span><br><span class="line">* hard nofile 200000</span><br></pre></td></tr></table></figure>
-<h4 id="Events-模块"><a href="#Events-模块" class="headerlink" title="Events 模块"></a>Events 模块</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">events &#123;</span><br><span class="line">    #设置一个worker进程同时打开的最大连接数</span><br><span class="line">    worker_connections 2048;</span><br><span class="line"></span><br><span class="line">    #告诉nginx收到一个新连接通知后接受尽可能多的连接</span><br><span class="line">    multi_accept on;</span><br><span class="line"></span><br><span class="line">    #设置用于复用客户端线程的轮询方法。如果你使用Linux 2.6+，你应该使用epoll。如果你使用*BSD，你应该使用kqueue。</span><br><span class="line">    use epoll;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="HTTP-模块"><a href="#HTTP-模块" class="headerlink" title="HTTP 模块"></a>HTTP 模块</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    #隐藏 Nginx 的版本号，提高安全性。</span><br><span class="line">    server_tokens off;</span><br><span class="line"></span><br><span class="line">    #开启高效文件传输模式，sendfile 指令指定 Nginx 是否调用sendfile 函数来输出文件，对于普通应用设为 on，如果用来进行下载等应用磁盘 IO 重负载应用，可设置为 off，以平衡磁盘与网络 I/O 处理速度，降低系统的负载。</span><br><span class="line">    sendfile on;</span><br><span class="line"></span><br><span class="line">    #是否开启目录列表访问，默认关闭。</span><br><span class="line">    autoindex off;</span><br><span class="line"></span><br><span class="line">    #告诉 Nginx 在一个数据包里发送所有头文件，而不一个接一个的发送</span><br><span class="line">    tcp_nopush on;</span><br><span class="line"></span><br><span class="line">    #告诉 Nginx 不要缓存数据，而是一段一段的发送--当需要及时发送数据时，就应该给应用设置这个属性，这样发送一小块数据信息时就不能立即得到返回值。Nginx 默认会始终工作在 tcp nopush 状态下。但是当开启前面的 sendfile on; 时，它的工作特点是 nopush 的最后一个包会自动转转换到 nopush off。为了减小那200ms的延迟，开启 nodelay on; 将其很快传送出去。结论就是 sendfile on; 开启时，tcp_nopush 和 tcp_nodelay 都是on 是可以的。</span><br><span class="line">    tcp_nodelay on;</span><br><span class="line"></span><br><span class="line">    #日志格式设定</span><br><span class="line">    log_format  main  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</span><br><span class="line">    &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</span><br><span class="line">    &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;</span><br><span class="line">    #定义访问日志，设置为 off 可以关闭日志，提高性能</span><br><span class="line">    access_log /var/log/nginx/access.log main;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    #连接超时时间，单位是秒</span><br><span class="line">    keepalive_timeout 120;</span><br><span class="line"></span><br><span class="line">    #读取HTTP头部的超时时间，默认值 60。客户端与服务器建立连接后将开始接收HTTP头部，在这个过程中，如果在一个时间间隔（超时时间）内没有读取到客户端发来的字节，则认为超时，并向客户端返回408 (&quot;Request timed out&quot;)响应。</span><br><span class="line">    client_header_timeout 60;</span><br><span class="line"></span><br><span class="line">    #默认值 60。与client_header_timeout相似，只是这个超时时间只在读取HTTP包体时才有效。</span><br><span class="line">    client_body_timeout 10;</span><br><span class="line"></span><br><span class="line">    #发送响应的超时时间，默认值 60。即Nginx服务器向客户端发送了数据包，但客户端一直没有去接收这个数据包。如果某个连接超过send_timeout定义的超时时间，那么Nginx将会关闭这个连接。</span><br><span class="line">    send_timeout 60;</span><br><span class="line"></span><br><span class="line">    #连接超时后将通过向客户端发送RST包来直接重置连接。这个选项打开后，Nginx会在某个连接超时后，不是使用正常情形下的四次握手关闭TCP连接，而是直接向用户发送RST重置包，不再等待用户的应答，直接释放Nginx服务器上关于这个套接字使用的所有缓存（如TCP滑动窗口）。相比正常的关闭方式，它使得服务器避免产生许多处于FIN_WAIT_1、FIN_WAIT_2、TIME_WAIT状态的TCP连接。注意，使用RST重置包关闭连接会带来一些问题，默认情况下不会开启。</span><br><span class="line">    reset_timedout_connection off;</span><br><span class="line"></span><br><span class="line">    #要限制连接，必须先有一个容器对连接进行计数，&quot;zone=&quot; 是给它一个名字，可以随便叫，这个名字要跟下面的 limit_conn 一致。$binary_remote_addr 用二进制来储存客户端的地址，1m 可以储存 32000 个并发会话。</span><br><span class="line">    limit_conn_zone $binary_remote_addr zone=addr:5m;</span><br><span class="line"></span><br><span class="line">    #给定的key设置最大连接数。这里key是addr，我们设置的值是100，也就是说我们允许每一个IP地址最多同时打开有100个连接。</span><br><span class="line">    limit_conn addr 100;</span><br><span class="line"></span><br><span class="line">    #对每个连接限速100k。这如果一个IP允许两个并发连接，那么这个IP就是限速200K。</span><br><span class="line">    limit_rate 100k; </span><br><span class="line"></span><br><span class="line">    #include 是一个在当前文件中包含另一个文件内容的指令。这里我们使用它来加载文件扩展名与文件类型映射表。nginx根据映射关系，设置http请求响应头的Content-Type值。当在映射表找不到时，使用nginx.conf中default-type指定的默认值。</span><br><span class="line">    include /etc/nginx/mime.types;</span><br><span class="line"></span><br><span class="line">    #设置文件使用的默认的MIME-type</span><br><span class="line">    default_type text/html;</span><br><span class="line"></span><br><span class="line">    #默认编码</span><br><span class="line">    charset UTF-8;</span><br><span class="line"></span><br><span class="line">    #该模块可以读取预先压缩的gz文件，这样可以减少每次请求进行gzip压缩的CPU资源消耗。该模块启用后，nginx首先检查是否存在请求静态文件的gz结尾的文件，如果有则直接返回该gz文件内容。</span><br><span class="line">    gzip_static off;  </span><br><span class="line"></span><br><span class="line">    #开启 gzip 压缩。</span><br><span class="line">    gzip on;</span><br><span class="line"></span><br><span class="line">    # 禁用客户端为 IE6 时的 gzip功能。</span><br><span class="line">    gzip_disable &quot;msie6&quot;;</span><br><span class="line"></span><br><span class="line">    #Nginx做为反向代理的时候启用。可选值：off|expired|no-cache|no-sotre|private|no_last_modified|no_etag|auth|any</span><br><span class="line">    gzip_proxied any;</span><br><span class="line"></span><br><span class="line">    #设置允许压缩的页面最小字节数，页面字节数从header头中的Content-Length中进行获取。建议设置成大于1k的字节数，小于1k可能会越压越大。</span><br><span class="line">    gzip_min_length 1024;</span><br><span class="line"></span><br><span class="line">    #设置数据的压缩等级。这个等级可以是1-9之间的任意数值，9是最慢但是压缩比最大的。</span><br><span class="line">    gzip_comp_level 5;</span><br><span class="line"></span><br><span class="line">    #设置系统获取几个单位的缓存用于存储gzip的压缩结果数据流。 例如 4 4k 代表以4k为单位，按照原始数据大小以4k为单位的4倍申请内存。如果没有设置，默认值是申请跟原始数据相同大小的内存空间去存储gzip压缩结果。</span><br><span class="line">    gzip_buffers 4 16k;</span><br><span class="line"></span><br><span class="line">    #设置需要压缩的数据格式。Nginx默认只对text/html进行压缩。</span><br><span class="line">    gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;</span><br><span class="line"></span><br><span class="line">    #为打开文件指定缓存，默认是没有启用的，max 指定缓存数量，建议和打开文件数一致，inactive 是指经过多长时间文件没被请求后删除缓存。</span><br><span class="line">    open_file_cache max=65535 inactive=30s;</span><br><span class="line"></span><br><span class="line">    #多长时间检查一次缓存的有效信息</span><br><span class="line">    open_file_cache_valid 30s;</span><br><span class="line"></span><br><span class="line">    #open_file_cache指令中的inactive参数时间内文件的最少使用次数，如果超过这个数字，文件描述符一直是在缓存中打开的。出现 Last-Modified 不变的情况，就是因为当nginx对一个静态文件缓存后，如果30s内还在访问它，那么它的缓存就一直存在，直到30s内你不访问了为止。</span><br><span class="line">    open_file_cache_min_uses 2;</span><br><span class="line">    #是否记录cache错误</span><br><span class="line">    open_file_cache_errors on;</span><br><span class="line"></span><br><span class="line">    include /etc/nginx/conf.d/*.conf;</span><br><span class="line">    include /etc/nginx/sites-enabled/*;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="SERVER-模块"><a href="#SERVER-模块" class="headerlink" title="SERVER 模块"></a>SERVER 模块</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    #监听端口，nginx 会根据请求的 HOST 来决定使用哪个 SERVER 段的配置。如果没有匹配的 server_name，则默认使用配置文件中第一个。加上 default_server 则可以以指定没有匹配时的默认规则。</span><br><span class="line">    #listen 80;</span><br><span class="line">    listen 80 default_server;</span><br><span class="line"></span><br><span class="line">    #域名可以有多个，用空格隔开</span><br><span class="line">    server_name www.test.com test.com;</span><br><span class="line">    root /user/share/nginx/html/test;</span><br><span class="line"></span><br><span class="line">    #404页面配置</span><br><span class="line">    error_page   404   /404.html;</span><br><span class="line"></span><br><span class="line">    #配置 ssl，有需要时开启。</span><br><span class="line">    ssl on;</span><br><span class="line">    ssl_certificate /etc/nginx/ssl/server.crt;</span><br><span class="line">    ssl_certificate_key /etc/nginx/ssl/server.key;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        index   index.html index.php;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #图片缓存时间设置</span><br><span class="line">    location ~ .*.(gif|jpg|jpeg|png|bmp|swf)$ &#123;</span><br><span class="line">        expires 10d;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #JS和CSS缓存时间设置</span><br><span class="line">    location ~ .*.(js|css)?$ &#123;</span><br><span class="line">        expires 1h;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ [^/]\.php(/|$) &#123;</span><br><span class="line">        fastcgi_index   index.php;</span><br><span class="line">        #开启 PATH_INFO 支持，作用就是把参数按照给定的正则表达式分割成 $fastcgi_script_name 和 $fastcgi_path_info。</span><br><span class="line">        #例如：请求 index.php/id/1 不加此行配置时，fastcgi_script_name 是 /index.php/id/1，fastcgi_path_info 是空。</span><br><span class="line">        #加上之后，fastcgi_script_name 是 index.php，fastcgi_path_info 是 /id/1</span><br><span class="line">        fastcgi_split_path_info ^(.+\.php)(.*)$;</span><br><span class="line"></span><br><span class="line">        #此值即是 PHP 中 $_SERVER[&apos;SCRIPT_FILENAME&apos;] 的值</span><br><span class="line">        fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">        fastcgi_param   PATH_INFO               $fastcgi_path_info;</span><br><span class="line">        fastcgi_param   PATH_TRANSLATED $document_root$fastcgi_path_info;</span><br><span class="line"></span><br><span class="line">        #指定FastCGI服务器监听端口与地址。须和 PHP-FPM 的设置相同。</span><br><span class="line">        #fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">        fastcgi_pass    unix:/var/run/php5-fpm.sock;</span><br><span class="line">        include fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight asciidoc"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-bullet">* </span>soft nofile 200000<br><span class="hljs-bullet">* </span>hard nofile 200000<br></code></pre></div></td></tr></table></figure>
+<h4 id="Events-模块"><a href="#Events-模块" class="headerlink" title="Events 模块"></a>Events 模块</h4><figure class="highlight nginx"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-section">events</span> &#123;<br>    <span class="hljs-comment">#设置一个worker进程同时打开的最大连接数</span><br>    <span class="hljs-attribute">worker_connections</span> <span class="hljs-number">2048</span>;<br><br>    <span class="hljs-comment">#告诉nginx收到一个新连接通知后接受尽可能多的连接</span><br>    <span class="hljs-attribute">multi_accept</span> <span class="hljs-literal">on</span>;<br><br>    <span class="hljs-comment">#设置用于复用客户端线程的轮询方法。如果你使用Linux 2.6+，你应该使用epoll。如果你使用*BSD，你应该使用kqueue。</span><br>    <span class="hljs-attribute">use</span> <span class="hljs-literal">epoll</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<h4 id="HTTP-模块"><a href="#HTTP-模块" class="headerlink" title="HTTP 模块"></a>HTTP 模块</h4><figure class="highlight nginx"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-section">http</span> &#123;<br>    <span class="hljs-comment">#隐藏 Nginx 的版本号，提高安全性。</span><br>    <span class="hljs-attribute">server_tokens</span> <span class="hljs-literal">off</span>;<br><br>    <span class="hljs-comment">#开启高效文件传输模式，sendfile 指令指定 Nginx 是否调用sendfile 函数来输出文件，对于普通应用设为 on，如果用来进行下载等应用磁盘 IO 重负载应用，可设置为 off，以平衡磁盘与网络 I/O 处理速度，降低系统的负载。</span><br>    <span class="hljs-attribute">sendfile</span> <span class="hljs-literal">on</span>;<br><br>    <span class="hljs-comment">#是否开启目录列表访问，默认关闭。</span><br>    <span class="hljs-attribute">autoindex</span> <span class="hljs-literal">off</span>;<br><br>    <span class="hljs-comment">#告诉 Nginx 在一个数据包里发送所有头文件，而不一个接一个的发送</span><br>    <span class="hljs-attribute">tcp_nopush</span> <span class="hljs-literal">on</span>;<br><br>    <span class="hljs-comment">#告诉 Nginx 不要缓存数据，而是一段一段的发送--当需要及时发送数据时，就应该给应用设置这个属性，这样发送一小块数据信息时就不能立即得到返回值。Nginx 默认会始终工作在 tcp nopush 状态下。但是当开启前面的 sendfile on; 时，它的工作特点是 nopush 的最后一个包会自动转转换到 nopush off。为了减小那200ms的延迟，开启 nodelay on; 将其很快传送出去。结论就是 sendfile on; 开启时，tcp_nopush 和 tcp_nodelay 都是on 是可以的。</span><br>    <span class="hljs-attribute">tcp_nodelay</span> <span class="hljs-literal">on</span>;<br><br>    <span class="hljs-comment">#日志格式设定</span><br>    <span class="hljs-attribute">log_format</span>  main  <span class="hljs-string">'<span class="hljs-variable">$remote_addr</span> - <span class="hljs-variable">$remote_user</span> [<span class="hljs-variable">$time_local</span>] "<span class="hljs-variable">$request</span>" '</span><br>    <span class="hljs-string">'<span class="hljs-variable">$status</span> <span class="hljs-variable">$body_bytes_sent</span> "<span class="hljs-variable">$http_referer</span>" '</span><br>    <span class="hljs-string">'"<span class="hljs-variable">$http_user_agent</span>" "<span class="hljs-variable">$http_x_forwarded_for</span>"'</span>;<br>    <span class="hljs-comment">#定义访问日志，设置为 off 可以关闭日志，提高性能</span><br>    <span class="hljs-attribute">access_log</span> /var/log/nginx/access.log main;<br><br><br>    <span class="hljs-comment">#连接超时时间，单位是秒</span><br>    <span class="hljs-attribute">keepalive_timeout</span> <span class="hljs-number">120</span>;<br><br>    <span class="hljs-comment">#读取HTTP头部的超时时间，默认值 60。客户端与服务器建立连接后将开始接收HTTP头部，在这个过程中，如果在一个时间间隔（超时时间）内没有读取到客户端发来的字节，则认为超时，并向客户端返回408 ("Request timed out")响应。</span><br>    <span class="hljs-attribute">client_header_timeout</span> <span class="hljs-number">60</span>;<br><br>    <span class="hljs-comment">#默认值 60。与client_header_timeout相似，只是这个超时时间只在读取HTTP包体时才有效。</span><br>    <span class="hljs-attribute">client_body_timeout</span> <span class="hljs-number">10</span>;<br><br>    <span class="hljs-comment">#发送响应的超时时间，默认值 60。即Nginx服务器向客户端发送了数据包，但客户端一直没有去接收这个数据包。如果某个连接超过send_timeout定义的超时时间，那么Nginx将会关闭这个连接。</span><br>    <span class="hljs-attribute">send_timeout</span> <span class="hljs-number">60</span>;<br><br>    <span class="hljs-comment">#连接超时后将通过向客户端发送RST包来直接重置连接。这个选项打开后，Nginx会在某个连接超时后，不是使用正常情形下的四次握手关闭TCP连接，而是直接向用户发送RST重置包，不再等待用户的应答，直接释放Nginx服务器上关于这个套接字使用的所有缓存（如TCP滑动窗口）。相比正常的关闭方式，它使得服务器避免产生许多处于FIN_WAIT_1、FIN_WAIT_2、TIME_WAIT状态的TCP连接。注意，使用RST重置包关闭连接会带来一些问题，默认情况下不会开启。</span><br>    <span class="hljs-attribute">reset_timedout_connection</span> <span class="hljs-literal">off</span>;<br><br>    <span class="hljs-comment">#要限制连接，必须先有一个容器对连接进行计数，"zone=" 是给它一个名字，可以随便叫，这个名字要跟下面的 limit_conn 一致。$binary_remote_addr 用二进制来储存客户端的地址，1m 可以储存 32000 个并发会话。</span><br>    <span class="hljs-attribute">limit_conn_zone</span> <span class="hljs-variable">$binary_remote_addr</span> zone=addr:<span class="hljs-number">5m</span>;<br><br>    <span class="hljs-comment">#给定的key设置最大连接数。这里key是addr，我们设置的值是100，也就是说我们允许每一个IP地址最多同时打开有100个连接。</span><br>    <span class="hljs-attribute">limit_conn</span> addr <span class="hljs-number">100</span>;<br><br>    <span class="hljs-comment">#对每个连接限速100k。这如果一个IP允许两个并发连接，那么这个IP就是限速200K。</span><br>    <span class="hljs-attribute">limit_rate</span> <span class="hljs-number">100k</span>; <br><br>    <span class="hljs-comment">#include 是一个在当前文件中包含另一个文件内容的指令。这里我们使用它来加载文件扩展名与文件类型映射表。nginx根据映射关系，设置http请求响应头的Content-Type值。当在映射表找不到时，使用nginx.conf中default-type指定的默认值。</span><br>    <span class="hljs-attribute">include</span> /etc/nginx/mime.types;<br><br>    <span class="hljs-comment">#设置文件使用的默认的MIME-type</span><br>    <span class="hljs-attribute">default_type</span> text/html;<br><br>    <span class="hljs-comment">#默认编码</span><br>    <span class="hljs-attribute">charset</span> UTF-<span class="hljs-number">8</span>;<br><br>    <span class="hljs-comment">#该模块可以读取预先压缩的gz文件，这样可以减少每次请求进行gzip压缩的CPU资源消耗。该模块启用后，nginx首先检查是否存在请求静态文件的gz结尾的文件，如果有则直接返回该gz文件内容。</span><br>    <span class="hljs-attribute">gzip_static</span> <span class="hljs-literal">off</span>;  <br><br>    <span class="hljs-comment">#开启 gzip 压缩。</span><br>    <span class="hljs-attribute">gzip</span> <span class="hljs-literal">on</span>;<br><br>    <span class="hljs-comment"># 禁用客户端为 IE6 时的 gzip功能。</span><br>    <span class="hljs-attribute">gzip_disable</span> <span class="hljs-string">"msie6"</span>;<br><br>    <span class="hljs-comment">#Nginx做为反向代理的时候启用。可选值：off|expired|no-cache|no-sotre|private|no_last_modified|no_etag|auth|any</span><br>    <span class="hljs-attribute">gzip_proxied</span> any;<br><br>    <span class="hljs-comment">#设置允许压缩的页面最小字节数，页面字节数从header头中的Content-Length中进行获取。建议设置成大于1k的字节数，小于1k可能会越压越大。</span><br>    <span class="hljs-attribute">gzip_min_length</span> <span class="hljs-number">1024</span>;<br><br>    <span class="hljs-comment">#设置数据的压缩等级。这个等级可以是1-9之间的任意数值，9是最慢但是压缩比最大的。</span><br>    <span class="hljs-attribute">gzip_comp_level</span> <span class="hljs-number">5</span>;<br><br>    <span class="hljs-comment">#设置系统获取几个单位的缓存用于存储gzip的压缩结果数据流。 例如 4 4k 代表以4k为单位，按照原始数据大小以4k为单位的4倍申请内存。如果没有设置，默认值是申请跟原始数据相同大小的内存空间去存储gzip压缩结果。</span><br>    <span class="hljs-attribute">gzip_buffers</span> <span class="hljs-number">4</span> <span class="hljs-number">16k</span>;<br><br>    <span class="hljs-comment">#设置需要压缩的数据格式。Nginx默认只对text/html进行压缩。</span><br>    <span class="hljs-attribute">gzip_types</span> text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;<br><br>    <span class="hljs-comment">#为打开文件指定缓存，默认是没有启用的，max 指定缓存数量，建议和打开文件数一致，inactive 是指经过多长时间文件没被请求后删除缓存。</span><br>    <span class="hljs-attribute">open_file_cache</span> max=<span class="hljs-number">65535</span> inactive=<span class="hljs-number">30s</span>;<br><br>    <span class="hljs-comment">#多长时间检查一次缓存的有效信息</span><br>    <span class="hljs-attribute">open_file_cache_valid</span> <span class="hljs-number">30s</span>;<br><br>    <span class="hljs-comment">#open_file_cache指令中的inactive参数时间内文件的最少使用次数，如果超过这个数字，文件描述符一直是在缓存中打开的。出现 Last-Modified 不变的情况，就是因为当nginx对一个静态文件缓存后，如果30s内还在访问它，那么它的缓存就一直存在，直到30s内你不访问了为止。</span><br>    <span class="hljs-attribute">open_file_cache_min_uses</span> <span class="hljs-number">2</span>;<br>    <span class="hljs-comment">#是否记录cache错误</span><br>    <span class="hljs-attribute">open_file_cache_errors</span> <span class="hljs-literal">on</span>;<br><br>    <span class="hljs-attribute">include</span> /etc/nginx/conf.d/<span class="hljs-regexp">*.conf</span>;<br>    <span class="hljs-attribute">include</span> /etc/nginx/sites-enabled/*;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<h4 id="SERVER-模块"><a href="#SERVER-模块" class="headerlink" title="SERVER 模块"></a>SERVER 模块</h4><figure class="highlight nginx"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-section">server</span> &#123;<br>    <span class="hljs-comment">#监听端口，nginx 会根据请求的 HOST 来决定使用哪个 SERVER 段的配置。如果没有匹配的 server_name，则默认使用配置文件中第一个。加上 default_server 则可以以指定没有匹配时的默认规则。</span><br>    <span class="hljs-comment">#listen 80;</span><br>    <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span> default_server;<br><br>    <span class="hljs-comment">#域名可以有多个，用空格隔开</span><br>    <span class="hljs-attribute">server_name</span> www.test.com test.com;<br>    <span class="hljs-attribute">root</span> /user/share/nginx/html/test;<br><br>    <span class="hljs-comment">#404页面配置</span><br>    <span class="hljs-attribute">error_page</span>   <span class="hljs-number">404</span>   /<span class="hljs-number">404</span>.html;<br><br>    <span class="hljs-comment">#配置 ssl，有需要时开启。</span><br>    <span class="hljs-attribute">ssl</span> <span class="hljs-literal">on</span>;<br>    <span class="hljs-attribute">ssl_certificate</span> /etc/nginx/ssl/server.crt;<br>    <span class="hljs-attribute">ssl_certificate_key</span> /etc/nginx/ssl/server.key;<br><br>    <span class="hljs-attribute">location</span> / &#123;<br>        <span class="hljs-attribute">index</span>   index.html index.php;<br>    &#125;<br><br>    <span class="hljs-comment">#图片缓存时间设置</span><br>    <span class="hljs-attribute">location</span> <span class="hljs-regexp">~ .*.(gif|jpg|jpeg|png|bmp|swf)$</span> &#123;<br>        <span class="hljs-attribute">expires</span> <span class="hljs-number">10d</span>;<br>    &#125;<br><br>    <span class="hljs-comment">#JS和CSS缓存时间设置</span><br>    <span class="hljs-attribute">location</span> <span class="hljs-regexp">~ .*.(js|css)?$</span> &#123;<br>        <span class="hljs-attribute">expires</span> <span class="hljs-number">1h</span>;<br>    &#125;<br><br>    <span class="hljs-attribute">location</span> <span class="hljs-regexp">~ [^/]\.php(/|$)</span> &#123;<br>        <span class="hljs-attribute">fastcgi_index</span>   index.php;<br>        <span class="hljs-comment">#开启 PATH_INFO 支持，作用就是把参数按照给定的正则表达式分割成 $fastcgi_script_name 和 $fastcgi_path_info。</span><br>        <span class="hljs-comment">#例如：请求 index.php/id/1 不加此行配置时，fastcgi_script_name 是 /index.php/id/1，fastcgi_path_info 是空。</span><br>        <span class="hljs-comment">#加上之后，fastcgi_script_name 是 index.php，fastcgi_path_info 是 /id/1</span><br>        <span class="hljs-attribute">fastcgi_split_path_info</span><span class="hljs-regexp"> ^(.+\.php)(.*)$</span>;<br><br>        <span class="hljs-comment">#此值即是 PHP 中 $_SERVER['SCRIPT_FILENAME'] 的值</span><br>        <span class="hljs-attribute">fastcgi_param</span>   SCRIPT_FILENAME <span class="hljs-variable">$document_root</span><span class="hljs-variable">$fastcgi_script_name</span>;<br>        <span class="hljs-attribute">fastcgi_param</span>   PATH_INFO               <span class="hljs-variable">$fastcgi_path_info</span>;<br>        <span class="hljs-attribute">fastcgi_param</span>   PATH_TRANSLATED <span class="hljs-variable">$document_root</span><span class="hljs-variable">$fastcgi_path_info</span>;<br><br>        <span class="hljs-comment">#指定FastCGI服务器监听端口与地址。须和 PHP-FPM 的设置相同。</span><br>        <span class="hljs-comment">#fastcgi_pass   127.0.0.1:9000;</span><br>        <span class="hljs-attribute">fastcgi_pass</span>    unix:/var/run/php5-fpm.sock;<br>        <span class="hljs-attribute">include</span> fastcgi_params;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
 <h4 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h4><ul>
 <li><a href="http://nginx.org/en/docs/" target="_blank" rel="noopener">http://nginx.org/en/docs/</a></li>
 <li><a href="http://www.oschina.net/translate/nginx-setup" target="_blank" rel="noopener">http://www.oschina.net/translate/nginx-setup</a></li>
 <li><a href="http://www.ha97.com/5194.html" target="_blank" rel="noopener">http://www.ha97.com/5194.html</a></li>
-</ul></section>
-</article>
+</ul>
 
-<section class="card article-toc">
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Events-模块"><span class="toc-text">Events 模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-模块"><span class="toc-text">HTTP 模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SERVER-模块"><span class="toc-text">SERVER 模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考资料："><span class="toc-text">参考资料：</span></a></li></ol>
-</section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Nginx/">Nginx</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2017/05/16/keepalived/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Keeplaived 高可用nginx负载均衡</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2017/05/04/NginxInstall-and-config/">
+                        <span class="hidden-mobile">Nginx 服务器安装及配置文件详解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-<section class="article slide-in-right">
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
 
-  <div class="loader" id="loader">
-    <svg viewBox="0 0 50 50">
-      <circle class="ring" cx="25" cy="25" r="20"></circle>
-      <circle class="ball" cx="25" cy="5" r="3.5"></circle>
-    </svg>
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
   </div>
+</div>
 
-  <div class="comment" id="utteranc"></div>
-  <noscript>为正常使用评论功能请激活 JavaScript</noscript>
-</section>
+<!-- Custom -->
 
-<a class="card back-to-top" id="backTop">&UpArrow;</a>
-
-</main>
 
     
 
-    <script>
-	window.COLD_STONE = {
-	  repo: "kinzun/kinzun.github.io",
-	  gaid: "xxxxxxxxxxxxxx"
-	}
-</script>
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
-<script src="/scripts/cold-stone.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
 
 
-  <script src="https://www.googletagmanager.com/gtag/js?id=xxxxxxxxxxxxxx"></script>
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
   <script>
-	window.dataLayer = window.dataLayer || []
-	function gtag() {
-		dataLayer.push(arguments)
-	}
-	gtag('js', new Date())
-	gtag('config', window.COLD_STONE.gaid)
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
   </script>
 
 
-  </body>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>

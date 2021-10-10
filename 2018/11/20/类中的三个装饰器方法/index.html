@@ -1,51 +1,240 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="referrer" content="no-referrer">
-    <meta name="theme-color" content="#333333">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="google" content="notranslate">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="keyword"  content="">
-    <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
-    <title>Python类中装饰器classmethod,staticmethod,property, - kinzun</title>
-    <base href="/">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="shortcut icon" href="/icons/icon-72x72.png">
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    <link rel="stylesheet" href="/styles/sanitize.css">
-<link rel="stylesheet" href="/styles/cold-stone.css">
-    <noscript>
-      <p class="text-center">你的浏览器还没开启 Javascript 功能！</p>
-    </noscript>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
+  <meta name="author" content="kinzun">
+  <meta name="keywords" content>
+  <meta name="description" content="@classmethod 有的时候在类中会有一种情况，就是这个方法并不需要使用每一个对象属性 因此 这个方法中的self参数一个完全无用的参数，使用classmethod 1234567891011121314151617181920212223242526272829303132333435class A:    __count = 0  # 隐藏类count属性    def __init__">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python类中装饰器classmethod,staticmethod,property,">
+<meta property="og:url" content="https://kinzun.github.io/2018/11/20/类中的三个装饰器方法/index.html">
+<meta property="og:site_name" content="kinzun">
+<meta property="og:description" content="@classmethod 有的时候在类中会有一种情况，就是这个方法并不需要使用每一个对象属性 因此 这个方法中的self参数一个完全无用的参数，使用classmethod 1234567891011121314151617181920212223242526272829303132333435class A:    __count = 0  # 隐藏类count属性    def __init__">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-22T03:30:08.350Z">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Python类中装饰器classmethod,staticmethod,property,">
+<meta name="twitter:description" content="@classmethod 有的时候在类中会有一种情况，就是这个方法并不需要使用每一个对象属性 因此 这个方法中的self参数一个完全无用的参数，使用classmethod 1234567891011121314151617181920212223242526272829303132333435class A:    __count = 0  # 隐藏类count属性    def __init__">
+  
+  <title>Python类中装饰器classmethod,staticmethod,property, - kinzun</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css">
+  <link rel="stylesheet" href="/lib/hint/hint.min.css">
+
+  
+    
+    
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css">
+    
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/color-schema.js"></script>
 </head>
 
-  <body>
-    
 
-    <main class="main wrapper"><article class="article slide-in-right">
-  <section>
-    <h1 class="article-title">
-      Python类中装饰器classmethod,staticmethod,property,    </h1>
-    <p class="article-meta">
-      <span class="meta-info">
-        LastUpdate：2019-01-22 11:30:08
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>kinzun</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-          Tags：
           
-            <a class="meta-tag" href="/tags/#Python" title="Python">Python</a>
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
           
         
-      </span>
-      <a  class="meta-link" href="/">返回</a>
-    </p>
-  </section>
-  <section><h2 id="classmethod"><a href="#classmethod" class="headerlink" title="@classmethod"></a><code>@classmethod</code></h2><p> 有的时候在类中会有一种情况，就是这个方法并不需要使用<strong>每一个对象属性</strong><br> 因此 这个方法中的<code>self</code>参数一个完全<strong>无用</strong>的参数，使用<code>classmethod</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    __count = <span class="number">0</span>  <span class="comment"># 隐藏类count属性</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.__add_count()  <span class="comment"># 每一次实例化的时候掉</span></span><br><span class="line">        <span class="comment"># 用私有方法来对__count 进行累加</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__add_count</span><span class="params">(cls)</span>:</span>  <span class="comment"># 定义一个私有方法</span></span><br><span class="line">        print(cls, A)</span><br><span class="line">        A.__count += <span class="number">1</span>  <span class="comment"># 让这个方法只能在类的内部被使用</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">show_count</span><span class="params">(cls)</span>:</span>  <span class="comment"># 被classmethod 装饰去的方法，</span></span><br><span class="line">        print(cls.__count)</span><br><span class="line">        <span class="keyword">return</span> A.__count  <span class="comment"># 让用户可以从外部查看__count的值</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">show_count_self</span><span class="params">(self)</span>:</span>  <span class="comment"># 定义一个普通方法</span></span><br><span class="line">        <span class="comment"># print(self.__count)</span></span><br><span class="line">        print(self)</span><br><span class="line">        <span class="comment"># print('_____')</span></span><br><span class="line">        <span class="comment"># print(self.show_count(),'fogogo')</span></span><br><span class="line">        <span class="comment"># return A.__count  # 让用户可以从外部查看__count的值</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># show_count 是一个查看类中属性的方法，这样的方法和某一个对象并没有直接联系        </span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">obj = A(<span class="string">'baozi'</span>)</span><br><span class="line">print(A._A__add_count) <span class="comment"># </span></span><br><span class="line"><span class="comment"># 执行结果</span></span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">__main__</span>.<span class="title">A</span>'&gt; &lt;<span class="title">class</span> '<span class="title">__main__</span>.<span class="title">A</span>'&gt;</span></span><br><span class="line"><span class="class">&lt;<span class="title">bound</span> <span class="title">method</span> <span class="title">A</span>.<span class="title">__add_count</span> <span class="title">of</span> &lt;<span class="title">class</span> '<span class="title">__main__</span>.<span class="title">A</span>'&gt;&gt;</span></span><br></pre></td></tr></table></figure>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Python类中装饰器classmethod,staticmethod,property,">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2018-11-20 10:30" pubdate>
+        2018年11月20日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.1k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      10 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Python类中装饰器classmethod,staticmethod,property,</h1>
+            
+            <div class="markdown-body">
+              <h2 id="classmethod"><a href="#classmethod" class="headerlink" title="@classmethod"></a><code>@classmethod</code></h2><p> 有的时候在类中会有一种情况，就是这个方法并不需要使用<strong>每一个对象属性</strong><br> 因此 这个方法中的<code>self</code>参数一个完全<strong>无用</strong>的参数，使用<code>classmethod</code></p>
+<figure class="highlight"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python">class A:<br>    __count = 0  # 隐藏类count属性<br><br>    def __init__(self, name):<br>        self.name = name<br>        self.__add_count()  # 每一次实例化的时候掉<br>        # 用私有方法来对__count 进行累加<br><br>    @classmethod<br>    def __add_count(cls):  # 定义一个私有方法<br>        print(cls, A)<br>        A.__count += 1  # 让这个方法只能在类的内部被使用<br><br>    @classmethod<br>    def show_count(cls):  # 被classmethod 装饰去的方法，<br>        print(cls.__count)<br>        return A.__count  # 让用户可以从外部查看__count的值<br><br>    def show_count_self(self):  # 定义一个普通方法<br>        # print(self.__count)<br>        print(self)<br>        # print('_____')<br>        # print(self.show_count(),'fogogo')<br>        # return A.__count  # 让用户可以从外部查看__count的值<br><br><br># show_count 是一个查看类中属性的方法，这样的方法和某一个对象并没有直接联系        <br>        <br><br><br>obj = A('baozi')<br>print(A._A__add_count) # <br># 执行结果<br>&lt;class '__main__.A'&gt; &lt;class '__main__.A'&gt;<br>&lt;bound method A.__add_count of &lt;class '__main__.A'&gt;&gt;<br></code></pre></div></td></tr></table></figure>
 <p>本质上 : </p>
 <p><code>@classmethod</code></p>
 <p>一个方法不用<strong>对象属性</strong>但是使用<strong>静态属性</strong> – 类方法<code>@classmethod</code><br>某一个方法被创造出来,就是为了进行对<strong>静态变量</strong>进行操作</p>
@@ -53,7 +242,7 @@
 <p>根本不涉及到对象,所以这个方法就应该被定义成 <strong>类方法</strong>(被<code>@classmethod</code>装饰)<br>调用这个类方法,可以使用<strong>对象调用,</strong>也可以使用<strong>类调用</strong><br>但是这个方法的默认参数永远是当前类的命名空间,而不是对象的</p>
 <h2 id="staticmethod"><a href="#staticmethod" class="headerlink" title="@staticmethod"></a><code>@staticmethod</code></h2><p>如果一个类中的<strong>方法</strong>不用 <strong>对象属性</strong> 也不用 <strong>静态属性</strong> – <strong>静态方法</strong><code>@staticmethod</code></p>
 <p>那实际上这个方法就是一个普通的函数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(arg1, arg2)</span>:</span><span class="comment">#是User类中的名字函数的名字login就是一个类中的静态方法,本质上就是一个函数</span></span><br><span class="line">        <span class="keyword">return</span> (arg1 + arg2)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'----&gt;show'</span>)</span><br><span class="line">        print(<span class="string">'---self--'</span>,self.login(<span class="number">1</span>, <span class="number">3</span>))</span><br><span class="line">        print(<span class="string">'class--'</span>,User.login(<span class="number">123</span>, <span class="number">31</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(User.login(<span class="number">1</span>,<span class="number">2</span>)) <span class="comment">## 不需要实例化，当函数使用</span></span><br><span class="line">print(User().show())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行结果</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span></span><br><span class="line">----&gt;show</span><br><span class="line">---self-- <span class="number">4</span></span><br><span class="line"><span class="class"><span class="keyword">class</span>-- 154</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br>class User(object):<br><br>    @staticmethod<br>    def login(arg1, arg2):#是User类中的名字函数的名字login就是一个类中的静态方法,本质上就是一个函数<br>        return (arg1 + arg2)<br><br><br>    def show(self):<br>        print('----&gt;show')<br>        print('---self--',self.login(1, 3))<br>        print('class--',User.login(123, 31))<br><br><br>print(User.login(1,2)) ## 不需要实例化，当函数使用<br>print(User().show())<br><br># 执行结果<br><br>3<br>----&gt;show<br>---self-- 4<br>class-- 154<br></code></pre></div></td></tr></table></figure>
 <p>一个不需要用到对象命名空间中的<strong>变量</strong>的<strong>方法</strong>,就不是一个对象方法,就应该是一个普通的函数</p>
 <h3 id="方法的查找的顺序："><a href="#方法的查找的顺序：" class="headerlink" title="方法的查找的顺序："></a>方法的查找的顺序：</h3><ul>
 <li><p><strong>类</strong>是直接在自己的空间找到类 类这个方法</p>
@@ -113,63 +302,221 @@
 </table>
 <h2 id="property"><a href="#property" class="headerlink" title="@property"></a><code>@property</code></h2><p>把一个方法伪装成属性，</p>
 <p>下面例子中计算圆面积的公式</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cirecle</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, r)</span>:</span></span><br><span class="line">        self.r = r</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">area</span><span class="params">(self)</span>:</span>  <span class="comment"># 被property 装饰器 装饰的方法不能传递 除self以外参数</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> pi * self.r ** <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">perimeter</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.r * pi * <span class="number">2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">c1 = Cirecle(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">print(c1.area)</span><br><span class="line"><span class="comment"># 打印执行结果</span></span><br><span class="line"></span><br><span class="line"><span class="number">78.53981633974483</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cirecle</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, r)</span>:</span><br>        self.r = r<br><br><span class="hljs-meta">    @property</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">area</span><span class="hljs-params">(self)</span>:</span>  <span class="hljs-comment"># 被property 装饰器 装饰的方法不能传递 除self以外参数</span><br><br>        <span class="hljs-keyword">return</span> pi * self.r ** <span class="hljs-number">2</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">perimeter</span><span class="hljs-params">(self)</span>:</span><br>        <span class="hljs-keyword">return</span> self.r * pi * <span class="hljs-number">2</span><br><br><br>c1 = Cirecle(<span class="hljs-number">5</span>)<br><br>print(c1.area)<br><span class="hljs-comment"># 打印执行结果</span><br><br><span class="hljs-number">78.53981633974483</span><br></code></pre></div></td></tr></table></figure>
 <p>某一个属性需要被私有，但是有需要可以被外部查看， 这种情况，把这个属性通过方法,`property 伪装成属性</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.__name = name  <span class="comment"># 不让外面随便修改</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_name</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.__name</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ari = Person(<span class="string">'arimiage'</span>)</span><br><span class="line"></span><br><span class="line">print(ari.get_name)</span><br><span class="line"><span class="comment"># 执行结果</span></span><br><span class="line"></span><br><span class="line">arimiage</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span>:</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, name)</span>:</span><br>        self.__name = name  <span class="hljs-comment"># 不让外面随便修改</span><br><br><span class="hljs-meta">    @property</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_name</span><span class="hljs-params">(self)</span>:</span><br>        <span class="hljs-keyword">return</span> self.__name<br><br><br>ari = Person(<span class="hljs-string">'arimiage'</span>)<br><br>print(ari.get_name)<br><span class="hljs-comment"># 执行结果</span><br><br>arimiage<br></code></pre></div></td></tr></table></figure>
 <p><strong>Property</strong> 修改属性值</p>
 <ul>
 <li><a href="mailto:`@funcname.setter" target="_blank" rel="noopener">`@funcname.setter</a>`</li>
 <li><a href="mailto:`@funcname.deleter" target="_blank" rel="noopener">`@funcname.deleter</a>`</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.__name = name</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">name</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.__name</span><br><span class="line"></span><br><span class="line"><span class="meta">    @name.setter  # 只能传一个参数。之前必须有一个同名的方法被property装饰过</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">name</span><span class="params">(self, new_name)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> isinstance(new_name, str):</span><br><span class="line">            <span class="comment"># if type(new_name) is str:</span></span><br><span class="line">            self.__name = new_name</span><br><span class="line">            <span class="comment">#setattr装饰的函数名叫什么</span></span><br><span class="line">            <span class="comment">#那么这个函数中绝对不可以对这个，函数名同名属性进行修改( 函数名)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @name.deleter</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">name</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'gogoog'</span>)</span><br><span class="line">        <span class="keyword">del</span> self.__name <span class="comment">#这里才执行删除属性操作</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_name</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.__name</span><br><span class="line"></span><br><span class="line">    <span class="comment"># def set_name(self,new_name):</span></span><br><span class="line">    <span class="comment"># if type(new_name) is str:</span></span><br><span class="line">    <span class="comment"># if isinstance(new_name,str):</span></span><br><span class="line">    <span class="comment">#     self.__name == new_name</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">ari = Person(<span class="string">'arimiage'</span>)</span><br><span class="line">&#123;<span class="string">'_Person__name'</span>: <span class="string">'arimiage'</span>&#125;</span><br><span class="line"><span class="comment"># print(Person.__dict__)</span></span><br><span class="line"></span><br><span class="line">print(ari.get_name)</span><br><span class="line"></span><br><span class="line">ari.name = <span class="string">'fgo'</span></span><br><span class="line">&#123;<span class="string">'_Person__name'</span>: <span class="string">'fgo'</span>&#125; <span class="comment">#对象空间</span></span><br><span class="line">print(Person.__dict__)</span><br><span class="line">print(ari.__dict__)</span><br><span class="line">print(ari.name)</span><br><span class="line"></span><br><span class="line"><span class="keyword">del</span> ari.name <span class="comment"># 只是相当于调用被deleter装饰的方法,并不相当于删除name属性</span></span><br><span class="line">&#123;&#125; 对象空间为空</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(ari.__dict__)  # 报错</span></span><br></pre></td></tr></table></figure>
-<h2 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h2></section>
-</article>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span>:</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, name)</span>:</span><br>        self.__name = name<br><br><span class="hljs-meta">    @property</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">name</span><span class="hljs-params">(self)</span>:</span><br>        <span class="hljs-keyword">return</span> self.__name<br><br><span class="hljs-meta">    @name.setter  # 只能传一个参数。之前必须有一个同名的方法被property装饰过</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">name</span><span class="hljs-params">(self, new_name)</span>:</span><br>        <span class="hljs-keyword">if</span> isinstance(new_name, str):<br>            <span class="hljs-comment"># if type(new_name) is str:</span><br>            self.__name = new_name<br>            <span class="hljs-comment">#setattr装饰的函数名叫什么</span><br>            <span class="hljs-comment">#那么这个函数中绝对不可以对这个，函数名同名属性进行修改( 函数名)</span><br><br><span class="hljs-meta">    @name.deleter</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">name</span><span class="hljs-params">(self)</span>:</span><br>        print(<span class="hljs-string">'gogoog'</span>)<br>        <span class="hljs-keyword">del</span> self.__name <span class="hljs-comment">#这里才执行删除属性操作</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_name</span><span class="hljs-params">(self)</span>:</span><br>        <span class="hljs-keyword">return</span> self.__name<br><br>    <span class="hljs-comment"># def set_name(self,new_name):</span><br>    <span class="hljs-comment"># if type(new_name) is str:</span><br>    <span class="hljs-comment"># if isinstance(new_name,str):</span><br>    <span class="hljs-comment">#     self.__name == new_name</span><br><br>    <br><br>ari = Person(<span class="hljs-string">'arimiage'</span>)<br>&#123;<span class="hljs-string">'_Person__name'</span>: <span class="hljs-string">'arimiage'</span>&#125;<br><span class="hljs-comment"># print(Person.__dict__)</span><br><br>print(ari.get_name)<br><br>ari.name = <span class="hljs-string">'fgo'</span><br>&#123;<span class="hljs-string">'_Person__name'</span>: <span class="hljs-string">'fgo'</span>&#125; <span class="hljs-comment">#对象空间</span><br>print(Person.__dict__)<br>print(ari.__dict__)<br>print(ari.name)<br><br><span class="hljs-keyword">del</span> ari.name <span class="hljs-comment"># 只是相当于调用被deleter装饰的方法,并不相当于删除name属性</span><br>&#123;&#125; 对象空间为空<br><br><span class="hljs-comment"># print(ari.__dict__)  # 报错</span><br></code></pre></div></td></tr></table></figure>
+<h2 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h2>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/11/24/反射isinstance/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python反射类型判断</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/11/18/Python 类印象/">
+                        <span class="hidden-mobile">Python 类印象</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-<section class="card article-toc">
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#classmethod"><span class="toc-text">@classmethod</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#staticmethod"><span class="toc-text">@staticmethod</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方法的查找的顺序："><span class="toc-text">方法的查找的顺序：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#classmethod-staticmethod-使用场景说明："><span class="toc-text">classmethod staticmethod 使用场景说明：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#用哪一个命名空间的名字，就定义的不同的方法"><span class="toc-text">用哪一个命名空间的名字，就定义的不同的方法</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#property"><span class="toc-text">@property</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#装饰器"><span class="toc-text">装饰器</span></a></li></ol>
-</section>
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
 
-<section class="article slide-in-right">
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
-  <div class="loader" id="loader">
-    <svg viewBox="0 0 50 50">
-      <circle class="ring" cx="25" cy="25" r="20"></circle>
-      <circle class="ball" cx="25" cy="5" r="3.5"></circle>
-    </svg>
+      </div>
+    
   </div>
+</div>
 
-  <div class="comment" id="utteranc"></div>
-  <noscript>为正常使用评论功能请激活 JavaScript</noscript>
-</section>
+<!-- Custom -->
 
-<a class="card back-to-top" id="backTop">&UpArrow;</a>
-
-</main>
 
     
 
-    <script>
-	window.COLD_STONE = {
-	  repo: "kinzun/kinzun.github.io",
-	  gaid: "xxxxxxxxxxxxxx"
-	}
-</script>
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
-<script src="/scripts/cold-stone.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
 
 
-  <script src="https://www.googletagmanager.com/gtag/js?id=xxxxxxxxxxxxxx"></script>
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
   <script>
-	window.dataLayer = window.dataLayer || []
-	function gtag() {
-		dataLayer.push(arguments)
-	}
-	gtag('js', new Date())
-	gtag('config', window.COLD_STONE.gaid)
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
   </script>
 
 
-  </body>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>

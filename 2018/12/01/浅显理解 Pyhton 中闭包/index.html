@@ -1,50 +1,239 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="referrer" content="no-referrer">
-    <meta name="theme-color" content="#333333">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="google" content="notranslate">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="keyword"  content="">
-    <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
-    <title>浅显理解 Pyhton 中闭包 - kinzun</title>
-    <base href="/">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="shortcut icon" href="/icons/icon-72x72.png">
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    <link rel="stylesheet" href="/styles/sanitize.css">
-<link rel="stylesheet" href="/styles/cold-stone.css">
-    <noscript>
-      <p class="text-center">你的浏览器还没开启 Javascript 功能！</p>
-    </noscript>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
+  <meta name="author" content="kinzun">
+  <meta name="keywords" content>
+  <meta name="description" content="浅显理解 Pyhton 中闭包什么是闭包? 闭包（ Closure ）是词法闭包（ Lexical Closure ）的简称。 闭包就是内层函数, 对外层函数(非全局)的变量的引用. 叫闭包   可以保护我的变量 闭包的作用就是让⼀一个变量能够常驻内存. 供后面的程序使用.    简单示例：1234567891011121314151617181920212223242526272829#我们可以">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅显理解 Pyhton 中闭包">
+<meta property="og:url" content="https://kinzun.github.io/2018/12/01/浅显理解 Pyhton 中闭包/index.html">
+<meta property="og:site_name" content="kinzun">
+<meta property="og:description" content="浅显理解 Pyhton 中闭包什么是闭包? 闭包（ Closure ）是词法闭包（ Lexical Closure ）的简称。 闭包就是内层函数, 对外层函数(非全局)的变量的引用. 叫闭包   可以保护我的变量 闭包的作用就是让⼀一个变量能够常驻内存. 供后面的程序使用.    简单示例：1234567891011121314151617181920212223242526272829#我们可以">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-10-10T11:43:28.442Z">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="浅显理解 Pyhton 中闭包">
+<meta name="twitter:description" content="浅显理解 Pyhton 中闭包什么是闭包? 闭包（ Closure ）是词法闭包（ Lexical Closure ）的简称。 闭包就是内层函数, 对外层函数(非全局)的变量的引用. 叫闭包   可以保护我的变量 闭包的作用就是让⼀一个变量能够常驻内存. 供后面的程序使用.    简单示例：1234567891011121314151617181920212223242526272829#我们可以">
+  
+  <title>浅显理解 Pyhton 中闭包 - kinzun</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css">
+  <link rel="stylesheet" href="/lib/hint/hint.min.css">
+
+  
+    
+    
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css">
+    
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/color-schema.js"></script>
 </head>
 
-  <body>
-    
 
-    <main class="main wrapper"><article class="article slide-in-right">
-  <section>
-    <h1 class="article-title">
-      浅显理解 Pyhton 中闭包    </h1>
-    <p class="article-meta">
-      <span class="meta-info">
-        LastUpdate：2019-06-27 14:00:16
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>kinzun</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-          Tags：
           
-            <a class="meta-tag" href="/tags/#Python" title="Python">Python</a>
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
           
         
-      </span>
-      <a  class="meta-link" href="/">返回</a>
-    </p>
-  </section>
-  <section><h1 id="浅显理解-Pyhton-中闭包"><a href="#浅显理解-Pyhton-中闭包" class="headerlink" title="浅显理解 Pyhton 中闭包"></a>浅显理解 Pyhton 中闭包</h1><p>什么是闭包? 闭包（ Closure ）是词法闭包（ Lexical Closure ）的简称。 闭包就是内层函数, 对外层函数(非全局)的变量的引用. 叫闭包</p>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="浅显理解 Pyhton 中闭包">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2018-12-01 10:38" pubdate>
+        2018年12月1日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      6 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">浅显理解 Pyhton 中闭包</h1>
+            
+            <div class="markdown-body">
+              <h1 id="浅显理解-Pyhton-中闭包"><a href="#浅显理解-Pyhton-中闭包" class="headerlink" title="浅显理解 Pyhton 中闭包"></a>浅显理解 Pyhton 中闭包</h1><p>什么是闭包? 闭包（ Closure ）是词法闭包（ Lexical Closure ）的简称。 闭包就是内层函数, 对外层函数(非全局)的变量的引用. 叫闭包</p>
 <blockquote>
 <ul>
 <li>可以保护我的变量</li>
@@ -52,15 +241,15 @@
 </ul>
 </blockquote>
 <ul>
-<li><h2 id="简单示例："><a href="#简单示例：" class="headerlink" title="简单示例："></a>简单示例：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#我们可以使⽤用 __closure__ 来检测函数是否是闭包. 使⽤用函数名 .__closure__ 返回 cell 就是闭包. 返回None就不是闭包</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func1</span><span class="params">()</span>:</span></span><br><span class="line">	name = <span class="string">"馒头"</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">func2</span><span class="params">()</span>:</span></span><br><span class="line">		print(name) <span class="comment"># 闭包</span></span><br><span class="line">	func2()</span><br><span class="line">	print(func2.__closure__) <span class="comment"># (&lt;cell at 0x10c2e20a8: str object at0x10c3fc650&gt;,)</span></span><br><span class="line">func1()</span><br><span class="line"></span><br><span class="line"><span class="comment">#调用内部函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">outer</span><span class="params">()</span>:</span></span><br><span class="line">	name = <span class="string">"土豆"</span></span><br><span class="line"><span class="comment"># 内部函数</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">()</span>:</span></span><br><span class="line">		print(name)</span><br><span class="line">	<span class="keyword">return</span> inner</span><br><span class="line">fn = outer() <span class="comment"># 访问外部函数, 获取到内部函数的函数地址</span></span><br><span class="line">fn() <span class="comment"># 访问内部函数</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#多层嵌套呢</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func1</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">func2</span><span class="params">()</span>:</span></span><br><span class="line">		<span class="function"><span class="keyword">def</span> <span class="title">func3</span><span class="params">()</span>:</span></span><br><span class="line">			print(<span class="string">"嘿嘿"</span>)</span><br><span class="line">		<span class="keyword">return</span> func3</span><br><span class="line">	<span class="keyword">return</span> func2</span><br><span class="line">func1()()()</span><br></pre></td></tr></table></figure>
+<li><h2 id="简单示例："><a href="#简单示例：" class="headerlink" title="简单示例："></a>简单示例：</h2><figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-comment">#我们可以使⽤用 __closure__ 来检测函数是否是闭包. 使⽤用函数名 .__closure__ 返回 cell 就是闭包. 返回None就不是闭包</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func1</span><span class="hljs-params">()</span>:</span><br>	name = <span class="hljs-string">"馒头"</span><br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func2</span><span class="hljs-params">()</span>:</span><br>		print(name) <span class="hljs-comment"># 闭包</span><br>	func2()<br>	print(func2.__closure__) <span class="hljs-comment"># (&lt;cell at 0x10c2e20a8: str object at0x10c3fc650&gt;,)</span><br>func1()<br><br><span class="hljs-comment">#调用内部函数</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">outer</span><span class="hljs-params">()</span>:</span><br>	name = <span class="hljs-string">"土豆"</span><br><span class="hljs-comment"># 内部函数</span><br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inner</span><span class="hljs-params">()</span>:</span><br>		print(name)<br>	<span class="hljs-keyword">return</span> inner<br>fn = outer() <span class="hljs-comment"># 访问外部函数, 获取到内部函数的函数地址</span><br>fn() <span class="hljs-comment"># 访问内部函数</span><br><br><br><span class="hljs-comment">#多层嵌套呢</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func1</span><span class="hljs-params">()</span>:</span><br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func2</span><span class="hljs-params">()</span>:</span><br>		<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func3</span><span class="hljs-params">()</span>:</span><br>			print(<span class="hljs-string">"嘿嘿"</span>)<br>		<span class="hljs-keyword">return</span> func3<br>	<span class="hljs-keyword">return</span> func2<br>func1()()()<br></code></pre></div></td></tr></table></figure>
 </li>
-<li><h4 id="应用-爬虫"><a href="#应用-爬虫" class="headerlink" title="应用 爬虫"></a>应用 爬虫</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span> urlopen</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">but</span><span class="params">()</span>:</span></span><br><span class="line">	content = urlopen(<span class="string">"http://www.mi.cn/index.html"</span>).read()</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">get_content</span><span class="params">()</span>:</span></span><br><span class="line">		<span class="keyword">return</span> content</span><br><span class="line">	<span class="keyword">return</span> get_content</span><br><span class="line">fn = but() <span class="comment"># 这个时候就开始加载校花100的内容</span></span><br><span class="line"><span class="comment"># 后⾯面需要⽤用到这⾥里里⾯面的内容就不不需要在执⾏行行⾮非常耗时的⽹网络连接操作了了</span></span><br><span class="line">content = fn() <span class="comment"># 获取内容</span></span><br><span class="line">print(content)</span><br><span class="line">content2 = fn() <span class="comment"># 重新获取内容</span></span><br><span class="line">print(content2)</span><br></pre></td></tr></table></figure>
+<li><h4 id="应用-爬虫"><a href="#应用-爬虫" class="headerlink" title="应用 爬虫"></a>应用 爬虫</h4><figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> urllib.request <span class="hljs-keyword">import</span> urlopen<br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">but</span><span class="hljs-params">()</span>:</span><br>	content = urlopen(<span class="hljs-string">"http://www.mi.cn/index.html"</span>).read()<br>	<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_content</span><span class="hljs-params">()</span>:</span><br>		<span class="hljs-keyword">return</span> content<br>	<span class="hljs-keyword">return</span> get_content<br>fn = but() <span class="hljs-comment"># 这个时候就开始加载校花100的内容</span><br><span class="hljs-comment"># 后⾯面需要⽤用到这⾥里里⾯面的内容就不不需要在执⾏行行⾮非常耗时的⽹网络连接操作了了</span><br>content = fn() <span class="hljs-comment"># 获取内容</span><br>print(content)<br>content2 = fn() <span class="hljs-comment"># 重新获取内容</span><br>print(content2)<br></code></pre></div></td></tr></table></figure>
 </li>
-<li><h4 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># how to define</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(func1)</span>:</span>  <span class="comment"># 接受一个callable对象</span></span><br><span class="line">    <span class="keyword">return</span> func2  <span class="comment"># 返回一个对象，一般为函数</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># how to use</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">target_func</span><span class="params">(args)</span>:</span> <span class="comment"># 目标函数</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用方式一，直接包裹</span></span><br><span class="line">result = wrapper(target_func)(args)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用方式二，使用@语法，等同于方式一</span></span><br><span class="line"><span class="meta">@wrapper</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">target_func</span><span class="params">(args)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">result = target_func()</span><br></pre></td></tr></table></figure>
+<li><h4 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h4><figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># how to define</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wrapper</span><span class="hljs-params">(func1)</span>:</span>  <span class="hljs-comment"># 接受一个callable对象</span><br>    <span class="hljs-keyword">return</span> func2  <span class="hljs-comment"># 返回一个对象，一般为函数</span><br>    <br><span class="hljs-comment"># how to use</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">target_func</span><span class="hljs-params">(args)</span>:</span> <span class="hljs-comment"># 目标函数</span><br>    <span class="hljs-keyword">pass</span><br><br><span class="hljs-comment"># 调用方式一，直接包裹</span><br>result = wrapper(target_func)(args)<br><br><span class="hljs-comment"># 调用方式二，使用@语法，等同于方式一</span><br><span class="hljs-meta">@wrapper</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">target_func</span><span class="hljs-params">(args)</span>:</span><br>    <span class="hljs-keyword">pass</span><br><br>result = target_func()<br></code></pre></div></td></tr></table></figure>
 </li>
 <li><h2 id="closure-属性和-cell-对象"><a href="#closure-属性和-cell-对象" class="headerlink" title="__closure__ 属性和  cell  对象"></a><code>__closure__</code> 属性和  cell  对象</h2><p>其实闭包函数相对与普通函数会多出一个 <code>__closure__</code> 的属性，而 <code>__closure__</code> 属性定义了 cell 对象的元祖 ，元祖中 保存了这个闭包中所有的 外部变量 。</p>
 <p>包含 <code>__closure__</code>  属性 就是 <strong>闭包函数</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">out</span><span class="params">(arg1, arg2)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">()</span>:</span></span><br><span class="line">        print(arg1,arg2)</span><br><span class="line">    <span class="keyword">return</span> inner</span><br><span class="line">ine = out(<span class="string">'man'</span>,<span class="string">'info'</span>)</span><br><span class="line">print(ine.__closure__) <span class="comment"># 返回的是 cell 对象的元祖，其中元组中的每一个 cell 对象用来保存作用域中变量的值。</span></span><br><span class="line">print(ine.__closure__[<span class="number">0</span>].cell_contents)</span><br><span class="line">print(type(ine.__closure__),type(ine.__closure__[<span class="number">0</span>])) <span class="comment"># 元祖， cell 对象组成的元祖 </span></span><br><span class="line">print(type(ine.__closure__),type(ine.__closure__[<span class="number">1</span>])) <span class="comment"># 第二个外部变量</span></span><br><span class="line">print(ine)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行结果</span></span><br><span class="line">(&lt;cell at <span class="number">0x103596888</span>: str object at <span class="number">0x103561378</span>&gt;, &lt;cell at <span class="number">0x103596828</span>: str object at <span class="number">0x1034fc3b0</span>&gt;)</span><br><span class="line">man 	 <span class="comment"># 第一个外部变量</span></span><br><span class="line">info 	 <span class="comment"># 第二个外部变量</span></span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">tuple</span>'&gt; &lt;<span class="title">class</span> '<span class="title">cell</span>'&gt;</span></span><br><span class="line"><span class="class">&lt;<span class="title">function</span> <span class="title">out</span>.&lt;<span class="title">locals</span>&gt;.<span class="title">inner</span> <span class="title">at</span> 0<span class="title">x10356cd08</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br>def out(arg1, arg2):<br>    def inner():<br>        print(arg1,arg2)<br>    return inner<br>ine = out('man','info')<br>print(ine.__closure__) # 返回的是 cell 对象的元祖，其中元组中的每一个 cell 对象用来保存作用域中变量的值。<br>print(ine.__closure__[0].cell_contents)<br>print(type(ine.__closure__),type(ine.__closure__[0])) # 元祖， cell 对象组成的元祖 <br>print(type(ine.__closure__),type(ine.__closure__[1])) # 第二个外部变量<br>print(ine)<br><br><br># 执行结果<br>(&lt;cell at 0x103596888: str object at 0x103561378&gt;, &lt;cell at 0x103596828: str object at 0x1034fc3b0&gt;)<br>man 	 # 第一个外部变量<br>info 	 # 第二个外部变量<br>&lt;class 'tuple'&gt; &lt;class 'cell'&gt;<br>&lt;function out.&lt;locals&gt;.inner at 0x10356cd08&gt;<br></code></pre></div></td></tr></table></figure>
 <p>最后：</p>
 <p>我们可以使⽤用<code>__closure__</code>来检测函数是否是闭包. 使⽤用函数名 .<strong>closure</strong> 返回 cell 就是闭包. 返回None就不是闭包</p>
 </li>
@@ -74,54 +263,212 @@
 </ul>
 </li>
 </ul>
-</section>
-</article>
 
-<section class="card article-toc">
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#浅显理解-Pyhton-中闭包"><span class="toc-text">浅显理解 Pyhton 中闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#简单示例："><span class="toc-text">简单示例：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#应用-爬虫"><span class="toc-text">应用 爬虫</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#装饰器"><span class="toc-text">装饰器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#closure-属性和-cell-对象"><span class="toc-text">__closure__ 属性和  cell  对象</span></a></li></ol></li></ol>
-</section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/04/01/Python GeventWebSocket/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python GeventWebSocket</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/11/24/反射isinstance/">
+                        <span class="hidden-mobile">Python反射类型判断</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-<section class="article slide-in-right">
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
 
-  <div class="loader" id="loader">
-    <svg viewBox="0 0 50 50">
-      <circle class="ring" cx="25" cy="25" r="20"></circle>
-      <circle class="ball" cx="25" cy="5" r="3.5"></circle>
-    </svg>
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
   </div>
+</div>
 
-  <div class="comment" id="utteranc"></div>
-  <noscript>为正常使用评论功能请激活 JavaScript</noscript>
-</section>
+<!-- Custom -->
 
-<a class="card back-to-top" id="backTop">&UpArrow;</a>
-
-</main>
 
     
 
-    <script>
-	window.COLD_STONE = {
-	  repo: "kinzun/kinzun.github.io",
-	  gaid: "xxxxxxxxxxxxxx"
-	}
-</script>
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
-<script src="/scripts/cold-stone.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
 
 
-  <script src="https://www.googletagmanager.com/gtag/js?id=xxxxxxxxxxxxxx"></script>
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
   <script>
-	window.dataLayer = window.dataLayer || []
-	function gtag() {
-		dataLayer.push(arguments)
-	}
-	gtag('js', new Date())
-	gtag('config', window.COLD_STONE.gaid)
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
   </script>
 
 
-  </body>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>

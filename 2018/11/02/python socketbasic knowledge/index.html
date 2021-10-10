@@ -1,55 +1,248 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="referrer" content="no-referrer">
-    <meta name="theme-color" content="#333333">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="google" content="notranslate">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="keyword"  content="">
-    <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
-    <title>Python socket 基本知识与工作原理 - kinzun</title>
-    <base href="/">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="shortcut icon" href="/icons/icon-72x72.png">
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    <link rel="stylesheet" href="/styles/sanitize.css">
-<link rel="stylesheet" href="/styles/cold-stone.css">
-    <noscript>
-      <p class="text-center">你的浏览器还没开启 Javascript 功能！</p>
-    </noscript>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
+  <meta name="author" content="kinzun">
+  <meta name="keywords" content>
+  <meta name="description" content="套接字由于TCP/IP协议族被设计成能够运行在多种操作系统的环境下，TCP/IP标准允许系统设计者能够选择有关API的具体实现细节。 目前，可供应用程序使用TCP/IP的应用编程接口API的最著名的是套接字接口 而套接字不是物理实体，而是一种抽象，套接字是提供应用程序创建和使用的数据结构 Socket通常也称作“套接字”，用于描述IP地址和端口，是一个通信链的句柄  Socket有两种类型：">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python socket 基本知识与工作原理">
+<meta property="og:url" content="https://kinzun.github.io/2018/11/02/python socketbasic knowledge/index.html">
+<meta property="og:site_name" content="kinzun">
+<meta property="og:description" content="套接字由于TCP/IP协议族被设计成能够运行在多种操作系统的环境下，TCP/IP标准允许系统设计者能够选择有关API的具体实现细节。 目前，可供应用程序使用TCP/IP的应用编程接口API的最著名的是套接字接口 而套接字不是物理实体，而是一种抽象，套接字是提供应用程序创建和使用的数据结构 Socket通常也称作“套接字”，用于描述IP地址和端口，是一个通信链的句柄  Socket有两种类型：">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://kinzun.github.io/images/python/1652f12fa6e94275.png">
+<meta property="og:image" content="https://kinzun.github.io/images/python/image-20181017155606248.png">
+<meta property="og:image" content="https://kinzun.github.io/images/python/C19943F3-ECA3-4C44-8EB5-6BD7B8C17C6B.jpg">
+<meta property="og:updated_time" content="2018-12-06T01:50:35.042Z">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Python socket 基本知识与工作原理">
+<meta name="twitter:description" content="套接字由于TCP/IP协议族被设计成能够运行在多种操作系统的环境下，TCP/IP标准允许系统设计者能够选择有关API的具体实现细节。 目前，可供应用程序使用TCP/IP的应用编程接口API的最著名的是套接字接口 而套接字不是物理实体，而是一种抽象，套接字是提供应用程序创建和使用的数据结构 Socket通常也称作“套接字”，用于描述IP地址和端口，是一个通信链的句柄  Socket有两种类型：">
+<meta name="twitter:image" content="https://kinzun.github.io/images/python/1652f12fa6e94275.png">
+  
+  <title>Python socket 基本知识与工作原理 - kinzun</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css">
+  <link rel="stylesheet" href="/lib/hint/hint.min.css">
+
+  
+    
+    
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css">
+    
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/color-schema.js"></script>
 </head>
 
-  <body>
-    
 
-    <main class="main wrapper"><article class="article slide-in-right">
-  <section>
-    <h1 class="article-title">
-      Python socket 基本知识与工作原理    </h1>
-    <p class="article-meta">
-      <span class="meta-info">
-        LastUpdate：2018-12-06 09:50:35
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>kinzun</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-          Tags：
           
-            <a class="meta-tag" href="/tags/#Python" title="Python">Python</a>
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
           
         
-      </span>
-      <a  class="meta-link" href="/">返回</a>
-    </p>
-  </section>
-  <section><h3 id="套接字"><a href="#套接字" class="headerlink" title="套接字"></a>套接字</h3><p>由于TCP/IP协议族被设计成能够运行在多种操作系统的环境下，TCP/IP标准允许系统设计者能够选择有关API的具体实现细节。</p>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Python socket 基本知识与工作原理">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2018-11-02 10:38" pubdate>
+        2018年11月2日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      4 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Python socket 基本知识与工作原理</h1>
+            
+            <div class="markdown-body">
+              <h3 id="套接字"><a href="#套接字" class="headerlink" title="套接字"></a>套接字</h3><p>由于TCP/IP协议族被设计成能够运行在多种操作系统的环境下，TCP/IP标准允许系统设计者能够选择有关API的具体实现细节。</p>
 <p>目前，可供应用程序使用TCP/IP的应用编程接口API的最著名的是<strong>套接字接口</strong></p>
 <p><strong>而套接字不是物理实体，而是一种抽象，套接字是提供应用程序创建和使用的数据结构</strong></p>
 <p><code>Socket</code>通常也称作“<strong>套接字</strong>”，用于描述<strong>IP地址</strong>和<strong>端口</strong>，是一个通信链的句柄</p>
-<p><img src="/images/python/1652f12fa6e94275.png" alt="1652f12fa6e94275"></p>
-<h2 id="Socket有两种类型："><a href="#Socket有两种类型：" class="headerlink" title="Socket有两种类型："></a>Socket有两种类型：</h2><p> <img src="/images/python/image-20181017155606248.png" alt="image-20181017155606248"></p>
+<p><img src="/images/python/1652f12fa6e94275.png" srcset="/img/loading.gif" lazyload alt="1652f12fa6e94275"></p>
+<h2 id="Socket有两种类型："><a href="#Socket有两种类型：" class="headerlink" title="Socket有两种类型："></a>Socket有两种类型：</h2><p> <img src="/images/python/image-20181017155606248.png" srcset="/img/loading.gif" lazyload alt="image-20181017155606248"></p>
 <ul>
 <li>流式<code>Socket(STREAM)</code>：是一种面向连接的<code>Socekt</code>，针对面向连接的<strong>TCP</strong>服务应用，可靠，但是效率低；</li>
 <li>数据报式<code>Socket(DATAGAM)</code>：是一种无连接的<strong>Socket</strong>，对应于无连接的<strong>UDP</strong>服务应用。不可靠(丢失，顺序混乱，在接受端要分析重排及要求重发)，但效率高。</li>
@@ -63,7 +256,7 @@
 <li>UDP是不可靠的协议，发送的数据报不一定会按照其发送顺序被接收端的socket接收。而TCP是一种可靠的协议。接收端收到的包的顺序和包在发送端的顺序大体一致(这里不讨论丢包的情况)</li>
 </ul>
 <p>说到这，至于选择哪种协议，还是取决于你的使用场景，当然目前见得比较多就是基于TCP协议的Socket通信。当然一些实时性较高的一些服务，局域网的一些服务用UDP的多一些。</p>
-<h2 id="基于TCP协议的-Socket编程基本流程图"><a href="#基于TCP协议的-Socket编程基本流程图" class="headerlink" title="基于TCP协议的 Socket编程基本流程图"></a>基于TCP协议的 Socket编程基本流程图</h2><p><img src="/images/python/C19943F3-ECA3-4C44-8EB5-6BD7B8C17C6B.jpg" alt=""></p>
+<h2 id="基于TCP协议的-Socket编程基本流程图"><a href="#基于TCP协议的-Socket编程基本流程图" class="headerlink" title="基于TCP协议的 Socket编程基本流程图"></a>基于TCP协议的 Socket编程基本流程图</h2><p><img src="/images/python/C19943F3-ECA3-4C44-8EB5-6BD7B8C17C6B.jpg" srcset="/img/loading.gif" lazyload alt></p>
 <h2 id="Socket的通信过程"><a href="#Socket的通信过程" class="headerlink" title="Socket的通信过程"></a>Socket的通信过程</h2><h3 id="服务端："><a href="#服务端：" class="headerlink" title="服务端："></a>服务端：</h3><p>申请一个<code>Socket</code><br>绑定到一个IP地址和一个端口<br>开启侦听，等待接受连接</p>
 <h3 id="客户端："><a href="#客户端：" class="headerlink" title="客户端："></a>客户端：</h3><p>申请一个<code>Socket</code><br>连接服务器（指明IP地址和端口号）<br>服务器端接到连接请求后，产生一个新的<code>Socket</code>（端口大于<code>1024</code>）与客户端建立连接并进行通讯，原侦听<code>Socket</code>继续侦听。</p>
 <h2 id="粘包现象是如何产生的"><a href="#粘包现象是如何产生的" class="headerlink" title="粘包现象是如何产生的???"></a>粘包现象是如何产生的???</h2><p>​    黏包现象并不是一个bug<br>​    而是各种tcp协议的特点和算法导致了现在的问题<br>​        合包机制 Nagle<br>​        拆包机制<br>​        流式传输无边界</p>
@@ -73,54 +266,212 @@
 <h2 id="解决在应用层程序中的黏包现象"><a href="#解决在应用层程序中的黏包现象" class="headerlink" title="解决在应用层程序中的黏包现象"></a>解决在应用层程序中的黏包现象</h2><h2 id="如何解决粘包"><a href="#如何解决粘包" class="headerlink" title="如何解决粘包"></a>如何解决粘包</h2><ul>
 <li>自定义协议<br>先发送即将发送 <strong>数据的长度</strong>，然后再 <strong>发送数据</strong><br>先<strong>接受</strong> 数据的长度，在根据接受的<strong>长度接受数据</strong><br>用到了<code>struct</code> 模块， 来控制<strong>第一次</strong>发送数据长度的这条<strong>信息的长度</strong></li>
 </ul>
-</section>
-</article>
 
-<section class="card article-toc">
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#套接字"><span class="toc-text">套接字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Socket有两种类型："><span class="toc-text">Socket有两种类型：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Socket通信协议分析"><span class="toc-text">Socket通信协议分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP协议"><span class="toc-text">UDP协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP协议"><span class="toc-text">TCP协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两种协议区别及选择"><span class="toc-text">两种协议区别及选择</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于TCP协议的-Socket编程基本流程图"><span class="toc-text">基于TCP协议的 Socket编程基本流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Socket的通信过程"><span class="toc-text">Socket的通信过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#服务端："><span class="toc-text">服务端：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#客户端："><span class="toc-text">客户端：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#粘包现象是如何产生的"><span class="toc-text">粘包现象是如何产生的???</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#黏包一定是坏现象么"><span class="toc-text">黏包一定是坏现象么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决在应用层程序中的黏包现象"><span class="toc-text">解决在应用层程序中的黏包现象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何解决粘包"><span class="toc-text">如何解决粘包</span></a>
-</section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/11/10/Python pip&amp;pipenv/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Pipenv & 虚拟环境</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/10/09/Python Socket 编程/">
+                        <span class="hidden-mobile">Python Socket 编程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-<section class="article slide-in-right">
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
 
-  <div class="loader" id="loader">
-    <svg viewBox="0 0 50 50">
-      <circle class="ring" cx="25" cy="25" r="20"></circle>
-      <circle class="ball" cx="25" cy="5" r="3.5"></circle>
-    </svg>
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
   </div>
+</div>
 
-  <div class="comment" id="utteranc"></div>
-  <noscript>为正常使用评论功能请激活 JavaScript</noscript>
-</section>
+<!-- Custom -->
 
-<a class="card back-to-top" id="backTop">&UpArrow;</a>
-
-</main>
 
     
 
-    <script>
-	window.COLD_STONE = {
-	  repo: "kinzun/kinzun.github.io",
-	  gaid: "xxxxxxxxxxxxxx"
-	}
-</script>
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
-<script src="/scripts/cold-stone.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
 
 
-  <script src="https://www.googletagmanager.com/gtag/js?id=xxxxxxxxxxxxxx"></script>
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
   <script>
-	window.dataLayer = window.dataLayer || []
-	function gtag() {
-		dataLayer.push(arguments)
-	}
-	gtag('js', new Date())
-	gtag('config', window.COLD_STONE.gaid)
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
   </script>
 
 
-  </body>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>

@@ -1,50 +1,239 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="referrer" content="no-referrer">
-    <meta name="theme-color" content="#333333">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="google" content="notranslate">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="keyword"  content="">
-    <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
-    <title>Python:初始面对对象(1) - kinzun</title>
-    <base href="/">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="shortcut icon" href="/icons/icon-72x72.png">
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    <link rel="stylesheet" href="/styles/sanitize.css">
-<link rel="stylesheet" href="/styles/cold-stone.css">
-    <noscript>
-      <p class="text-center">你的浏览器还没开启 Javascript 功能！</p>
-    </noscript>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
+  <meta name="author" content="kinzun">
+  <meta name="keywords" content>
+  <meta name="description" content="初始面对对象 面对对象和面对过程   ⾯面向过程: ⼀一切以事物的流程为核心. 核心是”过程”⼆二字, 过程是指解决问题的步骤,即, 先干什么, 后干什么. 基于该思想编写程序就好比在编写⼀一套流⽔线. 是⼀一种机械式的编程思维  根据业务逻辑从上到下写垒代码   优点: 负责的问题流程化, 编写相对简单 缺点: 可扩展性差    ⾯面向对象:Object Oriented Programming">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python:初始面对对象(1)">
+<meta property="og:url" content="https://kinzun.github.io/2018/09/26/Python初始面对对象(1)/index.html">
+<meta property="og:site_name" content="kinzun">
+<meta property="og:description" content="初始面对对象 面对对象和面对过程   ⾯面向过程: ⼀一切以事物的流程为核心. 核心是”过程”⼆二字, 过程是指解决问题的步骤,即, 先干什么, 后干什么. 基于该思想编写程序就好比在编写⼀一套流⽔线. 是⼀一种机械式的编程思维  根据业务逻辑从上到下写垒代码   优点: 负责的问题流程化, 编写相对简单 缺点: 可扩展性差    ⾯面向对象:Object Oriented Programming">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-04T08:12:40.677Z">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Python:初始面对对象(1)">
+<meta name="twitter:description" content="初始面对对象 面对对象和面对过程   ⾯面向过程: ⼀一切以事物的流程为核心. 核心是”过程”⼆二字, 过程是指解决问题的步骤,即, 先干什么, 后干什么. 基于该思想编写程序就好比在编写⼀一套流⽔线. 是⼀一种机械式的编程思维  根据业务逻辑从上到下写垒代码   优点: 负责的问题流程化, 编写相对简单 缺点: 可扩展性差    ⾯面向对象:Object Oriented Programming">
+  
+  <title>Python:初始面对对象(1) - kinzun</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css">
+  <link rel="stylesheet" href="/lib/hint/hint.min.css">
+
+  
+    
+    
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css">
+    
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/color-schema.js"></script>
 </head>
 
-  <body>
-    
 
-    <main class="main wrapper"><article class="article slide-in-right">
-  <section>
-    <h1 class="article-title">
-      Python:初始面对对象(1)    </h1>
-    <p class="article-meta">
-      <span class="meta-info">
-        LastUpdate：2018-10-04 16:12:40
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>kinzun</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-          Tags：
           
-            <a class="meta-tag" href="/tags/#Python" title="Python">Python</a>
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
           
         
-      </span>
-      <a  class="meta-link" href="/">返回</a>
-    </p>
-  </section>
-  <section><h4 id="初始面对对象"><a href="#初始面对对象" class="headerlink" title="初始面对对象"></a>初始面对对象</h4><ul>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Python:初始面对对象(1)">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2018-09-26 13:07" pubdate>
+        2018年9月26日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Python:初始面对对象(1)</h1>
+            
+            <div class="markdown-body">
+              <h4 id="初始面对对象"><a href="#初始面对对象" class="headerlink" title="初始面对对象"></a>初始面对对象</h4><ul>
 <li><h5 id="面对对象和面对过程"><a href="#面对对象和面对过程" class="headerlink" title="面对对象和面对过程"></a>面对对象和面对过程</h5><ol>
 <li><blockquote>
 <p> ⾯面向过程: ⼀一切以事物的流程为核心. 核心是”过程”⼆二字, 过程是指解决问题的步骤,即, 先干什么, 后干什么. 基于该思想编写程序就好比在编写⼀一套流⽔线. 是⼀一种机械式的编程思维</p>
@@ -78,10 +267,10 @@
 <li>对象：对象有动态属性和动态方法，对象可以访问静态属性和静态方法；</li>
 </ol>
 <p>在python中定义一个类</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cars</span>:</span></span><br><span class="line">    block</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cars</span>:</span><br>    block<br></code></pre></div></td></tr></table></figure>
 </li>
 <li><p>现在我们来定义一辆车,把车特征信息写进类定义中,在python中 通过特殊的<code>__init__</code>方法实现.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义一辆车</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span>:</span></span><br><span class="line">    <span class="comment">#出厂设置(__int__) 构造方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,color,pai,pailinag,own)</span>:</span> <span class="comment">#表示当前类的对象</span></span><br><span class="line">        <span class="comment">#print("造车")</span></span><br><span class="line">        <span class="comment">#print(self)</span></span><br><span class="line">        <span class="comment">#绑定属性.</span></span><br><span class="line">        self.color1 =  color</span><br><span class="line">        self.pai = pai</span><br><span class="line">        self.pailing = pailinag</span><br><span class="line">        self.own = own</span><br><span class="line">    <span class="comment">#车能跑,跑就是一个动作,要写函数(方法)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span> <span class="comment">#self: 当前类的对象.</span></span><br><span class="line">        print(<span class="string">"%s车飞起来了"</span>% self.color1)</span><br><span class="line">        print(self)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tiaogao</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"有一台%s车在疯狂调高"</span>% self.color1)</span><br><span class="line">         c1 = Car(<span class="string">"红色"</span>,<span class="string">"川B9BB95"</span>,<span class="string">"2.0L"</span>,<span class="string">'manotu'</span>) <span class="comment"># 自动调用int函数(方法) #c1是对Car()的实例化</span></span><br><span class="line">c1.run() <span class="comment">#对象.方法</span></span><br><span class="line"></span><br><span class="line">c1.tiaogao()</span><br><span class="line"></span><br><span class="line">print(c1)</span><br><span class="line"></span><br><span class="line">print(c1.dict)</span><br><span class="line"></span><br><span class="line">print(c1.color1)</span><br><span class="line"></span><br><span class="line">c1.color1= <span class="string">"绿色"</span></span><br><span class="line"></span><br><span class="line">print(c1.color1)</span><br><span class="line"></span><br><span class="line">  <span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">c2 = Car(<span class="string">"宝蓝色"</span>,<span class="string">"川B66666"</span>,<span class="string">"3.0T"</span>,<span class="string">"baozi"</span>) </span><br><span class="line"></span><br><span class="line">c2.run() <span class="comment">#执行run方法</span></span><br><span class="line">print(c2)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-comment">#定义一辆车</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span>:</span><br>    <span class="hljs-comment">#出厂设置(__int__) 构造方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self,color,pai,pailinag,own)</span>:</span> <span class="hljs-comment">#表示当前类的对象</span><br>        <span class="hljs-comment">#print("造车")</span><br>        <span class="hljs-comment">#print(self)</span><br>        <span class="hljs-comment">#绑定属性.</span><br>        self.color1 =  color<br>        self.pai = pai<br>        self.pailing = pailinag<br>        self.own = own<br>    <span class="hljs-comment">#车能跑,跑就是一个动作,要写函数(方法)</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(self)</span>:</span> <span class="hljs-comment">#self: 当前类的对象.</span><br>        print(<span class="hljs-string">"%s车飞起来了"</span>% self.color1)<br>        print(self)<br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">tiaogao</span><span class="hljs-params">(self)</span>:</span><br>        print(<span class="hljs-string">"有一台%s车在疯狂调高"</span>% self.color1)<br>         c1 = Car(<span class="hljs-string">"红色"</span>,<span class="hljs-string">"川B9BB95"</span>,<span class="hljs-string">"2.0L"</span>,<span class="hljs-string">'manotu'</span>) <span class="hljs-comment"># 自动调用int函数(方法) #c1是对Car()的实例化</span><br>c1.run() <span class="hljs-comment">#对象.方法</span><br><br>c1.tiaogao()<br><br>print(c1)<br><br>print(c1.dict)<br><br>print(c1.color1)<br><br>c1.color1= <span class="hljs-string">"绿色"</span><br><br>print(c1.color1)<br><br>  <span class="hljs-comment">#</span><br><br><span class="hljs-comment">#</span><br>c2 = Car(<span class="hljs-string">"宝蓝色"</span>,<span class="hljs-string">"川B66666"</span>,<span class="hljs-string">"3.0T"</span>,<span class="hljs-string">"baozi"</span>) <br><br>c2.run() <span class="hljs-comment">#执行run方法</span><br>print(c2)<br></code></pre></div></td></tr></table></figure>
 <p> <em>ps：类中的函数第一个参数必须是<code>self</code> </em> </p>
 </li>
 </ul>
@@ -100,7 +289,7 @@
 <ol>
 <li>将内容封装到某处</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#创建类</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,age)</span>:</span> <span class="comment">#称为构建方法,根据类创建对象时自动执行</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age =age</span><br><span class="line">        </span><br><span class="line"><span class="comment">#根据类Foo创建对象</span></span><br><span class="line"><span class="comment">#自动执行Foo类的__init__方法</span></span><br><span class="line"><span class="comment">#将amntou 和18 分别封装到obj1 self 的name 和age 属性中</span></span><br><span class="line">obj1 = Foo(<span class="string">"amntou"</span>,<span class="number">18</span>)</span><br><span class="line"></span><br><span class="line">obj2 = Foo(<span class="string">"baozi"</span>,<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br><br><br><span class="hljs-comment">#创建类</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self,name,age)</span>:</span> <span class="hljs-comment">#称为构建方法,根据类创建对象时自动执行</span><br>        self.name = name<br>        self.age =age<br>        <br><span class="hljs-comment">#根据类Foo创建对象</span><br><span class="hljs-comment">#自动执行Foo类的__init__方法</span><br><span class="hljs-comment">#将amntou 和18 分别封装到obj1 self 的name 和age 属性中</span><br>obj1 = Foo(<span class="hljs-string">"amntou"</span>,<span class="hljs-number">18</span>)<br><br>obj2 = Foo(<span class="hljs-string">"baozi"</span>,<span class="hljs-number">20</span>)<br></code></pre></div></td></tr></table></figure>
 </li>
 </ul>
 <ol start="2">
@@ -114,7 +303,7 @@
 </ol>
 </li>
 </ol>
-<pre><code>   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,age)</span>:</span> </span><br><span class="line">        self.name = name</span><br><span class="line">        self.age =age</span><br><span class="line">obj1 = Foo(<span class="string">"amntou"</span>,<span class="number">18</span>)</span><br><span class="line">print(obj1.name) <span class="comment">#直接调用obj1对象name属性</span></span><br><span class="line">obj2 = Foo(<span class="string">"baozi"</span>,<span class="number">20</span>)</span><br><span class="line">print(obj2.age) <span class="comment"># 直接调obj2对象 age属性</span></span><br></pre></td></tr></table></figure>
+<div class="hljs code-wrapper"><pre><code>   <figure class="highlight python"><table><tr><td class="gutter hljs"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span>:</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self,name,age)</span>:</span> <br>        self.name = name<br>        self.age =age<br>obj1 = Foo(<span class="hljs-string">"amntou"</span>,<span class="hljs-number">18</span>)<br>print(obj1.name) <span class="hljs-comment">#直接调用obj1对象name属性</span><br>obj2 = Foo(<span class="hljs-string">"baozi"</span>,<span class="hljs-number">20</span>)<br>print(obj2.age) <span class="hljs-comment"># 直接调obj2对象 age属性</span><br></code></pre></div></td></tr></table></figure>
 
 
    ​
@@ -127,7 +316,7 @@
 
 执行类中的方法时，需要通过self间接调用被封装的内容
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>:</span></span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">detail</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">print</span> self.name</span><br><span class="line">        <span class="keyword">print</span> self.age</span><br><span class="line"> </span><br><span class="line">obj1 = Foo(<span class="string">'wupeiqi'</span>, <span class="number">18</span>)</span><br><span class="line">obj1.detail()  <span class="comment"># Python默认会将obj1传给self参数，即：obj1.detail(obj1)，所以，此时方法内部的 self ＝ obj1，即：self.name 是 wupeiqi ；self.age 是 18</span></span><br><span class="line"> </span><br><span class="line">obj2 = Foo(<span class="string">'alex'</span>, <span class="number">73</span>)</span><br><span class="line">obj2.detail()  <span class="comment"># Python默认会将obj2传给self参数，即：obj1.detail(obj2)，所以，此时方法内部的 self ＝ obj2，即：self.name 是 alex ； self.age 是 78</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span>:</span><br> <br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, name, age)</span>:</span><br>        self.name = name<br>        self.age = age<br> <br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">detail</span><span class="hljs-params">(self)</span>:</span><br>        <span class="hljs-keyword">print</span> self.name<br>        <span class="hljs-keyword">print</span> self.age<br> <br>obj1 = Foo(<span class="hljs-string">'wupeiqi'</span>, <span class="hljs-number">18</span>)<br>obj1.detail()  <span class="hljs-comment"># Python默认会将obj1传给self参数，即：obj1.detail(obj1)，所以，此时方法内部的 self ＝ obj1，即：self.name 是 wupeiqi ；self.age 是 18</span><br> <br>obj2 = Foo(<span class="hljs-string">'alex'</span>, <span class="hljs-number">73</span>)<br>obj2.detail()  <span class="hljs-comment"># Python默认会将obj2传给self参数，即：obj1.detail(obj2)，所以，此时方法内部的 self ＝ obj2，即：self.name 是 alex ； self.age 是 78</span><br></code></pre></div></td></tr></table></figure>
 
 
 &gt; ** 综上所述，对于面向对象的封装来说，其实就是使用构造方法将内容封装到 对象 中，然后通过对象直接或者self间接获取被封装的内容。 **
@@ -135,11 +324,11 @@
 <p>继承，面向对象中的继承和现实生活中的继承相同，即：子可以继承父的内容。</p>
 </blockquote>
 <p>  ​</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span>:</span> <span class="comment">#在此代码段中,为父类</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">eat</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"%s吃"</span>% self.name)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dirnk</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"%s喝"</span>% self.name)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sleep</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"%s睡"</span>% self.name)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span><span class="params">(Animal)</span>:</span><span class="comment"># 在类名括号中写入另一个类名表示继承另一个类</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.breed = <span class="string">"猫"</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cry</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"喵喵叫"</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">(Animal)</span>:</span> <span class="comment"># 在类名括号中写入另一个类名表示继承另一个类</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.breed = <span class="string">"狗"</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cry</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"汪汪"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cat = Cat(<span class="string">"福禄丸"</span>)</span><br><span class="line">cat.eat()</span><br><span class="line">cat.cry()</span><br><span class="line">cat.dirnk()</span><br><span class="line">dog = Dog(<span class="string">"帕克"</span>)</span><br><span class="line">dog.cry()</span><br><span class="line">dog.dirnk()</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span>:</span> <span class="hljs-comment">#在此代码段中,为父类</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">eat</span><span class="hljs-params">(self)</span>:</span><br>        print(<span class="hljs-string">"%s吃"</span>% self.name)<br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dirnk</span><span class="hljs-params">(self)</span>:</span><br>        print(<span class="hljs-string">"%s喝"</span>% self.name)<br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sleep</span><span class="hljs-params">(self)</span>:</span><br>        print(<span class="hljs-string">"%s睡"</span>% self.name)<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cat</span><span class="hljs-params">(Animal)</span>:</span><span class="hljs-comment"># 在类名括号中写入另一个类名表示继承另一个类</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self,name)</span>:</span><br>        self.name = name<br>        self.breed = <span class="hljs-string">"猫"</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">cry</span><span class="hljs-params">(self)</span>:</span><br>        print(<span class="hljs-string">"喵喵叫"</span>)<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dog</span><span class="hljs-params">(Animal)</span>:</span> <span class="hljs-comment"># 在类名括号中写入另一个类名表示继承另一个类</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self,name)</span>:</span><br>        self.name = name<br>        self.breed = <span class="hljs-string">"狗"</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">cry</span><span class="hljs-params">(self)</span>:</span><br>        print(<span class="hljs-string">"汪汪"</span>)<br><br><br>cat = Cat(<span class="hljs-string">"福禄丸"</span>)<br>cat.eat()<br>cat.cry()<br>cat.dirnk()<br>dog = Dog(<span class="hljs-string">"帕克"</span>)<br>dog.cry()<br>dog.dirnk()<br></code></pre></div></td></tr></table></figure>
 <blockquote>
 <p><strong>所以，对于面向对象的继承来说，其实就是将多个类共有的方法提取到父类中，子类仅需继承父类而不必一一实现每个方法。</strong></p>
 </blockquote>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 父类</span></span><br><span class="line"><span class="class">	<span class="title">def</span> 父类中的方法<span class="params">(self)</span>:</span> <span class="comment">#子类继承父类,即拥有了父类中所以方法</span></span><br><span class="line">     <span class="comment">#</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> 子类<span class="params">(父类)</span>:</span></span><br><span class="line">  <span class="keyword">pass</span></span><br><span class="line">zi = 子类() <span class="comment">#创建子类对象</span></span><br><span class="line">zi.父类中的方法() <span class="comment">#执行从父类中继承的方法</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python">class 父类<br>	def 父类中的方法(self): #子类继承父类,即拥有了父类中所以方法<br>     #<br>class 子类(父类):<br>  pass<br>zi = 子类() #创建子类对象<br>zi.父类中的方法() #执行从父类中继承的方法<br></code></pre></div></td></tr></table></figure>
 <blockquote>
 <ol>
 <li><p>python的类可以继承多个类,java 和c#中则只能继承一个类</p>
@@ -161,55 +350,213 @@
 </ul>
 </blockquote>
 <p>  <a href="http://xymlife.com/2016/05/22/python_mro/" target="_blank" rel="noopener">mor算法参考博客</a></p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#经典类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C1</span>:</span></span><br><span class="line">	<span class="keyword">pass</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C2</span><span class="params">(C1)</span>:</span>  C2是经典类</span><br><span class="line">  <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 新式类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">N1</span><span class="params">(object)</span>:</span></span><br><span class="line">  <span class="keyword">pass</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">N1</span><span class="params">(N1)</span>:</span></span><br><span class="line">  <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<h4 id="三-多态"><a href="#三-多态" class="headerlink" title="三 多态"></a>三 多态</h4></section>
-</article>
+  <figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-comment">#经典类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C1</span>:</span><br>	<span class="hljs-keyword">pass</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C2</span><span class="hljs-params">(C1)</span>:</span>  C2是经典类<br>  <span class="hljs-keyword">pass</span><br><br><br><span class="hljs-comment"># 新式类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">N1</span><span class="hljs-params">(object)</span>:</span><br>  <span class="hljs-keyword">pass</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">N1</span><span class="hljs-params">(N1)</span>:</span><br>  <span class="hljs-keyword">pass</span><br></code></pre></div></td></tr></table></figure>
+<h4 id="三-多态"><a href="#三-多态" class="headerlink" title="三 多态"></a>三 多态</h4>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/09/26/Python面对对象成员(2)/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python:面对对象成员(2)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/09/26/python-base速写/">
+                        <span class="hidden-mobile">Python base 速写</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-<section class="card article-toc">
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#初始面对对象"><span class="toc-text">初始面对对象</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#面对对象和面对过程"><span class="toc-text">面对对象和面对过程</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#面对对象的三大特征"><span class="toc-text">面对对象的三大特征</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一-封装"><span class="toc-text">一.封装</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二-继承"><span class="toc-text">二 继承</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三-多态"><span class="toc-text">三 多态</span></a></li></ol>
-</section>
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
 
-<section class="article slide-in-right">
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
-  <div class="loader" id="loader">
-    <svg viewBox="0 0 50 50">
-      <circle class="ring" cx="25" cy="25" r="20"></circle>
-      <circle class="ball" cx="25" cy="5" r="3.5"></circle>
-    </svg>
+      </div>
+    
   </div>
+</div>
 
-  <div class="comment" id="utteranc"></div>
-  <noscript>为正常使用评论功能请激活 JavaScript</noscript>
-</section>
+<!-- Custom -->
 
-<a class="card back-to-top" id="backTop">&UpArrow;</a>
-
-</main>
 
     
 
-    <script>
-	window.COLD_STONE = {
-	  repo: "kinzun/kinzun.github.io",
-	  gaid: "xxxxxxxxxxxxxx"
-	}
-</script>
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
-<script src="/scripts/cold-stone.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
 
 
-  <script src="https://www.googletagmanager.com/gtag/js?id=xxxxxxxxxxxxxx"></script>
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
   <script>
-	window.dataLayer = window.dataLayer || []
-	function gtag() {
-		dataLayer.push(arguments)
-	}
-	gtag('js', new Date())
-	gtag('config', window.COLD_STONE.gaid)
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
   </script>
 
 
-  </body>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>

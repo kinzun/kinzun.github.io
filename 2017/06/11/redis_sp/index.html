@@ -1,71 +1,261 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="referrer" content="no-referrer">
-    <meta name="theme-color" content="#333333">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="google" content="notranslate">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="keyword"  content="">
-    <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
-    <title>redis学习简记 - kinzun</title>
-    <base href="/">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="shortcut icon" href="/icons/icon-72x72.png">
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    <link rel="stylesheet" href="/styles/sanitize.css">
-<link rel="stylesheet" href="/styles/cold-stone.css">
-    <noscript>
-      <p class="text-center">你的浏览器还没开启 Javascript 功能！</p>
-    </noscript>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="server">
+  <meta name="author" content="kinzun">
+  <meta name="keywords" content>
+  <meta name="description" content="server">
+<meta name="keywords" content="Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis学习简记">
+<meta property="og:url" content="https://kinzun.github.io/2017/06/11/redis_sp/index.html">
+<meta property="og:site_name" content="kinzun">
+<meta property="og:description" content="server">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-04T08:12:40.000Z">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="redis学习简记">
+<meta name="twitter:description" content="server">
+  
+  <title>redis学习简记 - kinzun</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css">
+  <link rel="stylesheet" href="/lib/hint/hint.min.css">
+
+  
+    
+    
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css">
+    
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/color-schema.js"></script>
 </head>
 
-  <body>
-    
 
-    <main class="main wrapper"><article class="article slide-in-right">
-  <section>
-    <h1 class="article-title">
-      redis学习简记    </h1>
-    <p class="article-meta">
-      <span class="meta-info">
-        LastUpdate：2018-10-04 16:12:40
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>kinzun</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-          Tags：
           
-            <a class="meta-tag" href="/tags/#Redis" title="Redis">Redis</a>
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
           
         
-      </span>
-      <a  class="meta-link" href="/">返回</a>
-    </p>
-  </section>
-  <section><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">BGREWRITEAOF  #重写会创建一个当前 AOF 文件的体积优化版本</span><br><span class="line">BGSAVE  #保存当前数据库到磁盘</span><br><span class="line">CLIENT GETNAME #连接名设置  </span><br><span class="line">CLIENT SETNAME #当前连接分配一个名字</span><br><span class="line">CLINENT LIST  #列出所有已连接客户端</span><br><span class="line">  以下是域的含义：</span><br><span class="line">  • addr ：客户端的地址和端口</span><br><span class="line">  • fd ：套接字所使用的文件描述符</span><br><span class="line">  • age ：以秒计算的已连接时长</span><br><span class="line">  • idle ：以秒计算的空闲时长</span><br><span class="line">  • flags ：客户端 flag （见下文）</span><br><span class="line">  • db ：该客户端正在使用的数据库 ID</span><br><span class="line">  • sub ：已订阅频道的数量</span><br><span class="line">  • psub ：已订阅模式的数量</span><br><span class="line">  • multi ：在事务中被执行的命令数量</span><br><span class="line">  • qbuf ：查询缓存的长度（0 表示没有查询在等待）</span><br><span class="line">  • qbuf-free ：查询缓存的剩余空间（0 表示没有剩余空间）</span><br><span class="line">  • obl ：输出缓存的长度</span><br><span class="line">  • oll ：输出列表的长度（当输出缓存没有剩余空间时，回复被入队到这个队列里）</span><br><span class="line">  • omem ：输出缓存的内存占用量</span><br><span class="line">  • events ：文件描述符事件（见下文）</span><br><span class="line">  • cmd ：最近一次执行的命令</span><br><span class="line">  客户端 flag 可以由以下部分组成：</span><br><span class="line">  • O ：客户端是 MONITOR 模式下的附属节点（slave）</span><br><span class="line">  • S ：客户端是一般模式下（normal）的附属节点</span><br><span class="line">  • M ：客户端是主节点（master）</span><br><span class="line">  • x ：客户端正在执行事务</span><br><span class="line">  • b ：客户端正在等待阻塞事件</span><br><span class="line">  • i ：客户端正在等待 VM I/O 操作（已废弃）</span><br><span class="line">  • d ：一个受监视（watched）的键已被修改，EXEC 命令将失败</span><br><span class="line">  • c : 在将回复完整地写出之后，关闭链接</span><br><span class="line">  • u : 客户端未被阻塞（unblocked）</span><br><span class="line">  • A : 尽可能快地关闭连接</span><br><span class="line">  • N : 未设置任何 flag</span><br><span class="line">  文件描述符事件可以是：</span><br><span class="line">  • r : 客户端套接字（在事件 loop 中）是可读的（readable）</span><br><span class="line">  • w : 客户端套接字（在事件 loop 中）是可写的（writeable）</span><br><span class="line"></span><br><span class="line">CLIENT KILL #杀死当前客户端连接</span><br><span class="line">CONFIG GET # 获取Redis 服务器的配置参数 </span><br><span class="line">	redis&gt; CONFIG GET s* #获取以s开头的配置参数的值 </span><br><span class="line">CONFIG SET #修改配置参数，或者改变 Redis 的持久化 (Persistence) 方式。动态调整，无需重启，ONFIG SET 的值只能通过数字值显式地设定。</span><br><span class="line">CONFIG RESETSTAT #重置INFO 命令中的某些统计数据,包括：</span><br><span class="line">  • Keyspace hits (键空间命中次数)</span><br><span class="line">  • Keyspace misses (键空间不命中次数)</span><br><span class="line">  • Number of commands processed (执行命令的次数)</span><br><span class="line">  • Number of connections received (连接服务器的次数)</span><br><span class="line">  • Number of expired keys (过期 key 的数量)</span><br><span class="line">  • Number of rejected connections (被拒绝的连接数量)</span><br><span class="line">  • Latest fork(2) time(最后执行 fork(2) 的时间)</span><br><span class="line">  • The aof_delayed_fsync counter(aof_delayed_fsync 计数器的值)</span><br><span class="line"> </span><br><span class="line">CONFIG REWRITE #重新构建并生成出一个新的 redis.conf 文件 原子性重写</span><br><span class="line"> </span><br><span class="line">DBSIZE #返回当前数据库的 key 的数量。</span><br><span class="line"> </span><br><span class="line">DEBUG OBJECT #调试命令，当 key 存在时，返回有关信息。当 key 不存在时，返回一个错误</span><br><span class="line"> </span><br><span class="line">FLUSHALL #清空整个 Redis 服务器的数据 所有(删除所有数据库的所有 key )</span><br><span class="line">FLUSHDB #清空当前数据库中的所有 key。此命令从不失败</span><br><span class="line">INFO #Redis 服务器的各种信息和统计数值</span><br><span class="line">LASTSAVE #返回最近一次 Redis 成功将数据保存到磁盘上的时间，以 UNIX 时间戳格式表示。</span><br><span class="line">MONITOR #实时打印出 Redis 服务器接收到的命令，调试用。</span><br><span class="line">PSYNC #用于复制功能 (replication) 的内部命令。</span><br><span class="line">SAVE #将当前 Redis 实例的所有数据快照 (snapshot) 以 RDB 文件的形式保存到硬盘。</span><br><span class="line">SHUTDOWN </span><br><span class="line">SLAVEOF #用于在 Redis 运行时动态地修改复制 (replication) 功能的行为</span><br><span class="line">  •SLAVEOF NO ONE 对一个从属服务器执行命令  将使得这个从属服务器关闭复制功能,并从从属服务器</span><br><span class="line">转变回主服务器,原来同步数据不会丢失</span><br><span class="line">  •以将当前服务器转变为指定服务器的从属服务器 (slave server)。</span><br><span class="line">如果当前服务器已经是某个主服务器 (master server) 的从属服务器，那么执行 SLAVEOF host port 将使当</span><br><span class="line">前服务器停止对旧主服务器的同步，丢弃旧数据集，转而开始对新主服务器进行同步。</span><br><span class="line"></span><br><span class="line">SLOWLOG #用于复制功能 (replication) 的内部命令</span><br><span class="line">Slow log 是 Redis 用来记录查询执行时间的日志系统 [Replication](https://redis.io/topics/replication)</span><br><span class="line">SYNC # 个包含两个字符串的列表：第一个字符串是当前时间 (以 UNIX 时间戳格式表示)，而第二个字</span><br><span class="line">符串是当前这一秒钟已经逝去的微秒数。</span><br></pre></td></tr></table></figure>
-<h4 id="connection"><a href="#connection" class="headerlink" title="connection"></a>connection</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">AUTH </span><br><span class="line">	 CONFIG SET requirepass password #可以使用密</span><br><span class="line">码来保护 Redis 服务器</span><br><span class="line">ECHO message</span><br><span class="line">PING</span><br><span class="line">QUIT</span><br><span class="line">SELECT #切换到指定的数据库，数据库索引号 index 用数字值指定，以 0 作为起始索引值。默认使用0号数据库</span><br></pre></td></tr></table></figure>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="redis学习简记">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2017-06-11 23:54" pubdate>
+        2017年6月11日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">redis学习简记</h1>
+            
+            <div class="markdown-body">
+              <h4 id="server"><a href="#server" class="headerlink" title="server"></a>server</h4><a id="more"></a>  
+<figure class="highlight crmsh"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><br>BGREWRITEAOF  <span class="hljs-comment">#重写会创建一个当前 AOF 文件的体积优化版本</span><br>BGSAVE  <span class="hljs-comment">#保存当前数据库到磁盘</span><br>CLIENT GETNAME <span class="hljs-comment">#连接名设置  </span><br>CLIENT SETNAME <span class="hljs-comment">#当前连接分配一个名字</span><br>CLINENT LIST  <span class="hljs-comment">#列出所有已连接客户端</span><br>  以下是域的含义：<br>  • addr ：客户端的地址和端口<br>  • fd ：套接字所使用的文件描述符<br>  • age ：以秒计算的已连接时长<br>  • idle ：以秒计算的空闲时长<br>  • flags ：客户端 flag （见下文）<br>  • db ：该客户端正在使用的数据库 ID<br>  • sub ：已订阅频道的数量<br>  • psub ：已订阅模式的数量<br>  • multi ：在事务中被执行的命令数量<br>  • qbuf ：查询缓存的长度（<span class="hljs-number">0</span> 表示没有查询在等待）<br>  • qbuf-free ：查询缓存的剩余空间（<span class="hljs-number">0</span> 表示没有剩余空间）<br>  • obl ：输出缓存的长度<br>  • oll ：输出列表的长度（当输出缓存没有剩余空间时，回复被入队到这个队列里）<br>  • omem ：输出缓存的内存占用量<br>  • events ：文件描述符事件（见下文）<br>  • cmd ：最近一次执行的命令<br>  客户端 flag 可以由以下部分组成：<br>  • O ：客户端是 <span class="hljs-literal">MONITOR</span> 模式下的附属节点（<span class="hljs-literal">slave</span>）<br>  • S ：客户端是一般模式下（normal）的附属节点<br>  • M ：客户端是主节点（<span class="hljs-literal">master</span>）<br>  • x ：客户端正在执行事务<br>  • b ：客户端正在等待阻塞事件<br>  • i ：客户端正在等待 VM I/O 操作（已废弃）<br>  • d ：一个受监视（watched）的键已被修改，EXEC 命令将失败<br>  • c : 在将回复完整地写出之后，关闭链接<br>  • u : 客户端未被阻塞（unblocked）<br>  • A : 尽可能快地关闭连接<br>  • N : 未设置任何 flag<br>  文件描述符事件可以是：<br>  • r : 客户端套接字（在事件 loop 中）是可读的（readable）<br>  • w : 客户端套接字（在事件 loop 中）是可写的（writeable）<br><br>CLIENT KILL <span class="hljs-comment">#杀死当前客户端连接</span><br>CONFIG GET <span class="hljs-comment"># 获取Redis 服务器的配置参数 </span><br>	redis&gt; CONFIG GET s* <span class="hljs-comment">#获取以s开头的配置参数的值 </span><br>CONFIG SET <span class="hljs-comment">#修改配置参数，或者改变 Redis 的持久化 (Persistence) 方式。动态调整，无需重启，ONFIG SET 的值只能通过数字值显式地设定。</span><br>CONFIG RESETSTAT <span class="hljs-comment">#重置INFO 命令中的某些统计数据,包括：</span><br>  • Keyspace hits (键空间命中次数)<br>  • Keyspace misses (键空间不命中次数)<br>  • <span class="hljs-keyword">Number</span> of commands processed (执行命令的次数)<br>  • <span class="hljs-keyword">Number</span> of connections received (连接服务器的次数)<br>  • <span class="hljs-keyword">Number</span> of expired keys (过期 key 的数量)<br>  • <span class="hljs-keyword">Number</span> of rejected connections (被拒绝的连接数量)<br>  • Latest fork(<span class="hljs-number">2</span>) time(最后执行 fork(<span class="hljs-number">2</span>) 的时间)<br>  • The aof_delayed_fsync counter(aof_delayed_fsync 计数器的值)<br> <br>CONFIG REWRITE <span class="hljs-comment">#重新构建并生成出一个新的 redis.conf 文件 原子性重写</span><br> <br>DBSIZE <span class="hljs-comment">#返回当前数据库的 key 的数量。</span><br> <br>DEBUG OBJECT <span class="hljs-comment">#调试命令，当 key 存在时，返回有关信息。当 key 不存在时，返回一个错误</span><br> <br>FLUSHALL <span class="hljs-comment">#清空整个 Redis 服务器的数据 所有(删除所有数据库的所有 key )</span><br>FLUSHDB <span class="hljs-comment">#清空当前数据库中的所有 key。此命令从不失败</span><br><span class="hljs-literal">INF</span>O <span class="hljs-comment">#Redis 服务器的各种信息和统计数值</span><br>LASTSAVE <span class="hljs-comment">#返回最近一次 Redis 成功将数据保存到磁盘上的时间，以 UNIX 时间戳格式表示。</span><br><span class="hljs-literal">MONITOR</span> <span class="hljs-comment">#实时打印出 Redis 服务器接收到的命令，调试用。</span><br>PSYNC <span class="hljs-comment">#用于复制功能 (replication) 的内部命令。</span><br>SAVE <span class="hljs-comment">#将当前 Redis 实例的所有数据快照 (snapshot) 以 RDB 文件的形式保存到硬盘。</span><br>SHUTDOWN <br>SLAVEOF <span class="hljs-comment">#用于在 Redis 运行时动态地修改复制 (replication) 功能的行为</span><br>  •SLAVEOF NO ONE 对一个从属服务器执行命令  将使得这个从属服务器关闭复制功能,并从从属服务器<br>转变回主服务器,原来同步数据不会丢失<br>  •以将当前服务器转变为指定服务器的从属服务器 (<span class="hljs-literal">slave</span> server)。<br>如果当前服务器已经是某个主服务器 (<span class="hljs-keyword">master</span> <span class="hljs-title">server</span>) 的从属服务器，那么执行 SLAVEOF host port 将使当<br>前服务器停止对旧主服务器的同步，丢弃旧数据集，转而开始对新主服务器进行同步。<br><br>SLOWLOG <span class="hljs-comment">#用于复制功能 (replication) 的内部命令</span><br>Slow log 是 Redis 用来记录查询执行时间的日志系统 [Replication](https://redis.io/topics/replication)<br>SYNC <span class="hljs-comment"># 个包含两个字符串的列表：第一个字符串是当前时间 (以 UNIX 时间戳格式表示)，而第二个字</span><br>符串是当前这一秒钟已经逝去的微秒数。<br></code></pre></div></td></tr></table></figure>
+<h4 id="connection"><a href="#connection" class="headerlink" title="connection"></a>connection</h4><figure class="highlight routeros"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">AUTH <br>	<span class="hljs-built_in"> CONFIG </span><span class="hljs-builtin-name">SET</span> requirepass password #可以使用密<br>码来保护 Redis 服务器<br>ECHO message<span class="hljs-built_in"><br>PING<br></span>QUIT<br>SELECT #切换到指定的数据库，数据库索引号 index 用数字值指定，以 0 作为起始索引值。默认使用0号数据库<br></code></pre></div></td></tr></table></figure>
 <h4 id="部分常用命令"><a href="#部分常用命令" class="headerlink" title="部分常用命令"></a>部分常用命令</h4><p><strong>1）获取sentinel的状态</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">(1）info</span><br><span class="line"></span><br><span class="line">查看sentinel的zhuangtai</span><br><span class="line"></span><br><span class="line">(2）sentinel masters </span><br><span class="line"></span><br><span class="line">获取sentinel中监控的所有master的节点</span><br><span class="line"></span><br><span class="line">(3）sentinel master </span><br><span class="line"></span><br><span class="line">获取master-name节点redis的状态信息</span><br><span class="line"></span><br><span class="line">(4）sentinel slaves </span><br><span class="line"></span><br><span class="line">获取master-name节点下所有的slaves的状态信息。</span><br><span class="line"></span><br><span class="line">(5) SENTINEL get-master-addr-by-name</span><br><span class="line"></span><br><span class="line">通过sentinel中的节点名获取其ip地址</span><br></pre></td></tr></table></figure>
+<figure class="highlight dsconfig"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">(1）<span class="hljs-string">info<br></span><br>查看<span class="hljs-string">sentinel的</span><span class="hljs-string">zhuangtai<br></span><br>(2）<span class="hljs-string">sentinel </span><span class="hljs-string">masters </span><br><br>获取<span class="hljs-string">sentinel中</span>监控的所有<span class="hljs-string">master的</span>节点<br><br>(3）<span class="hljs-string">sentinel </span><span class="hljs-string">master </span><br><br>获取<span class="hljs-string">master-name节</span>点<span class="hljs-string">redis的</span>状态信息<br><br>(4）<span class="hljs-string">sentinel </span><span class="hljs-string">slaves </span><br><br>获取<span class="hljs-string">master-name节</span>点下所有的<span class="hljs-string">slaves的</span>状态信息。<br><br>(5) <span class="hljs-string">SENTINEL </span><span class="hljs-built_in">get-master-addr-by-name</span><br><br>通过<span class="hljs-string">sentinel中</span>的节点名获取其<span class="hljs-string">ip地</span>址<br></code></pre></div></td></tr></table></figure>
 <p><strong>2）添加或删除监控节点</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">（1）sentinel monitor    </span><br><span class="line"> </span><br><span class="line">name: sentinel中节点的名字</span><br><span class="line"></span><br><span class="line">port ip : 被监控的redis master实例</span><br><span class="line"></span><br><span class="line">quorum : failover时，需要的法定人数。</span><br><span class="line"></span><br><span class="line">（2）sentinel reset</span><br><span class="line"></span><br><span class="line"> 重置redis name匹配制定的状态，包括正在failover的master。</span><br><span class="line"></span><br><span class="line"> 该操作会删除该节点上的slave信息、已经发现和关联的sentinel节点信息。</span><br><span class="line"></span><br><span class="line"> sentinel将会重新发现sentinel和redis slave节点。</span><br><span class="line"></span><br><span class="line">（3) sentinel remove </span><br><span class="line"></span><br><span class="line">删除master节点，sentinel不再监控该节点。</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">（1）sentinel monitor    <br> <br>name: sentinel中节点的名字<br><span class="hljs-built_in"><br>port ip </span>: 被监控的redis master实例<br><br>quorum : failover时，需要的法定人数。<br><br>（2）sentinel reset<br><br> 重置redis name匹配制定的状态，包括正在failover的master。<br><br> 该操作会删除该节点上的slave信息、已经发现和关联的sentinel节点信息。<br><br> sentinel将会重新发现sentinel和redis slave节点。<br><br>（3) sentinel <span class="hljs-builtin-name">remove</span> <br><br>删除master节点，sentinel不再监控该节点。<br></code></pre></div></td></tr></table></figure>
 <h4 id="redis安装"><a href="#redis安装" class="headerlink" title="redis安装"></a>redis安装</h4><p>此处略去，参考官方文档 <a href="https://redis.io/" target="_blank" rel="noopener">https://redis.io/</a></p>
 <h4 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h4><h5 id="复制功能的运作原理"><a href="#复制功能的运作原理" class="headerlink" title="复制功能的运作原理"></a>复制功能的运作原理</h5><p>无论是初次连接还是重新连接，当建立一个从服务器时，从服务器都将向主服务器发送一个SYNC 命令。<br>接到SYNC 命令的主服务器将开始执行BGSAVE ，并在保存操作执行期间，将所有新执行的写入命令都保<br>存到一个缓冲区里面。<br>当BGSAVE 执行完毕后，主服务器将执行保存操作所得的 .rdb 文件发送给从服务器，从服务器接收这个<br>.rdb 文件，并将文件中的数据载入到内存中。<br>之后主服务器会以 Redis 命令协议的格式，将写命令缓冲区中积累的所有内容都发送给从服务器。</p>
 <p>可用telnet测试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#  telnet 192.168.0.15 6379 </span><br><span class="line">Trying 192.168.0.15...</span><br><span class="line">Connected to 192.168.0.15.</span><br><span class="line">Escape character is &apos;^]&apos;.</span><br><span class="line">sync</span><br><span class="line">$98</span><br><span class="line">REDIS0007dis-ver3.2.3edis-bitsctimeYed-mem</span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">#  telnet <span class="hljs-number">192.168</span><span class="hljs-number">.0</span><span class="hljs-number">.15</span> <span class="hljs-number">6379</span> <br>Trying <span class="hljs-number">192.168</span><span class="hljs-number">.0</span><span class="hljs-number">.15</span>...<br>Connected to <span class="hljs-number">192.168</span><span class="hljs-number">.0</span><span class="hljs-number">.15</span>.<br>Escape character is '^]'.<br>sync<br>$<span class="hljs-number">98</span><br>REDIS0007dis-ver3<span class="hljs-number">.2</span><span class="hljs-number">.3</span>edis-bitsctimeYed-mem<br></code></pre></div></td></tr></table></figure>
 <p><a href="http://redis.io/topics/replication" target="_blank" rel="noopener">参考官方文档</a></p>
 <h4 id="1-主备复制"><a href="#1-主备复制" class="headerlink" title="1.主备复制"></a>1.主备复制</h4><p>环境：192.168.0.15为主节点，192.168.0.12-13为从节点</p>
 <p>Master redis的配置<code>redis.conf</code>修改如下配置即可，其他保存默认。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">master redis 绑定的IP地址</span><br><span class="line">bind 192.168.0.15</span><br><span class="line">监听的端口，使用默认的 2679</span><br><span class="line">port 6379</span><br><span class="line"># 以后台进程运行</span><br><span class="line">daemonize yes</span><br><span class="line"># 日志输出位置，便查看实验结果</span><br><span class="line">logfile &quot;/logfile/var/log/redis/redis.log&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">master redis 绑定的IP地址<br>bind 192.168.0.15<br>监听的端口，使用默认的 2679<span class="hljs-built_in"><br>port </span>6379<br><span class="hljs-comment"># 以后台进程运行</span><br>daemonize <span class="hljs-literal">yes</span><br><span class="hljs-comment"># 日志输出位置，便查看实验结果</span><br>logfile <span class="hljs-string">"/logfile/var/log/redis/redis.log"</span><br></code></pre></div></td></tr></table></figure>
 <p>Slaveof redis的配置<code>redis.conf</code>#另一节点的slave修改绑定IP即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># slave redis 绑定的IP地址</span><br><span class="line">bind 192.168.0.12</span><br><span class="line"># 监听的端口，使用默认的 2679</span><br><span class="line">port 6379</span><br><span class="line"># 以后台进程运行</span><br><span class="line">daemonize yes</span><br><span class="line"># 日志输出位置，便查看实验结果</span><br><span class="line">logfile &quot;/logfile/var/log/redis/redis.log&quot;</span><br><span class="line"># 作为 master redis 的 slave redis</span><br><span class="line">slaveof 192.168.0.15 6379</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-comment"># slave redis 绑定的IP地址</span><br>bind 192.168.0.12<br><span class="hljs-comment"># 监听的端口，使用默认的 2679</span><span class="hljs-built_in"><br>port </span>6379<br><span class="hljs-comment"># 以后台进程运行</span><br>daemonize <span class="hljs-literal">yes</span><br><span class="hljs-comment"># 日志输出位置，便查看实验结果</span><br>logfile <span class="hljs-string">"/logfile/var/log/redis/redis.log"</span><br><span class="hljs-comment"># 作为 master redis 的 slave redis</span><br>slaveof 192.168.0.15 6379<br></code></pre></div></td></tr></table></figure>
 <p>修改好配置后，先后启动 master redis 和 slave redis：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># redis-server /etc/redis.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-meta">#</span><span class="bash"> redis-server /etc/redis.conf</span><br></code></pre></div></td></tr></table></figure>
 <p>主备复制完成</p>
 <h5 id="2-配置-Sentinel"><a href="#2-配置-Sentinel" class="headerlink" title="2.配置 Sentinel"></a>2.配置 Sentinel</h5><p>Redis 源码中包含了一个名为<code>sentinel.conf</code>的文件， 这个文件是一个带有详细注释的 Sentinel 配置文件示例。</p>
 <p>运行一个 Sentinel 所需的最少配置如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 绑定的IP地址</span><br><span class="line">bind 192.168.0.15</span><br><span class="line"># 监听的端口</span><br><span class="line">port 26379</span><br><span class="line"># 监控的 master redis 信息，</span><br><span class="line"></span><br><span class="line">sentinel monitor mymaster 192.168.0.15 6379 2</span><br><span class="line"># 判断 master redis 主观下线的时长（subjectively down，简称 SDOWN ），单位为毫秒,如果master在多少秒内无反应哨兵会开始进行master-slave间的切换，使用“选举”机制</span><br><span class="line">sentinel down-after-milliseconds mymaster 30000</span><br><span class="line">#如果在该时间（ms）内未能完成failover操作，则认为该failover失败</span><br><span class="line">sentinel failover-timeout mymaster 180000</span><br><span class="line">sentinel parallel-syncs mymaster 1</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-comment"># 绑定的IP地址</span><br>bind 192.168.0.15<br><span class="hljs-comment"># 监听的端口</span><span class="hljs-built_in"><br>port </span>26379<br><span class="hljs-comment"># 监控的 master redis 信息，</span><br><br>sentinel monitor mymaster 192.168.0.15 6379 2<br><span class="hljs-comment"># 判断 master redis 主观下线的时长（subjectively down，简称 SDOWN ），单位为毫秒,如果master在多少秒内无反应哨兵会开始进行master-slave间的切换，使用“选举”机制</span><br>sentinel down-after-milliseconds mymaster 30000<br><span class="hljs-comment">#如果在该时间（ms）内未能完成failover操作，则认为该failover失败</span><br>sentinel failover-timeout mymaster 180000<br>sentinel parallel-syncs mymaster 1<br></code></pre></div></td></tr></table></figure>
 <p>各个选项的功能如下：</p>
 <ul>
 <li><p>sentinel monitor mymaster 192.168.0.15 6379 2</p>
@@ -82,65 +272,224 @@
 <li><code>parallel-syncs</code> 选项指定了在执行故障转移时， 最多可以有多少个从服务器同时对新的主服务器进行同步， 这个数字越小， 完成故障转移所需的时间就越长。</li>
 </ul>
 <p>其他节点同上配置，其中只修改本机绑定IP地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 绑定的IP地址</span><br><span class="line">bind 192.168.0.$</span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"># 绑定的<span class="hljs-built_in">IP</span>地址<br><span class="hljs-keyword">bind </span><span class="hljs-number">192</span>.<span class="hljs-number">168</span>.<span class="hljs-number">0</span>.$<br></code></pre></div></td></tr></table></figure>
 <p>配置完成，启动</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ redis-sentinel redis-sentinel.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-meta">$</span><span class="bash"> redis-sentinel redis-sentinel.conf</span><br></code></pre></div></td></tr></table></figure>
 <p>####　常用代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 强制杀死redis，模仿宕机</span><br><span class="line">ps aux |grep redis |awk &apos;&#123;print $2&#125;&apos;|xargs kill -9</span><br><span class="line"># 优化模拟宕机 【根据Dual-X-raY提示-_-】</span><br><span class="line">redis&gt; DEBUG SEGFAULT</span><br><span class="line"># 重启，指定conf</span><br><span class="line">/home/work/xxx/bin/redis-server /home/work/xxx/etc/redis.conf</span><br><span class="line"># 压测，具体参数可以参考benchmark</span><br><span class="line">$  ./redis-benchmark -h 127.0.0.1  -p 端口 -a 密码  -c 1000 -n 10000000  -d 1024 -r 100000 -t set,get,incr,del</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-meta">#</span><span class="bash"> 强制杀死redis，模仿宕机</span><br>ps aux |grep redis |awk '&#123;print $2&#125;'|xargs kill -9<br><span class="hljs-meta">#</span><span class="bash"> 优化模拟宕机 【根据Dual-X-raY提示-_-】</span><br><span class="hljs-meta">redis&gt;</span><span class="bash"> DEBUG SEGFAULT</span><br><span class="hljs-meta">#</span><span class="bash"> 重启，指定conf</span><br>/home/work/xxx/bin/redis-server /home/work/xxx/etc/redis.conf<br><span class="hljs-meta">#</span><span class="bash"> 压测，具体参数可以参考benchmark</span><br><span class="hljs-meta">$</span><span class="bash">  ./redis-benchmark -h 127.0.0.1  -p 端口 -a 密码  -c 1000 -n 10000000  -d 1024 -r 100000 -t <span class="hljs-built_in">set</span>,get,incr,del</span><br></code></pre></div></td></tr></table></figure>
 <h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p>这里直接关闭主数据库，终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -p 7000 shutdown</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+sdown 表示哨兵主观认为数据库下线</span><br><span class="line">+odown 表示哨兵客观认为数据库下线</span><br><span class="line">+try-failover 表示哨兵开始进行故障恢复</span><br><span class="line">+failover-end 表示哨兵完成故障修复，其中包括了领头哨兵的选举、备选从数据库的选择等等较为复杂的过程</span><br><span class="line">+switch-master表示主数据库从51服务器迁移到52服务器</span><br><span class="line">+slave列出了新的主数据库的2个从数据库，而哨兵并没有彻底清除51服务器的实力信息，这是因为停止的实例有可能会在将来恢复，哨兵会让其重新加入进来</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">redis-cli -<span class="hljs-selector-tag">p</span> <span class="hljs-number">7000</span> shutdown<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-addition">+sdown 表示哨兵主观认为数据库下线</span><br><span class="hljs-addition">+odown 表示哨兵客观认为数据库下线</span><br><span class="hljs-addition">+try-failover 表示哨兵开始进行故障恢复</span><br><span class="hljs-addition">+failover-end 表示哨兵完成故障修复，其中包括了领头哨兵的选举、备选从数据库的选择等等较为复杂的过程</span><br><span class="hljs-addition">+switch-master表示主数据库从51服务器迁移到52服务器</span><br><span class="hljs-addition">+slave列出了新的主数据库的2个从数据库，而哨兵并没有彻底清除51服务器的实力信息，这是因为停止的实例有可能会在将来恢复，哨兵会让其重新加入进来</span><br></code></pre></div></td></tr></table></figure>
 <h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul>
 <li><a href="http://blog.nosqlfan.com/html/4166.html" target="_blank" rel="noopener">NoSQL</a></li>
 <li><a href="http://www.cnblogs.com/zhoujinyi/p/5570024.html" target="_blank" rel="noopener">Redis 复制、Sentinel的搭建和原理说明</a></li>
-</ul></section>
-</article>
+</ul>
 
-<section class="card article-toc">
-  <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#connection"><span class="toc-text">connection</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#部分常用命令"><span class="toc-text">部分常用命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#redis安装"><span class="toc-text">redis安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验过程"><span class="toc-text">实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#复制功能的运作原理"><span class="toc-text">复制功能的运作原理</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-主备复制"><span class="toc-text">1.主备复制</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-配置-Sentinel"><span class="toc-text">2.配置 Sentinel</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#验证"><span class="toc-text">验证</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol></li></ol>
-</section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Redis/">Redis</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2017/06/12/command-shell-code/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">命令行的艺术</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2017/06/05/Git_advancedguide/">
+                        <span class="hidden-mobile">Git 进阶指南</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-<section class="article slide-in-right">
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
 
-  <div class="loader" id="loader">
-    <svg viewBox="0 0 50 50">
-      <circle class="ring" cx="25" cy="25" r="20"></circle>
-      <circle class="ball" cx="25" cy="5" r="3.5"></circle>
-    </svg>
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
   </div>
+</div>
 
-  <div class="comment" id="utteranc"></div>
-  <noscript>为正常使用评论功能请激活 JavaScript</noscript>
-</section>
+<!-- Custom -->
 
-<a class="card back-to-top" id="backTop">&UpArrow;</a>
-
-</main>
 
     
 
-    <script>
-	window.COLD_STONE = {
-	  repo: "kinzun/kinzun.github.io",
-	  gaid: "xxxxxxxxxxxxxx"
-	}
-</script>
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
-<script src="/scripts/cold-stone.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
 
 
-  <script src="https://www.googletagmanager.com/gtag/js?id=xxxxxxxxxxxxxx"></script>
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
   <script>
-	window.dataLayer = window.dataLayer || []
-	function gtag() {
-		dataLayer.push(arguments)
-	}
-	gtag('js', new Date())
-	gtag('config', window.COLD_STONE.gaid)
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
   </script>
 
 
-  </body>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>

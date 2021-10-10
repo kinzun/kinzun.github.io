@@ -1,235 +1,555 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="referrer" content="no-referrer">
-    <meta name="theme-color" content="#333333">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="google" content="notranslate">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="keyword"  content="">
-    <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
-    <title>kinzun</title>
-    <base href="/">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="shortcut icon" href="/icons/icon-72x72.png">
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    <link rel="stylesheet" href="/styles/sanitize.css">
-<link rel="stylesheet" href="/styles/cold-stone.css">
-    <noscript>
-      <p class="text-center">你的浏览器还没开启 Javascript 功能！</p>
-    </noscript>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
+  <meta name="author" content="kinzun">
+  <meta name="keywords" content>
+  <meta name="description" content="Try not to become a man of success but rather try to become a man of value.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="kinzun">
+<meta property="og:url" content="https://kinzun.github.io/page/7/index.html">
+<meta property="og:site_name" content="kinzun">
+<meta property="og:description" content="Try not to become a man of success but rather try to become a man of value.">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="kinzun">
+<meta name="twitter:description" content="Try not to become a man of success but rather try to become a man of value.">
+  
+  <title>kinzun</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/color-schema.js"></script>
 </head>
 
-  <body>
-    
-      <header class="header">
-  <div class="wrapper">
-    <h1 class="title">
-      
-        <span class="title-brand">kinzun</span>
-      
-      <input class="offscreen" type="checkbox" id="toggle" name="toggle" aria-label="toggle" /><label for="toggle" class="switch"></label>
-    </h1>
-  </div>
-</header>
 
-<nav class="navbar wrapper">
-  <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="/" data-link="/">HOME</a>
-      </li>
-      
-        <li class="nav-item">
-          <a class="nav-link" href="/projects" data-link="/projects/">PROJECTS</a>
-        </li>
-      
-      
-        <li class="nav-item">
-          <a class="nav-link" href="/categories" data-link="/categories/">CATEGORIES</a>
-        </li>
-      
-      
-        <li class="nav-item">
-          <a class="nav-link" href="/tags" data-link="/tags/">TAGS</a>
-        </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="/archives" data-link="/archives/">ARCHIVES</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/about/" data-link="/about/">ABOUT</a>
-      </li>
-    </ul>
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>kinzun</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 </nav>
 
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bgp.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="一款 Material Design 风格的 Hexo 主题">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
     
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
 
-    <main class="main wrapper"><ul class="list-unstyled animate-list">
+
+  <div class="row mx-auto index-card">
     
-        <li class="animate-list__item card slide-in-right">
-            <h2 class="animate-list__title">
-                GitHub Hexo Blog            </h2>
-            <p><p><img src="/images/githexo.png" alt="githexo"></p>
-<h3 id="什么是-Hexo？"><a href="#什么是-Hexo？" class="headerlink" title="什么是 Hexo？"></a>什么是 <a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo</a>？</h3><blockquote>
-<p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用<a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="noopener">Markdown</a>（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
-</blockquote>
-<h3 id="安装前提"><a href="#安装前提" class="headerlink" title="安装前提"></a>安装前提</h3><p>应用程序：</p>
-<ul>
-<li><a href="https://nodejs.org/en/" target="_blank" rel="noopener">Nodejs</a></li>
-<li><a href="https://git-scm.com/" target="_blank" rel="noopener">github</a></li>
-<li><a href="https://code.visualstudio.com/" target="_blank" rel="noopener">vscode</a> [^mark]</li>
-</ul>
-<p>[^mark]: &lt;&lt;用作编辑markdown，根据个人喜好，比如<a href="http://www.markdownpad.com/" target="_blank" rel="noopener">mdpad</a>&gt;&gt;</p></p>
-            <p class="animate-list__desc">
-                <span class="post-info">
-                    
-                        <span>Tags:</span>
-                        <span class="meta-tags">
-                        
-                        </span>
-                    
-                    <span>Post:</span>
-                    <span class="post-time">2017-05-17</span>
-                </span>
-
-                <a class="read-more hover-underline-animation" href="/2017/05/17/hexodep/">Read more</a>
-            </p>
-        </li>
     
-        <li class="animate-list__item card slide-in-right">
-            <h2 class="animate-list__title">
-                Keeplaived 高可用nginx负载均衡            </h2>
-            <p><p>Single Point of Failure</p>
-<p><img src="/images/htmt5a.jpg" alt="htmt5a"></p>
-<p>系统环境： CentOS-7.3</p>
-<p>软件： nginx-1.12.0,keepalived,ipvsadm<br>安装方式： 源码编译安装、YUM</p>
-<p>安装位置： /usr/local/nginx/</p>
-<p>下载地址： <a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">nignx</a><br><img src="/images/keepalivedag.png" alt="keepalived"><br></p>
-            <p class="animate-list__desc">
-                <span class="post-info">
-                    
-                        <span>Tags:</span>
-                        <span class="meta-tags">
-                        
-                        </span>
-                    
-                    <span>Post:</span>
-                    <span class="post-time">2017-05-16</span>
-                </span>
-
-                <a class="read-more hover-underline-animation" href="/2017/05/16/keepalived/">Read more</a>
-            </p>
-        </li>
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2017/05/17/hexodep/" target="_self">
+          <img src="/images/hexonext.png" srcset="/img/loading.gif" lazyload alt="GitHub Hexo Blog">
+        </a>
+      </div>
     
-        <li class="animate-list__item card slide-in-right">
-            <h2 class="animate-list__title">
-                Nginx 配置文件总结            </h2>
-            <p><h4 id="顶级配置"><a href="#顶级配置" class="headerlink" title="顶级配置"></a>顶级配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#定义 Nginx 运行的用户和用户组</span><br><span class="line">user nginx;</span><br><span class="line"></span><br><span class="line">#进程文件</span><br><span class="line">pid /var/run/nginx.pid;</span><br><span class="line"></span><br><span class="line">#错误日志位置和级别，debug、info、notice、warn、error、crit</span><br><span class="line">error_log  /var/log/nginx/error.log warn;</span><br><span class="line"></span><br><span class="line">#Nginx worker 的进程数，一般可设置为可用的CPU内核数。</span><br><span class="line">worker_processes 8;</span><br><span class="line"></span><br><span class="line">#每个 worker 打开文件描述符的最大数量限制。理论值应该是最多打开文件数（系统的值ulimit -n）与 nginx 进程数相除，但是 nginx 分配请求并不均匀，所以建议与ulimit -n的值保持一致。</span><br><span class="line">worker_rlimit_nofile 65535;</span><br></pre></td></tr></table></figure></p>
-            <p class="animate-list__desc">
-                <span class="post-info">
-                    
-                        <span>Tags:</span>
-                        <span class="meta-tags">
-                        
-                            <a class="meta-tag hover-underline-animation" href="/tags/#Nginx" title="Nginx">Nginx</a>
-                        
-                        </span>
-                    
-                    <span>Post:</span>
-                    <span class="post-time">2017-05-05</span>
-                </span>
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/05/17/hexodep/" target="_self">
+          GitHub Hexo Blog
+        </a>
+      </h1>
 
-                <a class="read-more hover-underline-animation" href="/2017/05/05/nginx-config-summary/">Read more</a>
-            </p>
-        </li>
-    
-        <li class="animate-list__item card slide-in-right">
-            <h2 class="animate-list__title">
-                Nginx 服务器安装及配置文件详解            </h2>
-            <p><p>nginx在工作中已经有好几个环境在使用了，每次都是重新去网上扒博客，各种编译配置，今天自己也整理一份安装文档和nginx.conf配置选项的说明，留作以后参考。像负载均衡配置（包括健康检查）、缓存（包括清空缓存）配置实例，请参考<a href="http://seanlook.com/2015/05/17/nginx-install-and-config" target="_blank" rel="noopener">http://seanlook.com/2015/05/17/nginx-install-and-config</a> ，ssl加密请参考 <a href="http://seanlook.com/2015/05/28/nginx-ssl/" target="_blank" rel="noopener">http://seanlook.com/2015/05/28/nginx-ssl/</a> 。</p></p>
-            <p class="animate-list__desc">
-                <span class="post-info">
-                    
-                        <span>Tags:</span>
-                        <span class="meta-tags">
-                        
-                            <a class="meta-tag hover-underline-animation" href="/tags/#Nginx" title="Nginx">Nginx</a>
-                        
-                        </span>
-                    
-                    <span>Post:</span>
-                    <span class="post-time">2017-05-04</span>
-                </span>
+      <p class="index-excerpt">
+        <a href="/2017/05/17/hexodep/" target="_self">
+          
+          
+            
+          
+          
+什么是 Hexo？
+Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。
 
-                <a class="read-more hover-underline-animation" href="/2017/05/04/NginxInstall-and-config/">Read more</a>
-            </p>
-        </li>
-    
-        <li class="animate-list__item card slide-in-right">
-            <h2 class="animate-list__title">
-                NetworkManager command line tool            </h2>
-            <p><p>NetworkManager command line tool</p></p>
-            <p class="animate-list__desc">
-                <span class="post-info">
-                    
-                        <span>Tags:</span>
-                        <span class="meta-tags">
-                        
-                            <a class="meta-tag hover-underline-animation" href="/tags/#Network" title="Network">Network</a>
-                        
-                        </span>
-                    
-                    <span>Post:</span>
-                    <span class="post-time">2017-03-07</span>
-                </span>
+安装前提应用程序：
 
-                <a class="read-more hover-underline-animation" href="/2017/03/07/NetworkManager-command-line-tool/">Read more</a>
-            </p>
-        </li>
-    </ul>
+Nodejs
+github
+vscode [^mark]
 
+[^mark]: &lt;&lt;用作编辑markdown，根据个人喜好，比如mdpad&gt;&gt;
+        </a>
+      </p>
 
-   <nav class="paginator">
-        <a class="extend prev" rel="prev" href="/page/6/">&larr; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/">下一页 &rarr;</a>
-   </nav>
-
-</main>
-
-    
-      <footer class="footer">
-  <div class="footer-content wrapper">
-    <p>Copyright &copy; 2019 <a class="theme-link" rel="noopener" href="https://github.com/xrr2016/hexo-theme-cold-stone" target="_blank">Theme Cold Stone</a></p>
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-05-17 18:02" pubdate>
+              2017-05-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/主题博客/">主题博客</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hexo/">hexo</a>
+            
+          </div>
+        
+      </div>
+    </article>
   </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/05/16/keepalived/" target="_self">
+          Keeplaived 高可用nginx负载均衡
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2017/05/16/keepalived/" target="_self">
+          
+          
+            
+          
+          Single Point of Failure
+
+系统环境： CentOS-7.3
+软件： nginx-1.12.0,keepalived,ipvsadm安装方式： 源码编译安装、YUM
+安装位置： /usr/local/nginx/
+下载地址： nignx
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-05-16 20:26" pubdate>
+              2017-05-16
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/05/05/nginx-config-summary/" target="_self">
+          Nginx 配置文件总结
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2017/05/05/nginx-config-summary/" target="_self">
+          
+          
+            
+          
+          顶级配置1234567891011121314#定义 Nginx 运行的用户和用户组user nginx;#进程文件pid /var/run/nginx.pid;#错误日志位置和级别，debug、info、notice、warn、error、criterror_log  /var/log/nginx/error.log warn;#Nginx worker 的进程数，一般可设置为可用的CPU内核数
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-05-05 12:22" pubdate>
+              2017-05-05
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Nginx/">Nginx</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/05/04/NginxInstall-and-config/" target="_self">
+          Nginx 服务器安装及配置文件详解
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2017/05/04/NginxInstall-and-config/" target="_self">
+          
+          
+            
+          
+          nginx在工作中已经有好几个环境在使用了，每次都是重新去网上扒博客，各种编译配置，今天自己也整理一份安装文档和nginx.conf配置选项的说明，留作以后参考。像负载均衡配置（包括健康检查）、缓存（包括清空缓存）配置实例，请参考http://seanlook.com/2015/05/17/nginx-install-and-config ，ssl加密请参考 http://seanlook.com
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-05-04 10:33" pubdate>
+              2017-05-04
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Nginx/">Nginx</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/03/07/NetworkManager-command-line-tool/" target="_self">
+          NetworkManager command line tool
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2017/03/07/NetworkManager-command-line-tool/" target="_self">
+          
+          
+            
+          
+          NetworkManager command line tool
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-03-07 14:32" pubdate>
+              2017-03-07
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Network/">Network</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/6/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#board">5</a><a class="page-number" href="/page/6/#board">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/#board">8</a><a class="extend next" rel="next" href="/page/8/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
 </footer>
 
-    
 
-    <script>
-	window.COLD_STONE = {
-	  repo: "kinzun/kinzun.github.io",
-	  gaid: "xxxxxxxxxxxxxx"
-	}
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
-<script src="/scripts/cold-stone.js"></script>
-
-
-  <script src="https://www.googletagmanager.com/gtag/js?id=xxxxxxxxxxxxxx"></script>
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
   <script>
-	window.dataLayer = window.dataLayer || []
-	function gtag() {
-		dataLayer.push(arguments)
-	}
-	gtag('js', new Date())
-	gtag('config', window.COLD_STONE.gaid)
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
   </script>
 
 
-  </body>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>

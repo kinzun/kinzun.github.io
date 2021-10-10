@@ -1,250 +1,556 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="referrer" content="no-referrer">
-    <meta name="theme-color" content="#333333">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="google" content="notranslate">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="keyword"  content="">
-    <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
-    <title>kinzun</title>
-    <base href="/">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="shortcut icon" href="/icons/icon-72x72.png">
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    <link rel="stylesheet" href="/styles/sanitize.css">
-<link rel="stylesheet" href="/styles/cold-stone.css">
-    <noscript>
-      <p class="text-center">你的浏览器还没开启 Javascript 功能！</p>
-    </noscript>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
+  <meta name="author" content="kinzun">
+  <meta name="keywords" content>
+  <meta name="description" content="Try not to become a man of success but rather try to become a man of value.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="kinzun">
+<meta property="og:url" content="https://kinzun.github.io/page/6/index.html">
+<meta property="og:site_name" content="kinzun">
+<meta property="og:description" content="Try not to become a man of success but rather try to become a man of value.">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="kinzun">
+<meta name="twitter:description" content="Try not to become a man of success but rather try to become a man of value.">
+  
+  <title>kinzun</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/color-schema.js"></script>
 </head>
 
-  <body>
-    
-      <header class="header">
-  <div class="wrapper">
-    <h1 class="title">
-      
-        <span class="title-brand">kinzun</span>
-      
-      <input class="offscreen" type="checkbox" id="toggle" name="toggle" aria-label="toggle" /><label for="toggle" class="switch"></label>
-    </h1>
-  </div>
-</header>
 
-<nav class="navbar wrapper">
-  <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="/" data-link="/">HOME</a>
-      </li>
-      
-        <li class="nav-item">
-          <a class="nav-link" href="/projects" data-link="/projects/">PROJECTS</a>
-        </li>
-      
-      
-        <li class="nav-item">
-          <a class="nav-link" href="/categories" data-link="/categories/">CATEGORIES</a>
-        </li>
-      
-      
-        <li class="nav-item">
-          <a class="nav-link" href="/tags" data-link="/tags/">TAGS</a>
-        </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="/archives" data-link="/archives/">ARCHIVES</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/about/" data-link="/about/">ABOUT</a>
-      </li>
-    </ul>
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>kinzun</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 </nav>
 
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bgp.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="一款 Material Design 风格的 Hexo 主题">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
     
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
 
-    <main class="main wrapper"><ul class="list-unstyled animate-list">
+
+  <div class="row mx-auto index-card">
     
-        <li class="animate-list__item card slide-in-right">
-            <h2 class="animate-list__title">
-                Git 进阶指南            </h2>
-            <p><p><img src="/images/GIT/github-for-atom.png" alt=""></p>
-<p>在掌握了基础的 <a href="http://www.cnblogs.com/tugenhua0707/p/4050072.html" target="_blank" rel="noopener">Git 使用</a> 之后，可能会遇到一些问题。以下是猫哥筛选总结的部分常见问题，分享给各位朋友，掌握了这些问题的中的要点之后，git 进阶也就完成了，它包含以下部分：</p>
-<ul>
-<li>如何修改 origin 仓库信息</li>
-<li>如何配置 git ssh keys</li>
-<li>如何撤销修改</li>
-<li>遇到冲突了怎么解决</li>
-<li>git stash / alias / submodule 的使用问题等</li>
-</ul></p>
-            <p class="animate-list__desc">
-                <span class="post-info">
-                    
-                        <span>Tags:</span>
-                        <span class="meta-tags">
-                        
-                            <a class="meta-tag hover-underline-animation" href="/tags/#Git" title="Git">Git</a>
-                        
-                        </span>
-                    
-                    <span>Post:</span>
-                    <span class="post-time">2017-06-05</span>
-                </span>
-
-                <a class="read-more hover-underline-animation" href="/2017/06/05/Git_advancedguide/">Read more</a>
-            </p>
-        </li>
     
-        <li class="animate-list__item card slide-in-right">
-            <h2 class="animate-list__title">
-                Git常用指令            </h2>
-            <p><p>下面是我整理的常用 Git 命令清单。几个专用名词的译名如下。</p>
-<p><img src="/images/GIT/gitwork.png" alt=""></p>
-<ul>
-<li>Workspace：工作区</li>
-<li>Index / Stage：暂存区</li>
-<li>Repository：仓库区（或本地仓库）</li>
-<li>Remote：远程仓库</p>
-            <p class="animate-list__desc">
-                <span class="post-info">
-                    
-                        <span>Tags:</span>
-                        <span class="meta-tags">
-                        
-                            <a class="meta-tag hover-underline-animation" href="/tags/#Git" title="Git">Git</a>
-                        
-                        </span>
-                    
-                    <span>Post:</span>
-                    <span class="post-time">2017-06-03</span>
-                </span>
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/06/05/Git_advancedguide/" target="_self">
+          Git 进阶指南
+        </a>
+      </h1>
 
-                <a class="read-more hover-underline-animation" href="/2017/06/03/Git_bash/">Read more</a>
-            </p>
-        </li>
-    
-        <li class="animate-list__item card slide-in-right">
-            <h2 class="animate-list__title">
-                ansible总结            </h2>
-            <p></p>
-            <p class="animate-list__desc">
-                <span class="post-info">
-                    
-                        <span>Tags:</span>
-                        <span class="meta-tags">
-                        
-                            <a class="meta-tag hover-underline-animation" href="/tags/#ansible" title="ansible">ansible</a>
-                        
-                        </span>
-                    
-                    <span>Post:</span>
-                    <span class="post-time">2017-05-27</span>
-                </span>
+      <p class="index-excerpt">
+        <a href="/2017/06/05/Git_advancedguide/" target="_self">
+          
+          
+            
+          
+          
+在掌握了基础的 Git 使用 之后，可能会遇到一些问题。以下是猫哥筛选总结的部分常见问题，分享给各位朋友，掌握了这些问题的中的要点之后，git 进阶也就完成了，它包含以下部分：
 
-                <a class="read-more hover-underline-animation" href="/2017/05/27/ansibleo/">Read more</a>
-            </p>
-        </li>
-    
-        <li class="animate-list__item card slide-in-right">
-            <h2 class="animate-list__title">
-                tomcat memcache sticky sessions            </h2>
-            <p><h2 id="什么是tomcat？"><a href="#什么是tomcat？" class="headerlink" title="什么是tomcat？"></a>什么是tomcat？</h2><p>Apache Tomcat 是由<a href="http://www.apache.org/" target="_blank" rel="noopener">Apache</a> 软件基金会 开发的开源web服务器和servlet容器。它实现了Java Servlet，JavaServer页面（JSP），Java的统一表达式语言，以及Sun Microsystems的Java的WebSocket规范，并提供了一个运行java代码的web服务器环境。</p>
-<h3 id="Install-and-Config-Java"><a href="#Install-and-Config-Java" class="headerlink" title="Install and Config Java"></a>Install and Config Java</h3><p>Tomcat要求安装在服务器端Java，Java web应用程序代码才可执行<br>利用 yum 安装执行下面命令。</p>
-<ul>
-<li><p><a href="http://openjdk.java.net/" target="_blank" rel="noopener">OpenJDK</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum install java-1.8.0-openjdk-devel</span></span><br></pre></td></tr></table></figure>
-<p>alternatives 在常用用于安装同类软件不同版本</p>
-</li>
-</ul>
-<p>tomcat通过JAVA_HOME变量找jdk安装目录。</p>
-<p>设置JAVA_HOME环境变量<br></p>
-            <p class="animate-list__desc">
-                <span class="post-info">
-                    
-                        <span>Tags:</span>
-                        <span class="meta-tags">
-                        
-                            <a class="meta-tag hover-underline-animation" href="/tags/#tomcat" title="tomcat">tomcat</a>
-                        
-                        </span>
-                    
-                    <span>Post:</span>
-                    <span class="post-time">2017-05-20</span>
-                </span>
+如何修改 origin 仓库信息
+如何配置 git ssh keys
+如何撤销修改
+遇到冲突了怎么解决
+git stash / alias / submodule 的使用问题等
 
-                <a class="read-more hover-underline-animation" href="/2017/05/20/tomcat/">Read more</a>
-            </p>
-        </li>
-    
-        <li class="animate-list__item card slide-in-right">
-            <h2 class="animate-list__title">
-                zabbix安装部署            </h2>
-            <p><p>Alexei Vladishev创建了<a href="http://www.ttlsa.com/monitor/zabbix/" target="_blank" rel="noopener">Zabbix</a>项目，当前处于活跃开发状态，Zabbix SIA提供支持.Zabbix是一个企业级的、开源的、分布式的监控套件</p>
-<p>Zabbix可以监控网络和服务的监控状况. Zabbix利用灵活的告警机制，允许用户对事件发送基于Email的告警. 这样可以保证快速的对问题作出相应. Zabbix可以利用存储数据提供杰出的报告及图形化方式. 这一特性将帮助用户完成容量规划.Zabbix支持polling和trapping两种方式. 所有的Zabbix报告都可以通过配置参数在WEB前端进行访问. Web前端将帮助你在任何区域都能够迅速获得你的网络及服务状况. Zabbix可以通过尽可能的配置来扮演监控你的IT基础框架的角色，而不管你是来自于小型组织还是大规模的公司.</p>
-<p>Zabbix是零成本的. 因为Zabbix编写和发布基于GPL V2协议. 意味着源代码是免费发布的.</p>
-<p>Zabbix公司也提供商业化的技术支持.</p></p>
-            <p class="animate-list__desc">
-                <span class="post-info">
-                    
-                        <span>Tags:</span>
-                        <span class="meta-tags">
-                        
-                            <a class="meta-tag hover-underline-animation" href="/tags/#zabbix" title="zabbix">zabbix</a>
-                        
-                        </span>
-                    
-                    <span>Post:</span>
-                    <span class="post-time">2017-05-18</span>
-                </span>
+        </a>
+      </p>
 
-                <a class="read-more hover-underline-animation" href="/2017/05/18/zabbixInstalldeploy/">Read more</a>
-            </p>
-        </li>
-    </ul>
-
-
-   <nav class="paginator">
-        <a class="extend prev" rel="prev" href="/page/5/">&larr; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/">下一页 &rarr;</a>
-   </nav>
-
-</main>
-
-    
-      <footer class="footer">
-  <div class="footer-content wrapper">
-    <p>Copyright &copy; 2019 <a class="theme-link" rel="noopener" href="https://github.com/xrr2016/hexo-theme-cold-stone" target="_blank">Theme Cold Stone</a></p>
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-06-05 13:56" pubdate>
+              2017-06-05
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Git/">Git</a>
+            
+          </div>
+        
+      </div>
+    </article>
   </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/06/03/Git_bash/" target="_self">
+          Git常用指令
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2017/06/03/Git_bash/" target="_self">
+          
+          
+            
+          
+          下面是我整理的常用 Git 命令清单。几个专用名词的译名如下。
+
+
+Workspace：工作区
+Index / Stage：暂存区
+Repository：仓库区（或本地仓库）
+Remote：远程仓库
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-06-03 15:09" pubdate>
+              2017-06-03
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Git/">Git</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/05/27/ansibleo/" target="_self">
+          ansible总结
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2017/05/27/ansibleo/" target="_self">
+          
+          
+            
+          
+          安装目录
+ansible工作原理图
+####ansible重要组成部分
+
+ANSIBLE PLAYBOOKS ： 任 务 剧 本 （ 任 务 集 ） ， 编 排 定 义Ansible 任 务 集 的 配 置 文 件 ， 由 Ansible 顺 序 依 次 执 行 ， 通 常 是JSON 格 式 的 YML 文 件 
+INVENTORY ： Ansible 管 理 主 机 的 清 单 ；
+MODUL
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-05-27 15:20" pubdate>
+              2017-05-27
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/ansible/">ansible</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/05/20/tomcat/" target="_self">
+          tomcat memcache sticky sessions
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2017/05/20/tomcat/" target="_self">
+          
+          
+            
+          
+          什么是tomcat？Apache Tomcat 是由Apache 软件基金会 开发的开源web服务器和servlet容器。它实现了Java Servlet，JavaServer页面（JSP），Java的统一表达式语言，以及Sun Microsystems的Java的WebSocket规范，并提供了一个运行java代码的web服务器环境。
+Install and Config JavaTomcat要
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-05-20 17:07" pubdate>
+              2017-05-20
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/tomcat/">tomcat</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2017/05/18/zabbixInstalldeploy/" target="_self">
+          zabbix安装部署
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2017/05/18/zabbixInstalldeploy/" target="_self">
+          
+          
+            
+          
+          Alexei Vladishev创建了Zabbix项目，当前处于活跃开发状态，Zabbix SIA提供支持.Zabbix是一个企业级的、开源的、分布式的监控套件
+Zabbix可以监控网络和服务的监控状况. Zabbix利用灵活的告警机制，允许用户对事件发送基于Email的告警. 这样可以保证快速的对问题作出相应. Zabbix可以利用存储数据提供杰出的报告及图形化方式. 这一特性将帮助用户完成容量
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-05-18 14:40" pubdate>
+              2017-05-18
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/zabbix/">zabbix</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/5/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/#board">7</a><a class="page-number" href="/page/8/#board">8</a><a class="extend next" rel="next" href="/page/7/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
 </footer>
 
-    
 
-    <script>
-	window.COLD_STONE = {
-	  repo: "kinzun/kinzun.github.io",
-	  gaid: "xxxxxxxxxxxxxx"
-	}
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
-<script src="/scripts/cold-stone.js"></script>
-
-
-  <script src="https://www.googletagmanager.com/gtag/js?id=xxxxxxxxxxxxxx"></script>
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
   <script>
-	window.dataLayer = window.dataLayer || []
-	function gtag() {
-		dataLayer.push(arguments)
-	}
-	gtag('js', new Date())
-	gtag('config', window.COLD_STONE.gaid)
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
   </script>
 
 
-  </body>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>

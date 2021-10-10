@@ -1,63 +1,252 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="referrer" content="no-referrer">
-    <meta name="theme-color" content="#333333">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="google" content="notranslate">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="keyword"  content="">
-    <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
-    <title>Python反射类型判断 - kinzun</title>
-    <base href="/">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="shortcut icon" href="/icons/icon-72x72.png">
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    <link rel="stylesheet" href="/styles/sanitize.css">
-<link rel="stylesheet" href="/styles/cold-stone.css">
-    <noscript>
-      <p class="text-center">你的浏览器还没开启 Javascript 功能！</p>
-    </noscript>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
+  <meta name="author" content="kinzun">
+  <meta name="keywords" content>
+  <meta name="description" content="Python中类型判断 type from types import MethodType, FunctionType  types python内置模块Python3 中类型判断 1234567891011121314151617types.BuiltinFunctionType               types.BuiltinMethodType         # 内置函数的类型，如l">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python反射类型判断">
+<meta property="og:url" content="https://kinzun.github.io/2018/11/24/反射isinstance/index.html">
+<meta property="og:site_name" content="kinzun">
+<meta property="og:description" content="Python中类型判断 type from types import MethodType, FunctionType  types python内置模块Python3 中类型判断 1234567891011121314151617types.BuiltinFunctionType               types.BuiltinMethodType         # 内置函数的类型，如l">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-11-28T00:47:27.962Z">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Python反射类型判断">
+<meta name="twitter:description" content="Python中类型判断 type from types import MethodType, FunctionType  types python内置模块Python3 中类型判断 1234567891011121314151617types.BuiltinFunctionType               types.BuiltinMethodType         # 内置函数的类型，如l">
+  
+  <title>Python反射类型判断 - kinzun</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css">
+  <link rel="stylesheet" href="/lib/hint/hint.min.css">
+
+  
+    
+    
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css">
+    
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/color-schema.js"></script>
 </head>
 
-  <body>
-    
 
-    <main class="main wrapper"><article class="article slide-in-right">
-  <section>
-    <h1 class="article-title">
-      Python反射类型判断    </h1>
-    <p class="article-meta">
-      <span class="meta-info">
-        LastUpdate：2018-11-28 08:47:27
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>kinzun</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-          Tags：
           
-            <a class="meta-tag" href="/tags/#Python" title="Python">Python</a>
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
           
         
-      </span>
-      <a  class="meta-link" href="/">返回</a>
-    </p>
-  </section>
-  <section><h2 id="Python中类型判断"><a href="#Python中类型判断" class="headerlink" title="Python中类型判断"></a>Python中类型判断</h2><ul>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Python反射类型判断">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2018-11-24 16:46" pubdate>
+        2018年11月24日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Python反射类型判断</h1>
+            
+            <div class="markdown-body">
+              <h2 id="Python中类型判断"><a href="#Python中类型判断" class="headerlink" title="Python中类型判断"></a>Python中类型判断</h2><ul>
 <li><code>type</code></li>
 <li><code>from types import MethodType, FunctionType</code></li>
 </ul>
 <h3 id="types-python内置模块"><a href="#types-python内置模块" class="headerlink" title="types python内置模块"></a><code>types</code> python内置模块</h3><p>Python3 中类型判断</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">types.BuiltinFunctionType               </span><br><span class="line">types.BuiltinMethodType         <span class="comment"># 内置函数的类型，如len()或sys.exit()，以及内置类的方法。(这里，“内置”的意思是“用C写”。)</span></span><br><span class="line">types.CodeType                  <span class="comment"># 通过compile()返回的代码对象类型。</span></span><br><span class="line">types.DynamicClassAttribute</span><br><span class="line">types.FrameType                 <span class="comment"># 框架对象的类型，如在tb中发现的。tb_frame如果tb是一个traceback对象。</span></span><br><span class="line">types.FunctionType</span><br><span class="line">types.GeneratorType             <span class="comment"># 由生成器函数创建的generator - iterator对象类型。</span></span><br><span class="line">types.GetSetDescriptorType      <span class="comment"># 用PyGetSetDef(如FrameType)在扩展模块中定义的对象的类型。</span></span><br><span class="line">types.LambdaType                <span class="comment"># 由lambda表达式创建的用户定义函数和函数的类型。</span></span><br><span class="line">types.MappingProxyType</span><br><span class="line">types.MemberDescriptorType</span><br><span class="line">types.MethodType                <span class="comment"># 用户定义类实例的方法类型。</span></span><br><span class="line">types.ModuleType</span><br><span class="line">types.SimpleNamespace</span><br><span class="line">types.TracebackType             <span class="comment"># traceback对象的类型，如sys.exc_info()</span></span><br><span class="line">types.new_class</span><br><span class="line">types.prepare_class</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python">types.BuiltinFunctionType               <br>types.BuiltinMethodType         <span class="hljs-comment"># 内置函数的类型，如len()或sys.exit()，以及内置类的方法。(这里，“内置”的意思是“用C写”。)</span><br>types.CodeType                  <span class="hljs-comment"># 通过compile()返回的代码对象类型。</span><br>types.DynamicClassAttribute<br>types.FrameType                 <span class="hljs-comment"># 框架对象的类型，如在tb中发现的。tb_frame如果tb是一个traceback对象。</span><br>types.FunctionType<br>types.GeneratorType             <span class="hljs-comment"># 由生成器函数创建的generator - iterator对象类型。</span><br>types.GetSetDescriptorType      <span class="hljs-comment"># 用PyGetSetDef(如FrameType)在扩展模块中定义的对象的类型。</span><br>types.LambdaType                <span class="hljs-comment"># 由lambda表达式创建的用户定义函数和函数的类型。</span><br>types.MappingProxyType<br>types.MemberDescriptorType<br>types.MethodType                <span class="hljs-comment"># 用户定义类实例的方法类型。</span><br>types.ModuleType<br>types.SimpleNamespace<br>types.TracebackType             <span class="hljs-comment"># traceback对象的类型，如sys.exc_info()</span><br>types.new_class<br>types.prepare_class<br></code></pre></div></td></tr></table></figure>
 <p><a href="https://docs.python.org/3/library/types.html#module-types" target="_blank" rel="noopener">Dynamic type creation and names for built-in types</a></p>
 <p>Typical use of these names is for <a href="https://docs.python.org/3.7/library/functions.html#isinstance" target="_blank" rel="noopener"><code>isinstance()</code></a> or <a href="https://docs.python.org/3.7/library/functions.html#issubclass" target="_blank" rel="noopener"><code>issubclass()</code></a> checks.</p>
 <h3 id="isinstance"><a href="#isinstance" class="headerlink" title="isinstance"></a><code>isinstance</code></h3><p>这个真的鲜为人知, 我们可以用 <code>isinstance(x, (float, int))</code>  来判断 <code>x</code> 是不是数:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(<span class="number">1</span>, (float, int))</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(<span class="number">1.3</span>, (float, int))</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(<span class="string">"1.3"</span>, (float, int))</span><br><span class="line"><span class="keyword">False</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>isinstance(<span class="hljs-number">1</span>, (float, int))<br><span class="hljs-keyword">True</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>isinstance(<span class="hljs-number">1.3</span>, (float, int))<br><span class="hljs-keyword">True</span><br><span class="hljs-meta">&gt;&gt;&gt; </span>isinstance(<span class="hljs-string">"1.3"</span>, (float, int))<br><span class="hljs-keyword">False</span><br></code></pre></div></td></tr></table></figure>
 <p>那么对于第三个测试，你把 <code>str</code> 加入元组就可以看到这是怎么回事了:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(<span class="string">"1.3"</span>, (float, int, str))</span><br><span class="line"><span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>isinstance(<span class="hljs-string">"1.3"</span>, (float, int, str))<br><span class="hljs-keyword">True</span><br></code></pre></div></td></tr></table></figure>
 <p>也就是那个<strong>元组</strong>里面是 <strong>或</strong> 的关系，只要是其中一个的实例就返回 <code>True</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"class B"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">instance_A = A(<span class="string">'baozi'</span>)</span><br><span class="line">instance_B = B()</span><br><span class="line"></span><br><span class="line">print(isinstance(instance_B, A))</span><br><span class="line">print(instance_A.name)</span><br><span class="line">print(type(instance_A) <span class="keyword">is</span> A)</span><br><span class="line">print(type(instance_B) <span class="keyword">is</span> A)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行结果</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span></span><br><span class="line"><span class="class"><span class="title">True</span></span></span><br><span class="line"><span class="class"><span class="title">baozi</span></span></span><br><span class="line"><span class="class"><span class="title">True</span></span></span><br><span class="line"><span class="class"><span class="title">False</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python">class A:<br>    def __init__(self, name):<br>        self.name = name<br><br><br>class B(A):<br>    def __init__(self):<br>        print("class B")<br><br><br>instance_A = A('baozi')<br>instance_B = B()<br><br>print(isinstance(instance_B, A))<br>print(instance_A.name)<br>print(type(instance_A) is A)<br>print(type(instance_B) is A)<br><br># 执行结果<br>class B<br>True<br>baozi<br>True<br>False<br></code></pre></div></td></tr></table></figure>
 <p><code>isinstance(b, A)</code>   # 检测的是对象是不是某一个类 及父类的 对象 </p>
 <p><code>(type(b) is B)</code>      # 检测的是对象是不是某一个类的实例</p>
 <h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><p>使用字符串的方式，操作对象的属性（对象属性，类的动态属性（方法））</p>
@@ -75,56 +264,214 @@
 </li>
 </ul>
 <p>类\对象\模块 实际上都是有自己的命名空间 ,从这个命名空间中获取某个值或者函数…名字<br>如果这个名字字符串数据类型<br>值 = <code>getatt</code>r(命名空间，’字符串类型名字’)<br>如果<code>getattr</code>的值是一个属性或者普通变量，那么直接得到结果<br>如果<code>getattr</code>的值是函数或者方法 获取的是<strong>内存地址</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> types <span class="keyword">import</span> MethodType, FunctionType</span><br><span class="line"><span class="keyword">import</span> os, sys</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">iscall</span><span class="params">(file_di)</span>:</span></span><br><span class="line">    <span class="comment"># file_di = file_mdoe.__dict__</span></span><br><span class="line">    attr = input(<span class="string">'arg&gt;&gt;'</span>)</span><br><span class="line">    <span class="keyword">if</span> hasattr(file_di, attr):</span><br><span class="line">        type_valeus = getattr(file_di, attr)</span><br><span class="line">        <span class="keyword">if</span> isinstance(type_valeus, (FunctionType)):</span><br><span class="line">            <span class="keyword">return</span> type_valeus()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># isinstance 元祖可以使用多个参数</span></span><br><span class="line">        <span class="keyword">elif</span> isinstance(type_valeus, (str, int, list, dict)):</span><br><span class="line">            <span class="keyword">return</span> type_valeus</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 变量是不可调用 "__call__"</span></span><br><span class="line">        <span class="comment"># elif not hasattr(type_valeus,'__call__') :</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># print(type_valeus)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># print(iscall(te))</span></span><br><span class="line"><span class="comment"># __dict__</span></span><br></pre></td></tr></table></figure>
-<h2 id="sys-modules"><a href="#sys-modules" class="headerlink" title="sys modules"></a><code>sys</code> <code>modules</code></h2><h4 id="反射本文件中的名字-反射全局变量的值（"><a href="#反射本文件中的名字-反射全局变量的值（" class="headerlink" title="反射本文件中的名字 反射全局变量的值（"></a>反射本文件中的名字 反射全局变量的值（</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 全局的</span></span><br><span class="line"><span class="keyword">from</span> sys <span class="keyword">import</span> modules</span><br><span class="line"></span><br><span class="line">a = <span class="number">1</span></span><br><span class="line">b = <span class="number">2</span></span><br><span class="line">lst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Manager</span>:</span> <span class="keyword">pass</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span>:</span> <span class="keyword">pass</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Teacher</span>:</span> <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">getattr(modules[__name__], <span class="string">'Student'</span>)</span><br><span class="line">identify = input(<span class="string">'&gt;&gt;&gt;'</span>).strip()</span><br><span class="line">类 = getattr(modules[__name__], identify)</span><br><span class="line">print(类)</span><br><span class="line">对象 = 类()</span><br><span class="line">print(对象)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这玩意是个字典，跟操作字典似得。</span></span><br><span class="line">print(modules[__name__])</span><br><span class="line"></span><br><span class="line"><span class="comment"># getattr(modules[__name__],'全局变量名')</span></span><br><span class="line"><span class="comment"># 从当前文件中寻找全局变量对应的值/地址</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行结果</span></span><br><span class="line"></span><br><span class="line">&lt;module <span class="string">'__main__'</span> <span class="keyword">from</span> <span class="string">'/Users/toorl/PycharmProjects/A17task/day026/05反射.py'</span>&gt;</span><br></pre></td></tr></table></figure>
-</section>
-</article>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> types <span class="hljs-keyword">import</span> MethodType, FunctionType<br><span class="hljs-keyword">import</span> os, sys<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">iscall</span><span class="hljs-params">(file_di)</span>:</span><br>    <span class="hljs-comment"># file_di = file_mdoe.__dict__</span><br>    attr = input(<span class="hljs-string">'arg&gt;&gt;'</span>)<br>    <span class="hljs-keyword">if</span> hasattr(file_di, attr):<br>        type_valeus = getattr(file_di, attr)<br>        <span class="hljs-keyword">if</span> isinstance(type_valeus, (FunctionType)):<br>            <span class="hljs-keyword">return</span> type_valeus()<br><br>        <span class="hljs-comment"># isinstance 元祖可以使用多个参数</span><br>        <span class="hljs-keyword">elif</span> isinstance(type_valeus, (str, int, list, dict)):<br>            <span class="hljs-keyword">return</span> type_valeus<br><br>        <span class="hljs-comment"># 变量是不可调用 "__call__"</span><br>        <span class="hljs-comment"># elif not hasattr(type_valeus,'__call__') :</span><br><br>        <span class="hljs-comment"># print(type_valeus)</span><br><br><br><span class="hljs-comment"># print(iscall(te))</span><br><span class="hljs-comment"># __dict__</span><br></code></pre></div></td></tr></table></figure>
+<h2 id="sys-modules"><a href="#sys-modules" class="headerlink" title="sys modules"></a><code>sys</code> <code>modules</code></h2><h4 id="反射本文件中的名字-反射全局变量的值（"><a href="#反射本文件中的名字-反射全局变量的值（" class="headerlink" title="反射本文件中的名字 反射全局变量的值（"></a>反射本文件中的名字 反射全局变量的值（</h4><figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 全局的</span><br><span class="hljs-keyword">from</span> sys <span class="hljs-keyword">import</span> modules<br><br>a = <span class="hljs-number">1</span><br>b = <span class="hljs-number">2</span><br>lst = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Manager</span>:</span> <span class="hljs-keyword">pass</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span>:</span> <span class="hljs-keyword">pass</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Teacher</span>:</span> <span class="hljs-keyword">pass</span><br><br>getattr(modules[__name__], <span class="hljs-string">'Student'</span>)<br>identify = input(<span class="hljs-string">'&gt;&gt;&gt;'</span>).strip()<br>类 = getattr(modules[__name__], identify)<br>print(类)<br>对象 = 类()<br>print(对象)<br><br><span class="hljs-comment"># 这玩意是个字典，跟操作字典似得。</span><br>print(modules[__name__])<br><br><span class="hljs-comment"># getattr(modules[__name__],'全局变量名')</span><br><span class="hljs-comment"># 从当前文件中寻找全局变量对应的值/地址</span><br><br><br><span class="hljs-comment"># 执行结果</span><br><br>&lt;module <span class="hljs-string">'__main__'</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'/Users/toorl/PycharmProjects/A17task/day026/05反射.py'</span>&gt;<br></code></pre></div></td></tr></table></figure>
 
-<section class="card article-toc">
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python中类型判断"><span class="toc-text">Python中类型判断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#types-python内置模块"><span class="toc-text">types python内置模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isinstance"><span class="toc-text">isinstance</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反射"><span class="toc-text">反射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sys-modules"><span class="toc-text">sys modules</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#反射本文件中的名字-反射全局变量的值（"><span class="toc-text">反射本文件中的名字 反射全局变量的值（</span></a></li></ol></li></ol></li></ol>
-</section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/12/01/浅显理解 Pyhton 中闭包/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">浅显理解 Pyhton 中闭包</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/11/20/类中的三个装饰器方法/">
+                        <span class="hidden-mobile">Python类中装饰器classmethod,staticmethod,property,</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-<section class="article slide-in-right">
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
 
-  <div class="loader" id="loader">
-    <svg viewBox="0 0 50 50">
-      <circle class="ring" cx="25" cy="25" r="20"></circle>
-      <circle class="ball" cx="25" cy="5" r="3.5"></circle>
-    </svg>
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
   </div>
+</div>
 
-  <div class="comment" id="utteranc"></div>
-  <noscript>为正常使用评论功能请激活 JavaScript</noscript>
-</section>
+<!-- Custom -->
 
-<a class="card back-to-top" id="backTop">&UpArrow;</a>
-
-</main>
 
     
 
-    <script>
-	window.COLD_STONE = {
-	  repo: "kinzun/kinzun.github.io",
-	  gaid: "xxxxxxxxxxxxxx"
-	}
-</script>
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
-<script src="/scripts/cold-stone.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
 
 
-  <script src="https://www.googletagmanager.com/gtag/js?id=xxxxxxxxxxxxxx"></script>
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
   <script>
-	window.dataLayer = window.dataLayer || []
-	function gtag() {
-		dataLayer.push(arguments)
-	}
-	gtag('js', new Date())
-	gtag('config', window.COLD_STONE.gaid)
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
   </script>
 
 
-  </body>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>

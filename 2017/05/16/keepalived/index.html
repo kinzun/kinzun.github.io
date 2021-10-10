@@ -1,56 +1,260 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="referrer" content="no-referrer">
-    <meta name="theme-color" content="#333333">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="google" content="notranslate">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="keyword"  content="">
-    <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
-    <title>Keeplaived 高可用nginx负载均衡 - kinzun</title>
-    <base href="/">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="shortcut icon" href="/icons/icon-72x72.png">
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    <link rel="stylesheet" href="/styles/sanitize.css">
-<link rel="stylesheet" href="/styles/cold-stone.css">
-    <noscript>
-      <p class="text-center">你的浏览器还没开启 Javascript 功能！</p>
-    </noscript>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Single Point of Failure
+
+系统环境： CentOS-7.3
+软件： nginx-1.12.0,keepalived,ipvsadm安装方式： 源码编译安装、YUM
+安装位置： /usr/local/nginx/
+下载地址： nignx">
+  <meta name="author" content="kinzun">
+  <meta name="keywords" content>
+  <meta name="description" content="Single Point of Failure  系统环境： CentOS-7.3 软件： nginx-1.12.0,keepalived,ipvsadm安装方式： 源码编译安装、YUM 安装位置： /usr/local/nginx/ 下载地址： nignx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Keeplaived 高可用nginx负载均衡">
+<meta property="og:url" content="https://kinzun.github.io/2017/05/16/keepalived/index.html">
+<meta property="og:site_name" content="kinzun">
+<meta property="og:description" content="Single Point of Failure  系统环境： CentOS-7.3 软件： nginx-1.12.0,keepalived,ipvsadm安装方式： 源码编译安装、YUM 安装位置： /usr/local/nginx/ 下载地址： nignx">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://kinzun.github.io/images/htmt5a.jpg">
+<meta property="og:image" content="https://kinzun.github.io/images/keepalivedag.png">
+<meta property="og:image" content="https://kinzun.github.io/images/nginxh.png">
+<meta property="og:updated_time" content="2018-10-04T08:12:40.000Z">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Keeplaived 高可用nginx负载均衡">
+<meta name="twitter:description" content="Single Point of Failure  系统环境： CentOS-7.3 软件： nginx-1.12.0,keepalived,ipvsadm安装方式： 源码编译安装、YUM 安装位置： /usr/local/nginx/ 下载地址： nignx">
+<meta name="twitter:image" content="https://kinzun.github.io/images/htmt5a.jpg">
+  
+  <title>Keeplaived 高可用nginx负载均衡 - kinzun</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css">
+  <link rel="stylesheet" href="/lib/hint/hint.min.css">
+
+  
+    
+    
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css">
+    
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/color-schema.js"></script>
 </head>
 
-  <body>
-    
 
-    <main class="main wrapper"><article class="article slide-in-right">
-  <section>
-    <h1 class="article-title">
-      Keeplaived 高可用nginx负载均衡    </h1>
-    <p class="article-meta">
-      <span class="meta-info">
-        LastUpdate：2018-10-04 16:12:40
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>kinzun</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-          Tags：
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
           
         
-      </span>
-      <a  class="meta-link" href="/">返回</a>
-    </p>
-  </section>
-  <section><br>集群由两台调度器（DirectorServer，DS）</p>
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Keeplaived 高可用nginx负载均衡">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2017-05-16 20:26" pubdate>
+        2017年5月16日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      20 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Keeplaived 高可用nginx负载均衡</h1>
+            
+            <div class="markdown-body">
+              <p>Single Point of Failure</p>
+<p><img src="/images/htmt5a.jpg" srcset="/img/loading.gif" lazyload alt="htmt5a"></p>
+<p>系统环境： CentOS-7.3</p>
+<p>软件： nginx-1.12.0,keepalived,ipvsadm<br>安装方式： 源码编译安装、YUM</p>
+<p>安装位置： /usr/local/nginx/</p>
+<p>下载地址： <a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">nignx</a><br><img src="/images/keepalivedag.png" srcset="/img/loading.gif" lazyload alt="keepalived"><br><a id="more"></a><br>集群由两台调度器（DirectorServer，DS）</p>
 <p> 192.168.0.80/24</p>
 <p>192.168.0.81/24</p>
 <p>两台真实服务器（RealServer，RS）构成</p>
 <p>192.168.0.10/24</p>
 <p>192.168.0.12/24</p>
 <p>调度器一主一备，两台台真实服务器进行负载均衡提供服务。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_flv_module --with-http_gzip_static_module</span><br><span class="line">make&amp;&amp;make install</span><br></pre></td></tr></table></figure>
-<h3 id="keepalived的配置文件global-defs"><a href="#keepalived的配置文件global-defs" class="headerlink" title="keepalived的配置文件global_defs"></a>keepalived的配置文件global_defs</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">! Configuration File for keepalived</span><br><span class="line"></span><br><span class="line">global_defs &#123;</span><br><span class="line"></span><br><span class="line">   notification_email &#123;</span><br><span class="line"></span><br><span class="line">     abc@abc.com</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   notification_email_from guang384@163.com</span><br><span class="line"></span><br><span class="line">   smtp_server 127.0.0.1 #STMP服务</span><br><span class="line"></span><br><span class="line">   smtp_connect_timeout 30</span><br><span class="line"></span><br><span class="line">   #服务器全局属性，在收到提醒邮件的时候会用来作为当前服务器的标识，所以每台服务器都要唯一</span><br><span class="line"></span><br><span class="line">   router_id LVS_DR_DS1</span><br><span class="line"></span><br><span class="line">   vrrp_mcast_group4 224.0.100.19 #d多播地址</span><br><span class="line"></span><br><span class="line">     </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-string">./configure</span> <span class="hljs-params">--prefix=/usr/local/nginx</span> <span class="hljs-params">--with-http_stub_status_module</span> <span class="hljs-params">--with-http_ssl_module</span> <span class="hljs-params">--with-http_flv_module</span> <span class="hljs-params">--with-http_gzip_static_module</span><br>make&amp;&amp;make install<br></code></pre></div></td></tr></table></figure>
+<h3 id="keepalived的配置文件global-defs"><a href="#keepalived的配置文件global-defs" class="headerlink" title="keepalived的配置文件global_defs"></a>keepalived的配置文件global_defs</h3><figure class="highlight lsl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">! Configuration File for keepalived<br><br>global_defs &#123;<br><br>   notification_email &#123;<br><br>     abc@abc.com<br><br>   &#125;<br><br>   notification_email_from guang384@<span class="hljs-number">163.</span>com<br><br>   smtp_server <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span> #STMP服务<br><br>   smtp_connect_timeout <span class="hljs-number">30</span><br><br>   #服务器全局属性，在收到提醒邮件的时候会用来作为当前服务器的标识，所以每台服务器都要唯一<br><br>   router_id LVS_DR_DS1<br><br>   vrrp_mcast_group4 <span class="hljs-number">224.0</span><span class="hljs-number">.100</span><span class="hljs-number">.19</span> #d多播地址<br><br>     <br><br>&#125;<br></code></pre></div></td></tr></table></figure>
 <ul>
 <li>notification_email 故障发生时给谁发邮件通知。</li>
 <li>notification_email_from 通知邮件从哪个地址发出。</li>
@@ -62,20 +266,20 @@
 <p>vrrp_mcast_group4 224.0.100.19 多播地址</p>
 <p>224.0.0.0～239.255.255.255</p>
 <hr>
-<h3 id="static-ipaddress和static-routes区域"><a href="#static-ipaddress和static-routes区域" class="headerlink" title="static_ipaddress和static_routes区域"></a>static_ipaddress和static_routes区域</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">vrrp_instance VI_1 &#123;</span><br><span class="line"></span><br><span class="line">    state MASTER    #指定Keepalived的角色， MASTER 为主机服务器， BACKUP 为备用服务器</span><br><span class="line"></span><br><span class="line">    interface eth0 #通过哪一个发送心跳信息</span><br><span class="line"></span><br><span class="line">    virtual_router_id 51 #当前虚拟路由器的惟一标识，范围是0-255；相同虚拟服务器相同，</span><br><span class="line"></span><br><span class="line">    priority 100    #定义优先级，数字越大，优先级越高，主DR必须大于备用DR。当前主机在此虚拟路径器中的优先级；范围1-254；</span><br><span class="line"></span><br><span class="line">    advert_int 1    #心跳间隔，MASTER每隔1秒发送报文告知组内其他机器自己还活着。（主备状态依靠心跳维持）vrrp通告的时间间隔；</span><br><span class="line"></span><br><span class="line">    authentication &#123;</span><br><span class="line"></span><br><span class="line">        auth_type PASS</span><br><span class="line"></span><br><span class="line">        auth_pass 571f97b2</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     virtual_ipaddress &#123;</span><br><span class="line"></span><br><span class="line">                        10.1.0.91/16 dev eno16777736   #设置主DR的虚拟IP地址(virtual IP),可多设，但必须每行1个</span><br><span class="line"></span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">virtual_ipaddress &#123;</span><br><span class="line"></span><br><span class="line">                            &lt;IPADDR&gt;/&lt;MASK&gt; brd &lt;IPADDR&gt; dev &lt;STRING&gt; scope &lt;SCOPE&gt; label &lt;LABEL&gt;</span><br><span class="line"></span><br><span class="line">                            192.168.200.17/24 dev eth1</span><br><span class="line"></span><br><span class="line">                            192.168.200.18/24 dev eth2 label eth2:1</span><br><span class="line"></span><br><span class="line">                        &#125; </span><br><span class="line">static_routes &#123;  </span><br><span class="line">                           192.168.100/24 via 172.18.0.1 dev eth0    ...&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="上分别表示启动keepalived时在本机执行命令："><a href="#上分别表示启动keepalived时在本机执行命令：" class="headerlink" title="上分别表示启动keepalived时在本机执行命令："></a>上分别表示启动keepalived时在本机执行命令：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"># /sbin/ip addr add IP brd IP dev eth0         </span><br><span class="line"># /sbin/ip route add IP via  dev eth0    </span><br><span class="line">```     </span><br><span class="line">         </span><br><span class="line">         </span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">track_interface &#123;</span><br><span class="line"></span><br><span class="line">                            eth0</span><br><span class="line"></span><br><span class="line">                            eth1</span><br><span class="line"></span><br><span class="line">                            ...</span><br><span class="line"></span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">配置要监控的网络接口，一旦接口出现故障，则转为FAULT状态；</span><br><span class="line"></span><br><span class="line">nopreempt：定义工作模式为非抢占模式；</span><br><span class="line"></span><br><span class="line">preempt_delay 300：抢占式模式下，节点上线后触发新选举操作的延迟时长；</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">定义通知脚本：</span><br><span class="line"></span><br><span class="line">notify_master &lt;STRING&gt;|&lt;QUOTED-STRING&gt;：当前节点成为主节点时触发的脚本；</span><br><span class="line">notify_backup &lt;STRING&gt;|&lt;QUOTED-STRING&gt;：当前节点转为备节点时触发的脚本； </span><br><span class="line">notify_fault &lt;STRING&gt;|&lt;QUOTED-STRING&gt;：当前节点转为“失败”状态时触发的脚本；</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">notify &lt;STRING&gt;|&lt;QUOTED-STRING&gt;：通用格式的通知触发机制，一个脚本可完成以上三种状态的转换时的通知；</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<h3 id="static-ipaddress和static-routes区域"><a href="#static-ipaddress和static-routes区域" class="headerlink" title="static_ipaddress和static_routes区域"></a>static_ipaddress和static_routes区域</h3><figure class="highlight pf"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">vrrp_instance VI_1 &#123;<br><br>    <span class="hljs-keyword">state</span> MASTER    <span class="hljs-comment">#指定Keepalived的角色， MASTER 为主机服务器， BACKUP 为备用服务器</span><br><br>    interface eth0 <span class="hljs-comment">#通过哪一个发送心跳信息</span><br><br>    virtual_router_id <span class="hljs-number">51</span> <span class="hljs-comment">#当前虚拟路由器的惟一标识，范围是0-255；相同虚拟服务器相同，</span><br><br>    priority <span class="hljs-number">100</span>    <span class="hljs-comment">#定义优先级，数字越大，优先级越高，主DR必须大于备用DR。当前主机在此虚拟路径器中的优先级；范围1-254；</span><br><br>    advert_int <span class="hljs-number">1</span>    <span class="hljs-comment">#心跳间隔，MASTER每隔1秒发送报文告知组内其他机器自己还活着。（主备状态依靠心跳维持）vrrp通告的时间间隔；</span><br><br>    authentication &#123;<br><br>        auth_type PASS<br><br>        auth_pass <span class="hljs-number">571</span>f97b2<br><br>    &#125;<br><br>     virtual_ipaddress &#123;<br><br>                        <span class="hljs-number">10.1</span>.<span class="hljs-number">0.91</span>/<span class="hljs-number">16</span> dev eno16777736   <span class="hljs-comment">#设置主DR的虚拟IP地址(virtual IP),可多设，但必须每行1个</span><br><br>           &#125;<br><br>    &#125;<br><br> <br><br>virtual_ipaddress &#123;<br><br>                            <span class="hljs-variable">&lt;IPADDR&gt;</span>/<span class="hljs-variable">&lt;MASK&gt;</span> brd <span class="hljs-variable">&lt;IPADDR&gt;</span> dev <span class="hljs-variable">&lt;STRING&gt;</span> scope <span class="hljs-variable">&lt;SCOPE&gt;</span> <span class="hljs-keyword">label</span> <span class="hljs-variable">&lt;LABEL&gt;</span><br><br>                            <span class="hljs-number">192.168</span>.<span class="hljs-number">200.17</span>/<span class="hljs-number">24</span> dev eth1<br><br>                            <span class="hljs-number">192.168</span>.<span class="hljs-number">200.18</span>/<span class="hljs-number">24</span> dev eth2 <span class="hljs-keyword">label</span> eth2:<span class="hljs-number">1</span><br><br>                        &#125; <br>static_routes &#123;  <br>                           <span class="hljs-number">192.168</span>.<span class="hljs-number">100</span>/<span class="hljs-number">24</span> via <span class="hljs-number">172.18</span>.<span class="hljs-number">0.1</span> dev eth0    ...&#125;<br></code></pre></div></td></tr></table></figure>
+<h4 id="上分别表示启动keepalived时在本机执行命令："><a href="#上分别表示启动keepalived时在本机执行命令：" class="headerlink" title="上分别表示启动keepalived时在本机执行命令："></a>上分别表示启动keepalived时在本机执行命令：</h4><figure class="highlight armasm"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"># /sbin/<span class="hljs-built_in">ip</span> <span class="hljs-keyword">addr </span><span class="hljs-keyword">add </span><span class="hljs-built_in">IP</span> <span class="hljs-keyword">brd </span><span class="hljs-built_in">IP</span> dev eth0         <br># /sbin/<span class="hljs-built_in">ip</span> route <span class="hljs-keyword">add </span><span class="hljs-built_in">IP</span> via  dev eth0    <br>```     <br>         <br>         <br>``` <br><br><span class="hljs-symbol">track_interface</span> &#123;<br><br>                            eth0<br><br>                            eth1<br><br>                            ...<br><br>                        &#125;<br><br><br>配置要监控的网络接口，一旦接口出现故障，则转为FAULT状态；<br><br><span class="hljs-keyword">nopreempt：定义工作模式为非抢占模式；<br></span><br><span class="hljs-symbol">preempt_delay</span> <span class="hljs-number">300</span>：抢占式模式下，节点上线后触发新选举操作的延迟时长；<br><br><br><br>定义通知脚本：<br><br><span class="hljs-symbol">notify_master</span> &lt;<span class="hljs-keyword">STRING&gt;|&lt;QUOTED-STRING&gt;：当前节点成为主节点时触发的脚本；<br></span><span class="hljs-symbol">notify_backup</span> &lt;<span class="hljs-keyword">STRING&gt;|&lt;QUOTED-STRING&gt;：当前节点转为备节点时触发的脚本； </span><br><span class="hljs-symbol">notify_fault</span> &lt;<span class="hljs-keyword">STRING&gt;|&lt;QUOTED-STRING&gt;：当前节点转为“失败”状态时触发的脚本；<br></span><br><br><br><span class="hljs-symbol">notify</span> &lt;<span class="hljs-keyword">STRING&gt;|&lt;QUOTED-STRING&gt;：通用格式的通知触发机制，一个脚本可完成以上三种状态的转换时的通知；<br></span><br><br>`<br></code></pre></div></td></tr></table></figure>
 <hr>
-<h4 id="通知脚本示例"><a href="#通知脚本示例" class="headerlink" title="通知脚本示例"></a>通知脚本示例</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"></span><br><span class="line">contact='root@localhost'</span><br><span class="line">notify() &#123;</span><br><span class="line">     mailsubject="$(hostname) to be $1, vip floating"</span><br><span class="line">     mailbody="$(date +'%F %T'): vrrp transition, $(hostname) changed to be $1"</span><br><span class="line">     echo "$mailbody" | mail -s "$mailsubject" $contact</span><br><span class="line">&#125;</span><br><span class="line">case $1 in</span><br><span class="line">master)</span><br><span class="line">    notify master</span><br><span class="line">     ;;</span><br><span class="line">backup)</span><br><span class="line">    notify backup</span><br><span class="line">     ;;</span><br><span class="line"></span><br><span class="line">fault)</span><br><span class="line">    notify fault</span><br><span class="line">     ;;</span><br><span class="line"></span><br><span class="line">*)</span><br><span class="line">     echo "Usage: $(basename $0) &#123;master|backup|fault&#125;"</span><br><span class="line">     exit 1</span><br><span class="line">     ;;</span><br><span class="line"></span><br><span class="line">esac  </span><br><span class="line">```    </span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">## 主keeplived调度配置</span></span></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">! Configuration File for keepalived</span><br><span class="line"></span><br><span class="line">global_defs &#123;</span><br><span class="line">   notification_email &#123;</span><br><span class="line">        root@localhost</span><br><span class="line">   &#125;</span><br><span class="line">   notification_email_from Alexandre.Cassen@firewall.loc</span><br><span class="line">   smtp_server 127.0.0.1</span><br><span class="line">   smtp_connect_timeout 30</span><br><span class="line">   router_id vser</span><br><span class="line">   virtual_ipaddress 224.0.100.10</span><br><span class="line">&#125;</span><br><span class="line">vrrp_instance kpone &#123;</span><br><span class="line">    state MASTER</span><br><span class="line">    interface eth0</span><br><span class="line">    virtual_router_id 51</span><br><span class="line">    priority 100</span><br><span class="line">    advert_int 2</span><br><span class="line">    authentication &#123;</span><br><span class="line">        auth_type PASS</span><br><span class="line">        auth_pass j7dPTXjI</span><br><span class="line">    &#125;</span><br><span class="line">    virtual_ipaddress &#123;</span><br><span class="line">        192.168.0.80/24 dev eth0</span><br><span class="line">    &#125;</span><br><span class="line"> notify_master "/etc/keepalived/notify.sh master"</span><br><span class="line"> notify_backup "/etc/keepalived/notify.sh backup"</span><br><span class="line"> notify_fault "/etc/keepalived/notify.sh fault"   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vrrp_instance kptwo &#123;</span><br><span class="line">    state BACKUP</span><br><span class="line">    interface eth0</span><br><span class="line">    virtual_router_id 52</span><br><span class="line">    priority 98</span><br><span class="line">    advert_int 2</span><br><span class="line">    authentication &#123;</span><br><span class="line">        auth_type PASS</span><br><span class="line">        auth_pass j1dPTXjI</span><br><span class="line">    &#125;</span><br><span class="line">    virtual_ipaddress &#123;</span><br><span class="line">        192.168.0.81/24 dev eth0</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">```    </span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">## 配置备用调度器的 keepalived</span></span></span><br><span class="line">``` </span><br><span class="line">scp /etc/keepliaved/keeplived.conf 192.168.0.12:/etc/keepalived/</span><br></pre></td></tr></table></figure>
+<h4 id="通知脚本示例"><a href="#通知脚本示例" class="headerlink" title="通知脚本示例"></a>通知脚本示例</h4><figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta"><br>#</span><span class="bash">!/bin/bash</span><br><span class="hljs-meta">#</span><span class="bash"></span><br><br>contact='root@localhost'<br>notify() &#123;<br>     mailsubject="$(hostname) to be $1, vip floating"<br>     mailbody="$(date +'%F %T'): vrrp transition, $(hostname) changed to be $1"<br>     echo "$mailbody" | mail -s "$mailsubject" $contact<br>&#125;<br>case $1 in<br>master)<br>    notify master<br>     ;;<br>backup)<br>    notify backup<br>     ;;<br><br>fault)<br>    notify fault<br>     ;;<br><br>*)<br>     echo "Usage: $(basename $0) &#123;master|backup|fault&#125;"<br>     exit 1<br>     ;;<br><br>esac  <br>```    <br><span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment">## 主keeplived调度配置</span></span><br>``` <br><br>! Configuration File for keepalived<br><br>global_defs &#123;<br>   notification_email &#123;<br>        root@localhost<br>   &#125;<br>   notification_email_from Alexandre.Cassen@firewall.loc<br>   smtp_server 127.0.0.1<br>   smtp_connect_timeout 30<br>   router_id vser<br>   virtual_ipaddress 224.0.100.10<br>&#125;<br>vrrp_instance kpone &#123;<br>    state MASTER<br>    interface eth0<br>    virtual_router_id 51<br>    priority 100<br>    advert_int 2<br>    authentication &#123;<br>        auth_type PASS<br>        auth_pass j7dPTXjI<br>    &#125;<br>    virtual_ipaddress &#123;<br>        192.168.0.80/24 dev eth0<br>    &#125;<br> notify_master "/etc/keepalived/notify.sh master"<br> notify_backup "/etc/keepalived/notify.sh backup"<br> notify_fault "/etc/keepalived/notify.sh fault"   <br>&#125;<br><br>vrrp_instance kptwo &#123;<br>    state BACKUP<br>    interface eth0<br>    virtual_router_id 52<br>    priority 98<br>    advert_int 2<br>    authentication &#123;<br>        auth_type PASS<br>        auth_pass j1dPTXjI<br>    &#125;<br>    virtual_ipaddress &#123;<br>        192.168.0.81/24 dev eth0<br>    &#125;<br>&#125;<br><br>```    <br><span class="hljs-meta"> <br><br>#</span><span class="bash"><span class="hljs-comment">## 配置备用调度器的 keepalived</span></span><br>``` <br>scp /etc/keepliaved/keeplived.conf 192.168.0.12:/etc/keepalived/<br></code></pre></div></td></tr></table></figure>
 <p>只需要将 state MASTER 改为 state BACKUP,降低 priority 100 的值:</p>
 <p>state MASTER —&gt; state BACKUP</p>
 <p>priority 100 —&gt; priority 95 （此值必须低于主的)</p>
 <p>双主模型中</p>
 <p>virtual_router_id 52 值不同</p>
-<h4 id="keepalived主备用高可用负载均衡"><a href="#keepalived主备用高可用负载均衡" class="headerlink" title="keepalived主备用高可用负载均衡"></a>keepalived主备用高可用负载均衡</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">virtual_server 192.168.0.80 80&#123;</span><br><span class="line">    delay_loop 3</span><br><span class="line">    lb_algo wrr</span><br><span class="line">    lb_kind DR</span><br><span class="line">    protocol TCP</span><br><span class="line">    sorry_server 127.0.0.1 80</span><br><span class="line">    real_server 192.168.0.10 80 &#123;</span><br><span class="line">        weight 1</span><br><span class="line">        HTTP_GET &#123;</span><br><span class="line">            url &#123;</span><br><span class="line">              path /</span><br><span class="line">              status_code 200</span><br><span class="line">            &#125;</span><br><span class="line">            connect_timeout 3</span><br><span class="line">            nb_get_retry 3</span><br><span class="line">            delay_before_retry 3</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    real_server 192.168.0.12 80 &#123;</span><br><span class="line">        weight 1</span><br><span class="line">        HTTP_GET &#123;</span><br><span class="line">           url &#123;</span><br><span class="line">              path /</span><br><span class="line">              status_code 200             </span><br><span class="line">            &#125;</span><br><span class="line">            connect_timeout 3</span><br><span class="line">            nb_get_retry 3</span><br><span class="line">            delay_before_retry 3</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/images/nginxh.png" alt="m"></p>
-<h3 id="keepalived-nginx-proxy-集群"><a href="#keepalived-nginx-proxy-集群" class="headerlink" title="keepalived nginx proxy 集群"></a>keepalived nginx proxy 集群</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">http上下文      </span><br><span class="line">       upstream websrvs &#123;</span><br><span class="line">                server 192.168.0.10:80;</span><br><span class="line">                server 192.168.0.12:80;</span><br><span class="line">                server 127.0.0.1:80 backup;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        server &#123;</span><br><span class="line">           </span><br><span class="line">           proxy_pass http://websrvs;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>配置选项说明<br>Master<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"># cat /etc/keepalived/keepalived.conf </span><br><span class="line">global_defs &#123;</span><br><span class="line">   notification_email &#123;</span><br><span class="line">   #  acassen@firewall.loc   # 指定keepalived在发生切换时需要发送email到的对象，一行一个</span><br><span class="line">   #  sysadmin@firewall.loc</span><br><span class="line">   &#125;</span><br><span class="line">   #notification_email_from Alexandre.Cassen@firewall.loc  # 指定发件人</span><br><span class="line">   #smtp_server 192.168.200.1     # smtp 服务器地址 </span><br><span class="line">   #smtp_connect_timeout 30       # smtp 服务器连接超时时间</span><br><span class="line">   router_id LVS_DEVEL            # 标识本节点的字符串,通常为hostname,但不一定非得是hostname,故障发生时,邮件通知会用到</span><br><span class="line">&#125;</span><br><span class="line">###　新增　###</span><br><span class="line">vrrp_script chk_httpd &#123;</span><br><span class="line">    script &quot;/etc/keepalived/check_and_start_httpd.sh&quot;   # apache httpd 服务检测并试图重启</span><br><span class="line">    interval 2                    # 每2s检查一次</span><br><span class="line">    weight -5                     # 检测失败（脚本返回非0）则优先级减少5个值</span><br><span class="line">    fall 3                        # 如果连续失败次数达到此值，则认为服务器已down</span><br><span class="line">    rise 2                        # 如果连续成功次数达到此值，则认为服务器已up，但不修改优先级</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vrrp_instance VI_1 &#123;              # 实例名称</span><br><span class="line">    state MASTER                  # 可以是MASTER或BACKUP，不过当其他节点keepalived启动时会自动将priority比较大的节点选举为MASTER</span><br><span class="line">    interface eth0                # 节点固有IP（非VIP）的网卡，用来发VRRP包做心跳检测</span><br><span class="line">    virtual_router_id 51          # 虚拟路由ID,取值在0-255之间,用来区分多个instance的VRRP组播,同一网段内ID不能重复;主备必须为一样</span><br><span class="line">    priority 100                  # 用来选举master的,要成为master那么这个选项的值最好高于其他机器50个点,该项取值范围是1-255(在此范围之外会被识别成默认值100)</span><br><span class="line">    advert_int 1                  # 检查间隔默认为1秒,即1秒进行一次master选举(可以认为是健康查检时间间隔)</span><br><span class="line">    authentication &#123;              # 认证区域,认证类型有PASS和HA（IPSEC）,推荐使用PASS(密码只识别前8位)</span><br><span class="line">        auth_type PASS            # 默认是PASS认证</span><br><span class="line">        auth_pass 1111            # PASS认证密码</span><br><span class="line">    &#125;</span><br><span class="line">    virtual_ipaddress &#123;</span><br><span class="line">        192.168.14.166            # 虚拟VIP地址,允许多个,一行一个</span><br><span class="line">    #    192.168.200.17</span><br><span class="line">    &#125;</span><br><span class="line">    ###　新增　###</span><br><span class="line">    track_script &#123;                # 引用VRRP脚本，即在 vrrp_script 部分指定的名字。定期运行它们来改变优先级，并最终引发主备切换。</span><br><span class="line">        chk_httpd          </span><br><span class="line">    &#125;                </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Backup<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">state BACKUP     # 此值可设置或不设置，只要保证下面的priority不一致即可</span><br><span class="line">interface eth0   # 根据实际情况选择网卡</span><br><span class="line">priority 40      # 此值要一定小于Master机器上的值，最好相差不少于50</span><br><span class="line"></span><br><span class="line">mcast_src_ip 172.29.88.224 -&gt; mcast_src_ip 172.29.88.225</span><br></pre></td></tr></table></figure></p>
+<h4 id="keepalived主备用高可用负载均衡"><a href="#keepalived主备用高可用负载均衡" class="headerlink" title="keepalived主备用高可用负载均衡"></a>keepalived主备用高可用负载均衡</h4><figure class="highlight lsl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">virtual_server <span class="hljs-number">192.168</span><span class="hljs-number">.0</span><span class="hljs-number">.80</span> <span class="hljs-number">80</span>&#123;<br>    delay_loop <span class="hljs-number">3</span><br>    lb_algo wrr<br>    lb_kind DR<br>    protocol TCP<br>    sorry_server <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span> <span class="hljs-number">80</span><br>    real_server <span class="hljs-number">192.168</span><span class="hljs-number">.0</span><span class="hljs-number">.10</span> <span class="hljs-number">80</span> &#123;<br>        weight <span class="hljs-number">1</span><br>        HTTP_GET &#123;<br>            url &#123;<br>              path /<br>              status_code <span class="hljs-number">200</span><br>            &#125;<br>            connect_timeout <span class="hljs-number">3</span><br>            nb_get_retry <span class="hljs-number">3</span><br>            delay_before_retry <span class="hljs-number">3</span><br>        &#125;<br>    &#125;<br><br>    real_server <span class="hljs-number">192.168</span><span class="hljs-number">.0</span><span class="hljs-number">.12</span> <span class="hljs-number">80</span> &#123;<br>        weight <span class="hljs-number">1</span><br>        HTTP_GET &#123;<br>           url &#123;<br>              path /<br>              status_code <span class="hljs-number">200</span>             <br>            &#125;<br>            connect_timeout <span class="hljs-number">3</span><br>            nb_get_retry <span class="hljs-number">3</span><br>            delay_before_retry <span class="hljs-number">3</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<p><img src="/images/nginxh.png" srcset="/img/loading.gif" lazyload alt="m"></p>
+<h3 id="keepalived-nginx-proxy-集群"><a href="#keepalived-nginx-proxy-集群" class="headerlink" title="keepalived nginx proxy 集群"></a>keepalived nginx proxy 集群</h3><figure class="highlight x86asm"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><br>http上下文      <br>       upstream websrvs &#123;<br>                server <span class="hljs-number">192.168</span><span class="hljs-meta">.0</span><span class="hljs-meta">.10</span>:<span class="hljs-number">80</span><span class="hljs-comment">;</span><br>                server <span class="hljs-number">192.168</span><span class="hljs-meta">.0</span><span class="hljs-meta">.12</span>:<span class="hljs-number">80</span><span class="hljs-comment">;</span><br>                server <span class="hljs-number">127.0</span><span class="hljs-meta">.0</span><span class="hljs-meta">.1</span>:<span class="hljs-number">80</span> backup<span class="hljs-comment">;</span><br>        &#125;<br><br>        server &#123;<br>           <br>           proxy_pass http://websrvs<span class="hljs-comment">;</span><br><br>        &#125;<br></code></pre></div></td></tr></table></figure>
+<p>配置选项说明<br>Master<br><figure class="highlight clean"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"># cat /etc/keepalived/keepalived.conf <br>global_defs &#123;<br>   notification_email &#123;<br>   #  acassen@firewall.loc   # 指定keepalived在发生切换时需要发送email到的对象，一行一个<br>   #  sysadmin@firewall.loc<br>   &#125;<br>   #notification_email_from Alexandre.Cassen@firewall.loc  # 指定发件人<br>   #smtp_server <span class="hljs-number">192.168</span><span class="hljs-number">.200</span><span class="hljs-number">.1</span>     # smtp 服务器地址 <br>   #smtp_connect_timeout <span class="hljs-number">30</span>       # smtp 服务器连接超时时间<br>   router_id LVS_DEVEL            # 标识本节点的字符串,通常为hostname,但不一定非得是hostname,故障发生时,邮件通知会用到<br>&#125;<br>###　新增　###<br>vrrp_script chk_httpd &#123;<br>    script <span class="hljs-string">"/etc/keepalived/check_and_start_httpd.sh"</span>   # apache httpd 服务检测并试图重启<br>    interval <span class="hljs-number">2</span>                    # 每<span class="hljs-number">2</span>s检查一次<br>    weight <span class="hljs-number">-5</span>                     # 检测失败（脚本返回非<span class="hljs-number">0</span>）则优先级减少<span class="hljs-number">5</span>个值<br>    fall <span class="hljs-number">3</span>                        # 如果连续失败次数达到此值，则认为服务器已down<br>    rise <span class="hljs-number">2</span>                        # 如果连续成功次数达到此值，则认为服务器已up，但不修改优先级<br>&#125;<br><br>vrrp_instance VI_1 &#123;              # 实例名称<br>    state MASTER                  # 可以是MASTER或BACKUP，不过当其他节点keepalived启动时会自动将priority比较大的节点选举为MASTER<br>    interface eth0                # 节点固有IP（非VIP）的网卡，用来发VRRP包做心跳检测<br>    virtual_router_id <span class="hljs-number">51</span>          # 虚拟路由ID,取值在<span class="hljs-number">0</span><span class="hljs-number">-255</span>之间,用来区分多个<span class="hljs-keyword">instance</span>的VRRP组播,同一网段内ID不能重复;主备必须为一样<br>    priority <span class="hljs-number">100</span>                  # 用来选举master的,要成为master那么这个选项的值最好高于其他机器<span class="hljs-number">50</span>个点,该项取值范围是<span class="hljs-number">1</span><span class="hljs-number">-255</span>(在此范围之外会被识别成默认值<span class="hljs-number">100</span>)<br>    advert_int <span class="hljs-number">1</span>                  # 检查间隔默认为<span class="hljs-number">1</span>秒,即<span class="hljs-number">1</span>秒进行一次master选举(可以认为是健康查检时间间隔)<br>    authentication &#123;              # 认证区域,认证类型有PASS和HA（IPSEC）,推荐使用PASS(密码只识别前<span class="hljs-number">8</span>位)<br>        auth_type PASS            # 默认是PASS认证<br>        auth_pass <span class="hljs-number">1111</span>            # PASS认证密码<br>    &#125;<br>    virtual_ipaddress &#123;<br>        <span class="hljs-number">192.168</span><span class="hljs-number">.14</span><span class="hljs-number">.166</span>            # 虚拟VIP地址,允许多个,一行一个<br>    #    <span class="hljs-number">192.168</span><span class="hljs-number">.200</span><span class="hljs-number">.17</span><br>    &#125;<br>    ###　新增　###<br>    track_script &#123;                # 引用VRRP脚本，即在 vrrp_script 部分指定的名字。定期运行它们来改变优先级，并最终引发主备切换。<br>        chk_httpd          <br>    &#125;                <br>&#125;<br></code></pre></div></td></tr></table></figure></p>
+<p>Backup<br><figure class="highlight routeros"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">state BACKUP     # 此值可设置或不设置，只要保证下面的priority不一致即可<span class="hljs-built_in"><br>interface </span>eth0   # 根据实际情况选择网卡<br>priority 40      # 此值要一定小于Master机器上的值，最好相差不少于50<br><br>mcast_src_ip 172.29.88.224 -&gt; mcast_src_ip 172.29.88.225<br></code></pre></div></td></tr></table></figure></p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
 <li><a href="http://weizhifeng.net/using-keepalived.html" target="_blank" rel="noopener">keepalived</a></li>
 <li><a href="http://seanlook.com/2015/05/18/nginx-keepalived-ha/" target="_blank" rel="noopener">seanlook</a></li>
@@ -83,54 +287,206 @@
 <li><a href="http://cpper.info/2016/09/15/keepalived-for-master-backup.html" target="_blank" rel="noopener">cpper</a></li>
 <li><a href="http://patrick-tang.blogspot.com/2012/06/redis-keepalived-failover-system.html" target="_blank" rel="noopener">http://patrick-tang.blogspot.com/2012/06/redis-keepalived-failover-system.html</a></li>
 <li><a href="http://heylinux.com/archives/1942.html" target="_blank" rel="noopener">http://heylinux.com/archives/1942.html</a></li>
-</ul></section>
-</article>
+</ul>
 
-<section class="card article-toc">
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#keepalived的配置文件global-defs"><span class="toc-text">keepalived的配置文件global_defs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#static-ipaddress和static-routes区域"><span class="toc-text">static_ipaddress和static_routes区域</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#上分别表示启动keepalived时在本机执行命令："><span class="toc-text">上分别表示启动keepalived时在本机执行命令：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通知脚本示例"><span class="toc-text">通知脚本示例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#keepalived主备用高可用负载均衡"><span class="toc-text">keepalived主备用高可用负载均衡</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#keepalived-nginx-proxy-集群"><span class="toc-text">keepalived nginx proxy 集群</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
-</section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2017/05/17/hexodep/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GitHub Hexo Blog</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2017/05/05/nginx-config-summary/">
+                        <span class="hidden-mobile">Nginx 配置文件总结</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-<section class="article slide-in-right">
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
 
-  <div class="loader" id="loader">
-    <svg viewBox="0 0 50 50">
-      <circle class="ring" cx="25" cy="25" r="20"></circle>
-      <circle class="ball" cx="25" cy="5" r="3.5"></circle>
-    </svg>
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
   </div>
+</div>
 
-  <div class="comment" id="utteranc"></div>
-  <noscript>为正常使用评论功能请激活 JavaScript</noscript>
-</section>
+<!-- Custom -->
 
-<a class="card back-to-top" id="backTop">&UpArrow;</a>
-
-</main>
 
     
 
-    <script>
-	window.COLD_STONE = {
-	  repo: "kinzun/kinzun.github.io",
-	  gaid: "xxxxxxxxxxxxxx"
-	}
-</script>
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
-<script src="/scripts/cold-stone.js"></script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
 
 
-  <script src="https://www.googletagmanager.com/gtag/js?id=xxxxxxxxxxxxxx"></script>
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
   <script>
-	window.dataLayer = window.dataLayer || []
-	function gtag() {
-		dataLayer.push(arguments)
-	}
-	gtag('js', new Date())
-	gtag('config', window.COLD_STONE.gaid)
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
   </script>
 
 
-  </body>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>
