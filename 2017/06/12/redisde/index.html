@@ -68,7 +68,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
   <script src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/utils.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/color-schema.js"></script>
@@ -242,7 +242,7 @@
               <p>Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。</p>
 <p>本文主要介绍redis在不同模式下的部署方式，并且对几种模式进行了一些简单的对比。</p>
 <p>下表列出了当前使用较多的redis部署方式:</p>
-<p><img src="http://rdc.hundsun.com/portal/data/upload/201703/f_a1ba3e37fdd1352797972c26785473b1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="http://rdc.hundsun.com/portal/data/upload/201703/f_a1ba3e37fdd1352797972c26785473b1.png" srcset="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/loading.gif" lazyload alt="img"></p>
 <p>通过上表比较可知：如果需要完整的分片、复制和高可用特性，在集群节点不多且在使用sentinel这种模式会带来性能瓶颈和资源消耗的情况下，可以选择使用 Redis集群；如果只需要一部分特性（比如只需要分片，但不需要复制和高可用），那么可以选择Redis Sentinel。<br><a id="more"></a><br><strong>&lt;单实例模式&gt;</strong></p>
 <p>单实例模式是指<code>单台redis完成所有请求任务，</code>因此复用和不具备容错性；同时在单台机器上如果只启用一个redis实例会造成资源浪费 。</p>
 <p><strong>&lt;Redis集群&gt;</strong></p>

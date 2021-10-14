@@ -64,7 +64,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
   <script src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/utils.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/color-schema.js"></script>
@@ -235,7 +235,7 @@
             <h1 style="display: none">命令行的艺术</h1>
             
             <div class="markdown-body">
-              <p><img src="/images/shell/command-shell-code.jpg" srcset="/img/loading.gif" lazyload alt></p>
+              <p><img src="/images/shell/command-shell-code.jpg" srcset="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/loading.gif" lazyload alt></p>
 <p>熟练使用命令行是一种常常被忽视，或被认为难以掌握的技能，但实际上，它会提高你作为工程师的灵活性以及生产力。本文是一份我在 Linux 上工作时，发现的一些命令行使用技巧的摘要。有些技巧非常基础，而另一些则相当复杂，甚至晦涩难懂。这篇文章并不长，但当你能够熟练掌握这里列出的所有技巧时，你就学会了很多关于命令行的东西了。<br><a id="more"></a><br>这篇文章是<a href="https://github.com/jlevy/the-art-of-command-line/blob/master/AUTHORS.md" target="_blank" rel="noopener">许多作者和译者</a>共同的成果。这里的大部分内容 <a href="http://www.quora.com/What-are-some-lesser-known-but-useful-Unix-commands" target="_blank" rel="noopener">首次</a> <a href="http://www.quora.com/What-are-the-most-useful-Swiss-army-knife-one-liners-on-Unix" target="_blank" rel="noopener">出现</a> 于 <a href="http://www.quora.com/What-are-some-time-saving-tips-that-every-Linux-user-should-know" target="_blank" rel="noopener">Quora</a>，但考虑到这里的人们都具有学习的天赋且乐于接受别人的建议，使用 Github 来做这件事是更佳的选择。如果你在本文中发现了错误或者存在可以改善的地方，请果断提交 Issue 或 Pull Request！(当然在提交前请看一下必读节和已有的 PR/issue）。</p>
 <h4 id="必读"><a href="#必读" class="headerlink" title="必读"></a>必读</h4><p>涵盖范围：</p>
 <ul>
