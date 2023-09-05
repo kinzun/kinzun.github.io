@@ -5,10 +5,10 @@
 
 
 
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/favicon.ico">
-  <link rel="icon" href="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -16,57 +16,61 @@
   <meta name="description" content="Alexei Vladishev创建了Zabbix项目，当前处于活跃开发状态，Zabbix SIA提供支持.Zabbix是一个企业级的、开源的、分布式的监控套件
 Zabbix可以监控网络和服务的监控状况. Zabbix利用灵活的告警机制，允许用户对事件发送基于Email的告警. 这样可以保证快速的对问题作出相应. Zabbix可以利用存储数据提供杰出的报告及图形化方式. 这一特性将帮助用户完成容量">
   <meta name="author" content="kinzun">
-  <meta name="keywords" content>
+  <meta name="keywords" content="">
   <meta name="description" content="Alexei Vladishev创建了Zabbix项目，当前处于活跃开发状态，Zabbix SIA提供支持.Zabbix是一个企业级的、开源的、分布式的监控套件 Zabbix可以监控网络和服务的监控状况. Zabbix利用灵活的告警机制，允许用户对事件发送基于Email的告警. 这样可以保证快速的对问题作出相应. Zabbix可以利用存储数据提供杰出的报告及图形化方式. 这一特性将帮助用户完成容量">
-<meta name="keywords" content="zabbix">
 <meta property="og:type" content="article">
 <meta property="og:title" content="zabbix安装部署">
 <meta property="og:url" content="https://kinzun.github.io/2017/05/18/zabbixInstalldeploy/index.html">
 <meta property="og:site_name" content="kinzun">
 <meta property="og:description" content="Alexei Vladishev创建了Zabbix项目，当前处于活跃开发状态，Zabbix SIA提供支持.Zabbix是一个企业级的、开源的、分布式的监控套件 Zabbix可以监控网络和服务的监控状况. Zabbix利用灵活的告警机制，允许用户对事件发送基于Email的告警. 这样可以保证快速的对问题作出相应. Zabbix可以利用存储数据提供杰出的报告及图形化方式. 这一特性将帮助用户完成容量">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-04T08:12:40.000Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-05-18T06:40:21.000Z">
+<meta property="article:modified_time" content="2018-10-04T08:12:40.000Z">
+<meta property="article:author" content="kinzun">
+<meta property="article:tag" content="zabbix">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="zabbix安装部署">
-<meta name="twitter:description" content="Alexei Vladishev创建了Zabbix项目，当前处于活跃开发状态，Zabbix SIA提供支持.Zabbix是一个企业级的、开源的、分布式的监控套件 Zabbix可以监控网络和服务的监控状况. Zabbix利用灵活的告警机制，允许用户对事件发送基于Email的告警. 这样可以保证快速的对问题作出相应. Zabbix可以利用存储数据提供杰出的报告及图形化方式. 这一特性将帮助用户完成容量">
   
   <title>zabbix安装部署 - kinzun</title>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/lib/hint/hint.min.css">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css">
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
     
   
 
   
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
   
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
 
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/css/main.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
 
 <!-- 自定义样式保持在最底部 -->
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
-  <script src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/utils.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/color-schema.js"></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 </head>
 
 
@@ -75,7 +79,7 @@ Zabbix可以监控网络和服务的监控状况. Zabbix利用灵活的告警机
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>kinzun</strong>
+      <strong>Fluid</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -167,7 +171,7 @@ Zabbix可以监控网络和服务的监控状况. Zabbix利用灵活的告警机
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/default.png') no-repeat center center;
+         style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -193,7 +197,7 @@ Zabbix可以监控网络和服务的监控状况. Zabbix利用灵活的告警机
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5k 字
+      5.2k 字
     </span>
   
 
@@ -234,32 +238,32 @@ Zabbix可以监控网络和服务的监控状况. Zabbix利用灵活的告警机
             <h1 style="display: none">zabbix安装部署</h1>
             
             <div class="markdown-body">
-              <p>Alexei Vladishev创建了<a href="http://www.ttlsa.com/monitor/zabbix/" target="_blank" rel="noopener">Zabbix</a>项目，当前处于活跃开发状态，Zabbix SIA提供支持.Zabbix是一个企业级的、开源的、分布式的监控套件</p>
+              <p>Alexei Vladishev创建了<a target="_blank" rel="noopener" href="http://www.ttlsa.com/monitor/zabbix/">Zabbix</a>项目，当前处于活跃开发状态，Zabbix SIA提供支持.Zabbix是一个企业级的、开源的、分布式的监控套件</p>
 <p>Zabbix可以监控网络和服务的监控状况. Zabbix利用灵活的告警机制，允许用户对事件发送基于Email的告警. 这样可以保证快速的对问题作出相应. Zabbix可以利用存储数据提供杰出的报告及图形化方式. 这一特性将帮助用户完成容量规划.Zabbix支持polling和trapping两种方式. 所有的Zabbix报告都可以通过配置参数在WEB前端进行访问. Web前端将帮助你在任何区域都能够迅速获得你的网络及服务状况. Zabbix可以通过尽可能的配置来扮演监控你的IT基础框架的角色，而不管你是来自于小型组织还是大规模的公司.</p>
 <p>Zabbix是零成本的. 因为Zabbix编写和发布基于GPL V2协议. 意味着源代码是免费发布的.</p>
 <p>Zabbix公司也提供商业化的技术支持.</p>
- <a id="more"></a>
-<h4 id="程序构成"><a href="#程序构成" class="headerlink" title="程序构成"></a>程序构成</h4><figure class="highlight axapta"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">进程介绍<br><span class="hljs-number">1</span>）- zabbix_agentd<br>客户端守护进程，此进程收集客户端数据，例如cpu负载、内存、硬盘使用情况等<br><br><span class="hljs-number">2</span>）- zabbix_get<br>zabbix工具，单独使用的命令，通常在<span class="hljs-keyword">server</span>或者proxy端执行获取远程客户端信息的命令。<br>通常用户排错。例如在<span class="hljs-keyword">server</span>端获取不到客户端的内存数据，<br>我们可以使用zabbix_get获取客户端的内容的方式来做故障排查。<br><br><span class="hljs-number">3</span>)- zabbix_sender<br>zabbix工具，用于发送数据给<span class="hljs-keyword">server</span>或者proxy，<br>通常用于耗时比较长的检查。很多检查非常耗时间，导致zabbix超时。<br>于是我们在脚本执行完毕之后，使用sender主动提交数据。<br><br><span class="hljs-number">4</span>)- zabbix_server<br>zabbix服务端守护进程。zabbix_agentd、zabbix_get、zabbix_sender、<br>zabbix_proxy、zabbix_java_gateway的数据最终都是提交到<span class="hljs-keyword">server</span><br>备注：当然不是数据都是主动提交给zabbix_server,也有的是<span class="hljs-keyword">server</span>主动去取数据。<br><br><span class="hljs-number">5</span>)- zabbix_proxy<br>zabbix代理守护进程。功能类似<span class="hljs-keyword">server</span>，唯一不同的是它只是一个中转站，<br>它需要把收集到的数据提交/被提交到<span class="hljs-keyword">server</span>里。<br>为什么要用代理？代理是做什么的？卖个关子，请继续关注运维生存时间zabbix教程系列。<br><br><span class="hljs-number">6</span>)- zabbix_java_gateway<br>zabbix2<span class="hljs-number">.0</span>之后引入的一个功能。顾名思义：Java网关，类似agentd，<br>但是只用于Java方面。需要特别注意的是，它只能主动去获取数据，而不能被动获取数据。<br>它的数据最终会给到<span class="hljs-keyword">server</span>或者proxy。<br></code></pre></div></td></tr></table></figure>
+ <span id="more"></span>
+<h4 id="程序构成"><a href="#程序构成" class="headerlink" title="程序构成"></a>程序构成</h4><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs axapta">进程介绍<br><span class="hljs-number">1</span>）- zabbix_agentd<br>客户端守护进程，此进程收集客户端数据，例如cpu负载、内存、硬盘使用情况等<br><br><span class="hljs-number">2</span>）- zabbix_get<br>zabbix工具，单独使用的命令，通常在<span class="hljs-keyword">server</span>或者proxy端执行获取远程客户端信息的命令。<br>通常用户排错。例如在<span class="hljs-keyword">server</span>端获取不到客户端的内存数据，<br>我们可以使用zabbix_get获取客户端的内容的方式来做故障排查。<br><br><span class="hljs-number">3</span>)- zabbix_sender<br>zabbix工具，用于发送数据给<span class="hljs-keyword">server</span>或者proxy，<br>通常用于耗时比较长的检查。很多检查非常耗时间，导致zabbix超时。<br>于是我们在脚本执行完毕之后，使用sender主动提交数据。<br><br><span class="hljs-number">4</span>)- zabbix_server<br>zabbix服务端守护进程。zabbix_agentd、zabbix_get、zabbix_sender、<br>zabbix_proxy、zabbix_java_gateway的数据最终都是提交到<span class="hljs-keyword">server</span><br>备注：当然不是数据都是主动提交给zabbix_server,也有的是<span class="hljs-keyword">server</span>主动去取数据。<br><br><span class="hljs-number">5</span>)- zabbix_proxy<br>zabbix代理守护进程。功能类似<span class="hljs-keyword">server</span>，唯一不同的是它只是一个中转站，<br>它需要把收集到的数据提交/被提交到<span class="hljs-keyword">server</span>里。<br>为什么要用代理？代理是做什么的？卖个关子，请继续关注运维生存时间zabbix教程系列。<br><br><span class="hljs-number">6</span>)- zabbix_java_gateway<br>zabbix2<span class="hljs-number">.0</span>之后引入的一个功能。顾名思义：Java网关，类似agentd，<br>但是只用于Java方面。需要特别注意的是，它只能主动去获取数据，而不能被动获取数据。<br>它的数据最终会给到<span class="hljs-keyword">server</span>或者proxy。<br><br></code></pre></td></tr></table></figure>
 <h4 id="zabbix部署（服务端）"><a href="#zabbix部署（服务端）" class="headerlink" title="zabbix部署（服务端）"></a>zabbix部署（服务端）</h4><p>1）zabbix依赖数据库配置</p>
 <p><code>yum install mariadb-server</code></p>
 <p>vim /etc/my.cnf,在[mysqld]下加上</p>
-<figure class="highlight ini"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-attr">skip_name_resolve</span>=<span class="hljs-literal">on</span><br><span class="hljs-attr">innodb_file_per_table</span>=<span class="hljs-literal">on</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">skip_name_resolve</span>=<span class="hljs-literal">on</span><br><span class="hljs-attr">innodb_file_per_table</span>=<span class="hljs-literal">on</span><br></code></pre></td></tr></table></figure>
 <p>创建zabbix授权</p>
-<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">mysql -uroot -h127.0.0.1 -e "<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span>  zabbix <span class="hljs-keyword">CHARSET</span> <span class="hljs-string">'utf8'</span>;<br><span class="hljs-keyword">GRANT</span> ALL <span class="hljs-keyword">ON</span> zabbix.* <span class="hljs-keyword">TO</span> zbxuser@<span class="hljs-string">'192.168.%.%'</span> <span class="hljs-keyword">IDENTIFIED</span> <span class="hljs-keyword">BY</span> <span class="hljs-string">'zbxpass'</span>;<br><span class="hljs-keyword">GRANT</span> ALL <span class="hljs-keyword">ON</span> zabbix.* <span class="hljs-keyword">TO</span> zbxuser@<span class="hljs-string">'127.0.0.1'</span> <span class="hljs-keyword">IDENTIFIED</span> <span class="hljs-keyword">BY</span> <span class="hljs-string">'zbxpass'</span>;<br><span class="hljs-keyword">FLUSH</span> <span class="hljs-keyword">PRIVILEGES</span>;<br>quit<br>"<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs 1c">mysql -uroot -h127.<span class="hljs-number">0.0</span>.<span class="hljs-number">1</span> -e <span class="hljs-string">&quot;</span><br>CREATE DATABASE  zabbix CHARSET &#x27;utf8&#x27;;<br>GRANT ALL ON zabbix.* TO zbxuser@&#x27;192.168.%.%&#x27; IDENTIFIED BY &#x27;zbxpass&#x27;;<br>GRANT ALL ON zabbix.* TO zbxuser@&#x27;127.0.0.1&#x27; IDENTIFIED BY &#x27;zbxpass&#x27;;<br>FLUSH PRIVILEGES;<br>quit<br><span class="hljs-string">&quot;</span><br></code></pre></td></tr></table></figure>
 <p>2)配置服务端组件</p>
-<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">安装服务端：yum <span class="hljs-keyword">install</span> zabbix-<span class="hljs-keyword">server</span>-mysql zabbix-<span class="hljs-keyword">get</span><br><br>安装webGUI：yum <span class="hljs-keyword">install</span> zabbix-web zabbix-web-mysql<br><br>安装<span class="hljs-keyword">agent</span>端（可以监控自己）：yum <span class="hljs-keyword">install</span> zabbix-<span class="hljs-keyword">agent</span> zabbix-sender<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cmake">安装服务端：yum <span class="hljs-keyword">install</span> zabbix-server-mysql zabbix-get<br><br>安装webGUI：yum <span class="hljs-keyword">install</span> zabbix-web zabbix-web-mysql<br><br>安装agent端（可以监控自己）：yum <span class="hljs-keyword">install</span> zabbix-agent zabbix-sender<br></code></pre></td></tr></table></figure>
 <p>zabbix server 数据库初始化：（将create.sql 导入到database中）\</p>
-<figure class="highlight lsl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"># rpm -ql zabbix-server-mysql |grep create<br>/usr/share/doc/zabbix-server-mysql<span class="hljs-number">-3.0</span><span class="hljs-number">.2</span>/create.sql.gz<br>gzip -d creat.sql.gz <br>mysql  -h192<span class="hljs-number">.168</span><span class="hljs-number">.1</span><span class="hljs-number">.108</span>  -uzbxuser -p zabbix &lt; create.sql<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"># rpm -ql zabbix-<span class="hljs-keyword">server</span>-mysql |grep <span class="hljs-keyword">create</span><br>/usr/<span class="hljs-keyword">share</span>/doc/zabbix-<span class="hljs-keyword">server</span>-mysql<span class="hljs-number">-3.0</span><span class="hljs-number">.2</span>/<span class="hljs-keyword">create</span>.<span class="hljs-keyword">sql</span>.gz<br>gzip -d creat.<span class="hljs-keyword">sql</span>.gz <br>mysql  -h192<span class="hljs-number">.168</span><span class="hljs-number">.1</span><span class="hljs-number">.108</span>  -uzbxuser -p zabbix &lt; <span class="hljs-keyword">create</span>.<span class="hljs-keyword">sql</span><br></code></pre></td></tr></table></figure>
 <p>php时区更改（可直接执行</p>
-<figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">sed -i <span class="hljs-string">'/# php_value date.timezone.*/c\\tphp_value date.timezone Asia/Shanghai'</span> <span class="hljs-regexp">/etc/</span>httpd<span class="hljs-regexp">/conf.d/</span>zabbix.conf<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">sed -i <span class="hljs-string">&#x27;/# php_value date.timezone.*/c\\tphp_value date.timezone Asia/Shanghai&#x27;</span> <span class="hljs-regexp">/etc/</span>httpd<span class="hljs-regexp">/conf.d/</span>zabbix.conf<br></code></pre></td></tr></table></figure>
 <p>修改服务端配置文件：/etc/zabbix/zabbix_server.conf（先备份）</p>
-<figure class="highlight clean"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">[centos ~]# grep -i <span class="hljs-string">"#####"</span> /etc/zabbix/zabbix_server.conf<br>############ GENERAL PARAMETERS ################# 通用参数<br>############ ADVANCED PARAMETERS ################ 高级参数<br>####### LOADABLE MODULES ####### 加载的模块<br>####### TLS-RELATED PARAMETERS ####### TLS相关的参数<br><br><br><br>[centos ~]# egrep -v <span class="hljs-string">"(#|^$)"</span> /etc/zabbix/zabbix_server.conf<br>LogFile=/var/log/zabbix/zabbix_server.log<br>LogFileSize=<span class="hljs-number">0</span><br>PidFile=/var/run/zabbix/zabbix_server.pid<br>DBHost= <span class="hljs-number">192.168</span><span class="hljs-number">.0</span><span class="hljs-number">.10</span><br>DBName=zabbix<br>DBUser=zabuser<br>DBPassword=zabpass<br>SNMPTrapperFile=/var/log/snmptrap/snmptrap.log<br>Timeout=<span class="hljs-number">4</span><br>AlertScriptsPath=/usr/lib/zabbix/alertscripts<br>ExternalScripts=/usr/lib/zabbix/externalscripts<br>LogSlowQueries=<span class="hljs-number">3000</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs clean">[centos ~]# grep -i <span class="hljs-string">&quot;#####&quot;</span> /etc/zabbix/zabbix_server.conf<br>############ GENERAL PARAMETERS ################# 通用参数<br>############ ADVANCED PARAMETERS ################ 高级参数<br>####### LOADABLE MODULES ####### 加载的模块<br>####### TLS-RELATED PARAMETERS ####### TLS相关的参数<br><br><br><br>[centos ~]# egrep -v <span class="hljs-string">&quot;(#|^$)&quot;</span> /etc/zabbix/zabbix_server.conf<br>LogFile=/var/log/zabbix/zabbix_server.log<br>LogFileSize=<span class="hljs-number">0</span><br>PidFile=/var/run/zabbix/zabbix_server.pid<br>DBHost= <span class="hljs-number">192.168</span><span class="hljs-number">.0</span><span class="hljs-number">.10</span><br>DBName=zabbix<br>DBUser=zabuser<br>DBPassword=zabpass<br>SNMPTrapperFile=/var/log/snmptrap/snmptrap.log<br>Timeout=<span class="hljs-number">4</span><br>AlertScriptsPath=/usr/lib/zabbix/alertscripts<br>ExternalScripts=/usr/lib/zabbix/externalscripts<br>LogSlowQueries=<span class="hljs-number">3000</span><br></code></pre></td></tr></table></figure>
 <p>常用部分配置解释</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-meta">#</span><span class="bash"> ListenPort=10051 监听的端口 默认为10051，默认即可</span><br><span class="hljs-meta">#</span><span class="bash"></span><br><span class="hljs-meta">#</span><span class="bash">SourceIP：若是有多个IP，启用一个源IP，对方授权的IP</span><br><span class="hljs-meta">#</span><span class="bash"></span><br><span class="hljs-meta">#</span><span class="bash">DBHost：数据库服务地址</span><br><span class="hljs-meta">#</span><span class="bash"></span><br><span class="hljs-meta">#</span><span class="bash">DBname：zabbix数据库名</span><br><span class="hljs-meta">#</span><span class="bash"></span><br><span class="hljs-meta">#</span><span class="bash">DBuser：zabbix数据库账户名</span><br><span class="hljs-meta">#</span><span class="bash"></span><br><span class="hljs-meta">#</span><span class="bash">DBpassword：zabbix数据库密码 </span><br><span class="hljs-meta">#</span><span class="bash"></span><br><span class="hljs-meta">#</span><span class="bash">DBSocket：如果database与server在同一台主机就要改，不在就没事。</span><br><span class="hljs-meta">#</span><span class="bash"></span><br><span class="hljs-meta">#</span><span class="bash">logfile：日志文件地址</span><br><span class="hljs-meta">#</span><span class="bash"></span><br><span class="hljs-meta">#</span><span class="bash">logfilesize：日志文件大小，（最大为1G，0为用不滚动）</span><br><span class="hljs-meta">#</span><span class="bash"></span><br><span class="hljs-meta">#</span><span class="bash">DebugLevel：日志记录等级（1-5）</span><br><span class="hljs-meta">#</span><span class="bash"></span><br><span class="hljs-meta">#</span><span class="bash">pidfile：pid文件</span><br><span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment">#启动：systemctl start zabbix-server，注意如果是centos是7.0或者7.1版本的trousers包要更新.</span></span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs clean"># ListenPort=<span class="hljs-number">10051</span> 监听的端口 默认为<span class="hljs-number">10051</span>，默认即可<br>#<br>#SourceIP：若是有多个IP，启用一个源IP，对方授权的IP<br>#<br>#DBHost：数据库服务地址<br>#<br>#DBname：zabbix数据库名<br>#<br>#DBuser：zabbix数据库账户名<br>#<br>#DBpassword：zabbix数据库密码 <br>#<br>#DBSocket：如果database与server在同一台主机就要改，不在就没事。<br>#<br>#logfile：日志文件地址<br>#<br>#logfilesize：日志文件大小，（最大为<span class="hljs-number">1</span>G，<span class="hljs-number">0</span>为用不滚动）<br>#<br>#DebugLevel：日志记录等级（<span class="hljs-number">1</span><span class="hljs-number">-5</span>）<br>#<br>#pidfile：pid文件<br>##启动：systemctl start zabbix-server，注意如果是centos是<span class="hljs-number">7.0</span>或者<span class="hljs-number">7.1</span>版本的trousers包要更新.<br><br></code></pre></td></tr></table></figure>
 <p>测试环境配置中仅改以下配置，其余配置保持默认、按需更改</p>
-<figure class="highlight ini"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-comment"># vim /etc/zabbix/zabbix_server.conf</span><br><span class="hljs-attr">DBHost</span>=<span class="hljs-number">192.168</span>.<span class="hljs-number">0.10</span><br><span class="hljs-attr">DBname</span>=zabbix<br><span class="hljs-attr">DBUser</span>=zabuser<br><span class="hljs-attr">DBPassword</span>=zabpass<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-comment"># vim /etc/zabbix/zabbix_server.conf</span><br><span class="hljs-attr">DBHost</span>=<span class="hljs-number">192.168</span>.<span class="hljs-number">0.10</span><br><span class="hljs-attr">DBname</span>=zabbix<br><span class="hljs-attr">DBUser</span>=zabuser<br><span class="hljs-attr">DBPassword</span>=zabpass<br></code></pre></td></tr></table></figure>
 <p>服务端配置完成</p>
-<figure class="highlight x86asm"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">启动httpd：systemctl start httpd.service<br><br>访问：<span class="hljs-number">192.168</span><span class="hljs-meta">.0</span><span class="hljs-meta">.10</span>/zabbix<br><span class="hljs-symbol">http:</span>//<span class="hljs-number">192.168</span><span class="hljs-meta">.0</span><span class="hljs-meta">.10</span>/zabbix/setup.php<br>默认账户密码<br>admin/zabbix<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs awk">启动httpd：systemctl start httpd.service<br><br>访问：<span class="hljs-number">192.168</span>.<span class="hljs-number">0.10</span>/zabbix<br>http:<span class="hljs-regexp">//</span><span class="hljs-number">192.168</span>.<span class="hljs-number">0.10</span><span class="hljs-regexp">/zabbix/</span>setup.php<br>默认账户密码<br>admin/zabbix<br><br></code></pre></td></tr></table></figure>
 <p>zabbix/setup.php。</p>
 <h4 id="配置客户端agent"><a href="#配置客户端agent" class="headerlink" title="配置客户端agent"></a>配置客户端agent</h4><p>Zabbix Agent检查有两种模式,分为主动(Agent Active)和被动(Agent)两种形式。主动与被动的说法均是相对于Agent来讨论的。</p>
 <ul>
@@ -268,14 +272,14 @@ Zabbix可以监控网络和服务的监控状况. Zabbix利用灵活的告警机
 </ul>
 <p>安装agent端（可以监控自己）：<code>yum install zabbix-agent zabbix-sender</code></p>
 <p>配置部分解释</p>
-<figure class="highlight clean"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">root@c7<span class="hljs-number">-02</span>:[~]: grep  <span class="hljs-string">"####"</span> /etc/zabbix/zabbix_agentd.conf  <br>############ GENERAL PARAMETERS #################<br>EnableRemoteCommands：是否允许远程执行命令<br>LogRemoteCommands：远程命令执行是否记录日志<br>##### Passive checks related<br>Server：服务端地址（允许哪个ip获取数据）<br>StartAgents：服务启动时预生成的进程数（注意不能为<span class="hljs-number">0</span>，为<span class="hljs-number">0</span>是代表禁用被动模式）<br>##### Active checks related<br>ServerActive：#主动模式的server IP地址<br>Hostname：主#机名（用于主动发送数据时用于标示主机名）<br>RefreshActiveChecks：#多长时间去服务端刷新一次配置间隔<br>############ ADVANCED PARAMETERS #################<br>####### USER-DEFINED MONITORED PARAMETERS #######<br>####### LOADABLE MODULES #######<br>####### TLS-RELATED PARAMETERS #######<br><br><br><br>root@c7<span class="hljs-number">-02</span>:[~]: egrep -v <span class="hljs-string">"(#|^$)"</span> /etc/zabbix/zabbix_agentd.conf<br>LogFile=/var/log/zabbix/zabbix_agentd.log<br>LogFileSize=<span class="hljs-number">0</span><br>EnableRemoteCommands=<span class="hljs-number">1</span>  <br>Server=<span class="hljs-number">192.168</span><span class="hljs-number">.0</span><span class="hljs-number">.10</span><br>ServerActive=<span class="hljs-number">192.168</span><span class="hljs-number">.0</span><span class="hljs-number">.10</span><br>Hostname=Zabbix server<br>Include=/etc/zabbix/zabbix_agentd.d/<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs clean">root@c7<span class="hljs-number">-02</span>:[~]: grep  <span class="hljs-string">&quot;####&quot;</span> /etc/zabbix/zabbix_agentd.conf  <br>############ GENERAL PARAMETERS #################<br>EnableRemoteCommands：是否允许远程执行命令<br>LogRemoteCommands：远程命令执行是否记录日志<br>##### Passive checks related<br>Server：服务端地址（允许哪个ip获取数据）<br>StartAgents：服务启动时预生成的进程数（注意不能为<span class="hljs-number">0</span>，为<span class="hljs-number">0</span>是代表禁用被动模式）<br>##### Active checks related<br>ServerActive：#主动模式的server IP地址<br>Hostname：主#机名（用于主动发送数据时用于标示主机名）<br>RefreshActiveChecks：#多长时间去服务端刷新一次配置间隔<br>############ ADVANCED PARAMETERS #################<br>####### USER-DEFINED MONITORED PARAMETERS #######<br>####### LOADABLE MODULES #######<br>####### TLS-RELATED PARAMETERS #######<br><br><br><br>root@c7<span class="hljs-number">-02</span>:[~]: egrep -v <span class="hljs-string">&quot;(#|^$)&quot;</span> /etc/zabbix/zabbix_agentd.conf<br>LogFile=/var/log/zabbix/zabbix_agentd.log<br>LogFileSize=<span class="hljs-number">0</span><br>EnableRemoteCommands=<span class="hljs-number">1</span>  <br>Server=<span class="hljs-number">192.168</span><span class="hljs-number">.0</span><span class="hljs-number">.10</span><br>ServerActive=<span class="hljs-number">192.168</span><span class="hljs-number">.0</span><span class="hljs-number">.10</span><br>Hostname=Zabbix server<br>Include=/etc/zabbix/zabbix_agentd.d/<br><br><br></code></pre></td></tr></table></figure>
 <p>测试环境更改以下</p>
-<figure class="highlight makefile"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-comment">#被动监控，agent等待server过来请求数据</span><br><span class="hljs-comment">#passive checks related 下</span><br><br>Server=192.168.0.10  可以用逗号隔开授权的有哪些<br><br><span class="hljs-comment">#主动监控：被监控端把数据主动发给服务端</span><br><span class="hljs-comment">#active checks related 下</span><br><br>ServerActive=192.168.0.10<br>Hostname=在Web UI上声明主机时所使用相同的主机名(区分大小写)，不配置则使用主机名。<br><br><span class="hljs-comment">#启动服务即可</span><br>systemctl start zabbix-agent.service<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment">#被动监控，agent等待server过来请求数据</span><br><span class="hljs-comment">#passive checks related 下</span><br><br><span class="hljs-attribute">Server</span>=192.168.0.10  可以用逗号隔开授权的有哪些<br><br><span class="hljs-comment">#主动监控：被监控端把数据主动发给服务端</span><br><span class="hljs-comment">#active checks related 下</span><br><br><span class="hljs-attribute">ServerActive</span>=192.168.0.10<br><span class="hljs-attribute">Hostname</span>=在Web UI上声明主机时所使用相同的主机名(区分大小写)，不配置则使用主机名。<br><br><span class="hljs-comment">#启动服务即可</span><br>systemctl start zabbix-agent.service<br></code></pre></td></tr></table></figure>
 <h5 id="修改-Zabbix-Server-系统语言为简体中文"><a href="#修改-Zabbix-Server-系统语言为简体中文" class="headerlink" title="修改 Zabbix Server 系统语言为简体中文"></a>修改 Zabbix Server 系统语言为简体中文</h5><p>对于 3.0 版本的 Zabbix Server 系统语言选择下拉框中默认是没有简体中文的，需要改动其源码，改动方式如下：</p>
 <ul>
 <li><code>vim /usr/share/zabbix/include/locales.inc.php`，修改文件中的 `&#39;zh_CN&#39; =&gt; [&#39;name&#39; =&gt; _(&#39;Chinese (zh_CN)&#39;), &#39;display&#39; =&gt; false]` 的 `false` 为 `true` 即可。</code> </li>
 </ul>
-<figure class="highlight stylus"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">sed -E <span class="hljs-string">"55s/display.*/display' =&gt; true],/"</span> /usr/share/zabbix/include/locales<span class="hljs-selector-class">.inc</span><span class="hljs-selector-class">.php</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">sed -E <span class="hljs-string">&quot;55s/display.*/display&#x27; =&gt; true],/&quot;</span> <span class="hljs-regexp">/usr/</span>share<span class="hljs-regexp">/zabbix/i</span>nclude/locales.inc.php  <br></code></pre></td></tr></table></figure>
 <p>不过中文翻译得并不贴切，而且还会有乱码（需要修改字体解决）的可能，不建议修改此项。</p>
 
             </div>
@@ -295,7 +299,7 @@ Zabbix可以监控网络和服务的监控状况. Zabbix利用灵活的告警机
               
                 <p class="note note-warning">
                   
-                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                   
                 </p>
               
@@ -325,15 +329,6 @@ Zabbix可以监控网络和服务的监控状况. Zabbix利用灵活的告警机
               
             </div>
 
-            
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
-
-              </article>
             
           </article>
         </div>
@@ -417,18 +412,18 @@ Zabbix可以监控网络和服务的监控状况. Zabbix利用灵活的告警机
 
 <script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
 <script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/events.js" ></script>
-<script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/plugins.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
 
-  <script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
   
-    <script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/img-lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
@@ -481,7 +476,7 @@ Zabbix可以监控网络和服务的监控状况. Zabbix利用灵活的告警机
 
 
 <!-- 主题的启动项 保持在最底部 -->
-<script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/boot.js" ></script>
+<script  src="/js/boot.js" ></script>
 
 
 </body>

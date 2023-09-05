@@ -5,10 +5,10 @@
 
 
 
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/favicon.ico">
-  <link rel="icon" href="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -16,59 +16,63 @@
   <meta name="description" content="什么是tomcat？Apache Tomcat 是由Apache 软件基金会 开发的开源web服务器和servlet容器。它实现了Java Servlet，JavaServer页面（JSP），Java的统一表达式语言，以及Sun Microsystems的Java的WebSocket规范，并提供了一个运行java代码的web服务器环境。
 Install and Config JavaTomcat要">
   <meta name="author" content="kinzun">
-  <meta name="keywords" content>
+  <meta name="keywords" content="">
   <meta name="description" content="什么是tomcat？Apache Tomcat 是由Apache 软件基金会 开发的开源web服务器和servlet容器。它实现了Java Servlet，JavaServer页面（JSP），Java的统一表达式语言，以及Sun Microsystems的Java的WebSocket规范，并提供了一个运行java代码的web服务器环境。 Install and Config JavaTomcat要">
-<meta name="keywords" content="tomcat">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tomcat memcache sticky sessions">
 <meta property="og:url" content="https://kinzun.github.io/2017/05/20/tomcat/index.html">
 <meta property="og:site_name" content="kinzun">
 <meta property="og:description" content="什么是tomcat？Apache Tomcat 是由Apache 软件基金会 开发的开源web服务器和servlet容器。它实现了Java Servlet，JavaServer页面（JSP），Java的统一表达式语言，以及Sun Microsystems的Java的WebSocket规范，并提供了一个运行java代码的web服务器环境。 Install and Config JavaTomcat要">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://kinzun.github.io/images/tomcat/tomcatconfigvar.jpg">
-<meta property="og:updated_time" content="2019-07-05T13:49:06.766Z">
+<meta property="article:published_time" content="2017-05-20T09:07:57.000Z">
+<meta property="article:modified_time" content="2019-07-05T13:49:06.766Z">
+<meta property="article:author" content="kinzun">
+<meta property="article:tag" content="tomcat">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="tomcat memcache sticky sessions">
-<meta name="twitter:description" content="什么是tomcat？Apache Tomcat 是由Apache 软件基金会 开发的开源web服务器和servlet容器。它实现了Java Servlet，JavaServer页面（JSP），Java的统一表达式语言，以及Sun Microsystems的Java的WebSocket规范，并提供了一个运行java代码的web服务器环境。 Install and Config JavaTomcat要">
 <meta name="twitter:image" content="https://kinzun.github.io/images/tomcat/tomcatconfigvar.jpg">
   
   <title>tomcat memcache sticky sessions - kinzun</title>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/lib/hint/hint.min.css">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css">
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
     
   
 
   
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
   
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
 
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/css/main.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
 
 <!-- 自定义样式保持在最底部 -->
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
-  <script src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/utils.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/color-schema.js"></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 </head>
 
 
@@ -77,7 +81,7 @@ Install and Config JavaTomcat要">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>kinzun</strong>
+      <strong>Fluid</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -169,7 +173,7 @@ Install and Config JavaTomcat要">
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/default.png') no-repeat center center;
+         style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -195,7 +199,7 @@ Install and Config JavaTomcat要">
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.6k 字
+      3.8k 字
     </span>
   
 
@@ -204,7 +208,7 @@ Install and Config JavaTomcat要">
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11 分钟
+      12 分钟
     </span>
   
 
@@ -236,32 +240,30 @@ Install and Config JavaTomcat要">
             <h1 style="display: none">tomcat memcache sticky sessions</h1>
             
             <div class="markdown-body">
-              <h2 id="什么是tomcat？"><a href="#什么是tomcat？" class="headerlink" title="什么是tomcat？"></a>什么是tomcat？</h2><p>Apache Tomcat 是由<a href="http://www.apache.org/" target="_blank" rel="noopener">Apache</a> 软件基金会 开发的开源web服务器和servlet容器。它实现了Java Servlet，JavaServer页面（JSP），Java的统一表达式语言，以及Sun Microsystems的Java的WebSocket规范，并提供了一个运行java代码的web服务器环境。</p>
+              <h2 id="什么是tomcat？"><a href="#什么是tomcat？" class="headerlink" title="什么是tomcat？"></a>什么是tomcat？</h2><p>Apache Tomcat 是由<a target="_blank" rel="noopener" href="http://www.apache.org/">Apache</a> 软件基金会 开发的开源web服务器和servlet容器。它实现了Java Servlet，JavaServer页面（JSP），Java的统一表达式语言，以及Sun Microsystems的Java的WebSocket规范，并提供了一个运行java代码的web服务器环境。</p>
 <h3 id="Install-and-Config-Java"><a href="#Install-and-Config-Java" class="headerlink" title="Install and Config Java"></a>Install and Config Java</h3><p>Tomcat要求安装在服务器端Java，Java web应用程序代码才可执行<br>利用 yum 安装执行下面命令。</p>
 <ul>
-<li><p><a href="http://openjdk.java.net/" target="_blank" rel="noopener">OpenJDK</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> yum install java-1.8.0-openjdk-devel</span><br></code></pre></div></td></tr></table></figure>
-<p>alternatives 在常用用于安装同类软件不同版本</p>
-</li>
+<li><a target="_blank" rel="noopener" href="http://openjdk.java.net/">OpenJDK</a><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">yum install java-1.8.0-openjdk-devel</span><br></code></pre></td></tr></table></figure>
+alternatives 在常用用于安装同类软件不同版本</li>
 </ul>
 <p>tomcat通过JAVA_HOME变量找jdk安装目录。</p>
-<p>设置JAVA_HOME环境变量<br><a id="more"></a>  </p>
-<figure class="highlight routeros"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><br><span class="hljs-comment"># vim /etc/profile.d/java.sh</span><br><br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">JAVA_HOME</span>=/usr<br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">PATH</span>=<span class="hljs-variable">$JAVA_HOME</span>/bin:$PATH<br><span class="hljs-comment"># chmod u+x java.sh</span><br></code></pre></div></td></tr></table></figure>
+<p>设置JAVA_HOME环境变量<br><span id="more"></span>  </p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><br><span class="hljs-comment"># vim /etc/profile.d/java.sh</span><br><br><span class="hljs-built_in">export</span> <span class="hljs-attribute">JAVA_HOME</span>=/usr<br><span class="hljs-built_in">export</span> <span class="hljs-attribute">PATH</span>=<span class="hljs-variable">$JAVA_HOME</span>/bin:$PATH<br><span class="hljs-comment"># chmod u+x java.sh</span><br></code></pre></td></tr></table></figure>
 <ul>
-<li><p><a href="http://www.oracle.com/technetwork/java/javase/overview/index.html" target="_blank" rel="noopener">Oracle JDK</a></p>
-<figure class="highlight routeros"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-comment"># vim /etc/profile.d/java.sh</span><br><br>epport <span class="hljs-attribute">JAVA_HOME</span>=/usr/java/default<br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">PATH</span>=<span class="hljs-variable">$JAVA_HOME</span>/bin:$PATH<br><span class="hljs-comment"># chmod u+x java.sh</span><br></code></pre></div></td></tr></table></figure>
+<li><a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/java/javase/overview/index.html">Oracle JDK</a><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># vim /etc/profile.d/java.sh</span><br><br>epport <span class="hljs-attribute">JAVA_HOME</span>=/usr/java/default<br><span class="hljs-built_in">export</span> <span class="hljs-attribute">PATH</span>=<span class="hljs-variable">$JAVA_HOME</span>/bin:$PATH<br><span class="hljs-comment"># chmod u+x java.sh</span><br></code></pre></td></tr></table></figure>
 </li>
-<li><p>相关阅读</p>
+</ul>
 <ul>
-<li><a href="http://www.oracle.com/technetwork/java/javase/tech/index-jsp-140763.html" target="_blank" rel="noopener">To explain the difference between JDK and JRE</a></li>
-<li><a href="http://stackoverflow.com/questions/11547458/what-is-the-difference-between-jvm-jdk-jre-openjdk" target="_blank" rel="noopener">What is the difference between JVM, JDK, JRE &amp; OpenJDK?</a></li>
+<li>相关阅读<ul>
+<li><a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/java/javase/tech/index-jsp-140763.html">To explain the difference between JDK and JRE</a></li>
+<li><a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/11547458/what-is-the-difference-between-jvm-jdk-jre-openjdk">What is the difference between JVM, JDK, JRE &amp; OpenJDK?</a></li>
 </ul>
 </li>
 </ul>
-<h3 id="Tomcat-install"><a href="#Tomcat-install" class="headerlink" title="Tomcat install"></a>Tomcat install</h3><p>我们前往<a href="http://tomcat.apache.org/" target="_blank" rel="noopener">tomcat官方站点下载</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-meta">#</span><span class="bash"></span><br><span class="hljs-meta">#</span><span class="bash"> tar xvf apache-tomcat-VERSION.tar.gz -C /usr/<span class="hljs-built_in">local</span>/ </span><br><span class="hljs-meta">#</span><span class="bash"> <span class="hljs-built_in">cd</span> /usr/<span class="hljs-built_in">local</span>/ </span><br><span class="hljs-meta">#</span><span class="bash"> ln -sv apache-tomcat-VERSION tomcat </span><br><span class="hljs-meta"><br>#</span><span class="bash"> 添加变量		</span><br><span class="hljs-meta">#</span><span class="bash"> vim /etc/profile.d/tomcat.sh </span><br>export CATALINA_BASE=/usr/local/tomcat <br>export PATH=$CATALINA_BASE/bin:$PATH<br><span class="hljs-meta"><br>#</span><span class="bash"> . /etc/profile.d/tomcat.sh</span><br></code></pre></div></td></tr></table></figure>
-<h3 id="Add-tomcat-user-amp-group"><a href="#Add-tomcat-user-amp-group" class="headerlink" title="Add tomcat user &amp; group"></a>Add tomcat user &amp; group</h3><figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-meta">#</span><span class="bash"> groupadd tomcat</span><br><span class="hljs-meta">#</span><span class="bash"> useradd -g tomcat -s /sbin/nologin -d /usr/<span class="hljs-built_in">local</span>/tomcat/ tomcat</span><br><span class="hljs-meta">#</span><span class="bash"> chown -Rf tomcat.tomcat /usr/<span class="hljs-built_in">local</span>/tomcat</span><br></code></pre></div></td></tr></table></figure>
-<h3 id="Runing-Tomcat"><a href="#Runing-Tomcat" class="headerlink" title="Runing Tomcat"></a>Runing Tomcat</h3><figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-meta"><br>#</span><span class="bash"> /usr/<span class="hljs-built_in">local</span>/tomcat/bin/catalina.sh  start  或  <span class="hljs-comment">#catalina.sh  start</span></span><br></code></pre></div></td></tr></table></figure>
+<h3 id="Tomcat-install"><a href="#Tomcat-install" class="headerlink" title="Tomcat install"></a>Tomcat install</h3><p>我们前往<a target="_blank" rel="noopener" href="http://tomcat.apache.org/">tomcat官方站点下载</a></p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment">#</span><br><span class="hljs-comment"># tar xvf apache-tomcat-VERSION.tar.gz -C /usr/local/ </span><br><span class="hljs-comment"># cd /usr/local/ </span><br><span class="hljs-comment"># ln -sv apache-tomcat-VERSION tomcat </span><br><br><span class="hljs-comment"># 添加变量		</span><br><span class="hljs-comment"># vim /etc/profile.d/tomcat.sh </span><br><span class="hljs-built_in">export</span> <span class="hljs-attribute">CATALINA_BASE</span>=/usr/local/tomcat <br><span class="hljs-built_in">export</span> <span class="hljs-attribute">PATH</span>=<span class="hljs-variable">$CATALINA_BASE</span>/bin:$PATH<br><br><span class="hljs-comment"># . /etc/profile.d/tomcat.sh</span><br><br><br></code></pre></td></tr></table></figure>
+<h3 id="Add-tomcat-user-amp-group"><a href="#Add-tomcat-user-amp-group" class="headerlink" title="Add tomcat user &amp; group"></a>Add tomcat user &amp; group</h3><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs gradle"># groupadd tomcat<br># useradd -g tomcat -s <span class="hljs-regexp">/sbin/</span>nologin -d <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/tomcat/</span> tomcat<br># chown -Rf tomcat.tomcat <span class="hljs-regexp">/usr/</span>local/tomcat<br><br><br></code></pre></td></tr></table></figure>
+<h3 id="Runing-Tomcat"><a href="#Runing-Tomcat" class="headerlink" title="Runing Tomcat"></a>Runing Tomcat</h3><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><br># <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/tomcat/</span>bin/catalina.sh  start  或  #catalina.sh  start  <br><br></code></pre></td></tr></table></figure>
 <h3 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h3><ul>
 <li><p>tomcat目录结构</p>
 <ul>
@@ -287,18 +289,17 @@ Install and Config JavaTomcat要">
 </li>
 </ul>
 <h3 id="测速页"><a href="#测速页" class="headerlink" title="测速页"></a>测速页</h3><p> vim </p>
-<p>创建目录<br><figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-meta">#</span><span class="bash"> <span class="hljs-built_in">cd</span> tomcat/webapps</span><br><span class="hljs-meta"><br>#</span><span class="bash"> mkdir myapp/&#123;lib,class,WEB-INF,META-INF&#125; -pv</span><br></code></pre></div></td></tr></table></figure></p>
-<p><code># vim myapp/index.jsp</code><br><figure class="highlight"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><br>&lt;%@ page language="java" %&gt;<br>&lt;html&gt;<br>  &lt;head&gt;&lt;title&gt;TomcatA&lt;/title&gt;&lt;/head&gt;<br>  &lt;body&gt;<br>    &lt;h1&gt;&lt;font color="red"&gt;TomcatA.magedu.com&lt;/font&gt;&lt;/h1&gt;<br>    &lt;table align="centre" border="1"&gt;<br>      &lt;tr&gt;<br>        &lt;td&gt;Session ID&lt;/td&gt;<br>    &lt;% session.setAttribute("magedu.com","magedu.com"); %&gt;<br>        &lt;td&gt;&lt;%= session.getId() %&gt;&lt;/td&gt;<br>      &lt;/tr&gt;<br>      &lt;tr&gt;<br>        &lt;td&gt;Created on&lt;/td&gt;<br>        &lt;td&gt;&lt;%= session.getCreationTime() %&gt;&lt;/td&gt;<br>     &lt;/tr&gt;<br>    &lt;/table&gt;<br>  &lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></div></td></tr></table></figure></p>
+<p>创建目录<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs stata"># <span class="hljs-keyword">cd</span> tomcat/webapps<br><br># <span class="hljs-keyword">mkdir</span> myapp/&#123;lib,<span class="hljs-keyword">class</span>,WEB-<span class="hljs-keyword">INF</span>,<span class="hljs-keyword">META</span>-<span class="hljs-keyword">INF</span>&#125; -pv<br><br></code></pre></td></tr></table></figure><br><code># vim myapp/index.jsp</code><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><br>&lt;%@ page language=<span class="hljs-string">&quot;java&quot;</span> %&gt;<br>&lt;html&gt;<br>  &lt;head&gt;&lt;title&gt;TomcatA&lt;/title&gt;&lt;/head&gt;<br>  &lt;body&gt;<br>    &lt;h1&gt;&lt;font color=<span class="hljs-string">&quot;red&quot;</span>&gt;TomcatA.magedu.com&lt;/font&gt;&lt;/h1&gt;<br>    &lt;table align=<span class="hljs-string">&quot;centre&quot;</span> border=<span class="hljs-string">&quot;1&quot;</span>&gt;<br>      &lt;tr&gt;<br>        &lt;td&gt;Session ID&lt;/td&gt;<br>    &lt;% session.setAttribute(<span class="hljs-string">&quot;magedu.com&quot;</span>,<span class="hljs-string">&quot;magedu.com&quot;</span>); %&gt;<br>        &lt;td&gt;&lt;%= session.getId() %&gt;&lt;/td&gt;<br>      &lt;/tr&gt;<br>      &lt;tr&gt;<br>        &lt;td&gt;Created on&lt;/td&gt;<br>        &lt;td&gt;&lt;%= session.getCreationTime() %&gt;&lt;/td&gt;<br>     &lt;/tr&gt;<br>    &lt;/table&gt;<br>  &lt;/body&gt;<br>&lt;/html&gt;<br><br></code></pre></td></tr></table></figure></p>
 <p>###<br>环境目录如下<br>/usr/share/tomcat/webapps</p>
 <p><code># tree /data/wepapps/</code></p>
-<figure class="highlight crystal"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined">/data/wepapps/<br>└── ROOT<br>    ├── <span class="hljs-class"><span class="hljs-keyword">class</span></span><br>    ├── index.jsp<br>    ├── <span class="hljs-class"><span class="hljs-keyword">lib</span></span><br>    ├── META-INF<br>    └── WEB-INF<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs stata">/data/wepapps/<br>└── ROOT<br>    ├── <span class="hljs-keyword">class</span><br>    ├── index.jsp<br>    ├── lib<br>    ├── <span class="hljs-keyword">META</span>-<span class="hljs-keyword">INF</span><br>    └── WEB-<span class="hljs-keyword">INF</span><br></code></pre></td></tr></table></figure>
 <ul>
-<li><a href="https://my.oschina.net/sunchp/blog/616526" target="_blank" rel="noopener">Docker搭建Tomcat</a></li>
+<li><a target="_blank" rel="noopener" href="https://my.oschina.net/sunchp/blog/616526">Docker搭建Tomcat</a></li>
 </ul>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p><img src="/images/tomcat/tomcatconfigvar.jpg" srcset="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/loading.gif" lazyload alt="tomcat"></p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p><img src="/images/tomcat/tomcatconfigvar.jpg" srcset="/img/loading.gif" lazyload alt="tomcat"></p>
 <h4 id="memcached-session-manager项目地址下载地址，"><a href="#memcached-session-manager项目地址下载地址，" class="headerlink" title="memcached-session-manager项目地址下载地址，"></a>memcached-session-manager项目地址下载地址，</h4><ul>
-<li><a href="http://code.google.com/p/memcached-session-manager" target="_blank" rel="noopener">Google</a> </li>
-<li><a href="https://github.com/magro/memcached-session-manager" target="_blank" rel="noopener">GitHub</a></li>
+<li><a target="_blank" rel="noopener" href="http://code.google.com/p/memcached-session-manager">Google</a> </li>
+<li><a target="_blank" rel="noopener" href="https://github.com/magro/memcached-session-manager">GitHub</a></li>
 </ul>
 <p>需准备用到的jar扩展</p>
 <blockquote>
@@ -306,19 +307,19 @@ Install and Config JavaTomcat要">
 </blockquote>
 <p>这是采用的javolution的序列化方式所有需要的包:</p>
 <ul>
-<li><a href="http://repo1.maven.org/maven2/de/javakaffee/msm/memcached-session-manager/" target="_blank" rel="noopener">memcached-session-manager-${version}.jar</a></li>
-<li><a href="http://repo1.maven.org/maven2/de/javakaffee/msm/" target="_blank" rel="noopener">memcached-session-manager-tc${6,7,8}-${version}.jar</a></li>
-<li><a href="http://repo1.maven.org/maven2/net/spy/spymemcached/2.11.1/spymemcached-2.11.1.jar" target="_blank" rel="noopener">spymemcached-${version}.jar</a></li>
-<li><a href="http://repo1.maven.org/maven2/de/javakaffee/msm/msm-javolution-serializer/" target="_blank" rel="noopener">msm-javolution-serializer-${version}.jar</a></li>
-<li><a href="https://raw.githubusercontent.com/kinzun/Config-Script/master/tomcat/memchachetestjavo/javolution-5.4.3.1.jar" target="_blank" rel="noopener">javolution-${version}.jar</a></li>
+<li><a target="_blank" rel="noopener" href="http://repo1.maven.org/maven2/de/javakaffee/msm/memcached-session-manager/">memcached-session-manager-${version}.jar</a></li>
+<li><a target="_blank" rel="noopener" href="http://repo1.maven.org/maven2/de/javakaffee/msm/">memcached-session-manager-tc${6,7,8}-${version}.jar</a></li>
+<li><a target="_blank" rel="noopener" href="http://repo1.maven.org/maven2/net/spy/spymemcached/2.11.1/spymemcached-2.11.1.jar">spymemcached-${version}.jar</a></li>
+<li><a target="_blank" rel="noopener" href="http://repo1.maven.org/maven2/de/javakaffee/msm/msm-javolution-serializer/">msm-javolution-serializer-${version}.jar</a></li>
+<li><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/kinzun/Config-Script/master/tomcat/memchachetestjavo/javolution-5.4.3.1.jar">javolution-${version}.jar</a></li>
 </ul>
 <p>移动所有jar包到<br>mv *.jar /usr/share/tomcat/lib</p>
 <p>配置memcache</p>
 <p>###　Example for sticky sessions + javolution</p>
 <p><code># vim $TOMCAT_HOME/conf/server.xml</code></p>
-<figure class="highlight"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><br>&lt;!-- &lt;Host name="localhost"  appBase="webapps" unpackWARs="true" autoDeploy="true"&gt; <br>   此处下添加如--&gt;<br> &lt;Context path="" docBase="/usr/share/tomcat/webapps/test/" reloadable="true"&gt;<br>  &lt;Manager className="de.javakaffee.web.msm.MemcachedBackupSessionManager" memcachedNodes="n1:192.168.0.10:11211,n2:192.168.0.12:11211" <br>  failoverNodes="n1"<br>  requestUriIgnorePattern=".*\.(ico|png|gif|jpg|css|js)$"<br>  transcoderFactoryClass="de.javakaffee.web.msm.serializer.javolution.JavolutionTranscoderFactory"<br>              /&gt;<br>             &lt;/Context&gt;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><br>&lt;!-- &lt;Host name=<span class="hljs-string">&quot;localhost&quot;</span>  appBase=<span class="hljs-string">&quot;webapps&quot;</span> unpackWARs=<span class="hljs-string">&quot;true&quot;</span> autoDeploy=<span class="hljs-string">&quot;true&quot;</span>&gt; <br>   此处下添加如--&gt;<br> &lt;Context path=<span class="hljs-string">&quot;&quot;</span> docBase=<span class="hljs-string">&quot;/usr/share/tomcat/webapps/test/&quot;</span> reloadable=<span class="hljs-string">&quot;true&quot;</span>&gt;<br>  &lt;Manager className=<span class="hljs-string">&quot;de.javakaffee.web.msm.MemcachedBackupSessionManager&quot;</span> memcachedNodes=<span class="hljs-string">&quot;n1:192.168.0.10:11211,n2:192.168.0.12:11211&quot;</span> <br>  failoverNodes=<span class="hljs-string">&quot;n1&quot;</span><br>  requestUriIgnorePattern=<span class="hljs-string">&quot;.*\.(ico|png|gif|jpg|css|js)$&quot;</span><br>  transcoderFactoryClass=<span class="hljs-string">&quot;de.javakaffee.web.msm.serializer.javolution.JavolutionTranscoderFactory&quot;</span><br>              /&gt;<br>             &lt;/Context&gt;<br></code></pre></td></tr></table></figure>
 <p>另一节点如此。</p>
-<h3 id="Config-nginx-load-balancing"><a href="#Config-nginx-load-balancing" class="headerlink" title="Config nginx load balancing"></a>Config nginx load balancing</h3><figure class="highlight nginx"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs undefined"><span class="hljs-comment">#安装nginx</span><br><span class="hljs-attribute">yum</span> install nginx<br><span class="hljs-comment">#配置负载均衡</span><br>upstream tomcat_server &#123;<br>    <span class="hljs-attribute">server</span> <span class="hljs-number">192.168.0.12</span>;<br>    <span class="hljs-attribute">server</span> <span class="hljs-number">192.168.0.10</span>;<br>&#125;<br><br><span class="hljs-section">server</span> &#123;<br>    <span class="hljs-attribute">listen</span>       <span class="hljs-number">80</span>;<br>    <span class="hljs-attribute">server_name</span> <span class="hljs-number">192.168.0.13</span>;<br><br><span class="hljs-attribute">location</span> / &#123;<br><br>    <span class="hljs-attribute">proxy_pass</span> http://tomcat_server;<br>        <span class="hljs-attribute">proxy_set_header</span>  X-Real-IP  <span class="hljs-variable">$remote_addr</span>;  <br><br>&#125;<br></code></pre></div></td></tr></table></figure>
+<h3 id="Config-nginx-load-balancing"><a href="#Config-nginx-load-balancing" class="headerlink" title="Config nginx load balancing"></a>Config nginx load balancing</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-comment">#安装nginx</span><br><span class="hljs-attribute">yum</span> install nginx<br><span class="hljs-comment">#配置负载均衡</span><br>upstream tomcat_server &#123;<br>    <span class="hljs-attribute">server</span> <span class="hljs-number">192.168.0.12</span>;<br>    <span class="hljs-attribute">server</span> <span class="hljs-number">192.168.0.10</span>;<br>&#125;<br><br><span class="hljs-section">server</span> &#123;<br>    <span class="hljs-attribute">listen</span>       <span class="hljs-number">80</span>;<br>    <span class="hljs-attribute">server_name</span> <span class="hljs-number">192.168.0.13</span>;<br><br><span class="hljs-section">location</span> / &#123;<br><br>    <span class="hljs-attribute">proxy_pass</span> http://tomcat_server;<br>        <span class="hljs-attribute">proxy_set_header</span>  X-Real-IP  <span class="hljs-variable">$remote_addr</span>;  <br><br>&#125;<br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
@@ -336,7 +337,7 @@ Install and Config JavaTomcat要">
               
                 <p class="note note-warning">
                   
-                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                   
                 </p>
               
@@ -366,15 +367,6 @@ Install and Config JavaTomcat要">
               
             </div>
 
-            
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
-
-              </article>
             
           </article>
         </div>
@@ -458,18 +450,18 @@ Install and Config JavaTomcat要">
 
 <script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
 <script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/events.js" ></script>
-<script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/plugins.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
 
-  <script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
   
-    <script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/img-lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
@@ -522,7 +514,7 @@ Install and Config JavaTomcat要">
 
 
 <!-- 主题的启动项 保持在最底部 -->
-<script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/boot.js" ></script>
+<script  src="/js/boot.js" ></script>
 
 
 </body>

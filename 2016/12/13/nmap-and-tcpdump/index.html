@@ -5,10 +5,10 @@
 
 
 
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/favicon.ico">
-  <link rel="icon" href="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -17,57 +17,61 @@
 主要功能：探测主机是否在线、扫描主机开放端口和嗅探网络服务，用于网络探测和安全扫描。
 NMap支持很多扫描技术，例如：UDP、TCPconnect()、TCPSYN(半开扫描)、ftp代理(bounce攻击)、反向标志、ICMP、FIN、ACK扫描、SYN扫描和null扫描。">
   <meta name="author" content="kinzun">
-  <meta name="keywords" content>
+  <meta name="keywords" content="">
   <meta name="description" content="1、NMap工具** 主要功能：探测主机是否在线、扫描主机开放端口和嗅探网络服务，用于网络探测和安全扫描。 NMap支持很多扫描技术，例如：UDP、TCPconnect()、TCPSYN(半开扫描)、ftp代理(bounce攻击)、反向标志、ICMP、FIN、ACK扫描、SYN扫描和null扫描。">
-<meta name="keywords" content="nmap">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nmap和TCPdump">
 <meta property="og:url" content="https://kinzun.github.io/2016/12/13/nmap-and-tcpdump/index.html">
 <meta property="og:site_name" content="kinzun">
 <meta property="og:description" content="1、NMap工具** 主要功能：探测主机是否在线、扫描主机开放端口和嗅探网络服务，用于网络探测和安全扫描。 NMap支持很多扫描技术，例如：UDP、TCPconnect()、TCPSYN(半开扫描)、ftp代理(bounce攻击)、反向标志、ICMP、FIN、ACK扫描、SYN扫描和null扫描。">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-04T08:12:40.000Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-12-13T06:31:21.000Z">
+<meta property="article:modified_time" content="2018-10-04T08:12:40.000Z">
+<meta property="article:author" content="kinzun">
+<meta property="article:tag" content="nmap">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Nmap和TCPdump">
-<meta name="twitter:description" content="1、NMap工具** 主要功能：探测主机是否在线、扫描主机开放端口和嗅探网络服务，用于网络探测和安全扫描。 NMap支持很多扫描技术，例如：UDP、TCPconnect()、TCPSYN(半开扫描)、ftp代理(bounce攻击)、反向标志、ICMP、FIN、ACK扫描、SYN扫描和null扫描。">
   
   <title>Nmap和TCPdump - kinzun</title>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/lib/hint/hint.min.css">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css">
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
     
   
 
   
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
   
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
 
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/css/main.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
 
 <!-- 自定义样式保持在最底部 -->
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
-  <script src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/utils.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/color-schema.js"></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 </head>
 
 
@@ -76,7 +80,7 @@ NMap支持很多扫描技术，例如：UDP、TCPconnect()、TCPSYN(半开扫描
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>kinzun</strong>
+      <strong>Fluid</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -168,7 +172,7 @@ NMap支持很多扫描技术，例如：UDP、TCPconnect()、TCPSYN(半开扫描
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/default.png') no-repeat center center;
+         style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -238,7 +242,7 @@ NMap支持很多扫描技术，例如：UDP、TCPconnect()、TCPSYN(半开扫描
               <p>1、NMap工具**</p>
 <p>主要功能：探测主机是否在线、扫描主机开放端口和嗅探网络服务，用于网络探测和安全扫描。</p>
 <p>NMap支持很多扫描技术，例如：UDP、TCPconnect()、TCPSYN(半开扫描)、ftp代理(bounce攻击)、反向标志、ICMP、FIN、ACK扫描、SYN扫描和null扫描。</p>
-<a id="more"></a>
+<span id="more"></span>
 <p>命令格式：Nmap [ 扫描类型 ] [ 通用选项 ] { 扫描目标说明 }</p>
 <p><strong>扫描类型:</strong></p>
 <table>
@@ -333,7 +337,7 @@ NMap支持很多扫描技术，例如：UDP、TCPconnect()、TCPSYN(半开扫描
 <td>强烈推荐使用这个选项，它会给出扫描过程中的详细信息。</td>
 </tr>
 <tr>
-<td><strong>-S <ip></ip></strong></td>
+<td><strong>-S <IP></strong></td>
 <td>在一些情况下，nmap可能无法确定你的源地址(nmap会告诉你)。在这种情况使用这个选项给出你的IP地址。</td>
 </tr>
 <tr>
@@ -425,7 +429,7 @@ NMap支持很多扫描技术，例如：UDP、TCPconnect()、TCPSYN(半开扫描
 <p><strong>四种表达式：过滤报文条件</strong></p>
 <p>1、 关于类型的关键字，主要包括host，net，port, 例如 host210.27.48.2，指明 210.27.48.2是一台主机，net 202.0.0.0 指明202.0.0.0是一个网络地址，port 23 指明端口号是23。如果没有指定类型，缺省的类型是host。</p>
 <p>2、 确定传输方向的关键字，主要包括src, dst ,dst or src, dst and src ,这些关键字指明了传输的方向。例如 src210.27.48.2 ,指明ip包中源地址是210.27.48.2, dst net 202.0.0.0 指明目的网络地址是202.0.0.0 。如果没有指明方向关键字，则缺省是src or dst关键字。</p>
-<p>3、<a href="http://cisco.chinaitlab.com/List_11.html" target="_blank" rel="noopener">协议</a>的关键字，主要包括ip,arp,tcp,udp等类型。</p>
+<p>3、<a target="_blank" rel="noopener" href="http://cisco.chinaitlab.com/List_11.html">协议</a>的关键字，主要包括ip,arp,tcp,udp等类型。</p>
 <p>4、三种逻辑运算，与运算是’and’,’&amp;&amp;’; 或运算是’or’ ,’||’； 非运算是 ‘not ‘ ‘! ‘。</p>
 <p>其他重要的关键字如下： broadcast,less（小于）,greater（大于）</p>
 <p><strong>举例说明：</strong></p>
@@ -464,7 +468,7 @@ NMap支持很多扫描技术，例如：UDP、TCPconnect()、TCPSYN(半开扫描
               
                 <p class="note note-warning">
                   
-                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                   
                 </p>
               
@@ -488,15 +492,6 @@ NMap支持很多扫描技术，例如：UDP、TCPconnect()、TCPSYN(半开扫描
               
             </div>
 
-            
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
-
-              </article>
             
           </article>
         </div>
@@ -580,18 +575,18 @@ NMap支持很多扫描技术，例如：UDP、TCPconnect()、TCPSYN(半开扫描
 
 <script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
 <script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/events.js" ></script>
-<script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/plugins.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
 
-  <script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
   
-    <script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/img-lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
@@ -644,7 +639,7 @@ NMap支持很多扫描技术，例如：UDP、TCPconnect()、TCPSYN(半开扫描
 
 
 <!-- 主题的启动项 保持在最底部 -->
-<script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/boot.js" ></script>
+<script  src="/js/boot.js" ></script>
 
 
 </body>

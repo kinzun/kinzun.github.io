@@ -5,70 +5,74 @@
 
 
 
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/favicon.ico">
-  <link rel="icon" href="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="Try not to become a man of success but rather try to become a man of value. ">
   <meta name="author" content="kinzun">
-  <meta name="keywords" content>
+  <meta name="keywords" content="">
   <meta name="description" content="Python Socket 编程Python 提供了两个基本的 socket 模块：  Socket 它提供了标准的BSD Socket API。 SocketServer 它提供了服务器重心，可以简化网络服务器的开发。  下面讲解下 Socket模块功能。 Socket 类型套接字格式：socket(family, type[,protocal]) 使用给定的套接族，套接字类型，协议编号（默认为">
-<meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python Socket 编程">
-<meta property="og:url" content="https://kinzun.github.io/2018/10/09/Python Socket 编程/index.html">
+<meta property="og:url" content="https://kinzun.github.io/2018/10/09/Python%20Socket%20%E7%BC%96%E7%A8%8B/index.html">
 <meta property="og:site_name" content="kinzun">
 <meta property="og:description" content="Python Socket 编程Python 提供了两个基本的 socket 模块：  Socket 它提供了标准的BSD Socket API。 SocketServer 它提供了服务器重心，可以简化网络服务器的开发。  下面讲解下 Socket模块功能。 Socket 类型套接字格式：socket(family, type[,protocal]) 使用给定的套接族，套接字类型，协议编号（默认为">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://kinzun.github.io/images/python/socket00001.jpg">
 <meta property="og:image" content="https://kinzun.github.io/images/python/socketaddressalready.png">
-<meta property="og:updated_time" content="2018-12-03T12:22:23.728Z">
+<meta property="article:published_time" content="2018-10-09T08:30:27.000Z">
+<meta property="article:modified_time" content="2018-12-03T12:22:23.728Z">
+<meta property="article:author" content="kinzun">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Python Socket 编程">
-<meta name="twitter:description" content="Python Socket 编程Python 提供了两个基本的 socket 模块：  Socket 它提供了标准的BSD Socket API。 SocketServer 它提供了服务器重心，可以简化网络服务器的开发。  下面讲解下 Socket模块功能。 Socket 类型套接字格式：socket(family, type[,protocal]) 使用给定的套接族，套接字类型，协议编号（默认为">
 <meta name="twitter:image" content="https://kinzun.github.io/images/python/socket00001.jpg">
   
   <title>Python Socket 编程 - kinzun</title>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/lib/hint/hint.min.css">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
     
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css">
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
     
   
 
   
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
   
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
 
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/css/main.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
 
 <!-- 自定义样式保持在最底部 -->
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"kinzun.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
-  <script src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/utils.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/color-schema.js"></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 </head>
 
 
@@ -77,7 +81,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>kinzun</strong>
+      <strong>Fluid</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -169,7 +173,7 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/default.png') no-repeat center center;
+         style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -195,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      9.2k 字
+      9.7k 字
     </span>
   
 
@@ -204,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      29 分钟
+      30 分钟
     </span>
   
 
@@ -236,7 +240,7 @@
             <h1 style="display: none">Python Socket 编程</h1>
             
             <div class="markdown-body">
-              <h1 id="Python-Socket-编程"><a href="#Python-Socket-编程" class="headerlink" title="Python Socket 编程"></a>Python Socket 编程</h1><p>Python 提供了两个基本的 <a href="https://docs.python.org/3/library/socket.html" target="_blank" rel="noopener">socket</a> 模块：</p>
+              <h1 id="Python-Socket-编程"><a href="#Python-Socket-编程" class="headerlink" title="Python Socket 编程"></a>Python Socket 编程</h1><p>Python 提供了两个基本的 <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/socket.html">socket</a> 模块：</p>
 <ul>
 <li><code>Socket</code> 它提供了标准的BSD Socket API。</li>
 <li><code>SocketServer</code> 它提供了服务器重心，可以简化网络服务器的开发。</li>
@@ -264,7 +268,7 @@
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:left"><font color="#ff0000" size="3">socket.AF_INET</font></td>
+<td style="text-align:left"><font color=#ff0000 size=3>socket.AF_INET</font></td>
 <td style="text-align:left">IPv4网络传输数据（IPv4 </td>
 </tr>
 <tr>
@@ -279,12 +283,12 @@
 </tr>
 <tr>
 <td style="text-align:left">TCP</td>
-<td style="text-align:left"><font color="#ff0000" size="3">socket.SOCK_STREAM</font></td>
+<td style="text-align:left"><font color=#ff0000 size=3>socket.SOCK_STREAM</font></td>
 <td style="text-align:left">基于TCP的流式socket通信，面向连接可靠的传输，TCP传输 </td>
 </tr>
 <tr>
 <td style="text-align:left">UDP</td>
-<td style="text-align:left"><font color="#ff0000" size="3">socket.SOCK_DGRAM</font></td>
+<td style="text-align:left"><font color=#ff0000 size=3>socket.SOCK_DGRAM</font></td>
 <td style="text-align:left">基于UDP的数据报式socket通信，面向无连接不可靠的传输，UDP传输 </td>
 </tr>
 <tr>
@@ -304,9 +308,9 @@
 <p>  <code>unix</code>一切皆文件，基于文件的套接字调用的就是底层的文件系统来取数据，两个套接字进程运行在同一机器，可以通过访问同一个文件系统间接完成通信。</p>
 <p>基于网络类型的套接字家族名：<code>AF_INET</code></p>
 <p>　　还有<code>AF_INET6</code>被用于<code>ipv6</code>，还有一些其他的地址家族，不过，他们要么是只用于某个平台，要么就是已经被废弃，或者是很少被使用，或者是根本没有实现，所有地址家族中，<code>AF_INET</code>是使用最广泛的一个，python支持很多种地址家族，但是由于我们只关心网络编程，所以大部分时候我么只使用<code>AF_INET</code>。</p>
-<p>创建<font color="#ff0000" size="3">TCP Socket</font>：</p>
-<figure class="highlight Python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Python">sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)<br></code></pre></div></td></tr></table></figure>
-<p>创建<font color="#ff0000" size="3">UDP Socket</font>：<br><figure class="highlight Python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Python">sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)<br></code></pre></div></td></tr></table></figure></p>
+<p>创建<font color=#ff0000 size=3>TCP Socket</font>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Python">sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)<br></code></pre></td></tr></table></figure>
+<p>创建<font color=#ff0000 size=3>UDP Socket</font>：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Python">sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)<br></code></pre></td></tr></table></figure></p>
 <h3 id="Socket-函数"><a href="#Socket-函数" class="headerlink" title="Socket 函数"></a>Socket 函数</h3><ul>
 <li><p>TCP发送数据时，已建立好TCP链接，所以不需要指定地址，而UDP是面向无连接的，每次发送都需要指定发送给谁。</p>
 </li>
@@ -331,15 +335,15 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"> <font color="#ff0000" size="3">s.bind(address)</font></td>
+<td style="text-align:left"> <font color=#ff0000 size=3>s.bind(address)</font></td>
 <td style="text-align:left">将套接字绑定到地址，在AF_INET下，以tuple(host, port)的方式传入，如s.bind((host, port))</td>
 </tr>
 <tr>
-<td style="text-align:left"> <font color="#ff0000" size="3">s.listen(backlog)  </font></td>
+<td style="text-align:left"> <font color=#ff0000 size=3>s.listen(backlog)  </font></td>
 <td style="text-align:left">开始监听TCP传入连接，backlog指定在拒绝链接前，操作系统可以挂起的最大连接数，该值最少为1，大部分应用程序设为5就够用了（客户端连接数量，数字） </td>
 </tr>
 <tr>
-<td style="text-align:left"> <font color="#ff0000" size="3">s.accept()    </font></td>
+<td style="text-align:left"> <font color=#ff0000 size=3>s.accept()    </font></td>
 <td style="text-align:left">接受TCP链接并返回（conn, address），其中conn是新的套接字对象（即，接受的信息），可以用来接收和发送数据，address是链接客户端的地址（ip，随机端口）。 </td>
 </tr>
 </tbody>
@@ -354,7 +358,7 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"> <font color="#ff0000" size="3">s.connect(address)      </font></td>
+<td style="text-align:left"> <font color=#ff0000 size=3>s.connect(address)      </font></td>
 <td style="text-align:left">链接到address处的套接字，一般address的格式为tuple(host, port)，如果链接出错，则返回socket.error错误（绑定服务端地址） </td>
 </tr>
 <tr>
@@ -373,15 +377,15 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"> <font color="#ff0000" size="3">s.recv(bufsize[, flag])  </font></td>
-<td style="text-align:left">接受TCP套接字的数据，数据以字符串形式返回，buffsize指定要接受的最大数据量，flag提供有关消息的其他信息，通常可以忽略。<br>bufsize官方建议8192，不同系统最大数值不同，一般一次可以收10M左右。 </td>
+<td style="text-align:left"> <font color=#ff0000 size=3>s.recv(bufsize[, flag])  </font></td>
+<td style="text-align:left">接受TCP套接字的数据，数据以字符串形式返回，buffsize指定要接受的最大数据量，flag提供有关消息的其他信息，通常可以忽略。<br />bufsize官方建议8192，不同系统最大数值不同，一般一次可以收10M左右。 </td>
 </tr>
 <tr>
-<td style="text-align:left"> <font color="#ff0000" size="3">s.send(string[, flag])    </font></td>
+<td style="text-align:left"> <font color=#ff0000 size=3>s.send(string[, flag])    </font></td>
 <td style="text-align:left">发送TCP数据，将字符串中的数据发送到链接的套接字，返回值是要发送的字节数量，该数量可能小于string的字节大小</td>
 </tr>
 <tr>
-<td style="text-align:left"> <font color="#ff0000" size="3">s.sendall(string[, flag])      </font></td>
+<td style="text-align:left"> <font color=#ff0000 size=3>s.sendall(string[, flag])      </font></td>
 <td style="text-align:left">完整发送TCP数据，将字符串中的数据发送到链接的套接字，但在返回之前尝试发送所有数据。成功返回None，失败则抛出异常</td>
 </tr>
 <tr>
@@ -393,7 +397,7 @@
 <td style="text-align:left">发送UDP数据，将数据发送到套接字，address形式为tuple(ipaddr, port)，指定远程地址发送，返回值是发送的字节数</td>
 </tr>
 <tr>
-<td style="text-align:left"> <font color="#ff0000" size="3">s.close() </font></td>
+<td style="text-align:left"> <font color=#ff0000 size=3>s.close() </font></td>
 <td style="text-align:left">关闭套接字</td>
 </tr>
 <tr>
@@ -434,33 +438,33 @@
 </tr>
 </tbody>
 </table>
-<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br>port = socket.getservbyname(<span class="hljs-string">'ssh'</span>,<span class="hljs-string">'tcp'</span>) <span class="hljs-comment"># /etc/services端口号</span><br></code></pre></div></td></tr></table></figure>
-<h3 id="Socket-编程思想"><a href="#Socket-编程思想" class="headerlink" title="Socket 编程思想"></a>Socket 编程思想</h3><p><img src="/images/python/socket00001.jpg" srcset="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/loading.gif" lazyload alt></p>
-<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript"><br><span class="hljs-keyword">import</span> socket<br>socket.socket(socket_family,socket_type,protocal=<span class="hljs-number">0</span>)<br>socket_family 可以是 AF_UNIX 或 AF_INET。socket_type 可以是 SOCK_STREAM 或 SOCK_DGRAM。protocol 一般不填,默认值为 <span class="hljs-number">0</span>。<br><br>获取tcp/ip套接字<br>tcpSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)<br><br>获取udp/ip套接字<br>udpSock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)<br><br>由于 socket 模块中有太多的属性。我们在这里破例使用了<span class="hljs-string">'from module import *'</span>语句。使用 <span class="hljs-string">'from socket import *'</span>,我们就把 socket 模块里的所有属性都带到我们的命名空间里了,这样能 大幅减短我们的代码。<br>例如tcpSock = socket(AF_INET, SOCK_STREAM)<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><br>port = socket.getservbyname(<span class="hljs-string">&#x27;ssh&#x27;</span>,<span class="hljs-string">&#x27;tcp&#x27;</span>) <span class="hljs-comment"># /etc/services端口号</span><br></code></pre></td></tr></table></figure>
+<h3 id="Socket-编程思想"><a href="#Socket-编程思想" class="headerlink" title="Socket 编程思想"></a>Socket 编程思想</h3><p><img src="/images/python/socket00001.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><br><span class="hljs-keyword">import</span> socket<br>socket.<span class="hljs-title function_">socket</span>(socket_family,socket_type,protocal=<span class="hljs-number">0</span>)<br>socket_family 可以是 <span class="hljs-variable constant_">AF_UNIX</span> 或 <span class="hljs-variable constant_">AF_INET</span>。socket_type 可以是 <span class="hljs-variable constant_">SOCK_STREAM</span> 或 <span class="hljs-variable constant_">SOCK_DGRAM</span>。protocol 一般不填,默认值为 <span class="hljs-number">0</span>。<br><br>获取tcp/ip套接字<br>tcpSock = socket.<span class="hljs-title function_">socket</span>(socket.<span class="hljs-property">AF_INET</span>, socket.<span class="hljs-property">SOCK_STREAM</span>)<br><br>获取udp/ip套接字<br>udpSock = socket.<span class="hljs-title function_">socket</span>(socket.<span class="hljs-property">AF_INET</span>, socket.<span class="hljs-property">SOCK_DGRAM</span>)<br><br>由于 socket 模块中有太多的属性。我们在这里破例使用了<span class="hljs-string">&#x27;from module import *&#x27;</span>语句。使用 <span class="hljs-string">&#x27;from socket import *&#x27;</span>,我们就把 socket 模块里的所有属性都带到我们的命名空间里了,这样能 大幅减短我们的代码。<br>例如tcpSock = <span class="hljs-title function_">socket</span>(<span class="hljs-variable constant_">AF_INET</span>, <span class="hljs-variable constant_">SOCK_STREAM</span>)<br></code></pre></td></tr></table></figure>
 <p><strong>TCP 服务器</strong><br>1、创建套接字，绑定套接字到本地IP与端口</p>
-<figure class="highlight Python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Python">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)<br>s.bind()<br></code></pre></div></td></tr></table></figure>
-<p>2、开始监听链接<br><figure class="highlight Python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Python">s.listen()<br></code></pre></div></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Python">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)<br>s.bind()<br></code></pre></td></tr></table></figure>
+<p>2、开始监听链接<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Python">s.listen()<br></code></pre></td></tr></table></figure></p>
 <p>3、进入循环，不断接受客户端的链接请求</p>
-<figure class="highlight Python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Python">While <span class="hljs-keyword">True</span>:<br>    s.accept()<br></code></pre></div></td></tr></table></figure>
-<p>4、接收客户端传来的数据，并且发送给对方发送数据<br><figure class="highlight Python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Python">s.recv()<br>s.sendall()<br></code></pre></div></td></tr></table></figure></p>
-<p>5、传输完毕后，关闭套接字<br><figure class="highlight Python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Python">s.close()<br></code></pre></div></td></tr></table></figure></p>
-<p><strong>TCP 客户端</strong><br>1、创建套接字并链接至远端地址<br><figure class="highlight Python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Python">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)<br>s.connect()<br></code></pre></div></td></tr></table></figure></p>
-<p>2、链接后发送数据和接收数据<br><figure class="highlight Python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Python">s.sendall()<br>s.recv()<br></code></pre></div></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Python">While <span class="hljs-literal">True</span>:<br>    s.accept()<br></code></pre></td></tr></table></figure>
+<p>4、接收客户端传来的数据，并且发送给对方发送数据<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Python">s.recv()<br>s.sendall()<br></code></pre></td></tr></table></figure></p>
+<p>5、传输完毕后，关闭套接字<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Python">s.close()<br></code></pre></td></tr></table></figure></p>
+<p><strong>TCP 客户端</strong><br>1、创建套接字并链接至远端地址<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Python">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)<br>s.connect()<br></code></pre></td></tr></table></figure></p>
+<p>2、链接后发送数据和接收数据<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Python">s.sendall()<br>s.recv()<br></code></pre></td></tr></table></figure></p>
 <p>3、传输完毕后，关闭套接字</p>
 <p>#####send和sendall区别</p>
-<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python">data = s.recv(<span class="hljs-number">1024</span>)<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">data = s.recv(<span class="hljs-number">1024</span>)<br></code></pre></td></tr></table></figure>
 <p>1024 是缓冲区数据大小限制最大值参数 <code>bufsize</code>，并不是说 <code>recv()</code> 方法只返回 1024个字节的内容</p>
 <p><code>send()</code> 方法也是这个原理，它返回发送内容的字节数，结果可能小于传入的发送内容，你得处理这处情况，按需多次调用 <code>send()</code> 方法来发送完整的数据</p>
 <blockquote>
-<p>应用程序负责检查是否已发送所有数据；如果仅传输了一些数据，则应用程序需要尝试传 递剩余数据 <a href="https://docs.python.org/3/library/socket.html#socket.socket.send" target="_blank" rel="noopener">引用</a></p>
+<p>应用程序负责检查是否已发送所有数据；如果仅传输了一些数据，则应用程序需要尝试传 递剩余数据 <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/socket.html#socket.socket.send">引用</a></p>
 </blockquote>
 <p>我们可以使用 <code>sendall()</code> 方法来回避这个过程</p>
 <blockquote>
-<p>和 send() 方法不一样的是，<code>sendall()</code> 方法会一直发送字节，只到所有的数据传输完成 或者中途出现错误。成功的话会返回 None <a href="https://docs.python.org/3/library/socket.html#socket.socket.sendall" target="_blank" rel="noopener">引用</a></p>
+<p>和 send() 方法不一样的是，<code>sendall()</code> 方法会一直发送字节，只到所有的数据传输完成 或者中途出现错误。成功的话会返回 None <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/socket.html#socket.socket.sendall">引用</a></p>
 </blockquote>
 <blockquote>
-<p><a href="https://my.oschina.net/letiantian/blog/297217" target="_blank" rel="noopener">via</a></p>
-<p><a href="http://www.penghaoran.com/2017/03/27/python-send-sendall/" target="_blank" rel="noopener">via</a></p>
+<p><a target="_blank" rel="noopener" href="https://my.oschina.net/letiantian/blog/297217">via</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.penghaoran.com/2017/03/27/python-send-sendall/">via</a></p>
 </blockquote>
 <p><strong>socket</strong>（创建套接字） —&gt; <strong>bind</strong>（绑定地址） —&gt; <strong>listen</strong>（设置监听）—&gt; <strong>accept</strong>（等待链接） —&gt; <strong>recv/send</strong>（收/发消息） —&gt; <strong>close</strong> （）</p>
 <p><strong>收发函数特性：</strong></p>
@@ -477,30 +481,30 @@
 <li><p>send<strong>是</strong>从<strong>发送缓冲区</strong>发送<strong>内容，</strong>当<strong>缓冲</strong>区<strong>为满则堵塞</strong></p>
 </li>
 </ol>
-<h3 id="Socket-tcp服务器端代码"><a href="#Socket-tcp服务器端代码" class="headerlink" title="Socket tcp服务器端代码"></a>Socket tcp服务器端代码</h3><figure class="highlight Python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Python"><br><span class="hljs-keyword">import</span> socket<br><br><br>HOST = <span class="hljs-string">'192.168.15.46'</span><br>PORT = <span class="hljs-number">8002</span><br><br>s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)<br><br>s.bind((HOST,PORT)) <span class="hljs-comment">#</span><br>s.listen() <span class="hljs-comment">#可运行的客户端</span><br><br><br>print(<span class="hljs-string">'server start %s:%s'</span>%(HOST,PORT))<br><br>print(<span class="hljs-string">'wait...'</span>)<br><br><br><span class="hljs-keyword">while</span> <span class="hljs-number">1</span>: <span class="hljs-comment">#</span><br>    conn,addr = s.accept()<span class="hljs-comment"># 接受一套接信息，和地址。</span><br>    print(<span class="hljs-string">'conning'</span>,addr)<br>    <span class="hljs-keyword">while</span> <span class="hljs-number">1</span>:<br>        data = conn.recv(<span class="hljs-number">1024</span>) <span class="hljs-comment">#接受客户端数据，可以改变接受的数据，但不小于客户端发送的消息</span><br>        data = data.decode(<span class="hljs-string">'utf-8'</span>)<span class="hljs-comment"># 解码，在传输中是bytes传输。</span><br>        print(data) <span class="hljs-comment">#打印包数据</span><br>        msg = input(<span class="hljs-string">'plese msg：'</span>)<br>        msg = msg.encode(<span class="hljs-string">'utf-8'</span>) <br>        <span class="hljs-comment">#conn.send(b'hello')              # 在网络传输中，变成字节数据，才可以传输</span><br><br>        conn.send(msg)<br><br>s.close()<br></code></pre></div></td></tr></table></figure>
-<h3 id="Socket-tcp客户端代码"><a href="#Socket-tcp客户端代码" class="headerlink" title="Socket tcp客户端代码"></a>Socket tcp客户端代码</h3><figure class="highlight Python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Python"><br><span class="hljs-keyword">import</span> socket<br>HOST = <span class="hljs-string">'192.168.15.46'</span><br>PORT = <span class="hljs-number">8002</span><br><br>s = socket.socket(socket.AF_INET,socket.SOCK_STREAM) <span class="hljs-comment">#创建一个套接字对象</span><br><br>s.connect((HOST,PORT))<br><br>print(<span class="hljs-string">'conneting'</span>)<br><span class="hljs-keyword">while</span> <span class="hljs-number">1</span>:<br>    msg = input(<span class="hljs-string">'please input msg:'</span>)<br>    s.send(msg.encode(<span class="hljs-string">'utf-8'</span>))<br>    data = s.recv(<span class="hljs-number">1024</span>) <span class="hljs-comment">#接受返回的数据包，通信的主体，一收一发</span><br>    data = data.decode(<span class="hljs-string">'utf-8'</span>)<br>    print(data)<br>s.close()<br></code></pre></div></td></tr></table></figure>
-<h3 id="基于udp的服务端编程："><a href="#基于udp的服务端编程：" class="headerlink" title="基于udp的服务端编程："></a>基于udp的服务端编程：</h3><figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python">基于udp的服务端编程：<br>    <span class="hljs-number">1.</span>创建套接字：<br>        sockfd = socket（AF_INET，SOCK_DGRAM）<br>    <span class="hljs-number">2.</span>绑定地址：<br>        sockfd.bind()<br>    <span class="hljs-number">3.</span>消息收发<br>        data, addr = sockfd.recvfrom(buffersize)<br>         功能：接受udp消息<br> 参数：接受消息的大小<br> 返回值：<br>     data 接受到的内容<br>     addr 消息发送的地址<br>        <br>recvfrom每次接受一个报文，如果没有接受到的内容则直接丢弃<br>        sockfd.sendto(data, addr)<br>  功能：udp消息发送<br>  参数：<br>      data 要发送的内容 bytes<br>      addr 目标地址<br>  返回：发送字节数<br>    <span class="hljs-number">4.</span>关闭套接字：<br>        socket.close()<br></code></pre></div></td></tr></table></figure>
-<p><a href="https://www.cnblogs.com/ParisGabriel/p/9434378.html" target="_blank" rel="noopener">次1</a></p>
-<p><a href="https://www.cnblogs.com/ParisGabriel/p/9446617.html" target="_blank" rel="noopener">次2</a></p>
+<h3 id="Socket-tcp服务器端代码"><a href="#Socket-tcp服务器端代码" class="headerlink" title="Socket tcp服务器端代码"></a>Socket tcp服务器端代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs Python"><br><span class="hljs-keyword">import</span> socket<br><br><br>HOST = <span class="hljs-string">&#x27;192.168.15.46&#x27;</span><br>PORT = <span class="hljs-number">8002</span><br><br>s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)<br><br>s.bind((HOST,PORT)) <span class="hljs-comment">#</span><br>s.listen() <span class="hljs-comment">#可运行的客户端</span><br><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;server start %s:%s&#x27;</span>%(HOST,PORT))<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;wait...&#x27;</span>)<br><br><br><span class="hljs-keyword">while</span> <span class="hljs-number">1</span>: <span class="hljs-comment">#</span><br>    conn,addr = s.accept()<span class="hljs-comment"># 接受一套接信息，和地址。</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;conning&#x27;</span>,addr)<br>    <span class="hljs-keyword">while</span> <span class="hljs-number">1</span>:<br>        data = conn.recv(<span class="hljs-number">1024</span>) <span class="hljs-comment">#接受客户端数据，可以改变接受的数据，但不小于客户端发送的消息</span><br>        data = data.decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>)<span class="hljs-comment"># 解码，在传输中是bytes传输。</span><br>        <span class="hljs-built_in">print</span>(data) <span class="hljs-comment">#打印包数据</span><br>        msg = <span class="hljs-built_in">input</span>(<span class="hljs-string">&#x27;plese msg：&#x27;</span>)<br>        msg = msg.encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>) <br>        <span class="hljs-comment">#conn.send(b&#x27;hello&#x27;)              # 在网络传输中，变成字节数据，才可以传输</span><br><br>        conn.send(msg)<br><br>s.close()<br><br><br><br></code></pre></td></tr></table></figure>
+<h3 id="Socket-tcp客户端代码"><a href="#Socket-tcp客户端代码" class="headerlink" title="Socket tcp客户端代码"></a>Socket tcp客户端代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs Python"><br><span class="hljs-keyword">import</span> socket<br>HOST = <span class="hljs-string">&#x27;192.168.15.46&#x27;</span><br>PORT = <span class="hljs-number">8002</span><br><br>s = socket.socket(socket.AF_INET,socket.SOCK_STREAM) <span class="hljs-comment">#创建一个套接字对象</span><br><br>s.connect((HOST,PORT))<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;conneting&#x27;</span>)<br><span class="hljs-keyword">while</span> <span class="hljs-number">1</span>:<br>    msg = <span class="hljs-built_in">input</span>(<span class="hljs-string">&#x27;please input msg:&#x27;</span>)<br>    s.send(msg.encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))<br>    data = s.recv(<span class="hljs-number">1024</span>) <span class="hljs-comment">#接受返回的数据包，通信的主体，一收一发</span><br>    data = data.decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(data)<br>s.close()<br><br></code></pre></td></tr></table></figure>
+<h3 id="基于udp的服务端编程："><a href="#基于udp的服务端编程：" class="headerlink" title="基于udp的服务端编程："></a>基于udp的服务端编程：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python">基于udp的服务端编程：<br>    <span class="hljs-number">1.</span>创建套接字：<br>        sockfd = socket（AF_INET，SOCK_DGRAM）<br>    <span class="hljs-number">2.</span>绑定地址：<br>        sockfd.bind()<br>    <span class="hljs-number">3.</span>消息收发<br>        data, addr = sockfd.recvfrom(buffersize)<br>         功能：接受udp消息<br> 参数：接受消息的大小<br> 返回值：<br>     data 接受到的内容<br>     addr 消息发送的地址<br>        <br>recvfrom每次接受一个报文，如果没有接受到的内容则直接丢弃<br>        sockfd.sendto(data, addr)<br>  功能：udp消息发送<br>  参数：<br>      data 要发送的内容 <span class="hljs-built_in">bytes</span><br>      addr 目标地址<br>  返回：发送字节数<br>    <span class="hljs-number">4.</span>关闭套接字：<br>        socket.close()<br><br></code></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ParisGabriel/p/9434378.html">次1</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ParisGabriel/p/9446617.html">次2</a></p>
 <p>问题：</p>
 <p>有的同学在重启服务端时可能会遇到</p>
-<p><img src="/images/python/socketaddressalready.png" srcset="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/img/loading.gif" lazyload alt="2018-10-17 at 5.34 PM"></p>
+<p><img src="/images/python/socketaddressalready.png" srcset="/img/loading.gif" lazyload alt="2018-10-17 at 5.34 PM"></p>
 <p>这个是由于你的服务端仍然存在四次挥手的time_wait状态在占用地址（如果不懂，请深入研究1.tcp三次握手，四次挥手 2.syn洪水攻击 3.服务器高并发情况下会有大量的time_wait状态的优化方法）</p>
 <p>解决方法：</p>
-<figure class="highlight"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript">#加入一条socket配置，重用ip和端口<br><br>server=socket(AF_INET,SOCK_STREAM)<br>server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)<br>server.bind(('127.0.0.1',8080))<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript">#加入一条socket配置，重用ip和端口<br><br>server=<span class="hljs-title function_">socket</span>(<span class="hljs-variable constant_">AF_INET</span>,<span class="hljs-variable constant_">SOCK_STREAM</span>)<br>server.<span class="hljs-title function_">setsockopt</span>(socket.<span class="hljs-property">SOL_SOCKET</span>, socket.<span class="hljs-property">SO_REUSEADDR</span>, <span class="hljs-number">1</span>)<br>server.<span class="hljs-title function_">bind</span>((<span class="hljs-string">&#x27;127.0.0.1&#x27;</span>,<span class="hljs-number">8080</span>))<br></code></pre></td></tr></table></figure>
 <h3 id="粘包现象"><a href="#粘包现象" class="headerlink" title="粘包现象"></a>粘包现象</h3><p>让我们基于tcp先制作一个远程执行命令的程序（1：执行错误命令 2：执行ls 3：执行ifconfig）</p>
-<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br><span class="hljs-keyword">import</span> subprocess<br>cmd  = input(<span class="hljs-string">'&gt;&gt;'</span>)<br>subinfo = subprocess.Popen(<br>    cmd,                     <span class="hljs-comment">#字符串指令：'dir','ipconfig',等等</span><br>    shell=<span class="hljs-keyword">True</span>,              <span class="hljs-comment">#使用shell，就相当于使用cmd窗口</span><br>    stderr=subprocess.PIPE,  <span class="hljs-comment">#标准错误输出，凡是输入错误指令，错误指令输出的报错信息就会被它拿到</span><br>    stdout=subprocess.PIPE   <span class="hljs-comment">#标准输出，正确指令的输出结果被它拿到</span><br>)<br><br>print(subinfo.stdout.read().decode(<span class="hljs-string">'utf-8'</span>)) <span class="hljs-comment"># locale 查看</span><br><br>print(subinfo.stderr.read().decode(<span class="hljs-string">'utf-8'</span>)) <span class="hljs-comment"># win需要解码为gbk</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-keyword">import</span> subprocess<br>cmd  = <span class="hljs-built_in">input</span>(<span class="hljs-string">&#x27;&gt;&gt;&#x27;</span>)<br>subinfo = subprocess.Popen(<br>    cmd,                     <span class="hljs-comment">#字符串指令：&#x27;dir&#x27;,&#x27;ipconfig&#x27;,等等</span><br>    shell=<span class="hljs-literal">True</span>,              <span class="hljs-comment">#使用shell，就相当于使用cmd窗口</span><br>    stderr=subprocess.PIPE,  <span class="hljs-comment">#标准错误输出，凡是输入错误指令，错误指令输出的报错信息就会被它拿到</span><br>    stdout=subprocess.PIPE   <span class="hljs-comment">#标准输出，正确指令的输出结果被它拿到</span><br>)<br><br><span class="hljs-built_in">print</span>(subinfo.stdout.read().decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>)) <span class="hljs-comment"># locale 查看</span><br><br><span class="hljs-built_in">print</span>(subinfo.stderr.read().decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>)) <span class="hljs-comment"># win需要解码为gbk</span><br></code></pre></td></tr></table></figure>
 <p>　　　注意：</p>
 <p>　　　如果是windows，那么<strong>res.stdout.read()读出的就是GBK编码的</strong>，在接收端需<strong>要用GBK解码</strong></p>
 <p>　　<strong>且只能从管道里读一次结果，PIPE称为管道。</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> socket <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">import</span> subprocess<br><br>ip_port=(<span class="hljs-string">'127.0.0.1'</span>,<span class="hljs-number">8080</span>)<br>BUFSIZE=<span class="hljs-number">1024</span><br><br>tcp_socket_server=socket(AF_INET,SOCK_STREAM)<br>tcp_socket_server.bind(ip_port)<br>tcp_socket_server.listen(<span class="hljs-number">5</span>)<br><br><span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:<br>    conn,addr=tcp_socket_server.accept()<br>    print(<span class="hljs-string">'客户端'</span>,addr)<br><br>    <span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:<br>        cmd=conn.recv(BUFSIZE)<br>        <span class="hljs-keyword">if</span> len(cmd) == <span class="hljs-number">0</span>:<span class="hljs-keyword">break</span><br><br>        res=subprocess.Popen(cmd.decode(<span class="hljs-string">'utf-8'</span>),shell=<span class="hljs-keyword">True</span>,<br>                         stdout=subprocess.PIPE,<br>                         stdin=subprocess.PIPE,<br>                         stderr=subprocess.PIPE)<br><br>        stderr=act_res.stderr.read()<br>        stdout=act_res.stdout.read()<br>        conn.send(stderr)<br>        conn.send(stdout)<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> socket <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">import</span> subprocess<br><br>ip_port=(<span class="hljs-string">&#x27;127.0.0.1&#x27;</span>,<span class="hljs-number">8080</span>)<br>BUFSIZE=<span class="hljs-number">1024</span><br><br>tcp_socket_server=socket(AF_INET,SOCK_STREAM)<br>tcp_socket_server.bind(ip_port)<br>tcp_socket_server.listen(<span class="hljs-number">5</span>)<br><br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    conn,addr=tcp_socket_server.accept()<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;客户端&#x27;</span>,addr)<br><br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        cmd=conn.recv(BUFSIZE)<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(cmd) == <span class="hljs-number">0</span>:<span class="hljs-keyword">break</span><br><br>        res=subprocess.Popen(cmd.decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>),shell=<span class="hljs-literal">True</span>,<br>                         stdout=subprocess.PIPE,<br>                         stdin=subprocess.PIPE,<br>                         stderr=subprocess.PIPE)<br><br>        stderr=act_res.stderr.read()<br>        stdout=act_res.stdout.read()<br>        conn.send(stderr)<br>        conn.send(stdout)<br></code></pre></td></tr></table></figure>
 <h4 id="什么是粘包"><a href="#什么是粘包" class="headerlink" title="什么是粘包"></a>什么是粘包</h4><p>须知：只有TCP有粘包现象，UDP永远不会粘包，为何，且听我娓娓道来</p>
 <p>首先需要掌握一个socket收发消息的原理</p>
 <p>两种情况会发生粘包</p>
 <p>发送端需要等缓冲区满才发送出去，造成粘包（发送数据时间间隔很短，数据了很小，会合到一起，产生粘包）</p>
-<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-comment">#server</span><br><span class="hljs-keyword">from</span> socket <span class="hljs-keyword">import</span> *<br>ip_port=(<span class="hljs-string">'127.0.0.1'</span>,<span class="hljs-number">8080</span>)<br><br>tcp_socket_server=socket(AF_INET,SOCK_STREAM)<br>tcp_socket_server.bind(ip_port)<br>tcp_socket_server.listen(<span class="hljs-number">5</span>)<br><br><br>conn,addr=tcp_socket_server.accept()<br><br><br>data1=conn.recv(<span class="hljs-number">10</span>)<br>data2=conn.recv(<span class="hljs-number">10</span>)<br><br>print(<span class="hljs-string">'-----&gt;'</span>,data1.decode(<span class="hljs-string">'utf-8'</span>))<br>print(<span class="hljs-string">'-----&gt;'</span>,data2.decode(<span class="hljs-string">'utf-8'</span>))<br><br>conn.close()<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#server</span><br><span class="hljs-keyword">from</span> socket <span class="hljs-keyword">import</span> *<br>ip_port=(<span class="hljs-string">&#x27;127.0.0.1&#x27;</span>,<span class="hljs-number">8080</span>)<br><br>tcp_socket_server=socket(AF_INET,SOCK_STREAM)<br>tcp_socket_server.bind(ip_port)<br>tcp_socket_server.listen(<span class="hljs-number">5</span>)<br><br><br>conn,addr=tcp_socket_server.accept()<br><br><br>data1=conn.recv(<span class="hljs-number">10</span>)<br>data2=conn.recv(<span class="hljs-number">10</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;-----&gt;&#x27;</span>,data1.decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;-----&gt;&#x27;</span>,data2.decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))<br><br>conn.close()<br><br></code></pre></td></tr></table></figure>
 <p>Client</p>
-<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><br><span class="hljs-keyword">import</span> socket<br>BUFSIZE=<span class="hljs-number">1024</span><br>ip_port=(<span class="hljs-string">'127.0.0.1'</span>,<span class="hljs-number">8080</span>)<br><br>s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)<br>res=s.connect_ex(ip_port)<br><br><br>s.send(<span class="hljs-string">'hello'</span>.encode(<span class="hljs-string">'utf-8'</span>))<br>s.send(<span class="hljs-string">'feng'</span>.encode(<span class="hljs-string">'utf-8'</span>))<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-keyword">import</span> socket<br>BUFSIZE=<span class="hljs-number">1024</span><br>ip_port=(<span class="hljs-string">&#x27;127.0.0.1&#x27;</span>,<span class="hljs-number">8080</span>)<br><br>s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)<br>res=s.connect_ex(ip_port)<br><br><br>s.send(<span class="hljs-string">&#x27;hello&#x27;</span>.encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))<br>s.send(<span class="hljs-string">&#x27;feng&#x27;</span>.encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))<br><br></code></pre></td></tr></table></figure>
 <p><strong>拆包的发生情况</strong></p>
 <p>当发送端缓冲区的长度大于网卡的MTU时，网络层限制是1500B,tcp会将这次发送的数据拆成几个数据包发送出去。</p>
 <p><strong>补充问题一：为何tcp是可靠传输，udp是不可靠传输</strong></p>
@@ -512,9 +516,9 @@
 <h3 id="解决粘包的low比处理方法"><a href="#解决粘包的low比处理方法" class="headerlink" title="解决粘包的low比处理方法"></a>解决粘包的low比处理方法</h3><p>问题的根源在于，接收端不知道发送端将要传送的字节流的长度，所以解决粘包的方法就是围绕，如何让发送端在发送数据前，把自己将要发送的字节流总大小让接收端知晓，然后接收端来一个死循环接收完所有数据</p>
 <p>low版本的解决方法</p>
 <p>服务端</p>
-<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> socket<br><span class="hljs-keyword">import</span> subprocess<br><br>ip_port = (<span class="hljs-string">'127.0.0.1'</span>, <span class="hljs-number">8889</span>)<br>s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)<br>s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, <span class="hljs-number">1</span>)<br>s.bind(ip_port)<br>s.listen()<br><br><span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:<br>    conn, addr = s.accept()<br>    print(<span class="hljs-string">'客户端'</span>, addr)<br>    <span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:<br>        msg = conn.recv(<span class="hljs-number">1024</span>)<br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> msg:<br>            <span class="hljs-keyword">break</span><br>            <span class="hljs-comment">#</span><br>        res = subprocess.Popen(<br>            msg.decode(<span class="hljs-string">'utf-8'</span>),<br>            shell=<span class="hljs-keyword">True</span>,<br>            stderr=subprocess.PIPE,<br>            stdout=subprocess.PIPE)<br>        err = res.stderr.read()<br>        <span class="hljs-keyword">if</span> err:<br>            ret = err<br>        <span class="hljs-keyword">else</span>:<br>            ret = res.stdout.read()<br>        data_length = len(ret)<br>        conn.send(str(data_length).encode(<span class="hljs-string">'utf-8'</span>))<br>        data = conn.recv(<span class="hljs-number">102</span>).decode(<span class="hljs-string">'utf-8'</span>) <br>        <span class="hljs-keyword">if</span> data == <span class="hljs-string">'recv_ready'</span>:<span class="hljs-comment">#???</span><br>            conn.sendall(ret)<br>    conn.close()<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> socket<br><span class="hljs-keyword">import</span> subprocess<br><br>ip_port = (<span class="hljs-string">&#x27;127.0.0.1&#x27;</span>, <span class="hljs-number">8889</span>)<br>s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)<br>s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, <span class="hljs-number">1</span>)<br>s.bind(ip_port)<br>s.listen()<br><br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    conn, addr = s.accept()<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;客户端&#x27;</span>, addr)<br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        msg = conn.recv(<span class="hljs-number">1024</span>)<br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> msg:<br>            <span class="hljs-keyword">break</span><br>            <span class="hljs-comment">#</span><br>        res = subprocess.Popen(<br>            msg.decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>),<br>            shell=<span class="hljs-literal">True</span>,<br>            stderr=subprocess.PIPE,<br>            stdout=subprocess.PIPE)<br>        err = res.stderr.read()<br>        <span class="hljs-keyword">if</span> err:<br>            ret = err<br>        <span class="hljs-keyword">else</span>:<br>            ret = res.stdout.read()<br>        data_length = <span class="hljs-built_in">len</span>(ret)<br>        conn.send(<span class="hljs-built_in">str</span>(data_length).encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))<br>        data = conn.recv(<span class="hljs-number">102</span>).decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>) <br>        <span class="hljs-keyword">if</span> data == <span class="hljs-string">&#x27;recv_ready&#x27;</span>:<span class="hljs-comment">#???</span><br>            conn.sendall(ret)<br>    conn.close()<br></code></pre></td></tr></table></figure>
 <p>client</p>
-<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> socket<br><br>s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)<br><br><br><span class="hljs-comment"># res = s.connect_ex(('127.0.0.1',8889))</span><br>res = s.connect((<span class="hljs-string">'127.0.0.1'</span>,<span class="hljs-number">8889</span>))<br><br><span class="hljs-keyword">while</span> <span class="hljs-number">1</span>:<br>    msg = input(<span class="hljs-string">'&gt;&gt;&gt;'</span>)<br>    <span class="hljs-keyword">if</span> len(msg) == <span class="hljs-number">0</span>:<span class="hljs-keyword">continue</span><span class="hljs-comment">#没输入，则重新输入</span><br>    <span class="hljs-keyword">if</span> msg == <span class="hljs-string">'quit'</span>:<span class="hljs-keyword">break</span><span class="hljs-comment">#退出</span><br>    s.send(msg.encode(<span class="hljs-string">'utf-8'</span>))<span class="hljs-comment">#发送执行的命令</span><br>    length = int(s.recv(<span class="hljs-number">1024</span>).decode(<span class="hljs-string">'utf-8'</span>))<span class="hljs-comment">#接受数据包长度（数字转整数性下面做计算</span><br>    print(length)<br>    s.send(<span class="hljs-string">'recv_ready'</span>.encode(<span class="hljs-string">'utf-8'</span>))<span class="hljs-comment">#发送一个可以传输的标示。</span><br>    send_size = <span class="hljs-number">0</span><br>    recv_size = <span class="hljs-number">0</span><br>    data = <span class="hljs-string">b''</span><br>    <span class="hljs-keyword">while</span> recv_size &lt; length:<span class="hljs-comment">#校验数据完整性</span><br>        data += s.recv(<span class="hljs-number">102</span>)<span class="hljs-comment">#循环缓存池能接受收的数据</span><br>        print(len(data))<br>        recv_size += len(data)<span class="hljs-comment">#接收数据包长度对比发送方的长度，才算完整数据。</span><br>    print(data.decode(<span class="hljs-string">'utf-8'</span>))<span class="hljs-comment">#输出接受到完整信息</span><br>    print(<span class="hljs-string">"计算后接受包大小"</span>,recv_size)<br>    print(len(data))<br><br>    <br>   <span class="hljs-comment">#接收方、发送方两端</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> socket<br><br>s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)<br><br><br><span class="hljs-comment"># res = s.connect_ex((&#x27;127.0.0.1&#x27;,8889))</span><br>res = s.connect((<span class="hljs-string">&#x27;127.0.0.1&#x27;</span>,<span class="hljs-number">8889</span>))<br><br><span class="hljs-keyword">while</span> <span class="hljs-number">1</span>:<br>    msg = <span class="hljs-built_in">input</span>(<span class="hljs-string">&#x27;&gt;&gt;&gt;&#x27;</span>)<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(msg) == <span class="hljs-number">0</span>:<span class="hljs-keyword">continue</span><span class="hljs-comment">#没输入，则重新输入</span><br>    <span class="hljs-keyword">if</span> msg == <span class="hljs-string">&#x27;quit&#x27;</span>:<span class="hljs-keyword">break</span><span class="hljs-comment">#退出</span><br>    s.send(msg.encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))<span class="hljs-comment">#发送执行的命令</span><br>    length = <span class="hljs-built_in">int</span>(s.recv(<span class="hljs-number">1024</span>).decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))<span class="hljs-comment">#接受数据包长度（数字转整数性下面做计算</span><br>    <span class="hljs-built_in">print</span>(length)<br>    s.send(<span class="hljs-string">&#x27;recv_ready&#x27;</span>.encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))<span class="hljs-comment">#发送一个可以传输的标示。</span><br>    send_size = <span class="hljs-number">0</span><br>    recv_size = <span class="hljs-number">0</span><br>    data = <span class="hljs-string">b&#x27;&#x27;</span><br>    <span class="hljs-keyword">while</span> recv_size &lt; length:<span class="hljs-comment">#校验数据完整性</span><br>        data += s.recv(<span class="hljs-number">102</span>)<span class="hljs-comment">#循环缓存池能接受收的数据</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(data))<br>        recv_size += <span class="hljs-built_in">len</span>(data)<span class="hljs-comment">#接收数据包长度对比发送方的长度，才算完整数据。</span><br>    <span class="hljs-built_in">print</span>(data.decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))<span class="hljs-comment">#输出接受到完整信息</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;计算后接受包大小&quot;</span>,recv_size)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(data))<br><br>    <br>   <span class="hljs-comment">#接收方、发送方两端</span><br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
@@ -533,7 +537,7 @@
               
                 <p class="note note-warning">
                   
-                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                   
                 </p>
               
@@ -542,7 +546,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2018/11/02/python socketbasic knowledge/">
+                      <a href="/2018/11/02/python%20socketbasic%20knowledge/">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Python socket 基本知识与工作原理</span>
                         <span class="visible-mobile">上一篇</span>
@@ -552,7 +556,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2018/10/09/python常用模块02/">
+                      <a href="/2018/10/09/python%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%9702/">
                         <span class="hidden-mobile">python常用模块02</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -563,15 +567,6 @@
               
             </div>
 
-            
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
-
-              </article>
             
           </article>
         </div>
@@ -655,18 +650,18 @@
 
 <script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
 <script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/events.js" ></script>
-<script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/plugins.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 <!-- Plugins -->
 
 
-  <script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
   
-    <script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/img-lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
@@ -719,7 +714,7 @@
 
 
 <!-- 主题的启动项 保持在最底部 -->
-<script  src="https://cdn.jsdelivr.net/gh/kinzun/kinzun.github.io/js/boot.js" ></script>
+<script  src="/js/boot.js" ></script>
 
 
 </body>
